@@ -16,21 +16,21 @@ import shutil
 # total.plot("date",plot_name,title="横截面动量策略不同参数(R, H)收益曲线",grid=True)
 # plt.show()
 
-file_name = "smooth/smoothshort/"
-real_name = "smoothshort"
+file_name = "convex/convex+volume/"
+real_name = "convex+volume"
 T=2267/252
 #新建df
-df_profit = pd.DataFrame(index=[f"N{i}" for i in [20,60,120,180,240]],columns=[f"M{i}" for i in [0,1,5]])
-df_sigma = pd.DataFrame(index=[f"N{i}" for i in [20,60,120,180,240]],columns=[f"M{i}" for i in [0,1,5]])
-df_pro_div_sigma=  pd.DataFrame(index=[f"N{i}" for i in [20,60,120,180,240]],columns=[f"M{i}" for i in [0,1,5]])
-df_maxdrawdownrate = pd.DataFrame(index=[f"N{i}" for i in [20,60,120,180,240]],columns=[f"M{i}" for i in [0,1,5]])
+df_profit = pd.DataFrame(index=[f"N{i}" for i in [10,20,60,120]],columns=[f"M{i}" for i in [0,1,2,5]])
+df_sigma = pd.DataFrame(index=[f"N{i}" for i in [10,20,60,120]],columns=[f"M{i}" for i in [0,1,2,5]])
+df_pro_div_sigma=  pd.DataFrame(index=[f"N{i}" for i in [10,20,60,120]],columns=[f"M{i}" for i in [0,1,2,5]])
+df_maxdrawdownrate = pd.DataFrame(index=[f"N{i}" for i in [10,20,60,120]],columns=[f"M{i}" for i in [0,1,2,5]])
 plots = pd.read_excel("back/"+file_name+"Back_"+real_name+"_N20_M0.xlsx")
 
 
 
 plot_name=[]
-for n in [20,60,120,180,240]:
-    for m in [0,1,5]:
+for n in [10,20,60,120]:
+    for m in [0,1,2,5]:
         name= real_name+f"_N{n}_M{m}"#需修改
         plots[name] = pd.read_excel("back/"+file_name+"Back_"+name+".xlsx")[name]
         plot_name.append(name)

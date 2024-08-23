@@ -12,6 +12,7 @@ class IState:
 
 
 class FSM:
+    
     def __init__(self,state:IState):
         self.current=state
         pass
