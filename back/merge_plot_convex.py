@@ -25,7 +25,7 @@ df_sigma = pd.DataFrame(index=[f"N{i}" for i in [10,20,60,120]],columns=[f"M{i}"
 df_pro_div_sigma=  pd.DataFrame(index=[f"N{i}" for i in [10,20,60,120]],columns=[f"M{i}" for i in [0,1,2,5]])
 df_maxdrawdownrate = pd.DataFrame(index=[f"N{i}" for i in [10,20,60,120]],columns=[f"M{i}" for i in [0,1,2,5]])
 plots = pd.read_excel("back/"+file_name+"Back_"+real_name+"_N20_M0.xlsx")
-
+T=len(plots)/252
 
 
 plot_name=[]

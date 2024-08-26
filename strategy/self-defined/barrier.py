@@ -25,11 +25,7 @@ class Barrier(BackTest):
         context.storage = pd.DataFrame(columns=context.typelist,index=["factor"])
         for i in context.typelist:
             context.storage.loc["factor",i]=0
-        
-        
-        
-            
-        
+
         
         
     def before_trade(self, context):
@@ -41,9 +37,16 @@ class Barrier(BackTest):
         for i in context.typelist:
             try:
                 temp = m_data[i].iloc[-2]
+                
                 if(temp["volume"]*temp["multiplier"]*(temp["high"]+temp["low"]+temp["close"]+temp["open"])*0.25==0):
                     continue
-                context.storage.loc["factor",i]=(context.storage[i].loc["factor"]*context.M+temp["profit"]*100000000/(temp["volume"]*temp["multiplier"]*(temp["high"]+temp["low"]+temp["close"]+temp["open"])*0.25))
+                # m_mean=m_data[i].iloc[max(len(m_data[i])-41,0):-1]
+                # m_mean_c =m_mean.copy()
+                # m_mean_c["turnover"]=m_mean_c["volume"]*m_mean_c["multiplier"]*(m_mean_c["high"]+m_mean_c["low"]+m_mean_c["close"]+m_mean_c["open"])*0.25
+                # m_mean=m_mean_c
+                #turnover = m_mean["turnover"].mean()
+                
+                context.storage.loc["factor",i]=context.storage[i].loc["factor"]*context.M  +  temp["profit"]*10000000/(temp["volume"]*temp["multiplier"]*(temp["high"]+temp["low"]+temp["close"]+temp["open"])*0.25)
             except:
                 continue
         if context.fired:
@@ -88,8 +91,18 @@ class Barrier(BackTest):
         pass
         
 if(__name__=="__main__"):
+    p=multiprocessing.Pool(40)
     for m in [i*0.025 for i in range(40)]:
         engine = Barrier(cash=100000000,margin_rate=1,margin_limit=0,debug=False)
         engine.context.M = m
         engine.context.name=f"barrierlong_M{m:.3f}"
-        engine.loop_process("20120101","20240801")
+        p.apply_async(engine.loop_process,args=("20120101","20240801"))
+    print("-----start-----")
+    p.close()
+    p.join()
+    print("------end------")
+    # for m in [i*0.025 for i in range(40)]:
+    #     engine = Barrier(cash=100000000,margin_rate=1,margin_limit=0,debug=False)
+    #     engine.context.M = m
+    #     engine.context.name=f"barrierlongstd_M{m:.3f}"
+    #     engine.loop_process("20180101","20240801")

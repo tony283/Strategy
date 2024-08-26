@@ -18,13 +18,14 @@ import shutil
 
 file_name = "barrier/barrierlong/"
 real_name = "barrierlong"
-T=1630/252
+T=1599/252
 #新建df
 df_profit = pd.DataFrame(columns=["profit"],index=[f"M{m:.3f}" for m in [i*0.025 for i in range(40)]])
 df_sigma = pd.DataFrame(columns=["sigma"],index=[f"M{m:.3f}" for m in [i*0.025 for i in range(40)]])
 df_pro_div_sigma=  pd.DataFrame(columns=["pro_div_sigma"],index=[f"M{m:.3f}" for m in [i*0.025 for i in range(40)]])
 df_maxdrawdownrate = pd.DataFrame(columns=["maxdrawdownrate"],index=[f"M{m:.3f}" for m in [i*0.025 for i in range(40)]])
 plots = pd.read_excel("back/"+file_name+"Back_"+real_name+"_M0.000.xlsx")
+T=len(plots)/252
 
 
 

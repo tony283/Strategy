@@ -16,22 +16,22 @@ import shutil
 # total.plot("date",plot_name,title="横截面动量策略不同参数(R, H)收益曲线",grid=True)
 # plt.show()
 
-file_name = "rank/"
-real_name = "rank"
+file_name = "section/volbottomtargetvol/"
+real_name = "volbottomtargetvol"
 T=2267/252
 #新建df
-df_profit = pd.DataFrame(index=[f"N{i}" for i in [20,60,120,180,240]],columns=[f"M{i}" for i in [0,20,60]])
-df_sigma = pd.DataFrame(index=[f"N{i}" for i in [20,60,120,180,240]],columns=[f"M{i}" for i in [0,20,60]])
-df_pro_div_sigma=  pd.DataFrame(index=[f"N{i}" for i in [20,60,120,180,240]],columns=[f"M{i}" for i in [0,20,60]])
-df_maxdrawdownrate = pd.DataFrame(index=[f"N{i}" for i in [20,60,120,180,240]],columns=[f"M{i}" for i in [0,20,60]])
-plots = pd.read_excel("back/"+file_name+"Back_"+real_name+"_N20_M0.xlsx")
+df_profit = pd.DataFrame(index=[f"T{i}" for i in [0.05,0.1,0.15,0.2,0.25,0.3]],columns=[f"Sigma{i}" for i in [5,20,40,63,126,252]])
+df_sigma = pd.DataFrame(index=[f"T{i}" for i in [0.05,0.1,0.15,0.2,0.25,0.3]],columns=[f"Sigma{i}" for i in [5,20,40,63,126,252]])
+df_pro_div_sigma=  pd.DataFrame(index=[f"T{i}" for i in [0.05,0.1,0.15,0.2,0.25,0.3]],columns=[f"Sigma{i}" for i in [5,20,40,63,126,252]])
+df_maxdrawdownrate = pd.DataFrame(index=[f"T{i}" for i in [0.05,0.1,0.15,0.2,0.25,0.3]],columns=[f"Sigma{i}" for i in [5,20,40,63,126,252]])
+plots = pd.read_excel("back/"+file_name+"Back_"+real_name+"_S5_T0.1_day62.xlsx")
 T=len(plots)/252
 
 
 plot_name=[]
-for n in [20,60,120,180,240]:
-    for m in [0,20,60]:
-        name= real_name+f"_N{n}_M{m}"#需修改
+for r in [0.05,0.1,0.15,0.2,0.25,0.3]:
+    for s in [5,20,40,63,126,252]:
+        name= real_name+f"_S{s}_T{r}_day62"#需修改
         plots[name] = pd.read_excel("back/"+file_name+"Back_"+name+".xlsx")[name]
         plot_name.append(name)
         profit = pow((plots[name].iloc[-1]/plots[name].iloc[0]),1/T)-1
@@ -40,15 +40,14 @@ for n in [20,60,120,180,240]:
         pro_div_sigma = profit/sigma
         plots["drawdown"]=(plots[name].cummax()-plots[name])/plots[name].cummax()
         maxdrawdownrate= plots["drawdown"].max()
-        df_profit.loc[f"N{n}",f"M{m}"]=profit
-        df_sigma.loc[f"N{n}",f"M{m}"]=sigma
-        df_maxdrawdownrate.loc[f"N{n}",f"M{m}"]=maxdrawdownrate
-        df_pro_div_sigma.loc[f"N{n}",f"M{m}"]=pro_div_sigma    
+        df_profit.loc[f"T{r}",f"Sigma{s}"]=profit
+        df_sigma.loc[f"T{r}",f"Sigma{s}"]=sigma
+        df_maxdrawdownrate.loc[f"T{r}",f"Sigma{s}"]=maxdrawdownrate
+        df_pro_div_sigma.loc[f"T{r}",f"Sigma{s}"]=pro_div_sigma    
         
 if not os.path.exists("Report/"+file_name):
     os.makedirs("Report/"+file_name)
     print("Folder created")
-print(df_profit)
 df_profit.to_excel("Report/"+file_name+real_name+"_profit.xlsx")
 df_sigma.to_excel("Report/"+file_name+real_name+"_sigma.xlsx")
 df_maxdrawdownrate.to_excel("Report/"+file_name+real_name+"_drawdown.xlsx")

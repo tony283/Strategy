@@ -73,19 +73,25 @@ import random
 # # print(vol_top_data)
 # # vol_bottom_data.to_excel("data/factors/Back_volbottomtargetvol_S20_T0.25_day62.xlsx")
 # # vol_top_data.to_excel("data/factors/Back_voltoptargetvol_S5_T0.15_day62.xlsx")
-# typelist=['AU', 'AG', 'HC', 'I', 'J', 'JM', 'RB', 'SF', 'SM', 'SS', 'BU', 'EG', 'FG', 'FU', 'L', 'MA',
-#           'PP', 'RU', 'SC', 'SP', 'TA', 'V', 'EB', 'LU', 'NR', 'PF', 'PG', 'SA', 'A', 'C', 'CF', 'M', 'OI',
-#           'RM', 'SR', 'Y', 'JD', 'CS', 'B', 'P', 'LH', 'PK', 'AL', 'CU', 'NI', 'PB', 'SN', 'ZN', 'LC',
-#           'SI', 'SH', 'PX', 'BR', 'AO']    
-# # for i in typelist:
+typelist=['AU', 'AG', 'HC', 'I', 'J', 'JM', 'RB', 'SF', 'SM', 'SS', 'BU', 'EG', 'FG', 'FU', 'L', 'MA',
+          'PP', 'RU', 'SC', 'SP', 'TA', 'V', 'EB', 'LU', 'NR', 'PF', 'PG', 'SA', 'A', 'C', 'CF', 'M', 'OI',
+          'RM', 'SR', 'Y', 'JD', 'CS', 'B', 'P', 'LH', 'PK', 'AL', 'CU', 'NI', 'PB', 'SN', 'ZN', 'LC',
+          'SI', 'SH', 'PX', 'BR', 'AO']    
+# turnover = pd.DataFrame(columns=["turnover"],index=typelist
+#                         )
+# for i in typelist:
     
-# #     a:pd.DataFrame = pd.read_excel(f"data/{i}_daily.xlsx")
-# #     a.iloc[:,1:].to_excel(f"data/{i}_daily.xlsx",index=False)
+#     turnover.loc[i,"turnover"]= random.randint(1,1000)
     
+    
+# print(turnover)
+# print(turnover.loc[2:])
+#turnover.to_excel("Report/barrier/future_turnover.xlsx")
     
 # a=pd.DataFrame({"A":[1,23,4],"B":[4,2,1],"C":[64,2,4]})
 
-
+a=np.array([0,1,2,3,3])
+print(a.std())
 # print(a["B"].index)
 
 
@@ -93,116 +99,6 @@ import random
 # print(f"{a:.2f}")
 
 # 定义迷宫的地图和起点、终点
-maze = [
-    [1, 1, 1, 1, 1, 1, 1, 1],
-    [1, 0, 0, 0, 0, 0, 0, 1],
-    [1, 0, 1, 1, 1, 1, 0, 1],
-    [1, 0, 1, 0, 0, 0, 0, 1],
-    [1, 0, 1, 0, 1, 1, 0, 1],
-    [1, 0, 0, 0, 1, 0, 0, 1],
-    [1, 1, 1, 1, 1, 1, 1, 1]
-]
-start = (1, 1)
-end = (5, 6)
-# 定义遗传规划算法的参数
-POPULATION_SIZE = 100
-GENERATION_COUNT = 50
-CROSSOVER_RATE = 0.8
-MUTATION_RATE = 0.1
-# 定义个体的数据结构
-class Individual:
-    def __init__(self, chromosome):
-        self.chromosome = chromosome
-        self.fitness = self.calculate_fitness()
-    def calculate_fitness(self):
-        x, y = start
-        for gene in self.chromosome:
-            if gene == 0:  # 向上移动
-                x -= 1
-            elif gene == 1:  # 向下移动
-                x += 1
-            elif gene == 2:  # 向左移动
-                y -= 1
-            elif gene == 3:  # 向右移动
-                y += 1
-            if (x, y) == end:
-                return 1
-            if maze[x][y] == 1:
-                return 0
-        return 0
-# 初始化种群
-def initialize_population():
-    population = []
-    for _ in range(POPULATION_SIZE):
-        chromosome = [random.randint(0, 3) for _ in range(50)]  # 假设染色体长度为50
-        individual = Individual(chromosome)
-        population.append(individual)
-    return population
-# 选择操作
-def selection(population):
-    # 使用轮盘赌选择算法
-    total_fitness = sum(individual.fitness for individual in population)
-    probabilities = [individual.fitness / total_fitness for individual in population]
-    selected_individuals = random.choices(population, probabilities, k=POPULATION_SIZE)
-    return selected_individuals
-# 交叉操作
-def crossover(parent1, parent2):
-    if random.random() < CROSSOVER_RATE:
-        crossover_point = random.randint(1, len(parent1.chromosome) - 1)
-        child1_chromosome = parent1.chromosome[:crossover_point] + parent2.chromosome[crossover_point:]
-        child2_chromosome = parent2.chromosome[:crossover_point] + parent1.chromosome[crossover_point:]
-        child1 = Individual(child1_chromosome)
-        child2 = Individual(child2_chromosome)
-        return child1, child2
-    else:
-        return parent1, parent2
-# 变异操作
-def mutation(individual):
-    mutated_chromosome = individual.chromosome.copy()
-    for i in range(len(mutated_chromosome)):
-        if random.random() < MUTATION_RATE:
-            mutated_chromosome[i] = random.randint(0, 3)
-    return Individual(mutated_chromosome)
-# 主函数
-def main():
-    population = initialize_population()
-    best_fitness = 0
-    best_individual = None
-    for generation in range(GENERATION_COUNT):
-        selected_individuals = selection(population)
-        new_population = []
-        while len(new_population) < POPULATION_SIZE:
-            parent1, parent2 = random.sample(selected_individuals, 2)
-            child1, child2 = crossover(parent1, parent2)
-            child1 = mutation(child1)
-            child2 = mutation(child2)
-            new_population.extend([child1, child2])
-        population = new_population
-        # 更新最佳个体
-        for individual in population:
-            if individual.fitness > best_fitness:
-                best_fitness = individual.fitness
-                best_individual = individual
-        print("Generation:", generation + 1)
-        print("Best Individual:", best_individual.chromosome)
-        print("Best Fitness:", best_fitness)
-        print()
-    # 输出最终结果
-    print("Optimal Solution:")
-    print("Chromosome:", best_individual.chromosome)
-    print("Path:")
-    x, y = start
-    for gene in best_individual.chromosome:
-        if gene == 0:  # 向上移动
-            x -= 1
-        elif gene == 1:  # 向下移动
-            x += 1
-        elif gene == 2:  # 向左移动
-            y -= 1
-        elif gene == 3:  # 向右移动
-            y += 1
-        print("(", x, ",", y, ")")
-        if (x, y) == end:
-            break
-if __name__ == "__main__":
-    main()
+# a = pd.read_excel(r"C:\Users\ROG\Desktop\Strategy\back\trade\Tradebarrierlong_M0.150.xlsx")
+# a=a.groupby(by="type").size().reset_index(name="count")
+# a.to_excel("Report/barrier/future_count.xlsx")

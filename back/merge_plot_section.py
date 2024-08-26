@@ -16,8 +16,8 @@ import shutil
 # total.plot("date",plot_name,title="横截面动量策略不同参数(R, H)收益曲线",grid=True)
 # plt.show()
 
-file_name = "section/volbottomuni/"
-real_name = "volbottomuni"
+file_name = "section/voltop/"
+real_name = "voltop"
 T=2267/252
 #新建df
 df_profit = pd.DataFrame(index=[f"Rangeuni"],columns=[f"Sigma{i}" for i in [5,20,40,63,126,252]])
@@ -25,11 +25,11 @@ df_sigma = pd.DataFrame(index=[f"Rangeuni"],columns=[f"Sigma{i}" for i in [5,20,
 df_pro_div_sigma=  pd.DataFrame(index=[f"Rangeuni"],columns=[f"Sigma{i}" for i in [5,20,40,63,126,252]])
 df_maxdrawdownrate = pd.DataFrame(index=[f"Rangeuni"],columns=[f"Sigma{i}" for i in [5,20,40,63,126,252]])
 plots = pd.read_excel("back/"+file_name+"Back_"+real_name+"_S5.xlsx")
-
+T=len(plots)/252
 
 
 plot_name=[]
-# for r in [0.1,0.2,0.3,0.4,0.5]:
+#for r in [0.1,0.2,0.3,0.4,0.5]:
 for s in [5,20,40,63,126,252]:
     name= real_name+f"_S{s}"#需修改
     plots[name] = pd.read_excel("back/"+file_name+"Back_"+name+".xlsx")[name]
