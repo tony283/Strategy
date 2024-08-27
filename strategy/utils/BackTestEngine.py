@@ -260,7 +260,7 @@ class BackTest():
             self.trade_record.loc[len(self.trade_record)]=[self.current,future_type,amount*multiplier,direction,"S",price]
         return
     #回测主函数
-    #@timer
+    @timer
     def loop_process(self,start,end):
         """_summary_
         回测主函数

@@ -16,11 +16,12 @@ import shutil
 # total.plot("date",plot_name,title="横截面动量策略不同参数(R, H)收益曲线",grid=True)
 # plt.show()
 
-file_name = "smooth/smoothlongshort/"
-real_name = "smooth"
+file_name = "section/realvol/"
+real_name = "realvol"
+tail =""
 #新建df
-indexes :dict={"N":[20,60,120,180,240]}
-columns ={"M": [0,1,5]}
+indexes :dict={"S":[5,20,40,63,126,252]}
+columns ={"N": [5,20,40,63,126,252]}
 
 
 #以上为需要填的参数
@@ -32,14 +33,14 @@ df_profit = pd.DataFrame(index=[f"{index_title}{i}" for i in indexes[index_title
 df_sigma = pd.DataFrame(index=[f"{index_title}{i}" for i in indexes[index_title]],columns=[f"{column_title}{i}" for i in columns[column_title]])
 df_pro_div_sigma=  pd.DataFrame(index=[f"{index_title}{i}" for i in indexes[index_title]],columns=[f"{column_title}{i}" for i in columns[column_title]])
 df_maxdrawdownrate = pd.DataFrame(index=[f"{index_title}{i}" for i in indexes[index_title]],columns=[f"{column_title}{i}" for i in columns[column_title]])
-plots = pd.read_excel("back/"+file_name+"Back_"+real_name+f"_{index_title}{indexes[index_title][0]}_{column_title}{columns[column_title][0]}.xlsx")
+plots = pd.read_excel("back/"+file_name+"Back_"+real_name+f"_{index_title}{indexes[index_title][0]}_{column_title}{columns[column_title][0]}{tail}.xlsx")
 T=len(plots)/252
 
 
 plot_name=[]
 for r in indexes[index_title]:
     for s in columns[column_title]:
-        name= real_name+f"_{index_title}{r}_{column_title}{s}"#需修改
+        name= real_name+f"_{index_title}{r}_{column_title}{s}{tail}"#需修改
         plots[name] = pd.read_excel("back/"+file_name+"Back_"+name+".xlsx")[name]
         plot_name.append(name)
         profit = pow((plots[name].iloc[-1]/plots[name].iloc[0]),1/T)-1

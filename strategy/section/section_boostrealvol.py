@@ -2,10 +2,11 @@ import pandas as pd
 import matplotlib.pyplot as plt
 from datetime import datetime
 import sys
-sys.path.append("c:\\Users\\ROG\\Desktop\\Strategy\\utils")
 import os
+import numpy as np
+sys.path.append("strategy/")
+from utils.BackTestEngine import BackTest
 import multiprocessing
-from utils.BackTestEngine import *
 #order_target_num 用来下空单或多单
 #sell_target_num 用来平仓
 class Section_Boost_BackTest(BackTest):
@@ -14,7 +15,7 @@ class Section_Boost_BackTest(BackTest):
         context.R=20
         context.H=5
         context.sigma = 5
-        context.target_vol=0.1
+        context.N =0
         context.direction=True
         context.fired=False
         context.typelist=['AU', 'AG', 'HC', 'I', 'J', 'JM', 'RB', 'SF', 'SM', 'SS', 'BU', 'EG', 'FG', 'FU', 'L', 'MA',
@@ -23,17 +24,18 @@ class Section_Boost_BackTest(BackTest):
           'SI', 'SH', 'PX', 'BR', 'AO']
         context.count=0#用于计时
         context.range=0.2#取前20
-        context.name=f"volbottomtargetvol_S{context.sigma}_T{context.target_vol}_day{context.days}"
+        context.name=f"volbottomtargetvol_S{context.sigma}_N{context.N}"
         for item in context.typelist:
             self.subscribe(item)#注册品种
         #print(self.data)
     def before_trade(self, context):
+        
         if context.fired:
             context.count+=1
-        if(len(self.position.asset)<65):
+        if(len(self.position.asset)<3+context.N):
             return
-        if((self.position.asset[-2]-self.position.asset[-context.days-2])/self.position.asset[-context.days-2]<
-           -1.5*np.sqrt((context.days))*np.array(self.position.asset[max(0,len(self.position.asset)-252):-1]).std()):
+        if((self.position.asset[-2]-self.position.asset[-context.N-2])/self.position.asset[-context.N-2]<
+           -1.5*np.sqrt((context.N))*np.array(self.position.asset[max(0,len(self.position.asset)-context.N-1):-1]).std()):
             context.direction= not context.direction#切换方向
             
         
@@ -90,18 +92,19 @@ class Section_Boost_BackTest(BackTest):
         
         
 if(__name__=="__main__"):
-    p=multiprocessing.Pool(40)
-    for t in [0.05,0.1,0.15,0.2,0.25,0.3]:
+    # p=multiprocessing.Pool(40)
+    for t in [5,20,40,63,126,252]:
         for s in [5,20,40,63,126,252]:
             engine = Section_Boost_BackTest(cash=100000000,margin_rate=1,margin_limit=0,debug=False)
             engine.context.sigma=s
-            engine.context.target_vol = t
-            engine.context.name=f"volbottomrealvol_S{s}_T{t}_day62"
-            p.apply_async(engine.loop_process,args=("20120101","20240501"))
-    print("-----start-----")
-    p.close()
-    p.join()
-    print("------end------")
+            engine.context.N = t
+            engine.context.name=f"realvol_S{s}_N{t}"
+            engine.loop_process("20120101","20240501")
+            # p.apply_async(engine.loop_process,args=("20120101","20240501"))
+    # print("-----start-----")
+    # p.close()
+    # p.join()
+    # print("------end------")
         #engine.loop_process(start="20120101",end="20240501")
         
 # engine = Section_Momentum_BackTest(cash=100000000,margin_rate=1,margin_limit=0,debug=False)

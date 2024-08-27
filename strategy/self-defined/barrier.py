@@ -3,7 +3,7 @@ import matplotlib.pyplot as plt
 from datetime import datetime
 import sys
 import os
-sys.path.append("C:\\Users\\ROG\\Desktop\\Strategy\\strategy\\utils")
+sys.path.append("strategy")
 from BackTestEngine import *
 import multiprocessing
 class Barrier(BackTest):
@@ -21,7 +21,7 @@ class Barrier(BackTest):
             self.subscribe(item)#注册品种
         context.count =0 #用于计数
         context.day =20#调仓周期
-        context.range=0.15
+        context.range=0.2
         context.storage = pd.DataFrame(columns=context.typelist,index=["factor"])
         for i in context.typelist:
             context.storage.loc["factor",i]=0
@@ -45,8 +45,7 @@ class Barrier(BackTest):
                 # m_mean_c["turnover"]=m_mean_c["volume"]*m_mean_c["multiplier"]*(m_mean_c["high"]+m_mean_c["low"]+m_mean_c["close"]+m_mean_c["open"])*0.25
                 # m_mean=m_mean_c
                 #turnover = m_mean["turnover"].mean()
-                
-                context.storage.loc["factor",i]=context.storage[i].loc["factor"]*context.M  +  temp["profit"]*10000000/(temp["volume"]*temp["multiplier"]*(temp["high"]+temp["low"]+temp["close"]+temp["open"])*0.25)
+                context.storage.loc["factor",i]=context.storage.loc["factor",i]*context.M  +  temp["profit"]*10000000/(temp["volume"]*temp["multiplier"]*(temp["high"]+temp["low"]+temp["close"]+temp["open"])*0.25)
             except:
                 continue
         if context.fired:
