@@ -86,13 +86,13 @@ typelist=['AU', 'AG', 'HC', 'I', 'J', 'JM', 'RB', 'SF', 'SM', 'SS', 'BU', 'EG', 
     
 # print(turnover)
 # print(turnover.loc[2:])
-#turnover.to_excel("Report/barrier/future_turnover.xlsx")
+# #turnover.to_excel("Report/barrier/future_turnover.xlsx")
     
-# a=pd.DataFrame({"A":[1,23,4],"B":[4,2,1],"C":[64,2,4]})
+# # a=pd.DataFrame({"A":[1,23,4],"B":[4,2,1],"C":[64,2,4]})
 
-a=np.array([0,1,2,3,3])
-print(a.std())
-# print(a["B"].index)
+# a=np.array([0,1,2,3,3])
+# print(a.std())
+# # print(a["B"].index)
 
 
 # a=0.1234544123
@@ -102,3 +102,10 @@ print(a.std())
 # a = pd.read_excel(r"C:\Users\ROG\Desktop\Strategy\back\trade\Tradebarrierlong_M0.150.xlsx")
 # a=a.groupby(by="type").size().reset_index(name="count")
 # a.to_excel("Report/barrier/future_count.xlsx")
+import sys
+import time
+for i in range(1, 101):
+    print("\r", end="")
+    print(f"{i} ", end="")
+    sys.stdout.flush()
+    time.sleep(0.5)

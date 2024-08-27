@@ -34,6 +34,7 @@ class Barrier(BackTest):
         #开盘前做一些事
         pass
     def handle_bar(self, m_data, context):
+        q = context.M
         for i in context.typelist:
             try:
                 temp = m_data[i].iloc[-2]
@@ -45,7 +46,7 @@ class Barrier(BackTest):
                 # m_mean_c["turnover"]=m_mean_c["volume"]*m_mean_c["multiplier"]*(m_mean_c["high"]+m_mean_c["low"]+m_mean_c["close"]+m_mean_c["open"])*0.25
                 # m_mean=m_mean_c
                 #turnover = m_mean["turnover"].mean()
-                context.storage.loc["factor",i]=context.storage.loc["factor",i]*context.M  +  temp["profit"]*10000000/(temp["volume"]*temp["multiplier"]*(temp["high"]+temp["low"]+temp["close"]+temp["open"])*0.25)
+                context.storage.loc["factor",i]=q*context.storage.loc["factor",i]*context.M  +  (1-q)*temp["profit"]*10000000/(temp["volume"]*temp["multiplier"]*(temp["high"]+temp["low"]+temp["close"]+temp["open"])*0.25)
             except:
                 continue
         if context.fired:
