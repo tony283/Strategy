@@ -30,7 +30,12 @@ class DQN(nn.Module):
         return self.layer5(x)
 Transition = namedtuple('Transition',
                         ('state', 'action', 'next_state', 'reward'))
+# set up matplotlib
+is_ipython = 'inline' in matplotlib.get_backend()
+if is_ipython:
+    from IPython import display
 
+plt.ion()
 
 class ReplayMemory(object):
 
@@ -46,8 +51,13 @@ class ReplayMemory(object):
 
     def __len__(self):
         return len(self.memory)
-    
+device = torch.device(
+    "cuda" if torch.cuda.is_available() else
+    "mps" if torch.backends.mps.is_available() else
+    "cpu"
+)    
 env = gym.make("CartPole-v1")
 state, info = env.reset()
 action = env.action_space.sample()
-print(action)
+state =torch.tensor(state, dtype=torch.float32, device=device).unsqueeze(0)
+print(state)
