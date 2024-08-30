@@ -9,7 +9,7 @@ import torch
 import torch.nn as nn
 import torch.optim as optim
 import torch.nn.functional as F
-
+import numpy as np
 class DQN(nn.Module):
     def __init__(self, n_observations, n_actions):
         super(DQN, self).__init__()
@@ -56,8 +56,3 @@ device = torch.device(
     "mps" if torch.backends.mps.is_available() else
     "cpu"
 )    
-env = gym.make("CartPole-v1")
-state, info = env.reset()
-action = env.action_space.sample()
-state =torch.tensor(state, dtype=torch.float32, device=device).unsqueeze(0)
-print(state)

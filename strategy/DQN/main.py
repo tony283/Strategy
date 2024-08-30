@@ -1,5 +1,64 @@
 
-from DQN import *
+import math
+import random
+import matplotlib
+import matplotlib.pyplot as plt
+from collections import namedtuple, deque
+from itertools import count
+import gymnasium as gym
+import torch
+import torch.nn as nn
+import torch.optim as optim
+import torch.nn.functional as F
+import numpy as np
+import pandas as pd
+class DQN(nn.Module):
+    def __init__(self, n_observations, n_actions):
+        super(DQN, self).__init__()
+        self.layer1 = nn.Linear(n_observations, 128)
+        self.layer2 = nn.Linear(128, 256)
+        self.layer3 = nn.Linear(256, 256)
+        self.layer4 = nn.Linear(256,n_actions)
+        self.layer5 = nn.Softmax(dim=0)
+
+    # Called with either one element to determine next action, or a batch
+    # during optimization. Returns tensor([[left0exp,right0exp]...]).
+    def forward(self, x):
+        x = F.relu(self.layer1(x))
+        x = F.relu(self.layer2(x))
+        x = F.relu(self.layer3(x))
+        x = self.layer4(x)
+        
+        return self.layer5(x)
+Transition = namedtuple('Transition',
+                        ('state', 'action', 'next_state', 'reward'))
+# set up matplotlib
+is_ipython = 'inline' in matplotlib.get_backend()
+if is_ipython:
+    from IPython import display
+
+plt.ion()
+
+class ReplayMemory(object):
+
+    def __init__(self, capacity):
+        self.memory = deque([], maxlen=capacity)
+
+    def push(self, *args):
+        """Save a transition"""
+        self.memory.append(Transition(*args))
+
+    def sample(self, batch_size):
+        return random.sample(self.memory, batch_size)
+
+    def __len__(self):
+        return len(self.memory)
+device = torch.device(
+    "cuda" if torch.cuda.is_available() else
+    "mps" if torch.backends.mps.is_available() else
+    "cpu"
+)    
+
 # BATCH_SIZE is the number of transitions sampled from the replay buffer
 # GAMMA is the discount factor as mentioned in the previous section
 # EPS_START is the starting value of epsilon
@@ -16,9 +75,9 @@ TAU = 0.005
 LR = 1e-4
 
 # Get number of actions from gym action space
-n_actions = 54
+n_actions = 32
 # Get the number of state observations
-n_observations = 54 ## 观察值为因子，每个品种都有一个
+n_observations = 64 ## 观察值为因子，每个品种都有一个
 device = torch.device(
     "cuda" if torch.cuda.is_available() else
     "mps" if torch.backends.mps.is_available() else
@@ -47,10 +106,12 @@ def select_action(state):
             # t.max(1) will return the largest column value of each row.
             # second column on max result is index of where max element was
             # found, so we pick action with the larger expected reward.
-            return policy_net(state).max(1).indices.view(1, 1)
+            return policy_net(state)
     else:
-        return torch.tensor([[env.action_space.sample()]], device=device, dtype=torch.long)
-
+        action_list = np.random.random(32)
+        action_list = list(action_list/action_list.sum())
+        m_action = torch.tensor([action_list], device=device, dtype=torch.long)
+        return m_action
 
 episode_durations = []
 
@@ -136,25 +197,41 @@ if torch.cuda.is_available() or torch.backends.mps.is_available():
 else:
     num_episodes = 50
 
+
+mydata = pd.read_excel("data/DQN/alldata.xlsx")
+newlist = ['AU', 'AG', 'HC', 'I', 'J', 'JM', 'RB', 'SF', 'SM', 'BU', 'FG',  'L', 'MA', 'PP', 'RU',
+           'TA', 'V', 'A', 'C', 'CF', 'M', 'OI', 'RM', 'SR', 'Y', 'JD',  'B', 'P', 'AL', 'CU', 'PB', 'ZN']
+factor2 = [i+"Current" for i in  newlist]
+factors = newlist.copy()
+factors.extend(factor2)
+reward = [i+"Reward" for i in  newlist]
 for i_episode in range(num_episodes):
     # Initialize the environment and get its state
-    state, info = env.reset()
+    random_index =random.randint(0,500)
+    state = mydata[factors].iloc[random_index]
     state = torch.tensor(state, dtype=torch.float32, device=device).unsqueeze(0)
+
+    m_count=0
     for t in count():
+        m_count+=1
         action = select_action(state)
-        observation, reward, terminated, truncated, _ = env.step(action.item())
+        print(action)
+        observation, reward, terminated, truncated = mydata[factors].iloc[random_index+1], float(action[0]@torch.tensor(mydata[reward].iloc[random_index],device=device,dtype=torch.float32)),m_count>400,False
         reward = torch.tensor([reward], device=device)
         done = terminated or truncated
+        
 
         if terminated:
             next_state = None
         else:
             next_state = torch.tensor(observation, dtype=torch.float32, device=device).unsqueeze(0)
+            
 
         # Store the transition in memory
         memory.push(state, action, next_state, reward)
 
         # Move to the next state
+        random_index+=1
         state = next_state
 
         # Perform one step of the optimization (on the policy network)
