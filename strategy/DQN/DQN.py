@@ -107,15 +107,11 @@ def train(dataloader,model,loss_fn,optimizer):
         optimizer.zero_grad()
         # 执行反向传播计算梯度
         loss.backward()
-        # 并通过优化器更新模型参数
         optimizer.step()
-        # 将损失值转换为标量
         loss_value=loss.item()
-        #print(loss_value)
+        # print(f'loss:{loss_value},[numbes]:{num}')
+        # loss.backward()
         my_loss+=loss_value
-        #将此次损失值打印出来
-        
-        #增加计数器num
         num+=1
     return my_loss
 
