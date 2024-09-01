@@ -22,45 +22,60 @@ class DNN(nn.Module):
         self.layer1 = nn.Linear(n_input, 256)
         self.layer2 = nn.Linear(256, 256)
         self.layer3 = nn.Linear(256, 256)
-        self.layer4 = nn.Linear(256,64)
-        self.layer5 = nn.Linear(64,n_output)
+        self.layer4 = nn.Linear(256, 256)
+        self.layer5 = nn.Linear(256, 256)
+        self.layer6 = nn.Linear(256, 256)
+        self.layer7 = nn.Linear(256, 256)
+        self.layer8 = nn.Linear(256, 256)
+        self.layer9 = nn.Linear(256,256)
+        self.layer10 = nn.Linear(256,64)
+        self.layer11 = nn.Linear(64,n_output)
 
 
     # Called with either one element to determine next action, or a batch
     # during optimization. Returns tensor([[left0exp,right0exp]...]).
     def forward(self, x):
-        x = F.relu(self.layer1(x))
-        x = F.relu(self.layer2(x))
-        x = F.relu(self.layer3(x))
-        x = F.sigmoid(self.layer4(x))
         
-        return self.layer5(x)
+        x = F.elu(self.layer1(x),alpha=1)
+        x = F.elu(self.layer2(x),alpha=1)
+        x = F.elu(self.layer3(x),alpha=1)
+        x = F.elu(self.layer4(x),alpha=1)
+        x = F.elu(self.layer5(x),alpha=1)
+        x = F.elu(self.layer6(x),alpha=1)
+        x = F.elu(self.layer7(x),alpha=1)
+        x = F.elu(self.layer8(x),alpha=1)
+        x = F.elu(self.layer9(x),alpha=1)
+        x = F.selu(self.layer10(x))
+        
+        
+        return self.layer11(x)
 
 
 class TrainData(Dataset.Dataset):
     def __init__(self):
         self.data :pd.DataFrame = pd.read_excel("data/DQN/onedata.xlsx")
-        self.data = self.data.iloc[:500]
-        self.factors = ["profitall63","sigma5","sigma20","sigma63","vol","open_interest","profit1","profit2","profit3","profit4","profit5"]
+        self.data = self.data.iloc[:60000]
+        self.factors = ["profitall63","sigma5","sigma20","sigma63","vol","open_interest",*[f"profit{i}" for i in range(1,20)]]
 
         
     def __len__(self):
         return len(self.data)
     def __getitem__(self, index):
-        data = torch.tensor(self.data.iloc[index][self.factors], dtype=torch.float64)
-        label = F.softmax(torch.tensor([self.data.iloc[index]["R"]], dtype=torch.float64),dim=0)
+        data = torch.tensor(self.data.iloc[index][self.factors], dtype=torch.float32)
+        label = torch.tensor([self.data.iloc[index]["R"]], dtype=torch.float32)
+        
         return data, label
 class ValidateData(Dataset.Dataset):
     def __init__(self):
         self.data :pd.DataFrame = pd.read_excel("data/DQN/onedata.xlsx")
-        self.data = self.data.iloc[-500:]
-        self.factors = ["profitall63","sigma5","sigma20","sigma63","vol","open_interest","profit1","profit2","profit3","profit4","profit5"]
+        self.data = self.data.iloc[-5000:]
+        self.factors = ["profitall63","sigma5","sigma20","sigma63","vol","open_interest",*[f"profit{i}" for i in range(1,20)]]
         
     def __len__(self):
         return len(self.data)
     def __getitem__(self, index):
-        data = torch.tensor(self.data.iloc[index][self.factors], dtype=torch.float64)
-        label = F.softmax(torch.tensor([self.data.iloc[index]["R"]], dtype=torch.float64),dim=0)
+        data = torch.tensor(self.data.iloc[index][self.factors], dtype=torch.float32)
+        label = torch.tensor([self.data.iloc[index]["R"]], dtype=torch.float32)
         return data, label
     
     
@@ -81,10 +96,11 @@ device = torch.device(
 ###############################################
 traindata =TrainData()
 validatedata = ValidateData()
-dataloader =DataLoader.DataLoader(dataset=traindata,batch_size=64,shuffle=True,num_workers=0)
-validateloader = DataLoader.DataLoader(dataset=validatedata,batch_size=64,shuffle=True,num_workers=0)
-model=DNN(11,1).to(device)
-
+dataloader =DataLoader.DataLoader(dataset=traindata,batch_size=512,shuffle=True,num_workers=0)
+validateloader = DataLoader.DataLoader(dataset=validatedata,batch_size=512,shuffle=True,num_workers=0)
+print(f"device is {device}")
+model=DNN(25,1).to(device)
+print(device)
 loss_fn = nn.MSELoss()
 optimizer= optim.SGD(model.parameters(), lr=0.01, momentum=0.9, weight_decay=0.0001)
 
@@ -107,6 +123,7 @@ def train(dataloader,model,loss_fn,optimizer):
         optimizer.zero_grad()
         # 执行反向传播计算梯度
         loss.backward()
+        torch.nn.utils.clip_grad.clip_grad_norm_(model.parameters(), max_norm=5)
         optimizer.step()
         loss_value=loss.item()
         # print(f'loss:{loss_value},[numbes]:{num}')
@@ -115,8 +132,11 @@ def train(dataloader,model,loss_fn,optimizer):
         num+=1
     return my_loss
 
-EPOCH = 20
+
+
+EPOCH = 1000
 PATH = "data/DQN/ADNN.pt"
+BACKPATH = "data/DQN/ADNN"
 if os.path.exists(PATH):
     model.load_state_dict(torch.load(PATH))
     model.eval()
@@ -135,11 +155,12 @@ for i in range(EPOCH):
         for X,y in validateloader:
             X,y=X.to(device),y.to(device)
             test_outputs = model(X)  # 前向传播获取测试集的预测结果
-            validate_loss += loss_fn(test_outputs, y)  # 计算测试集上的损失值
-        print(f'Test Loss: {validate_loss.item()}')  # 打印测试损失信息
+            # print(f"Predict is {test_outputs},real value is {y}")
+            validate_loss += loss_fn(test_outputs, y).item()  # 计算测试集上的损失值
+        print(f'Test Loss: {validate_loss}')  # 打印测试损失信息
         validate_loss_list.append(validate_loss)
-loss_df["train_loss"]=train_loss_list
-loss_df["validate_loss"]=validate_loss_list
+loss_df["train_loss"]=[t for t in  train_loss_list]
+loss_df["validate_loss"]=[t for t in  validate_loss_list]
 try:
     loss_log = pd.read_excel("data/DQN/loss.xlsx",index=None)
     loss_log = pd.concat([loss_log,loss_df])
