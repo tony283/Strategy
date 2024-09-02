@@ -259,6 +259,15 @@ class BackTest():
             self.position.cash+=earn
             self.trade_record.loc[len(self.trade_record)]=[self.current,future_type,amount*multiplier,direction,"S",price]
         return
+    def sell_all_target(self, m_data):
+        for future_type_dir, amount in self.position.hold.items():
+                info = future_type_dir.split("_")
+                future_type = info[0]
+                direction = info[1]
+                multi = m_data[future_type]["multiplier"].iloc[-1]
+                if(amount[0]//multi<=0):
+                    continue
+                self.sell_target_num(m_data[future_type]["close"].iloc[-1],amount[0]//multi,multi,future_type,direction)
     #回测主函数
     # @timer
     def loop_process(self,start,end):
@@ -299,7 +308,7 @@ class BackTest():
     def draw(self,context,df:pd.DataFrame):
         df.plot("date",self.context.name)
         plt.show()
-        
+    
     # @timer    
     # def write_log(self,date):
     #     """"date","type","hold","direction","average_cost"

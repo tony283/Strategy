@@ -54,6 +54,7 @@ class Section_Momentum_BackTest(BackTest):
                 except:
                     continue
             ranking = pd.DataFrame(temp_dict,columns=["future_type","profit"])
+            print(len(ranking))
             range=int(self.context.range*len(ranking))
             ranking = ranking.sort_values(by="profit",ascending=True)#排名
             cash_max = (self.position.cash//(range))/10000
@@ -79,7 +80,8 @@ for r in [5,10,15,20,25,30,35,40]:
         engine = Section_Momentum_BackTest(cash=100000000,margin_rate=1,margin_limit=0,debug=False)
         engine.context.R=r
         engine.context.H=h
-        engine.context.name=f"sectionshort_R{r}_H{h}"
-        engine.loop_process(start="20150101",end="20240501")
+        engine.context,name = "test"
+        # engine.context.name=f"sectionshort_R{r}_H{h}"
+        engine.loop_process(start="20220101",end="20220301")
 # engine = Section_Momentum_BackTest(cash=100000000,margin_rate=1,margin_limit=0,debug=False)
 # engine.context.name= "best_section"
