@@ -52,12 +52,8 @@ for i in newlist:
     future_his = pd.read_excel(f"data/{i}_daily.xlsx")
     future_his["R"] = future_his["profit"].shift(-1)
     future_his["profit63"]=(future_his["close"].shift()-future_his["close"].shift(64))/future_his["close"].shift(64)
-    future_his["profit1"]=(future_his["close"].shift()-future_his["close"].shift(2))/future_his["close"].shift(2)
-    future_his["profit2"]=(future_his["close"].shift(2)-future_his["close"].shift(3))/future_his["close"].shift(3)
-    future_his["profit3"]=(future_his["close"].shift(3)-future_his["close"].shift(4))/future_his["close"].shift(4)
-    future_his["profit4"]=(future_his["close"].shift(4)-future_his["close"].shift(5))/future_his["close"].shift(5)
-    future_his["profit5"]=(future_his["close"].shift(5)-future_his["close"].shift(6))/future_his["close"].shift(6)
-    for i in range(1,20):
+
+    for i in range(20):
         future_his[f"profit{i}"]=(future_his["close"].shift(i)-future_his["close"].shift(i+1))*10/future_his["close"].shift(2)
         
 
@@ -67,7 +63,7 @@ for i in newlist:
     df_temp["sigma5"] = future_his["sigma5"]*10
     df_temp["sigma20"] = future_his["sigma20"]*10
     df_temp["sigma63"] = future_his["sigma63"]*10
-    for i in range(1,20):
+    for i in range(20):
         df_temp[f"profit{i}"] = future_his[f"profit{i}"]*10
 
     df_temp["vol"]=(future_his["volume"].shift()/future_his["volume"].shift(2)).apply(lambda x :np.tanh(x-1))

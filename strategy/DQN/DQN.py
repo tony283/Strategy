@@ -19,17 +19,13 @@ warnings.simplefilter(action='ignore', category=FutureWarning)
 class DNN(nn.Module):
     def __init__(self, n_input, n_output):
         super(DNN, self).__init__()
-        self.layer1 = nn.Linear(n_input, 256)
-        self.layer2 = nn.Linear(256, 256)
-        self.layer3 = nn.Linear(256, 256)
-        self.layer4 = nn.Linear(256, 256)
-        self.layer5 = nn.Linear(256, 256)
-        self.layer6 = nn.Linear(256, 256)
-        self.layer7 = nn.Linear(256, 256)
-        self.layer8 = nn.Linear(256, 256)
-        self.layer9 = nn.Linear(256,256)
-        self.layer10 = nn.Linear(256,64)
-        self.layer11 = nn.Linear(64,n_output)
+        self.layer1 = nn.Linear(n_input, 128)
+        self.layer2 = nn.Linear(128, 128)
+        self.layer3 = nn.Linear(128, 128)
+        self.layer4 = nn.Linear(128, 128)
+        self.layer5 = nn.Linear(128, 128)
+        self.layer10 = nn.Linear(128,32)
+        self.layer11 = nn.Linear(32,n_output)
 
 
     # Called with either one element to determine next action, or a batch
@@ -41,10 +37,6 @@ class DNN(nn.Module):
         x = F.elu(self.layer3(x),alpha=1)
         x = F.elu(self.layer4(x),alpha=1)
         x = F.elu(self.layer5(x),alpha=1)
-        x = F.elu(self.layer6(x),alpha=1)
-        x = F.elu(self.layer7(x),alpha=1)
-        x = F.elu(self.layer8(x),alpha=1)
-        x = F.elu(self.layer9(x),alpha=1)
         x = F.selu(self.layer10(x))
         
         
@@ -54,8 +46,8 @@ class DNN(nn.Module):
 class TrainData(Dataset.Dataset):
     def __init__(self):
         self.data :pd.DataFrame = pd.read_excel("data/DQN/onedata.xlsx")
-        self.data = self.data.iloc[:60000]
-        self.factors = ["profitall63","sigma5","sigma20","sigma63","vol","open_interest",*[f"profit{i}" for i in range(1,20)]]
+        self.data = self.data.iloc[:10000]
+        self.factors = ["profitall63","sigma5","sigma20","sigma63","vol","open_interest",*[f"profit{i}" for i in range(20)]]
 
         
     def __len__(self):
@@ -69,7 +61,7 @@ class ValidateData(Dataset.Dataset):
     def __init__(self):
         self.data :pd.DataFrame = pd.read_excel("data/DQN/onedata.xlsx")
         self.data = self.data.iloc[-5000:]
-        self.factors = ["profitall63","sigma5","sigma20","sigma63","vol","open_interest",*[f"profit{i}" for i in range(1,20)]]
+        self.factors = ["profitall63","sigma5","sigma20","sigma63","vol","open_interest",*[f"profit{i}" for i in range(20)]]
         
     def __len__(self):
         return len(self.data)
@@ -96,13 +88,12 @@ device = torch.device(
 ###############################################
 traindata =TrainData()
 validatedata = ValidateData()
-dataloader =DataLoader.DataLoader(dataset=traindata,batch_size=512,shuffle=True,num_workers=0)
-validateloader = DataLoader.DataLoader(dataset=validatedata,batch_size=512,shuffle=True,num_workers=0)
-print(f"device is {device}")
-model=DNN(25,1).to(device)
+dataloader =DataLoader.DataLoader(dataset=traindata,batch_size=128,shuffle=True,num_workers=0)
+validateloader = DataLoader.DataLoader(dataset=validatedata,batch_size=128,shuffle=True,num_workers=0)
+model=DNN(26,1).to(device)
 print(device)
 loss_fn = nn.MSELoss()
-optimizer= optim.SGD(model.parameters(), lr=0.01, momentum=0.9, weight_decay=0.0001)
+optimizer= optim.SGD(model.parameters(), lr=0.005, momentum=0.9, weight_decay=0.0001)
 
 
 '''定义训练函数'''
@@ -134,7 +125,7 @@ def train(dataloader,model,loss_fn,optimizer):
 
 
 
-EPOCH = 1000
+EPOCH = 100
 PATH = "data/DQN/ADNN.pt"
 BACKPATH = "data/DQN/ADNN"
 if os.path.exists(PATH):
