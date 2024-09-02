@@ -54,10 +54,11 @@ class Section_Boost_BackTest(BackTest):
                     direction = True
                 else:
                     direction = False
-                context.cummulative[(type1,type2)]+= proportion
+                context.cummulative[(type1,type2)]= context.cummulative[(type1,type2)]*0.99+proportion
                 
-                
+        
             except: continue
+
         if context.fired:
             if context.count<context.H:
                 return
@@ -67,36 +68,45 @@ class Section_Boost_BackTest(BackTest):
                 context.fired = False
         if not context.fired:
             ##开始计算每个对冲组合的相关度
-            
-            total_proportion=0
+
             cash_max = (self.position.cash//(2))/10000
+            max_compound = 0
+            max_key =()
             for key,value in context.cummulative.items():
-                total_proportion+=abs(value)
+                if(abs(value)>abs(max_compound)):
+                    max_compound=value
+                    max_key=key
+            print(max_key)
             for choice in context.hedge_choice:
-                try:
-                    type1,type2,rho = choice[0],choice[1],choice[2]
-                    sigma1 ,sigma2 =m_data[type1]["sigma63"].iloc[-1],m_data[type2]["sigma63"].iloc[-1]
-                    if sigma1==0 or sigma2==0:
-                        continue
-                    profit1,profit2 = m_data[type1]["profit"].iloc[-1],m_data[type2]["sigma63"].iloc[-1]
-                    proportion = context.cummulative[(type1,type2)]/total_proportion
-                    if(proportion>0):
-                        direction = True
-                    else:
-                        direction = False
-                    close1,close2 = m_data[type1]["close"].iloc[-1],m_data[type2]["close"].iloc[-1]
-                    multi1,multi2 = m_data[type1]["multiplier"].iloc[-1], m_data[type2]["multiplier"].iloc[-1]
-                    if int(abs(proportion)*cash_max/(close1*multi1))>0 and int(abs(proportion)*cash_max/(close2*multi2))>0:
-                        self.order_target_num(close1,int(abs(proportion)*cash_max/(close1*multi1)),multi1,type1,"short" if direction else "long")
-                        self.order_target_num(close2,int(abs(proportion)*cash_max/(close2*multi2)),multi2,type2,"long" if direction else "short")  
-                except: continue            
-            context.fired=True
+                if choice[0]!=max_key[0] or choice[1]!=max_key[1]:
+                    continue
+                type1,type2,rho = choice[0],choice[1],choice[2]
+                sigma1 ,sigma2 =m_data[type1]["sigma63"].iloc[-1],m_data[type2]["sigma63"].iloc[-1]
+                if sigma1==0 or sigma2==0:
+                    return
+                profit1,profit2 = m_data[type1]["profit"].iloc[-1],m_data[type2]["sigma63"].iloc[-1]
+                
+                if(max_compound>0):
+                    direction = True
+                else:
+                    direction = False
+                close1,close2 = m_data[type1]["close"].iloc[-1],m_data[type2]["close"].iloc[-1]
+                multi1,multi2 = m_data[type1]["multiplier"].iloc[-1], m_data[type2]["multiplier"].iloc[-1]
+                if int(cash_max/(close1*multi1))>0 and int(cash_max/(close2*multi2))>0:
+                    print("here")
+                    self.order_target_num(close1,int(cash_max/(close1*multi1)),multi1,type1,"short" if direction else "long")
+                    self.order_target_num(close2,int(cash_max/(close2*multi2)),multi2,type2,"long" if direction else "short")
+                    context.fired=True  
+        
+            
 
     def after_trade(self, context):
         pass
         
         
-for h in [1,2,3,4,5]:    
+for h in [1,2,3,4,5]:
+    # for j in []:
+        
     engine = Section_Boost_BackTest(cash=100000000,margin_rate=1,margin_limit=0,debug=False)
     engine.context.H=h
     engine.context.name=f"volhedge_H{engine.context.H}_T"
