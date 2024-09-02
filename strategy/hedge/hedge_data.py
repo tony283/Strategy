@@ -8,9 +8,9 @@ typelist=['AU', 'AG', 'HC', 'I', 'J', 'JM', 'RB', 'SF', 'SM', 'SS', 'BU', 'EG', 
 
 trading_dates = pd.read_excel("data/trading_dates.xlsx")
 df = pd.DataFrame(index=trading_dates["date"],columns=typelist)
-print(df)
+# print(df)
 
 for i in typelist:
     temp = pd.read_excel(f"data/{i}_daily.xlsx",index_col ="date")
-    # print(temp)
+    print(temp)
     
