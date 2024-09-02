@@ -334,7 +334,6 @@ class BackTest():
             if (future_type+"_short") in self.position.hold.keys():
                 self.position.hold[future_type+"_short"][2]-=(int(current_close*10000)-int(preclose*10000))*self.position.hold[future_type+"_short"][0]
                 total_profit+=self.position.hold[future_type+"_short"][2]
-                print()
         
         #通过hold和cash计算收益
         self.position.asset.append(self.position.cash+total_profit)

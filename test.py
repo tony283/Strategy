@@ -30,53 +30,63 @@ import random
 # print(f"sigma is {sigma},profit is {profit_annual},division is {profit_annual/sigma}")
 
 # date =datetime(2015,1,1)
-newlist = ['AU', 'AG', 'HC', 'I', 'J', 'JM', 'RB', 'SF', 'SM', 'BU', 'FG',  'L', 'MA', 'PP', 'RU',
-           'TA', 'V', 'A', 'C', 'CF', 'M', 'OI', 'RM', 'SR', 'Y', 'JD',  'B', 'P', 'AL', 'CU', 'PB', 'ZN']
-# print(len(newlist))
-# # # for i in datalist:
-# # #     a =pd.read_excel(f"data/{i}_daily.xlsx")
-# # #     if(date>a.iloc[0]["date"]):
-# # #         newlist.append(i)
-# #############################################################################
-newlist_c = newlist.copy()
-dates = pd.read_excel("data/trading_dates.xlsx")
-dates = dates[dates["date"]>=datetime(2015,1,1)]
-dates = dates[dates["date"]<=datetime(2014,8,8)]
-df = pd.DataFrame(columns=["R","profitall63","sigma5","sigma20","sigma63","vol","open_interest",*[f"profit{i}" for i in range(1,20)]])
+# newlist = ['AU', 'AG', 'HC', 'I', 'J', 'JM', 'RB', 'SF', 'SM', 'BU', 'FG',  'L', 'MA', 'PP', 'RU',
+#            'TA', 'V', 'A', 'C', 'CF', 'M', 'OI', 'RM', 'SR', 'Y', 'JD',  'B', 'P', 'AL', 'CU', 'PB', 'ZN']
+# # print(len(newlist))
+# # # # for i in datalist:
+# # # #     a =pd.read_excel(f"data/{i}_daily.xlsx")
+# # # #     if(date>a.iloc[0]["date"]):
+# # # #         newlist.append(i)
+# # #############################################################################
+# newlist_c = newlist.copy()
+# dates = pd.read_excel("data/trading_dates.xlsx")
+# dates = dates[dates["date"]>=datetime(2015,1,1)]
+# dates = dates[dates["date"]<=datetime(2014,8,8)]
+# df = pd.DataFrame(columns=["R","profitall63","sigma5","sigma20","sigma63","vol","open_interest",*[f"profit{i}" for i in range(1,20)]])
 
-# print(df)
+# # print(df)
 
 
-for i in newlist:
-    df_temp = pd.DataFrame(columns=["R","profitall63","sigma5","sigma20","sigma63","vol","open_interest","profit1","profit2","profit3","profit4","profit5"])
-    future_his = pd.read_excel(f"data/{i}_daily.xlsx")
-    future_his["R"] = future_his["profit"].shift(-1)
-    future_his["profit63"]=(future_his["close"].shift()-future_his["close"].shift(64))/future_his["close"].shift(64)
+# for i in newlist:
+#     df_temp = pd.DataFrame(columns=["R","profitall63","sigma5","sigma20","sigma63","vol","open_interest","profit1","profit2","profit3","profit4","profit5"])
+#     future_his = pd.read_excel(f"data/{i}_daily.xlsx")
+#     future_his["R"] = future_his["profit"].shift(-1)
+#     future_his["profit63"]=(future_his["close"].shift()-future_his["close"].shift(64))/future_his["close"].shift(64)
 
-    for i in range(20):
-        future_his[f"profit{i}"]=(future_his["close"].shift(i)-future_his["close"].shift(i+1))*10/future_his["close"].shift(2)
+#     for i in range(20):
+#         future_his[f"profit{i}"]=(future_his["close"].shift(i)-future_his["close"].shift(i+1))*10/future_his["close"].shift(2)
         
 
     
-    future_his =future_his.set_index("date")
-    df_temp["profitall63"] = future_his["profit63"]*10
-    df_temp["sigma5"] = future_his["sigma5"]*10
-    df_temp["sigma20"] = future_his["sigma20"]*10
-    df_temp["sigma63"] = future_his["sigma63"]*10
-    for i in range(20):
-        df_temp[f"profit{i}"] = future_his[f"profit{i}"]*10
+#     future_his =future_his.set_index("date")
+#     df_temp["profitall63"] = future_his["profit63"]*10
+#     df_temp["sigma5"] = future_his["sigma5"]*10
+#     df_temp["sigma20"] = future_his["sigma20"]*10
+#     df_temp["sigma63"] = future_his["sigma63"]*10
+#     for i in range(20):
+#         df_temp[f"profit{i}"] = future_his[f"profit{i}"]*10
 
-    df_temp["vol"]=(future_his["volume"].shift()/future_his["volume"].shift(2)).apply(lambda x :np.tanh(x-1))
-    df_temp["open_interest"] = (future_his["open_interest"].shift()/future_his["open_interest"].shift(2)).apply(lambda x :np.tanh(x-1))
-    df_temp["R"] = future_his["R"]*10
-    df = pd.concat([df,df_temp])
-df = df.dropna(axis=0,how="any")
-df.to_excel("data/DQN/onedata.xlsx")
+#     df_temp["vol"]=(future_his["volume"].shift()/future_his["volume"].shift(2)).apply(lambda x :np.tanh(x-1))
+#     df_temp["open_interest"] = (future_his["open_interest"].shift()/future_his["open_interest"].shift(2)).apply(lambda x :np.tanh(x-1))
+#     df_temp["R"] = future_his["R"]*10
+#     df = pd.concat([df,df_temp])
+# df = df.dropna(axis=0,how="any")
+# df.to_excel("data/DQN/onedata.xlsx")
 
-# df = pd.read_excel("data/DQN/onedata.xlsx")
-# print(df.isnull().any())
-# print(df)
-# df = pd.read_excel("data/DQN/alldata.xlsx")
-# df =df[newlist]
-# a=df.iloc[0].tolist()
-# print(a)
+
+
+
+longlist = ["PB","AG","C","CS","AU","SR"]
+shortlist = ["BU","CU","HC","PP","V","P"]
+av_profit = []
+for i in longlist:
+    temp = pd.read_excel(f"data/{i}_daily.xlsx",index_col="date")
+    av_profit.append(temp.loc[datetime(2015,2,26),"profit"])
+for i in shortlist:
+    temp = pd.read_excel(f"data/{i}_daily.xlsx",index_col="date")
+    av_profit.append(-temp.loc[datetime(2015,2,26),"profit"])
+print(av_profit)
+av_profit =np.array(av_profit)
+print(av_profit.mean())
+
+

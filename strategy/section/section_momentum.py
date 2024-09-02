@@ -50,15 +50,14 @@ class Section_Momentum_BackTest(BackTest):
             temp_dict =[]#用于储存收益率信息
             for future_type in context.typelist:
                 try:
-                    profit = (m_data[future_type]["close"].iloc[-2]-m_data[future_type]["close"].iloc[-2-context.R])/m_data[future_type]["close"].iloc[-2-context.R]
+                    profit = (m_data[future_type]["close"].iloc[-1]-m_data[future_type]["close"].iloc[-1-context.R])/m_data[future_type]["close"].iloc[-1-context.R]
                     temp_dict.append([future_type,profit])
                 except:
                     continue
             ranking = pd.DataFrame(temp_dict,columns=["future_type","profit"])
             range=int(self.context.range*len(ranking))
-            
             ranking = ranking.sort_values(by="profit",ascending=True)#排名
-            if self.current == datetime(2019,1,9):
+            if self.current == datetime(2019,2,13):
                 print(ranking)
             cash_max = (self.position.cash//(range*2))/10000
             for index, row in ranking.iloc[-range:].iterrows():#收益率最高的
