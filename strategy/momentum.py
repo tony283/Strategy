@@ -12,7 +12,7 @@ class Momentum_BackTest(BackTest):
         context.name="momentum"
         context.day=60
         context.fired=False
-    def before_trade(self, context):
+    def before_trade(self, context,m_data):
         
         context.day+=1
         

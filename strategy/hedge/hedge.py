@@ -32,7 +32,7 @@ class Section_Boost_BackTest(BackTest):
         for item in context.typelist:
             self.subscribe(item)#注册品种
         #print(self.data)
-    def before_trade(self, context):
+    def before_trade(self, context,_data):
         if context.fired:
             context.count+=1       
         return super().before_trade(context)
@@ -104,7 +104,7 @@ class Section_Boost_BackTest(BackTest):
         pass
         
         
-for h in [1,2,3,4,5]:
+for h in [10,20]:
     # for j in []:
         
     engine = Section_Boost_BackTest(cash=100000000,margin_rate=1,margin_limit=0,debug=False)

@@ -12,7 +12,7 @@ class Vol_BackTest(BackTest):
         context.fired=False
         context.vol_pre={"vol":[],"pre":[]}
         pass
-    def before_trade(self, context):
+    def before_trade(self, context,m_data):
         if context.fired:
             context.days+=1
         

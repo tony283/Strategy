@@ -1,4 +1,5 @@
 
+import os
 import pandas as pd
 import numpy as np
 from datetime import datetime
@@ -174,7 +175,7 @@ class BackTest():
         Args:
             m_data (_type_): 字典形式，例如m_data["CU"]是一个dataframe，保存了铜从历史最早的数据到当前交易日的所有数据
         """
-        self.before_trade(self.context)
+        
         self.check_hold(m_data)#补交保证金
         self.handle_bar(m_data,self.context)
         self.after_trade(self.context)
@@ -270,7 +271,7 @@ class BackTest():
                 self.sell_target_num(m_data[future_type]["close"].iloc[-1],amount[0]//multi,multi,future_type,direction)
     #回测主函数
     # @timer
-    def loop_process(self,start,end):
+    def loop_process(self,start,end,saving_dir="back/"):
         """_summary_
         回测主函数
 
@@ -291,6 +292,7 @@ class BackTest():
             self.current=current_date
             for future_type, value in self.data.items():
                 m_data[future_type]= value[value["date"]<=current_date]#每天先把当天数据导入，将close作为可以买卖的价格
+            self.before_trade(self.context,m_data)
             self.calculate_profit(m_data)#计算当日收益（分别计算每个品种看涨看跌的收益，将当日价格减去昨日价格）
             self.process(m_data)#进行买卖操作
             #self.write_log(current_date)
@@ -298,7 +300,9 @@ class BackTest():
         real_time_series:pd.DataFrame=real_time_series.to_frame()
         real_time_series[self.context.name]=np.array(self.position.asset)
         real_time_series[self.context.name]=real_time_series[self.context.name].apply(lambda x:x/10000)
-        real_time_series.to_excel("back/Back_"+self.context.name+".xlsx")
+        if not os.path.exists(saving_dir):
+            os.makedirs(saving_dir)
+        real_time_series.to_excel(saving_dir+"Back_"+self.context.name+".xlsx")
         #self.draw(self.context,real_time_series)
         #self.draw(self.context,real_time_series)
         #self.beautiful_plot()

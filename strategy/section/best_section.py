@@ -27,7 +27,7 @@ class Section_Momentum_BackTest(BackTest):
         for item in context.typelist:
             self.subscribe(item)#注册品种
         #print(self.data)
-    def before_trade(self, context):
+    def before_trade(self, context,m_data):
         if context.h1fired:
             context.count1+=1
         if context.h2fired:

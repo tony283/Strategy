@@ -31,7 +31,7 @@ class Rank(BackTest):
         
         
         
-    def before_trade(self, context):
+    def before_trade(self, context,m_data):
         if context.fired:
             context.count += 1
         #开盘前做一些事
