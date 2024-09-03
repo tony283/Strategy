@@ -5,7 +5,7 @@ import sys
 sys.path.append("strategy/")
 import os
 import multiprocessing
-from utils.BackTestEngine import *
+from utils.BackTestEnginetest import *
 #order_target_num 用来下空单或多单
 #sell_target_num 用来平仓
 class Section_Momentum_BackTest(BackTest):
@@ -77,18 +77,18 @@ class Section_Momentum_BackTest(BackTest):
         
         
 if(__name__=="__main__"):
-    p=multiprocessing.Pool(40)
-    for r in range(1,20):
-        for h in [1,2,3,4,5]:
-            engine = Section_Momentum_BackTest(cash=1000000000,margin_rate=1,margin_limit=0,debug=False)
-            engine.context.R=r
-            engine.context.H=h
-            engine.context.name = f"newsec_R{r}_H{h}"
-            p.apply_async(engine.loop_process,args=("20120101","20240501","back/section/newsec/"))
-            # engine.loop_process(start="20150101",end="20231231",saving_dir="back/section/newsec/")
-    print("-----start-----")
-    p.close()
-    p.join()
-    print("------end------")
-# engine = Section_Momentum_BackTest(cash=100000000,margin_rate=1,margin_limit=0,debug=False)
+    # p=multiprocessing.Pool(40)
+    # for r in range(1,20):
+    #     for h in [1,2,3,4,5]:
+    engine = Section_Momentum_BackTest(cash=1000000000,margin_rate=1,margin_limit=0,debug=False)
+    engine.context.R=20
+    engine.context.H=20
+    engine.context.name = f"test"
+    # p.apply_async(engine.loop_process,args=("20120101","20240501","back/section/newsec/"))
+    engine.loop_process(start="20150101",end="20231231",saving_dir="back/")
+#     print("-----start-----")
+#     p.close()
+#     p.join()
+#     print("------end------")
+# # engine = Section_Momentum_BackTest(cash=100000000,margin_rate=1,margin_limit=0,debug=False)
 # engine.context.name= "best_section"s
