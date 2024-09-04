@@ -108,7 +108,7 @@ class BackTest():
         self.position.original_cash = cash*10000#参考基准，不会变
         self.position.hold = {}#hold item格式：[amount,price*10000,guarantee]，具体见最上面注释
         self.position.asset=[]#每日的投资组合公允价值（含现金）最终都会被追加到此
-        self.hold =pd.DataFrame(columns=["date","type","hold","direction","average_cost","net_value"])#历史持仓，太耗时，已取消
+        self.hold =pd.DataFrame(columns=["date","type","hold","direction","profit"])#历史持仓，太耗时，已取消
         self.trade_record = pd.DataFrame(columns=["date","type","amount","direction","B/S","price"])#成交记录，最终会生成对账单
         self.instrument = {"margin_rate":margin_rate,"margin_limit":margin_limit}#设置保证金比例和下限
         self.init(self.context)#自定义初始化
@@ -294,7 +294,7 @@ class BackTest():
             self.before_trade(self.context,m_data)
             self.calculate_profit(m_data)#计算当日收益（分别计算每个品种看涨看跌的收益，将当日价格减去昨日价格）
             self.process(m_data)#进行买卖操作
-            self.write_log(current_date)
+            self.write_log(current_date,m_data)
         self.log(self.trade_record)
         real_time_series:pd.DataFrame=real_time_series.to_frame()
         real_time_series[self.context.name]=np.array(self.position.asset)
@@ -314,15 +314,22 @@ class BackTest():
         plt.show()
     
     # @timer    
-    def write_log(self,date):
-        """"date","type","hold","direction","average_cost"
+    def write_log(self,date,m_data):
+        """"date","type","hold","direction","profit"
 
         Args:
             date (_type_): _description_
         """
         for future_type, value in self.position.hold.items():
             info = future_type.split("_")
-            self.hold.loc[len(self.hold)]=[date,info[0],value[0],info[1],value[1]/10000,value[2]/10000]
+            if value[0]==0:
+                continue
+            current_close = m_data[info[0]]["close"].iloc[-1]
+            prev_close = m_data[info[0]]["prev_close"].iloc[-1]
+            profit = (current_close-prev_close)
+            profit = profit if info[1]=="long" else -profit
+            profit = profit/(prev_close)
+            self.hold.loc[len(self.hold)]=[date,info[0],value[0],info[1],profit]
     
     def calculate_profit(self,m_data:dict):
         total_profit=0

@@ -57,8 +57,6 @@ class Section_Momentum_BackTest(BackTest):
             ranking = pd.DataFrame(temp_dict,columns=["future_type","profit"])
             range=int(self.context.range*len(ranking))
             ranking = ranking.sort_values(by="profit",ascending=True)#排名
-            if self.current == datetime(2019,2,13):
-                print(ranking)
             cash_max = (self.position.cash//(range*2))/10000
             for index, row in ranking.iloc[-range:].iterrows():#收益率最高的
                 future_type=row["future_type"]
@@ -77,18 +75,23 @@ class Section_Momentum_BackTest(BackTest):
         
         
 if(__name__=="__main__"):
-    # p=multiprocessing.Pool(40)
-    # for r in range(1,20):
-    #     for h in [1,2,3,4,5]:
-    engine = Section_Momentum_BackTest(cash=1000000000,margin_rate=1,margin_limit=0,debug=False)
-    engine.context.R=20
-    engine.context.H=20
-    engine.context.name = f"test"
-    # p.apply_async(engine.loop_process,args=("20120101","20240501","back/section/newsec/"))
-    engine.loop_process(start="20150101",end="20231231",saving_dir="back/")
-#     print("-----start-----")
-#     p.close()
-#     p.join()
-#     print("------end------")
-# # engine = Section_Momentum_BackTest(cash=100000000,margin_rate=1,margin_limit=0,debug=False)
-# engine.context.name= "best_section"s
+    p=multiprocessing.Pool(40)
+    for r in [0.4]:
+        for h in [1]:
+            engine = Section_Momentum_BackTest(cash=1000000000,margin_rate=1,margin_limit=0,debug=False)
+            engine.context.R=14
+            engine.context.range = r
+            engine.context.H=h
+            engine.context.name = f"newsecrange_Range{r:.2f}_H{h}"
+            p.apply_async(engine.loop_process,args=("20120101","20240501","back/section/newsecrange/"))
+            # engine.loop_process(start="20150101",end="20231231",saving_dir="back/")
+    print("-----start-----")
+    p.close()
+    p.join()
+    print("------end------")
+# engine = Section_Momentum_BackTest(cash=1000000000,margin_rate=1,margin_limit=0,debug=False)
+# engine.context.R=20
+
+# engine.context.H=20
+# engine.context.name = f"test"
+# engine.loop_process(start="20150101",end="20231231",saving_dir="back/")
