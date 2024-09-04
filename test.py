@@ -76,17 +76,18 @@ import random
 
 
 
-longlist = ["PB","AG","C","CS","AU","SR"]
-shortlist = ["BU","CU","HC","PP","V","P"]
-av_profit = []
-for i in longlist:
-    temp = pd.read_excel(f"data/{i}_daily.xlsx",index_col="date")
-    av_profit.append(temp.loc[datetime(2015,2,26),"profit"])
-for i in shortlist:
-    temp = pd.read_excel(f"data/{i}_daily.xlsx",index_col="date")
-    av_profit.append(-temp.loc[datetime(2015,2,26),"profit"])
-print(av_profit)
-av_profit =np.array(av_profit)
-print(av_profit.mean())
+# longlist = ["PB","AG","C","CS","AU","SR"]
+# shortlist = ["BU","CU","HC","PP","V","P"]
+# av_profit = []
+# for i in longlist:
+#     temp = pd.read_excel(f"data/{i}_daily.xlsx",index_col="date")
+#     av_profit.append(temp.loc[datetime(2015,2,26),"profit"])
+# for i in shortlist:
+#     temp = pd.read_excel(f"data/{i}_daily.xlsx",index_col="date")
+#     av_profit.append(-temp.loc[datetime(2015,2,26),"profit"])
+# print(av_profit)
+# av_profit =np.array(av_profit)
+# print(av_profit.mean())
+from scipy.stats import norm
 
-
+print(norm.cdf(0.9))

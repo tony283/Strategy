@@ -5,8 +5,8 @@ file_name = "section/newsec/"
 real_name = "newsec"
 tail =""
 #新建df
-indexes :dict={"R":range(13,14)}
-columns ={"H": [1]}
+indexes :dict={"R":[14]}
+columns ={"H": [2]}
 orginal_value =1e9
 
 

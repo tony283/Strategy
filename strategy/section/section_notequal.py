@@ -51,23 +51,37 @@ class Section_Momentum_BackTest(BackTest):
             for future_type in context.typelist:
                 try:
                     profit = (m_data[future_type]["close"].iloc[-1]-m_data[future_type]["close"].iloc[-1-context.R])/m_data[future_type]["close"].iloc[-1-context.R]
-                    temp_dict.append([future_type,profit])
+                    sigma = m_data[future_type]["profit"].iloc[-context.N:].std()
+                    temp_dict.append([future_type,profit,sigma])
                 except:
                     continue
-            ranking = pd.DataFrame(temp_dict,columns=["future_type","profit"])
+            ranking = pd.DataFrame(temp_dict,columns=["future_type","profit","sigma"])
+            ranking = ranking[ranking["sigma"]!=0]
             range=int(self.context.range*len(ranking))
             ranking = ranking.sort_values(by="profit",ascending=True)#排名
-            cash_max = (self.position.cash//(range*2))/10000
+            cash_max = (self.position.cash//(2))/10000
+            highest = ranking.iloc[-range:]["sigma"].sum()
+            lowest = ranking.iloc[:range]["sigma"].sum()
+            print(ranking)
             for index, row in ranking.iloc[-range:].iterrows():#收益率最高的
                 future_type=row["future_type"]
+                proportion = row["sigma"]/highest
                 close = m_data[future_type]["close"].iloc[-1]
                 multi = m_data[future_type]["multiplier"].iloc[-1]
-                self.order_target_num(close,int(cash_max/(close*multi)),multi,future_type,"long")
+                
+                buy_amount = int(cash_max*proportion/(close*multi))
+                if buy_amount<=0:
+                    continue
+                self.order_target_num(close,buy_amount,multi,future_type,"long")
             for index, row in ranking.iloc[:range].iterrows():#收益率最低的
                 future_type=row["future_type"]
+                proportion = row["sigma"]/lowest
                 close = m_data[future_type]["close"].iloc[-1]
                 multi = m_data[future_type]["multiplier"].iloc[-1]
-                self.order_target_num(close,int(cash_max/(close*multi)),multi,future_type,"short")
+                buy_amount = int(cash_max*proportion/(close*multi))
+                if(buy_amount<=0):
+                    continue
+                self.order_target_num(close,buy_amount,multi,future_type,"short")
             context.fired=True
 
     def after_trade(self, context):
@@ -76,16 +90,22 @@ class Section_Momentum_BackTest(BackTest):
         
 if(__name__=="__main__"):
     p=multiprocessing.Pool(40)
-    for r in [0.4]:
-        for h in [1]:
+    for n in [60]:
+        for h in [2]:
             engine = Section_Momentum_BackTest(cash=1000000000,margin_rate=1,margin_limit=0,debug=False)
             engine.context.R=14
-            engine.context.range = r
+            engine.context.N=n
             engine.context.H=h
-            engine.context.name = f"newsecrange_Range{r:.2f}_H{h}"
-            p.apply_async(engine.loop_process,args=("20120101","20240501","back/section/newsecrange/"))
-            # engine.loop_process(start="20150101",end="20231231",saving_dir="back/")
+            engine.context.name = f"newsecnq_H{h:.2f}_N{n}"
+            p.apply_async(engine.loop_process,args=("20120101","20240501","back/section/newsecnq/"))
+            # engine.loop_process(start="20150101",end="20231231",saving_dir="back/section/newsecnq/")
     print("-----start-----")
     p.close()
     p.join()
     print("------end------")
+# engine = Section_Momentum_BackTest(cash=1000000000,margin_rate=1,margin_limit=0,debug=False)
+# engine.context.R=20
+
+# engine.context.H=20
+# engine.context.name = f"test"
+# engine.loop_process(start="20150101",end="20231231",saving_dir="back/")

@@ -16,12 +16,12 @@ import shutil
 # total.plot("date",plot_name,title="横截面动量策略不同参数(R, H)收益曲线",grid=True)
 # plt.show()
 
-file_name = "section/newsecrange/"
-real_name = "newsecrange"
+file_name = "section/newsecbreak/"
+real_name = "newsecbreak"
 tail =""
 #新建df
-indexes :dict={"Range":[f"{i*0.05:.2f}" for i in range(2,8)]}
-columns ={"H": [1,2,3,4,5]}
+indexes :dict={"Range": [f"{i:.2f}"for i in [0.1,0.15,0.2,0.25,0.3]]}
+columns ={"N": [i for i in range(2,20)]+[30,60]}
 
 
 #以上为需要填的参数
