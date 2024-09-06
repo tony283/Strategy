@@ -129,13 +129,13 @@ def get_ftures_k_history(secid: str, beg: str = '20240801', end: str = '20500101
     return df
 
 def request_all():
-    futures_info_df = pd.read_csv("data/requesting/future_list.csv")
+    futures_info_df = pd.read_csv("C:/Users/ROG/Desktop/Strategy/data/requesting/future_list.csv")
     m_data = {}
     for index, row in futures_info_df.iterrows():
         secid = row["secid"]
         # 随便选的期货名称
         futures_name = row['期货代码']
-        print(f'正在获取期货：{futures_name} 的历史 k 线数据')
+        #print(f'正在获取期货：{futures_name} 的历史 k 线数据')
         # 获取期货历史 日k 线数据
         # secid 可以在文件 期货信息表.csv 中查看，更改 secid 即可获取不同的期货数据
         df = get_ftures_k_history(secid)
@@ -144,16 +144,15 @@ def request_all():
         df.columns = ["future_type","date","open","close","high","low","volume","total_turnover","vibration","profit","num_profit","turnover_rate"]
         df["date"]=df["date"].apply(lambda x : datetime.strptime(x,"%Y-%m-%d"))
         m_data[futures_name]=df
-        df.to_excel(f'data/requesting/{futures_name}_daily.xlsx', index=None)
-        print(f'期货 : {futures_name} 的 k 线数据已保存到文件 {futures_name}.xlsx 中')
-    print(m_data)
+        df.to_excel(f'C:/Users/ROG/Desktop/Strategy/data/requesting/{futures_name}_daily.xlsx', index=None)
+
     return m_data
 def request_old_data():
     m_data = {}
-    for future_type in ['AU', 'AG', 'HC', 'I', 'J', 'JM', 'RB', 'SF', 'SM', 'SS', 'BU', 'EG', 'FG', 'FU', 'L', 'MA',
-          'PP', 'RU', 'SC', 'SP', 'TA', 'V', 'EB', 'LU', 'NR', 'PF', 'PG', 'SA', 'A', 'C', 'CF', 'M', 'OI',
-          'RM', 'SR', 'Y', 'JD', 'CS', 'B', 'P', 'LH', 'PK', 'AL', 'CU', 'NI', 'PB', 'SN', 'ZN', 'LC',
-          'SI', 'SH', 'PX', 'BR', 'AO']:
-        m_data[future_type]=pd.read_excel(f"data/requesting/{future_type}_daily.xlsx")
+    for future_type in ['AU', 'AG', 'HC', 'I', 'J', 'JM', 'RB', 'SF', 'SM', 'SS', 'BU', 'EG', 'FG',  'L', 'MA',
+          'PP', 'RU', 'SP', 'TA', 'V', 'EB', 'PF', 'PG', 'SA', 'A', 'C', 'CF', 'M', 'OI',
+          'RM', 'SR', 'Y', 'JD', 'CS', 'B', 'P', 'LH', 'PK', 'AL', 'CU', 'NI', 'PB', 'SN', 'ZN', 
+           'SH', 'PX', 'BR', 'AO']:
+        m_data[future_type]=pd.read_excel(f"C:/Users/ROG/Desktop/Strategy/data/requesting/{future_type}_daily.xlsx")
     return m_data
 

@@ -1,13 +1,23 @@
 import requestdata
 import pandas as pd
 import numpy as np
+from datetime import datetime
+import os
+import sys
+
 M=3
 R=14
 N=20
 H=2
 RANGE=0.15
 L=7
-REALCASH = 1000000
+
+
+try:
+    REALCASH = int(sys.argv[1])
+except:
+    
+    REALCASH = 1000000
 USINGRATE=0.5
 
 CASH=REALCASH*10*USINGRATE
@@ -19,11 +29,11 @@ typelist = ['AU', 'AG', 'HC', 'I', 'J', 'JM', 'RB', 'SF', 'SM', 'SS', 'BU', 'EG'
           'PP', 'RU', 'SC', 'SP', 'TA', 'V', 'EB', 'LU', 'NR', 'PF', 'PG', 'SA', 'A', 'C', 'CF', 'M', 'OI',
           'RM', 'SR', 'Y', 'JD', 'CS', 'B', 'P', 'LH', 'PK', 'AL', 'CU', 'NI', 'PB', 'SN', 'ZN', 'LC',
           'SI', 'SH', 'PX', 'BR', 'AO']
-# requestdata.request_all()
+requestdata.request_all()
 m_data = requestdata.request_old_data()
 current = m_data["CU"]["date"].iloc[-1]
-print(f"current_date: {current}")
-multiplier = pd.read_excel("data/multiplier.xlsx",index_col=0)
+print(str(current)[:10])
+multiplier = pd.read_excel("C:/Users/ROG/Desktop/Strategy/data/multiplier.xlsx",index_col=0)
 temp_dict =[]#用于储存收益率信息
 for future_type in typelist:
     try:
@@ -66,5 +76,5 @@ for index, row in ranking.iloc[:range].iterrows():#收益率最低的
     if(buy_amount<=0):
         continue
     BookTable.loc[len(BookTable)]=[future_type,cash_max*proportion,int(cash_max*proportion/(close*multi)),"short",close]
-    
 print(BookTable)
+# BookTable.to_excel(f"data/requesting/{str(current)[:10]}.xlsx")
