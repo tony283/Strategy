@@ -47,7 +47,7 @@ def get_futures_base_info() -> pd.DataFrame:
     return df
 
 
-def get_ftures_k_history(secid: str, beg: str = '20240101', end: str = '20500101', klt: int = 101, fqt: int = 1) -> pd.DataFrame:
+def get_ftures_k_history(secid: str, beg: str = '20240801', end: str = '20500101', klt: int = 101, fqt: int = 1) -> pd.DataFrame:
     '''
     获取k线数据
 
@@ -146,13 +146,14 @@ def request_all():
         m_data[futures_name]=df
         df.to_excel(f'data/requesting/{futures_name}_daily.xlsx', index=None)
         print(f'期货 : {futures_name} 的 k 线数据已保存到文件 {futures_name}.xlsx 中')
+    print(m_data)
     return m_data
-
-
-
-
-if "__main__" == __name__:
-    request_all()
-
-
+def request_old_data():
+    m_data = {}
+    for future_type in ['AU', 'AG', 'HC', 'I', 'J', 'JM', 'RB', 'SF', 'SM', 'SS', 'BU', 'EG', 'FG', 'FU', 'L', 'MA',
+          'PP', 'RU', 'SC', 'SP', 'TA', 'V', 'EB', 'LU', 'NR', 'PF', 'PG', 'SA', 'A', 'C', 'CF', 'M', 'OI',
+          'RM', 'SR', 'Y', 'JD', 'CS', 'B', 'P', 'LH', 'PK', 'AL', 'CU', 'NI', 'PB', 'SN', 'ZN', 'LC',
+          'SI', 'SH', 'PX', 'BR', 'AO']:
+        m_data[future_type]=pd.read_excel(f"data/requesting/{future_type}_daily.xlsx")
+    return m_data
 
