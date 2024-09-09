@@ -66,7 +66,7 @@ for index, row in ranking.iloc[-range:].iterrows():#收益率最高的
     buy_amount = int(cash_max*proportion/(close*multi))
     if buy_amount<=0:
         continue
-    BookTable.loc[len(BookTable)]=[future_type,cash_max*proportion,int(cash_max*proportion/(close*multi)),"long",close]
+    BookTable.loc[len(BookTable)]=[future_type,buy_amount*close*multi,int(cash_max*proportion/(close*multi)),"long",close]
 for index, row in ranking.iloc[:range].iterrows():#收益率最低的
     future_type=row["future_type"]
     proportion = row["break"]/lowest
@@ -75,6 +75,6 @@ for index, row in ranking.iloc[:range].iterrows():#收益率最低的
     buy_amount = int(cash_max*proportion/(close*multi))
     if(buy_amount<=0):
         continue
-    BookTable.loc[len(BookTable)]=[future_type,cash_max*proportion,int(cash_max*proportion/(close*multi)),"short",close]
+    BookTable.loc[len(BookTable)]=[future_type,buy_amount*close*multi,int(cash_max*proportion/(close*multi)),"short",close]
 print(BookTable)
 # BookTable.to_excel(f"data/requesting/{str(current)[:10]}.xlsx")

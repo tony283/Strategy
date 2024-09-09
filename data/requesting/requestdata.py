@@ -121,6 +121,7 @@ def get_ftures_k_history(secid: str, beg: str = '20240801', end: str = '20500101
     rows = []
     for _kline in klines:
 
+
         kline = _kline.split(',')
         rows.append(kline)
 
@@ -155,4 +156,3 @@ def request_old_data():
            'SH', 'PX', 'BR', 'AO']:
         m_data[future_type]=pd.read_excel(f"C:/Users/ROG/Desktop/Strategy/data/requesting/{future_type}_daily.xlsx")
     return m_data
-
