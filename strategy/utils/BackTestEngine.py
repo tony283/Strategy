@@ -147,13 +147,19 @@ class BackTest():
         else:
             print(s)
         
-    def before_trade(self, context):
+    def before_trade(self, context, m_data:pd.DataFrame):
         """_summary_
 
         需要重载
         """
         pass
-    def after_trade(self,context):
+    def open_handle(self, context, m_data:pd.DataFrame):
+        """_summary_
+
+        需要重载，适用于在开盘买入
+        """
+        pass
+    def after_trade(self,context,):
         """_summary_
 
         需要重载
@@ -293,6 +299,7 @@ class BackTest():
             for future_type, value in self.data.items():
                 m_data[future_type]= value[value["date"]<=current_date]#每天先把当天数据导入，将close作为可以买卖的价格
             self.before_trade(self.context,m_data)
+            self.open_handle(self.context,m_data)
             self.calculate_profit(m_data)#计算当日收益（分别计算每个品种看涨看跌的收益，将当日价格减去昨日价格）
             self.process(m_data)#进行买卖操作
             #self.write_log(current_date)
@@ -303,6 +310,7 @@ class BackTest():
         if not os.path.exists(saving_dir):
             os.makedirs(saving_dir)
         real_time_series.to_excel(saving_dir+"Back_"+self.context.name+".xlsx")
+        print(f"Save completed! {saving_dir}Back_{self.context.name}.xlsx")
         #self.draw(self.context,real_time_series)
         #self.draw(self.context,real_time_series)
         #self.beautiful_plot()
