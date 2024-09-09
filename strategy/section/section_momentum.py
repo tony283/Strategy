@@ -28,8 +28,7 @@ class Section_Momentum_BackTest(BackTest):
             context.count+=1
         
         
-        return super().before_trade(context)
-    
+    # @timer
     def handle_bar(self, m_data, context):
         if context.fired:
             if context.count<context.H:
@@ -75,17 +74,17 @@ class Section_Momentum_BackTest(BackTest):
         
         
 if(__name__=="__main__"):
-    p=multiprocessing.Pool(40)
-    for r in [0.4]:
+    # p=multiprocessing.Pool(40)
+    for r in [0.2]:
         for h in [1]:
             engine = Section_Momentum_BackTest(cash=1000000000,margin_rate=1,margin_limit=0,debug=False)
             engine.context.R=14
             engine.context.range = r
             engine.context.H=h
-            engine.context.name = f"newsecrange_Range{r:.2f}_H{h}"
-            p.apply_async(engine.loop_process,args=("20120101","20240501","back/section/newsecrange/"))
-            # engine.loop_process(start="20150101",end="20231231",saving_dir="back/")
-    print("-----start-----")
-    p.close()
-    p.join()
-    print("------end------")
+            engine.context.name = f"test"
+            # p.apply_async(engine.loop_process,args=("20120101","20240501","back/section/newsecrange/"))
+            engine.loop_process(start="20120101",end="20240501",saving_dir="back/section/newsecrange/")
+    # print("-----start-----")
+    # p.close()
+    # p.join()
+    # print("------end------")
