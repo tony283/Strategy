@@ -93,8 +93,8 @@ class Section_Momentum_BackTest(BackTest):
         
 if(__name__=="__main__"):
     p=multiprocessing.Pool(40)
-    for n in [3]:
-        for h in [0.3,0.4,0.5,0.6,0.7]:
+    for n in [2,3,4,5,10,20,60]:
+        for h in [0.8,0.9]:
             engine = Section_Momentum_BackTest(cash=1000000000,margin_rate=1,margin_limit=0,debug=False)
             engine.context.R=14
             engine.context.N=n

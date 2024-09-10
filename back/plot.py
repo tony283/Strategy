@@ -6,12 +6,12 @@ import os
 plt.rcParams["font.sans-serif"]=["SimHei"] #设置字体
 plt.rcParams["axes.unicode_minus"]=False #该语句解决图像中的“-”负号的乱码问题  
 
-file_name = "section/newsecbreakliquid/"
-real_name = "newsecbreakliquid"
+file_name = "vol/newvolseclast/"
+real_name = "newvolseclast"
 tail =""
 #新建df
-indexes :dict={"Range": [f"{i:.2f}"for i in [0.15,0.2]]}
-columns ={"Liquidity": [i for i in range(6,11)]}
+indexes :dict={"SigmaRange": [0.7,0.8,0.9]}
+columns ={"N": [5,10,20]}
 
 ################################################################################# 
 
@@ -28,7 +28,7 @@ for r in indexes[index_title]:
 
 
 
-plots.plot("date",plot_name,title="横截面动量策略不同参数(R, H)收益曲线",grid=True)
+plots.plot("date",plot_name,title="波动率筛选（取最低）横截面动量策略收益曲线",grid=True)
 plt.show()
 # plt.rcParams["font.sans-serif"]=["SimHei"] #设置字体
 # plt.rcParams["axes.unicode_minus"]=False #该语句解决图像中的“-”负号的乱码问题        
