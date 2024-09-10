@@ -258,7 +258,7 @@ class BackTest():
         self.position.cash-=margin
         self.trade_record.loc[len(self.trade_record)]=[self.current,future_type,amount*multiplier,direction,"B",price]
         return
-    def sell_target_num(self,price,amount:int,multiplier:int,future_type:str,direction):
+    def sell_target_num(self,price,amount:int,multiplier:int,future_type:str,direction,is_close=True,close=0):
         """_summary_
         用于平仓
 
@@ -277,7 +277,7 @@ class BackTest():
             self.log(f"ofr-close:{price},amount:{amount*multiplier}")
             earn=try_sell_value(self.position.hold,future_type,
                            np.array([amount*multiplier,int(price*10000)]),
-                           direction
+                           direction,is_close,close
                           )
             self.position.cash+=earn
             self.trade_record.loc[len(self.trade_record)]=[self.current,future_type,amount*multiplier,direction,"S",price]
