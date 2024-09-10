@@ -277,7 +277,7 @@ class BackTest():
             self.log(f"ofr-close:{price},amount:{amount*multiplier}")
             earn=try_sell_value(self.position.hold,future_type,
                            np.array([amount*multiplier,int(price*10000)]),
-                           direction,is_close,close
+                           direction,is_close,int(close*10000)
                           )
             self.position.cash+=earn
             self.trade_record.loc[len(self.trade_record)]=[self.current,future_type,amount*multiplier,direction,"S",price]
@@ -356,12 +356,15 @@ class BackTest():
             except:
                 continue
             preclose = value["prev_close"].iloc[-1]
+            
             if (future_type+"_long") in self.position.hold.keys():
                 self.position.hold[future_type+"_long"][2]+=(int(current_close*10000)-int(preclose*10000))*self.position.hold[future_type+"_long"][0]
                 total_profit+=self.position.hold[future_type+"_long"][2]
+
             if (future_type+"_short") in self.position.hold.keys():
                 self.position.hold[future_type+"_short"][2]-=(int(current_close*10000)-int(preclose*10000))*self.position.hold[future_type+"_short"][0]
                 total_profit+=self.position.hold[future_type+"_short"][2]
+
         
         #通过hold和cash计算收益
         self.position.asset.append(self.position.cash+total_profit)

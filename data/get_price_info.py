@@ -16,6 +16,7 @@ def merge(name):
     b =pd.read_excel(f"data/multi_{name}_daily.xlsx")
     a["multiplier"]= b["contract_multiplier"]
     print(a)
+    a["profit"]=(a["close"]-a["prev_close"])/a["prev_close"]
     a.to_excel(f"data/{name}_daily.xlsx")
     
 def load(name):
@@ -23,9 +24,6 @@ def load(name):
     merge(name)
     
     
-typelist=['AU', 'AG', 'HC', 'I', 'J', 'JM', 'RB', 'SF', 'SM', 'SS', 'BU', 'EG', 'FG', 'FU', 'L', 'MA',
-          'PP', 'RU', 'SC', 'SP', 'TA', 'V', 'EB', 'LU', 'NR', 'PF', 'PG', 'SA', 'A', 'C', 'CF', 'M', 'OI',
-          'RM', 'SR', 'Y', 'JD', 'CS', 'B', 'P', 'LH', 'PK', 'AL', 'CU', 'NI', 'PB', 'SN', 'ZN', 'LC',
-          'SI', 'SH', 'PX', 'BR', 'AO']
+typelist=['A']
 for t in typelist:
     load(t)

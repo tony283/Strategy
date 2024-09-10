@@ -92,39 +92,41 @@ import random
 import pandas as pd
 
 
-file_name = "section/newsecbreakM/"
-real_name = "newsecbreakM"
-tail =""
-#新建df
-indexes :dict={"Range": ["0.15"]}
-columns ={"M": [3]}
-orginal_value =1e9
+# file_name = "section/newsecbreakM/"
+# real_name = "newsecbreakM"
+# tail =""
+# #新建df
+# indexes :dict={"Range": ["0.15"]}
+# columns ={"M": [3]}
+# orginal_value =1e9
 
 
-index_title = list(indexes.keys())[0]
-column_title = list(columns.keys())[0]
+# index_title = list(indexes.keys())[0]
+# column_title = list(columns.keys())[0]
 
-for r in indexes[index_title]:
-    for s in columns[column_title]:
-        name= real_name+f"_{index_title}{r}_{column_title}{s}{tail}"#需修改
+# for r in indexes[index_title]:
+#     for s in columns[column_title]:
+#         name= real_name+f"_{index_title}{r}_{column_title}{s}{tail}"#需修改
         
-        plots = pd.read_excel("back/trade/"+"Trade"+real_name+f"_{index_title}{indexes[index_title][0]}_{column_title}{columns[column_title][0]}{tail}.xlsx")
-        time = plots["date"].drop_duplicates()
-        df = pd.DataFrame(columns=["correlation"],index=time)
-        for i in range(len(time)-1):
-            current_time, next_time =time.iloc[i],time.iloc[i+1]
-            current_df, next_df = plots[plots["date"]==current_time],plots[plots["date"]==next_time]
-            current_df, next_df = current_df[current_df["B/S"]=="B"],next_df[next_df["B/S"]=="S"]
-            next_df.columns = ['Unnamed: 0', 'date', 'type', 'amount', 'direction', 'B/S', 'final']
-            current_df,next_df = current_df.set_index("type"),next_df.set_index("type")
-            a= pd.merge(current_df,next_df,on="type")
-            a["hold"]=a["amount_x"]*a["price"]
-            a["d"]= a["direction_x"].apply(lambda x: 1 if x=="long"else -1)
-            a["final_value"]=(a["d"]*(a["final"]-a["price"])+a["price"])/a["price"]-1
-            a = a[["hold","final_value"]]
-            a =a.corr()
-            a = a.loc["hold", "final_value"]
-            df.loc[current_time,"correlation"] = a
+#         plots = pd.read_excel("back/trade/"+"Trade"+real_name+f"_{index_title}{indexes[index_title][0]}_{column_title}{columns[column_title][0]}{tail}.xlsx")
+#         time = plots["date"].drop_duplicates()
+#         df = pd.DataFrame(columns=["correlation"],index=time)
+#         for i in range(len(time)-1):
+#             current_time, next_time =time.iloc[i],time.iloc[i+1]
+#             current_df, next_df = plots[plots["date"]==current_time],plots[plots["date"]==next_time]
+#             current_df, next_df = current_df[current_df["B/S"]=="B"],next_df[next_df["B/S"]=="S"]
+#             next_df.columns = ['Unnamed: 0', 'date', 'type', 'amount', 'direction', 'B/S', 'final']
+#             current_df,next_df = current_df.set_index("type"),next_df.set_index("type")
+#             a= pd.merge(current_df,next_df,on="type")
+#             a["hold"]=a["amount_x"]*a["price"]
+#             a["d"]= a["direction_x"].apply(lambda x: 1 if x=="long"else -1)
+#             a["final_value"]=(a["d"]*(a["final"]-a["price"])+a["price"])/a["price"]-1
+#             a = a[["hold","final_value"]]
+#             a =a.corr()
+#             a = a.loc["hold", "final_value"]
+#             df.loc[current_time,"correlation"] = a
 
-df.to_excel("Report/section/newsecbreakM/correlation.xlsx")
+# df.to_excel("Report/section/newsecbreakM/correlation.xlsx")
 
+a =pd.Series([1,2,3,4,5])
+print(a.max())
