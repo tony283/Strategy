@@ -3,12 +3,12 @@
 /* BEGIN: Cython Metadata
 {
     "distutils": {
-        "name": "utils.BackTest",
+        "name": "utils.BackTestEngineC",
         "sources": [
-            "strategy/utils/BackTest.pyx"
+            "BackTestEngineC.pyx"
         ]
     },
-    "module_name": "utils.BackTest"
+    "module_name": "utils.BackTestEngineC"
 }
 END: Cython Metadata */
 
@@ -1228,8 +1228,8 @@ static CYTHON_INLINE float __PYX_NAN() {
   #endif
 #endif
 
-#define __PYX_HAVE__utils__BackTest
-#define __PYX_HAVE_API__utils__BackTest
+#define __PYX_HAVE__utils__BackTestEngineC
+#define __PYX_HAVE_API__utils__BackTestEngineC
 /* Early includes */
 #ifdef _OPENMP
 #include <omp.h>
@@ -1479,7 +1479,7 @@ static const char *__pyx_filename;
 /* #### Code section: filename_table ### */
 
 static const char *__pyx_f[] = {
-  "strategy\\\\utils\\\\BackTest.pyx",
+  "BackTestEngineC.pyx",
 };
 /* #### Code section: utility_code_proto_before_types ### */
 /* ForceInitThreads.proto */
@@ -1492,16 +1492,16 @@ static const char *__pyx_f[] = {
 /* #### Code section: type_declarations ### */
 
 /*--- Type declarations ---*/
-struct __pyx_obj_5utils_8BackTest___pyx_scope_struct__timer;
+struct __pyx_obj_5utils_15BackTestEngineC___pyx_scope_struct__timer;
 
-/* "utils/BackTest.pyx":70
+/* "utils/BackTestEngineC.pyx":70
  * class ReadingError(Exception):
  *     pass
  * def timer(func):             # <<<<<<<<<<<<<<
  *     def func_wrapper(*args,**kwargs):
  *         from time import time
  */
-struct __pyx_obj_5utils_8BackTest___pyx_scope_struct__timer {
+struct __pyx_obj_5utils_15BackTestEngineC___pyx_scope_struct__timer {
   PyObject_HEAD
   PyObject *__pyx_v_func;
 };
@@ -2449,14 +2449,14 @@ static int __Pyx_InitStrings(__Pyx_StringTabEntry *t);
 
 /* #### Code section: module_declarations ### */
 
-/* Module declarations from "utils.BackTest" */
+/* Module declarations from "utils.BackTestEngineC" */
 /* #### Code section: typeinfo ### */
 /* #### Code section: before_global_var ### */
-#define __Pyx_MODULE_NAME "utils.BackTest"
-extern int __pyx_module_is_main_utils__BackTest;
-int __pyx_module_is_main_utils__BackTest = 0;
+#define __Pyx_MODULE_NAME "utils.BackTestEngineC"
+extern int __pyx_module_is_main_utils__BackTestEngineC;
+int __pyx_module_is_main_utils__BackTestEngineC = 0;
 
-/* Implementation of "utils.BackTest" */
+/* Implementation of "utils.BackTestEngineC" */
 /* #### Code section: global_var ### */
 static PyObject *__pyx_builtin_AssertionError;
 static PyObject *__pyx_builtin_print;
@@ -2658,7 +2658,6 @@ static const char __pyx_k_context___init[] = "context.__init__";
 static const char __pyx_k_factor_builder[] = "factor_builder";
 static const char __pyx_k_originial_hold[] = "originial_hold";
 static const char __pyx_k_try_sell_value[] = "try_sell_value";
-static const char __pyx_k_utils_BackTest[] = "utils.BackTest";
 static const char __pyx_k_0_cost_time_1_s[] = "\n{0} cost time {1} s\n";
 static const char __pyx_k_BackTest___init[] = "BackTest.__init__";
 static const char __pyx_k_future_type_dir[] = "future_type_dir";
@@ -2676,6 +2675,7 @@ static const char __pyx_k_matplotlib_pyplot[] = "matplotlib.pyplot";
 static const char __pyx_k_BackTest_subscribe[] = "BackTest.subscribe";
 static const char __pyx_k_asyncio_coroutines[] = "asyncio.coroutines";
 static const char __pyx_k_cline_in_traceback[] = "cline_in_traceback";
+static const char __pyx_k_BackTestEngineC_pyx[] = "BackTestEngineC.pyx";
 static const char __pyx_k_BackTest_check_hold[] = "BackTest.check_hold";
 static const char __pyx_k_BackTest_handle_bar[] = "BackTest.handle_bar";
 static const char __pyx_k_BackTest_statistics[] = "BackTest.statistics";
@@ -2683,6 +2683,7 @@ static const char __pyx_k_BackTest_after_trade[] = "BackTest.after_trade";
 static const char __pyx_k_BackTest_open_handle[] = "BackTest.open_handle";
 static const char __pyx_k_BackTest_before_trade[] = "BackTest.before_trade";
 static const char __pyx_k_BackTest_loop_process[] = "BackTest.loop_process";
+static const char __pyx_k_utils_BackTestEngineC[] = "utils.BackTestEngineC";
 static const char __pyx_k_BackTest_beautiful_plot[] = "BackTest.beautiful_plot";
 static const char __pyx_k_BackTest_factor_builder[] = "BackTest.factor_builder";
 static const char __pyx_k_BackTest_sell_all_target[] = "BackTest.sell_all_target";
@@ -2691,37 +2692,36 @@ static const char __pyx_k_BackTest_calculate_profit[] = "BackTest.calculate_prof
 static const char __pyx_k_BackTest_order_target_num[] = "BackTest.order_target_num";
 static const char __pyx_k_timer_locals_func_wrapper[] = "timer.<locals>.func_wrapper";
 static const char __pyx_k_BackTest_factor_statistics[] = "BackTest.factor_statistics";
-static const char __pyx_k_strategy_utils_BackTest_pyx[] = "strategy\\utils\\BackTest.pyx";
 static const char __pyx_k_context_Position_cash_int_0_01[] = "\n    context: \345\217\257\344\273\245\350\207\252\347\224\261\345\256\232\344\271\211\346\225\260\346\215\256\n    Position\n            \342\224\234\342\224\200\342\224\200 cash(int)\345\275\223\345\211\215\346\213\245\346\234\211\347\232\204\347\216\260\351\207\221(\345\215\225\344\275\2150.01\345\210\206)\n            \342\224\202\n            \342\224\234\342\224\200\342\224\200 original_cash(int)\345\210\235\345\247\213\347\216\260\351\207\221(\345\215\225\344\275\2150.01\345\210\206)\n            \342\224\202\n            \342\224\234\342\224\200\342\224\200 asset(int)\345\275\223\345\211\215\350\265\204\344\272\247\345\214\205\346\213\254\347\216\260\351\207\221\347\232\204\344\273\267\345\200\274(\345\215\225\344\275\2150.01\345\210\206)\n            \342\224\202\n            \342\224\224\342\224\200\342\224\200 hold(dict)\345\275\223\345\211\215\346\211\200\346\234\211\346\214\201\344\273\223\344\277\241\346\201\257/\n                \342\224\202\n                \342\224\234\342\224\200\342\224\200 key(str)\346\214\201\344\273\223\345\223\201\347\247\215\357\274\214\346\240\274\345\274\217\344\270\272\"CU_long\",\"CU_short\",long,short\344\273\243\350\241\250\345\244\232\345\244\264\346\210\226\350\200\205\347\251\272\345\244\264\n                \342\224\202   \n                \342\224\224\342\224\200\342\224\200 value(np.ndarray)\345\275\223\345\211\215\345\223\201\347\247\215\347\232\204\346\214\201\344\273\223\344\277\241\346\201\257\357\274\214\346\240\274\345\274\217\344\270\272np.array([\344\273\223\344\275\215(int)(\345\267\262\347\256\227\344\270\212\345\220\210\347\272\246\344\271\230\346\225\260),\345\212\240\346\235\203\345\271\263\345\235\207\346\210\220\346\234\254*10000(int),\344\277\235\350\257\201\351\207\221\344\275\231\351\207\217*10000(int)])\n    instrument(dict)\344\277\235\350\257\201\351\207\221\344\277\241\346\201\257\357\274\232{\n                                \"margin_rate\":\344\277\235\350\257\201\351\207\221\346\257\224""\344\276\213(float),\n                                \"margin_limit\":\350\277\275\345\212\240\344\277\235\350\257\201\351\207\221\346\240\207\345\207\206\n                                }\n    data(dict)\345\275\223\345\211\215\346\211\200\346\234\211\345\223\201\347\247\215\344\277\241\346\201\257/\n                \342\224\202\n                \342\224\234\342\224\200\342\224\200 key(str)\346\214\201\344\273\223\345\223\201\347\247\215\357\274\214\346\240\274\345\274\217\344\270\272\"CU\"\n                \342\224\202   \n                \342\224\224\342\224\200\342\224\200 value(dataframe)\345\275\223\345\211\215\345\223\201\347\247\215\347\232\204\345\216\206\345\217\262\346\225\260\346\215\256    \n    ";
 static const char __pyx_k_BackTest_loop_process_locals_lam[] = "BackTest.loop_process.<locals>.<lambda>";
 /* #### Code section: decls ### */
-static PyObject *__pyx_pf_5utils_8BackTest_try_set_value(CYTHON_UNUSED PyObject *__pyx_self, PyObject *__pyx_v_a, PyObject *__pyx_v_key, PyObject *__pyx_v_value, PyObject *__pyx_v_is_close, PyObject *__pyx_v_close); /* proto */
-static PyObject *__pyx_pf_5utils_8BackTest_2try_sell_value(CYTHON_UNUSED PyObject *__pyx_self, PyObject *__pyx_v_a, PyObject *__pyx_v_key, PyObject *__pyx_v_value, PyObject *__pyx_v_direction, PyObject *__pyx_v_is_close, PyObject *__pyx_v_close); /* proto */
-static PyObject *__pyx_pf_5utils_8BackTest_7context___init__(CYTHON_UNUSED PyObject *__pyx_self, CYTHON_UNUSED PyObject *__pyx_v_self); /* proto */
-static PyObject *__pyx_pf_5utils_8BackTest_5timer_func_wrapper(PyObject *__pyx_self, PyObject *__pyx_v_args, PyObject *__pyx_v_kwargs); /* proto */
-static PyObject *__pyx_pf_5utils_8BackTest_4timer(CYTHON_UNUSED PyObject *__pyx_self, PyObject *__pyx_v_func); /* proto */
-static PyObject *__pyx_pf_5utils_8BackTest_8BackTest___init__(CYTHON_UNUSED PyObject *__pyx_self, PyObject *__pyx_v_self, PyObject *__pyx_v_cash, PyObject *__pyx_v_margin_rate, PyObject *__pyx_v_margin_limit, PyObject *__pyx_v_debug); /* proto */
-static PyObject *__pyx_pf_5utils_8BackTest_8BackTest_2init(CYTHON_UNUSED PyObject *__pyx_self, CYTHON_UNUSED PyObject *__pyx_v_self, CYTHON_UNUSED PyObject *__pyx_v_context); /* proto */
-static PyObject *__pyx_pf_5utils_8BackTest_8BackTest_4subscribe(CYTHON_UNUSED PyObject *__pyx_self, PyObject *__pyx_v_self, PyObject *__pyx_v_future_type); /* proto */
-static PyObject *__pyx_pf_5utils_8BackTest_8BackTest_6log(CYTHON_UNUSED PyObject *__pyx_self, PyObject *__pyx_v_self, PyObject *__pyx_v_s); /* proto */
-static PyObject *__pyx_pf_5utils_8BackTest_8BackTest_8before_trade(CYTHON_UNUSED PyObject *__pyx_self, CYTHON_UNUSED PyObject *__pyx_v_self, CYTHON_UNUSED PyObject *__pyx_v_context, CYTHON_UNUSED PyObject *__pyx_v_m_data); /* proto */
-static PyObject *__pyx_pf_5utils_8BackTest_8BackTest_10open_handle(CYTHON_UNUSED PyObject *__pyx_self, CYTHON_UNUSED PyObject *__pyx_v_self, CYTHON_UNUSED PyObject *__pyx_v_context, CYTHON_UNUSED PyObject *__pyx_v_m_data); /* proto */
-static PyObject *__pyx_pf_5utils_8BackTest_8BackTest_12after_trade(CYTHON_UNUSED PyObject *__pyx_self, CYTHON_UNUSED PyObject *__pyx_v_self, CYTHON_UNUSED PyObject *__pyx_v_context); /* proto */
-static PyObject *__pyx_pf_5utils_8BackTest_8BackTest_14handle_bar(CYTHON_UNUSED PyObject *__pyx_self, CYTHON_UNUSED PyObject *__pyx_v_self, CYTHON_UNUSED PyObject *__pyx_v_m_data, CYTHON_UNUSED PyObject *__pyx_v_context); /* proto */
-static PyObject *__pyx_pf_5utils_8BackTest_8BackTest_16process(CYTHON_UNUSED PyObject *__pyx_self, PyObject *__pyx_v_self, PyObject *__pyx_v_m_data); /* proto */
-static PyObject *__pyx_pf_5utils_8BackTest_8BackTest_18check_hold(CYTHON_UNUSED PyObject *__pyx_self, PyObject *__pyx_v_self, PyObject *__pyx_v_m_data); /* proto */
-static PyObject *__pyx_pf_5utils_8BackTest_8BackTest_20order_target_num(CYTHON_UNUSED PyObject *__pyx_self, PyObject *__pyx_v_self, PyObject *__pyx_v_price, PyObject *__pyx_v_amount, PyObject *__pyx_v_multiplier, PyObject *__pyx_v_future_type, PyObject *__pyx_v_direction); /* proto */
-static PyObject *__pyx_pf_5utils_8BackTest_8BackTest_22sell_target_num(CYTHON_UNUSED PyObject *__pyx_self, PyObject *__pyx_v_self, PyObject *__pyx_v_price, PyObject *__pyx_v_amount, PyObject *__pyx_v_multiplier, PyObject *__pyx_v_future_type, PyObject *__pyx_v_direction, PyObject *__pyx_v_is_close, PyObject *__pyx_v_close); /* proto */
-static PyObject *__pyx_pf_5utils_8BackTest_8BackTest_24sell_all_target(CYTHON_UNUSED PyObject *__pyx_self, PyObject *__pyx_v_self, PyObject *__pyx_v_m_data); /* proto */
+static PyObject *__pyx_pf_5utils_15BackTestEngineC_try_set_value(CYTHON_UNUSED PyObject *__pyx_self, PyObject *__pyx_v_a, PyObject *__pyx_v_key, PyObject *__pyx_v_value, PyObject *__pyx_v_is_close, PyObject *__pyx_v_close); /* proto */
+static PyObject *__pyx_pf_5utils_15BackTestEngineC_2try_sell_value(CYTHON_UNUSED PyObject *__pyx_self, PyObject *__pyx_v_a, PyObject *__pyx_v_key, PyObject *__pyx_v_value, PyObject *__pyx_v_direction, PyObject *__pyx_v_is_close, PyObject *__pyx_v_close); /* proto */
+static PyObject *__pyx_pf_5utils_15BackTestEngineC_7context___init__(CYTHON_UNUSED PyObject *__pyx_self, CYTHON_UNUSED PyObject *__pyx_v_self); /* proto */
+static PyObject *__pyx_pf_5utils_15BackTestEngineC_5timer_func_wrapper(PyObject *__pyx_self, PyObject *__pyx_v_args, PyObject *__pyx_v_kwargs); /* proto */
+static PyObject *__pyx_pf_5utils_15BackTestEngineC_4timer(CYTHON_UNUSED PyObject *__pyx_self, PyObject *__pyx_v_func); /* proto */
+static PyObject *__pyx_pf_5utils_15BackTestEngineC_8BackTest___init__(CYTHON_UNUSED PyObject *__pyx_self, PyObject *__pyx_v_self, PyObject *__pyx_v_cash, PyObject *__pyx_v_margin_rate, PyObject *__pyx_v_margin_limit, PyObject *__pyx_v_debug); /* proto */
+static PyObject *__pyx_pf_5utils_15BackTestEngineC_8BackTest_2init(CYTHON_UNUSED PyObject *__pyx_self, CYTHON_UNUSED PyObject *__pyx_v_self, CYTHON_UNUSED PyObject *__pyx_v_context); /* proto */
+static PyObject *__pyx_pf_5utils_15BackTestEngineC_8BackTest_4subscribe(CYTHON_UNUSED PyObject *__pyx_self, PyObject *__pyx_v_self, PyObject *__pyx_v_future_type); /* proto */
+static PyObject *__pyx_pf_5utils_15BackTestEngineC_8BackTest_6log(CYTHON_UNUSED PyObject *__pyx_self, PyObject *__pyx_v_self, PyObject *__pyx_v_s); /* proto */
+static PyObject *__pyx_pf_5utils_15BackTestEngineC_8BackTest_8before_trade(CYTHON_UNUSED PyObject *__pyx_self, CYTHON_UNUSED PyObject *__pyx_v_self, CYTHON_UNUSED PyObject *__pyx_v_context, CYTHON_UNUSED PyObject *__pyx_v_m_data); /* proto */
+static PyObject *__pyx_pf_5utils_15BackTestEngineC_8BackTest_10open_handle(CYTHON_UNUSED PyObject *__pyx_self, CYTHON_UNUSED PyObject *__pyx_v_self, CYTHON_UNUSED PyObject *__pyx_v_context, CYTHON_UNUSED PyObject *__pyx_v_m_data); /* proto */
+static PyObject *__pyx_pf_5utils_15BackTestEngineC_8BackTest_12after_trade(CYTHON_UNUSED PyObject *__pyx_self, CYTHON_UNUSED PyObject *__pyx_v_self, CYTHON_UNUSED PyObject *__pyx_v_context); /* proto */
+static PyObject *__pyx_pf_5utils_15BackTestEngineC_8BackTest_14handle_bar(CYTHON_UNUSED PyObject *__pyx_self, CYTHON_UNUSED PyObject *__pyx_v_self, CYTHON_UNUSED PyObject *__pyx_v_m_data, CYTHON_UNUSED PyObject *__pyx_v_context); /* proto */
+static PyObject *__pyx_pf_5utils_15BackTestEngineC_8BackTest_16process(CYTHON_UNUSED PyObject *__pyx_self, PyObject *__pyx_v_self, PyObject *__pyx_v_m_data); /* proto */
+static PyObject *__pyx_pf_5utils_15BackTestEngineC_8BackTest_18check_hold(CYTHON_UNUSED PyObject *__pyx_self, PyObject *__pyx_v_self, PyObject *__pyx_v_m_data); /* proto */
+static PyObject *__pyx_pf_5utils_15BackTestEngineC_8BackTest_20order_target_num(CYTHON_UNUSED PyObject *__pyx_self, PyObject *__pyx_v_self, PyObject *__pyx_v_price, PyObject *__pyx_v_amount, PyObject *__pyx_v_multiplier, PyObject *__pyx_v_future_type, PyObject *__pyx_v_direction); /* proto */
+static PyObject *__pyx_pf_5utils_15BackTestEngineC_8BackTest_22sell_target_num(CYTHON_UNUSED PyObject *__pyx_self, PyObject *__pyx_v_self, PyObject *__pyx_v_price, PyObject *__pyx_v_amount, PyObject *__pyx_v_multiplier, PyObject *__pyx_v_future_type, PyObject *__pyx_v_direction, PyObject *__pyx_v_is_close, PyObject *__pyx_v_close); /* proto */
+static PyObject *__pyx_pf_5utils_15BackTestEngineC_8BackTest_24sell_all_target(CYTHON_UNUSED PyObject *__pyx_self, PyObject *__pyx_v_self, PyObject *__pyx_v_m_data); /* proto */
 static PyObject *__pyx_lambda_funcdef_lambda(CYTHON_UNUSED PyObject *__pyx_self, PyObject *__pyx_v_x); /* proto */
-static PyObject *__pyx_pf_5utils_8BackTest_8BackTest_26loop_process(CYTHON_UNUSED PyObject *__pyx_self, PyObject *__pyx_v_self, PyObject *__pyx_v_start, PyObject *__pyx_v_end, PyObject *__pyx_v_saving_dir); /* proto */
-static PyObject *__pyx_pf_5utils_8BackTest_8BackTest_28draw(CYTHON_UNUSED PyObject *__pyx_self, PyObject *__pyx_v_self, CYTHON_UNUSED PyObject *__pyx_v_context, PyObject *__pyx_v_df); /* proto */
-static PyObject *__pyx_pf_5utils_8BackTest_8BackTest_30calculate_profit(CYTHON_UNUSED PyObject *__pyx_self, PyObject *__pyx_v_self, PyObject *__pyx_v_m_data); /* proto */
-static PyObject *__pyx_pf_5utils_8BackTest_8BackTest_32statistics(CYTHON_UNUSED PyObject *__pyx_self, PyObject *__pyx_v_self, PyObject *__pyx_v_profits); /* proto */
-static PyObject *__pyx_pf_5utils_8BackTest_8BackTest_34beautiful_plot(CYTHON_UNUSED PyObject *__pyx_self, CYTHON_UNUSED PyObject *__pyx_v_self); /* proto */
-static PyObject *__pyx_pf_5utils_8BackTest_8BackTest_36factor_builder(CYTHON_UNUSED PyObject *__pyx_self, CYTHON_UNUSED PyObject *__pyx_v_self, CYTHON_UNUSED PyObject *__pyx_v_m_data, CYTHON_UNUSED PyObject *__pyx_v_context); /* proto */
-static PyObject *__pyx_pf_5utils_8BackTest_8BackTest_38factor_statistics(CYTHON_UNUSED PyObject *__pyx_self, PyObject *__pyx_v_self, PyObject *__pyx_v_type); /* proto */
-static PyObject *__pyx_tp_new_5utils_8BackTest___pyx_scope_struct__timer(PyTypeObject *t, PyObject *a, PyObject *k); /*proto*/
+static PyObject *__pyx_pf_5utils_15BackTestEngineC_8BackTest_26loop_process(CYTHON_UNUSED PyObject *__pyx_self, PyObject *__pyx_v_self, PyObject *__pyx_v_start, PyObject *__pyx_v_end, PyObject *__pyx_v_saving_dir); /* proto */
+static PyObject *__pyx_pf_5utils_15BackTestEngineC_8BackTest_28draw(CYTHON_UNUSED PyObject *__pyx_self, PyObject *__pyx_v_self, CYTHON_UNUSED PyObject *__pyx_v_context, PyObject *__pyx_v_df); /* proto */
+static PyObject *__pyx_pf_5utils_15BackTestEngineC_8BackTest_30calculate_profit(CYTHON_UNUSED PyObject *__pyx_self, PyObject *__pyx_v_self, PyObject *__pyx_v_m_data); /* proto */
+static PyObject *__pyx_pf_5utils_15BackTestEngineC_8BackTest_32statistics(CYTHON_UNUSED PyObject *__pyx_self, PyObject *__pyx_v_self, PyObject *__pyx_v_profits); /* proto */
+static PyObject *__pyx_pf_5utils_15BackTestEngineC_8BackTest_34beautiful_plot(CYTHON_UNUSED PyObject *__pyx_self, CYTHON_UNUSED PyObject *__pyx_v_self); /* proto */
+static PyObject *__pyx_pf_5utils_15BackTestEngineC_8BackTest_36factor_builder(CYTHON_UNUSED PyObject *__pyx_self, CYTHON_UNUSED PyObject *__pyx_v_self, CYTHON_UNUSED PyObject *__pyx_v_m_data, CYTHON_UNUSED PyObject *__pyx_v_context); /* proto */
+static PyObject *__pyx_pf_5utils_15BackTestEngineC_8BackTest_38factor_statistics(CYTHON_UNUSED PyObject *__pyx_self, PyObject *__pyx_v_self, PyObject *__pyx_v_type); /* proto */
+static PyObject *__pyx_tp_new_5utils_15BackTestEngineC___pyx_scope_struct__timer(PyTypeObject *t, PyObject *a, PyObject *k); /*proto*/
 static __Pyx_CachedCFunction __pyx_umethod_PyDict_Type_keys = {0, 0, 0, 0, 0};
 /* #### Code section: late_includes ### */
 /* #### Code section: module_state ### */
@@ -2751,9 +2751,9 @@ typedef struct {
   PyTypeObject *__pyx_CoroutineType;
   #endif
   #if CYTHON_USE_MODULE_STATE
-  PyObject *__pyx_type_5utils_8BackTest___pyx_scope_struct__timer;
+  PyObject *__pyx_type_5utils_15BackTestEngineC___pyx_scope_struct__timer;
   #endif
-  PyTypeObject *__pyx_ptype_5utils_8BackTest___pyx_scope_struct__timer;
+  PyTypeObject *__pyx_ptype_5utils_15BackTestEngineC___pyx_scope_struct__timer;
   PyObject *__pyx_n_s_;
   PyObject *__pyx_kp_u_0;
   PyObject *__pyx_kp_s_0_cost_time_1_s;
@@ -2763,6 +2763,7 @@ typedef struct {
   PyObject *__pyx_n_s_Back;
   PyObject *__pyx_n_u_Back;
   PyObject *__pyx_n_s_BackTest;
+  PyObject *__pyx_kp_s_BackTestEngineC_pyx;
   PyObject *__pyx_n_s_BackTest___init;
   PyObject *__pyx_n_s_BackTest_after_trade;
   PyObject *__pyx_n_s_BackTest_beautiful_plot;
@@ -2957,7 +2958,6 @@ typedef struct {
   PyObject *__pyx_n_s_std;
   PyObject *__pyx_n_s_std_error;
   PyObject *__pyx_n_s_str;
-  PyObject *__pyx_kp_s_strategy_utils_BackTest_pyx;
   PyObject *__pyx_n_s_strptime;
   PyObject *__pyx_n_s_subscribe;
   PyObject *__pyx_n_s_super;
@@ -2979,7 +2979,7 @@ typedef struct {
   PyObject *__pyx_n_s_try_sell_value;
   PyObject *__pyx_n_s_try_set_value;
   PyObject *__pyx_n_s_type;
-  PyObject *__pyx_n_s_utils_BackTest;
+  PyObject *__pyx_n_s_utils_BackTestEngineC;
   PyObject *__pyx_n_s_v_end;
   PyObject *__pyx_n_s_v_start;
   PyObject *__pyx_n_s_value;
@@ -3089,8 +3089,8 @@ static int __pyx_m_clear(PyObject *m) {
   #ifdef __Pyx_FusedFunction_USED
   Py_CLEAR(clear_module_state->__pyx_FusedFunctionType);
   #endif
-  Py_CLEAR(clear_module_state->__pyx_ptype_5utils_8BackTest___pyx_scope_struct__timer);
-  Py_CLEAR(clear_module_state->__pyx_type_5utils_8BackTest___pyx_scope_struct__timer);
+  Py_CLEAR(clear_module_state->__pyx_ptype_5utils_15BackTestEngineC___pyx_scope_struct__timer);
+  Py_CLEAR(clear_module_state->__pyx_type_5utils_15BackTestEngineC___pyx_scope_struct__timer);
   Py_CLEAR(clear_module_state->__pyx_n_s_);
   Py_CLEAR(clear_module_state->__pyx_kp_u_0);
   Py_CLEAR(clear_module_state->__pyx_kp_s_0_cost_time_1_s);
@@ -3100,6 +3100,7 @@ static int __pyx_m_clear(PyObject *m) {
   Py_CLEAR(clear_module_state->__pyx_n_s_Back);
   Py_CLEAR(clear_module_state->__pyx_n_u_Back);
   Py_CLEAR(clear_module_state->__pyx_n_s_BackTest);
+  Py_CLEAR(clear_module_state->__pyx_kp_s_BackTestEngineC_pyx);
   Py_CLEAR(clear_module_state->__pyx_n_s_BackTest___init);
   Py_CLEAR(clear_module_state->__pyx_n_s_BackTest_after_trade);
   Py_CLEAR(clear_module_state->__pyx_n_s_BackTest_beautiful_plot);
@@ -3294,7 +3295,6 @@ static int __pyx_m_clear(PyObject *m) {
   Py_CLEAR(clear_module_state->__pyx_n_s_std);
   Py_CLEAR(clear_module_state->__pyx_n_s_std_error);
   Py_CLEAR(clear_module_state->__pyx_n_s_str);
-  Py_CLEAR(clear_module_state->__pyx_kp_s_strategy_utils_BackTest_pyx);
   Py_CLEAR(clear_module_state->__pyx_n_s_strptime);
   Py_CLEAR(clear_module_state->__pyx_n_s_subscribe);
   Py_CLEAR(clear_module_state->__pyx_n_s_super);
@@ -3316,7 +3316,7 @@ static int __pyx_m_clear(PyObject *m) {
   Py_CLEAR(clear_module_state->__pyx_n_s_try_sell_value);
   Py_CLEAR(clear_module_state->__pyx_n_s_try_set_value);
   Py_CLEAR(clear_module_state->__pyx_n_s_type);
-  Py_CLEAR(clear_module_state->__pyx_n_s_utils_BackTest);
+  Py_CLEAR(clear_module_state->__pyx_n_s_utils_BackTestEngineC);
   Py_CLEAR(clear_module_state->__pyx_n_s_v_end);
   Py_CLEAR(clear_module_state->__pyx_n_s_v_start);
   Py_CLEAR(clear_module_state->__pyx_n_s_value);
@@ -3404,8 +3404,8 @@ static int __pyx_m_traverse(PyObject *m, visitproc visit, void *arg) {
   #ifdef __Pyx_FusedFunction_USED
   Py_VISIT(traverse_module_state->__pyx_FusedFunctionType);
   #endif
-  Py_VISIT(traverse_module_state->__pyx_ptype_5utils_8BackTest___pyx_scope_struct__timer);
-  Py_VISIT(traverse_module_state->__pyx_type_5utils_8BackTest___pyx_scope_struct__timer);
+  Py_VISIT(traverse_module_state->__pyx_ptype_5utils_15BackTestEngineC___pyx_scope_struct__timer);
+  Py_VISIT(traverse_module_state->__pyx_type_5utils_15BackTestEngineC___pyx_scope_struct__timer);
   Py_VISIT(traverse_module_state->__pyx_n_s_);
   Py_VISIT(traverse_module_state->__pyx_kp_u_0);
   Py_VISIT(traverse_module_state->__pyx_kp_s_0_cost_time_1_s);
@@ -3415,6 +3415,7 @@ static int __pyx_m_traverse(PyObject *m, visitproc visit, void *arg) {
   Py_VISIT(traverse_module_state->__pyx_n_s_Back);
   Py_VISIT(traverse_module_state->__pyx_n_u_Back);
   Py_VISIT(traverse_module_state->__pyx_n_s_BackTest);
+  Py_VISIT(traverse_module_state->__pyx_kp_s_BackTestEngineC_pyx);
   Py_VISIT(traverse_module_state->__pyx_n_s_BackTest___init);
   Py_VISIT(traverse_module_state->__pyx_n_s_BackTest_after_trade);
   Py_VISIT(traverse_module_state->__pyx_n_s_BackTest_beautiful_plot);
@@ -3609,7 +3610,6 @@ static int __pyx_m_traverse(PyObject *m, visitproc visit, void *arg) {
   Py_VISIT(traverse_module_state->__pyx_n_s_std);
   Py_VISIT(traverse_module_state->__pyx_n_s_std_error);
   Py_VISIT(traverse_module_state->__pyx_n_s_str);
-  Py_VISIT(traverse_module_state->__pyx_kp_s_strategy_utils_BackTest_pyx);
   Py_VISIT(traverse_module_state->__pyx_n_s_strptime);
   Py_VISIT(traverse_module_state->__pyx_n_s_subscribe);
   Py_VISIT(traverse_module_state->__pyx_n_s_super);
@@ -3631,7 +3631,7 @@ static int __pyx_m_traverse(PyObject *m, visitproc visit, void *arg) {
   Py_VISIT(traverse_module_state->__pyx_n_s_try_sell_value);
   Py_VISIT(traverse_module_state->__pyx_n_s_try_set_value);
   Py_VISIT(traverse_module_state->__pyx_n_s_type);
-  Py_VISIT(traverse_module_state->__pyx_n_s_utils_BackTest);
+  Py_VISIT(traverse_module_state->__pyx_n_s_utils_BackTestEngineC);
   Py_VISIT(traverse_module_state->__pyx_n_s_v_end);
   Py_VISIT(traverse_module_state->__pyx_n_s_v_start);
   Py_VISIT(traverse_module_state->__pyx_n_s_value);
@@ -3728,9 +3728,9 @@ static int __pyx_m_traverse(PyObject *m, visitproc visit, void *arg) {
 #define __pyx_CoroutineType __pyx_mstate_global->__pyx_CoroutineType
 #endif
 #if CYTHON_USE_MODULE_STATE
-#define __pyx_type_5utils_8BackTest___pyx_scope_struct__timer __pyx_mstate_global->__pyx_type_5utils_8BackTest___pyx_scope_struct__timer
+#define __pyx_type_5utils_15BackTestEngineC___pyx_scope_struct__timer __pyx_mstate_global->__pyx_type_5utils_15BackTestEngineC___pyx_scope_struct__timer
 #endif
-#define __pyx_ptype_5utils_8BackTest___pyx_scope_struct__timer __pyx_mstate_global->__pyx_ptype_5utils_8BackTest___pyx_scope_struct__timer
+#define __pyx_ptype_5utils_15BackTestEngineC___pyx_scope_struct__timer __pyx_mstate_global->__pyx_ptype_5utils_15BackTestEngineC___pyx_scope_struct__timer
 #define __pyx_n_s_ __pyx_mstate_global->__pyx_n_s_
 #define __pyx_kp_u_0 __pyx_mstate_global->__pyx_kp_u_0
 #define __pyx_kp_s_0_cost_time_1_s __pyx_mstate_global->__pyx_kp_s_0_cost_time_1_s
@@ -3740,6 +3740,7 @@ static int __pyx_m_traverse(PyObject *m, visitproc visit, void *arg) {
 #define __pyx_n_s_Back __pyx_mstate_global->__pyx_n_s_Back
 #define __pyx_n_u_Back __pyx_mstate_global->__pyx_n_u_Back
 #define __pyx_n_s_BackTest __pyx_mstate_global->__pyx_n_s_BackTest
+#define __pyx_kp_s_BackTestEngineC_pyx __pyx_mstate_global->__pyx_kp_s_BackTestEngineC_pyx
 #define __pyx_n_s_BackTest___init __pyx_mstate_global->__pyx_n_s_BackTest___init
 #define __pyx_n_s_BackTest_after_trade __pyx_mstate_global->__pyx_n_s_BackTest_after_trade
 #define __pyx_n_s_BackTest_beautiful_plot __pyx_mstate_global->__pyx_n_s_BackTest_beautiful_plot
@@ -3934,7 +3935,6 @@ static int __pyx_m_traverse(PyObject *m, visitproc visit, void *arg) {
 #define __pyx_n_s_std __pyx_mstate_global->__pyx_n_s_std
 #define __pyx_n_s_std_error __pyx_mstate_global->__pyx_n_s_std_error
 #define __pyx_n_s_str __pyx_mstate_global->__pyx_n_s_str
-#define __pyx_kp_s_strategy_utils_BackTest_pyx __pyx_mstate_global->__pyx_kp_s_strategy_utils_BackTest_pyx
 #define __pyx_n_s_strptime __pyx_mstate_global->__pyx_n_s_strptime
 #define __pyx_n_s_subscribe __pyx_mstate_global->__pyx_n_s_subscribe
 #define __pyx_n_s_super __pyx_mstate_global->__pyx_n_s_super
@@ -3956,7 +3956,7 @@ static int __pyx_m_traverse(PyObject *m, visitproc visit, void *arg) {
 #define __pyx_n_s_try_sell_value __pyx_mstate_global->__pyx_n_s_try_sell_value
 #define __pyx_n_s_try_set_value __pyx_mstate_global->__pyx_n_s_try_set_value
 #define __pyx_n_s_type __pyx_mstate_global->__pyx_n_s_type
-#define __pyx_n_s_utils_BackTest __pyx_mstate_global->__pyx_n_s_utils_BackTest
+#define __pyx_n_s_utils_BackTestEngineC __pyx_mstate_global->__pyx_n_s_utils_BackTestEngineC
 #define __pyx_n_s_v_end __pyx_mstate_global->__pyx_n_s_v_end
 #define __pyx_n_s_v_start __pyx_mstate_global->__pyx_n_s_v_start
 #define __pyx_n_s_value __pyx_mstate_global->__pyx_n_s_value
@@ -4026,7 +4026,7 @@ static int __pyx_m_traverse(PyObject *m, visitproc visit, void *arg) {
 #define __pyx_codeobj__58 __pyx_mstate_global->__pyx_codeobj__58
 /* #### Code section: module_code ### */
 
-/* "utils/BackTest.pyx":9
+/* "utils/BackTestEngineC.pyx":9
  * import warnings
  * import threading
  * def try_set_value(a:dict,key,value,is_close=True,close=0):             # <<<<<<<<<<<<<<
@@ -4035,16 +4035,16 @@ static int __pyx_m_traverse(PyObject *m, visitproc visit, void *arg) {
  */
 
 /* Python wrapper */
-static PyObject *__pyx_pw_5utils_8BackTest_1try_set_value(PyObject *__pyx_self, 
+static PyObject *__pyx_pw_5utils_15BackTestEngineC_1try_set_value(PyObject *__pyx_self, 
 #if CYTHON_METH_FASTCALL
 PyObject *const *__pyx_args, Py_ssize_t __pyx_nargs, PyObject *__pyx_kwds
 #else
 PyObject *__pyx_args, PyObject *__pyx_kwds
 #endif
 ); /*proto*/
-PyDoc_STRVAR(__pyx_doc_5utils_8BackTest_try_set_value, "_summary_\n\n    Args:\n        a (dict): _description_\n        key (_type_): _description_\n        value (_type_): [amount,price,margin]\n    ");
-static PyMethodDef __pyx_mdef_5utils_8BackTest_1try_set_value = {"try_set_value", (PyCFunction)(void*)(__Pyx_PyCFunction_FastCallWithKeywords)__pyx_pw_5utils_8BackTest_1try_set_value, __Pyx_METH_FASTCALL|METH_KEYWORDS, __pyx_doc_5utils_8BackTest_try_set_value};
-static PyObject *__pyx_pw_5utils_8BackTest_1try_set_value(PyObject *__pyx_self, 
+PyDoc_STRVAR(__pyx_doc_5utils_15BackTestEngineC_try_set_value, "_summary_\n\n    Args:\n        a (dict): _description_\n        key (_type_): _description_\n        value (_type_): [amount,price,margin]\n    ");
+static PyMethodDef __pyx_mdef_5utils_15BackTestEngineC_1try_set_value = {"try_set_value", (PyCFunction)(void*)(__Pyx_PyCFunction_FastCallWithKeywords)__pyx_pw_5utils_15BackTestEngineC_1try_set_value, __Pyx_METH_FASTCALL|METH_KEYWORDS, __pyx_doc_5utils_15BackTestEngineC_try_set_value};
+static PyObject *__pyx_pw_5utils_15BackTestEngineC_1try_set_value(PyObject *__pyx_self, 
 #if CYTHON_METH_FASTCALL
 PyObject *const *__pyx_args, Py_ssize_t __pyx_nargs, PyObject *__pyx_kwds
 #else
@@ -4174,12 +4174,12 @@ PyObject *__pyx_args, PyObject *__pyx_kwds
       __Pyx_Arg_XDECREF_FASTCALL(values[__pyx_temp]);
     }
   }
-  __Pyx_AddTraceback("utils.BackTest.try_set_value", __pyx_clineno, __pyx_lineno, __pyx_filename);
+  __Pyx_AddTraceback("utils.BackTestEngineC.try_set_value", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __Pyx_RefNannyFinishContext();
   return NULL;
   __pyx_L4_argument_unpacking_done:;
   if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v_a), (&PyDict_Type), 0, "a", 1))) __PYX_ERR(0, 9, __pyx_L1_error)
-  __pyx_r = __pyx_pf_5utils_8BackTest_try_set_value(__pyx_self, __pyx_v_a, __pyx_v_key, __pyx_v_value, __pyx_v_is_close, __pyx_v_close);
+  __pyx_r = __pyx_pf_5utils_15BackTestEngineC_try_set_value(__pyx_self, __pyx_v_a, __pyx_v_key, __pyx_v_value, __pyx_v_is_close, __pyx_v_close);
 
   /* function exit code */
   goto __pyx_L0;
@@ -4196,7 +4196,7 @@ PyObject *__pyx_args, PyObject *__pyx_kwds
   return __pyx_r;
 }
 
-static PyObject *__pyx_pf_5utils_8BackTest_try_set_value(CYTHON_UNUSED PyObject *__pyx_self, PyObject *__pyx_v_a, PyObject *__pyx_v_key, PyObject *__pyx_v_value, PyObject *__pyx_v_is_close, PyObject *__pyx_v_close) {
+static PyObject *__pyx_pf_5utils_15BackTestEngineC_try_set_value(CYTHON_UNUSED PyObject *__pyx_self, PyObject *__pyx_v_a, PyObject *__pyx_v_key, PyObject *__pyx_v_value, PyObject *__pyx_v_is_close, PyObject *__pyx_v_close) {
   PyObject *__pyx_v_originial_hold = NULL;
   PyObject *__pyx_v_info = NULL;
   PyObject *__pyx_v_earn = NULL;
@@ -4215,7 +4215,7 @@ static PyObject *__pyx_pf_5utils_8BackTest_try_set_value(CYTHON_UNUSED PyObject 
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("try_set_value", 1);
 
-  /* "utils/BackTest.pyx":17
+  /* "utils/BackTestEngineC.pyx":17
  *         value (_type_): [amount,price,margin]
  *     """
  *     assert value[0]>=0             # <<<<<<<<<<<<<<
@@ -4239,7 +4239,7 @@ static PyObject *__pyx_pf_5utils_8BackTest_try_set_value(CYTHON_UNUSED PyObject 
   if ((1)); else __PYX_ERR(0, 17, __pyx_L1_error)
   #endif
 
-  /* "utils/BackTest.pyx":18
+  /* "utils/BackTestEngineC.pyx":18
  *     """
  *     assert value[0]>=0
  *     if (key in a.keys()):             # <<<<<<<<<<<<<<
@@ -4252,7 +4252,7 @@ static PyObject *__pyx_pf_5utils_8BackTest_try_set_value(CYTHON_UNUSED PyObject 
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
   if (__pyx_t_3) {
 
-    /* "utils/BackTest.pyx":19
+    /* "utils/BackTestEngineC.pyx":19
  *     assert value[0]>=0
  *     if (key in a.keys()):
  *         originial_hold =a[key][0]             # <<<<<<<<<<<<<<
@@ -4267,7 +4267,7 @@ static PyObject *__pyx_pf_5utils_8BackTest_try_set_value(CYTHON_UNUSED PyObject 
     __pyx_v_originial_hold = __pyx_t_1;
     __pyx_t_1 = 0;
 
-    /* "utils/BackTest.pyx":20
+    /* "utils/BackTestEngineC.pyx":20
  *     if (key in a.keys()):
  *         originial_hold =a[key][0]
  *         a[key][0]+=value[0]             # <<<<<<<<<<<<<<
@@ -4289,7 +4289,7 @@ static PyObject *__pyx_pf_5utils_8BackTest_try_set_value(CYTHON_UNUSED PyObject 
     __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
     __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
 
-    /* "utils/BackTest.pyx":22
+    /* "utils/BackTestEngineC.pyx":22
  *         a[key][0]+=value[0]
  * 
  *         a[key][1]=(value[0]*value[1]+originial_hold*a[key][1])//a[key][0]             # <<<<<<<<<<<<<<
@@ -4331,7 +4331,7 @@ static PyObject *__pyx_pf_5utils_8BackTest_try_set_value(CYTHON_UNUSED PyObject 
     __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
     __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
 
-    /* "utils/BackTest.pyx":23
+    /* "utils/BackTestEngineC.pyx":23
  * 
  *         a[key][1]=(value[0]*value[1]+originial_hold*a[key][1])//a[key][0]
  *         a[key][2]+=value[2]             # <<<<<<<<<<<<<<
@@ -4353,7 +4353,7 @@ static PyObject *__pyx_pf_5utils_8BackTest_try_set_value(CYTHON_UNUSED PyObject 
     __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
     __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
 
-    /* "utils/BackTest.pyx":18
+    /* "utils/BackTestEngineC.pyx":18
  *     """
  *     assert value[0]>=0
  *     if (key in a.keys()):             # <<<<<<<<<<<<<<
@@ -4363,7 +4363,7 @@ static PyObject *__pyx_pf_5utils_8BackTest_try_set_value(CYTHON_UNUSED PyObject 
     goto __pyx_L3;
   }
 
-  /* "utils/BackTest.pyx":25
+  /* "utils/BackTestEngineC.pyx":25
  *         a[key][2]+=value[2]
  *     else:
  *         a[key]=np.array(value)             # <<<<<<<<<<<<<<
@@ -4403,7 +4403,7 @@ static PyObject *__pyx_pf_5utils_8BackTest_try_set_value(CYTHON_UNUSED PyObject 
   }
   __pyx_L3:;
 
-  /* "utils/BackTest.pyx":26
+  /* "utils/BackTestEngineC.pyx":26
  *     else:
  *         a[key]=np.array(value)
  *     if not is_close:             # <<<<<<<<<<<<<<
@@ -4414,7 +4414,7 @@ static PyObject *__pyx_pf_5utils_8BackTest_try_set_value(CYTHON_UNUSED PyObject 
   __pyx_t_8 = (!__pyx_t_3);
   if (__pyx_t_8) {
 
-    /* "utils/BackTest.pyx":27
+    /* "utils/BackTestEngineC.pyx":27
  *         a[key]=np.array(value)
  *     if not is_close:
  *         info = key.split("_")             # <<<<<<<<<<<<<<
@@ -4448,7 +4448,7 @@ static PyObject *__pyx_pf_5utils_8BackTest_try_set_value(CYTHON_UNUSED PyObject 
     __pyx_v_info = __pyx_t_6;
     __pyx_t_6 = 0;
 
-    /* "utils/BackTest.pyx":28
+    /* "utils/BackTestEngineC.pyx":28
  *     if not is_close:
  *         info = key.split("_")
  *         earn = (close-value[1])*value[0] if info[1]=="long" else (value[1]-close)*value[0]             # <<<<<<<<<<<<<<
@@ -4491,7 +4491,7 @@ static PyObject *__pyx_pf_5utils_8BackTest_try_set_value(CYTHON_UNUSED PyObject 
     __pyx_v_earn = __pyx_t_6;
     __pyx_t_6 = 0;
 
-    /* "utils/BackTest.pyx":29
+    /* "utils/BackTestEngineC.pyx":29
  *         info = key.split("_")
  *         earn = (close-value[1])*value[0] if info[1]=="long" else (value[1]-close)*value[0]
  *         a[key][2]+=earn             # <<<<<<<<<<<<<<
@@ -4510,7 +4510,7 @@ static PyObject *__pyx_pf_5utils_8BackTest_try_set_value(CYTHON_UNUSED PyObject 
     __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
     __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
 
-    /* "utils/BackTest.pyx":26
+    /* "utils/BackTestEngineC.pyx":26
  *     else:
  *         a[key]=np.array(value)
  *     if not is_close:             # <<<<<<<<<<<<<<
@@ -4519,7 +4519,7 @@ static PyObject *__pyx_pf_5utils_8BackTest_try_set_value(CYTHON_UNUSED PyObject 
  */
   }
 
-  /* "utils/BackTest.pyx":9
+  /* "utils/BackTestEngineC.pyx":9
  * import warnings
  * import threading
  * def try_set_value(a:dict,key,value,is_close=True,close=0):             # <<<<<<<<<<<<<<
@@ -4535,7 +4535,7 @@ static PyObject *__pyx_pf_5utils_8BackTest_try_set_value(CYTHON_UNUSED PyObject 
   __Pyx_XDECREF(__pyx_t_2);
   __Pyx_XDECREF(__pyx_t_5);
   __Pyx_XDECREF(__pyx_t_6);
-  __Pyx_AddTraceback("utils.BackTest.try_set_value", __pyx_clineno, __pyx_lineno, __pyx_filename);
+  __Pyx_AddTraceback("utils.BackTestEngineC.try_set_value", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __pyx_r = NULL;
   __pyx_L0:;
   __Pyx_XDECREF(__pyx_v_originial_hold);
@@ -4546,7 +4546,7 @@ static PyObject *__pyx_pf_5utils_8BackTest_try_set_value(CYTHON_UNUSED PyObject 
   return __pyx_r;
 }
 
-/* "utils/BackTest.pyx":30
+/* "utils/BackTestEngineC.pyx":30
  *         earn = (close-value[1])*value[0] if info[1]=="long" else (value[1]-close)*value[0]
  *         a[key][2]+=earn
  * def try_sell_value(a:dict,key,value,direction,is_close=True,close=0):             # <<<<<<<<<<<<<<
@@ -4555,16 +4555,16 @@ static PyObject *__pyx_pf_5utils_8BackTest_try_set_value(CYTHON_UNUSED PyObject 
  */
 
 /* Python wrapper */
-static PyObject *__pyx_pw_5utils_8BackTest_3try_sell_value(PyObject *__pyx_self, 
+static PyObject *__pyx_pw_5utils_15BackTestEngineC_3try_sell_value(PyObject *__pyx_self, 
 #if CYTHON_METH_FASTCALL
 PyObject *const *__pyx_args, Py_ssize_t __pyx_nargs, PyObject *__pyx_kwds
 #else
 PyObject *__pyx_args, PyObject *__pyx_kwds
 #endif
 ); /*proto*/
-PyDoc_STRVAR(__pyx_doc_5utils_8BackTest_2try_sell_value, "_summary_\n\n    Args:\n        a (dict): _description_\n        key (_type_): _description_\n        value (_type_): [amount,price]\n        direction (_type_): _description_\n    ");
-static PyMethodDef __pyx_mdef_5utils_8BackTest_3try_sell_value = {"try_sell_value", (PyCFunction)(void*)(__Pyx_PyCFunction_FastCallWithKeywords)__pyx_pw_5utils_8BackTest_3try_sell_value, __Pyx_METH_FASTCALL|METH_KEYWORDS, __pyx_doc_5utils_8BackTest_2try_sell_value};
-static PyObject *__pyx_pw_5utils_8BackTest_3try_sell_value(PyObject *__pyx_self, 
+PyDoc_STRVAR(__pyx_doc_5utils_15BackTestEngineC_2try_sell_value, "_summary_\n\n    Args:\n        a (dict): _description_\n        key (_type_): _description_\n        value (_type_): [amount,price]\n        direction (_type_): _description_\n    ");
+static PyMethodDef __pyx_mdef_5utils_15BackTestEngineC_3try_sell_value = {"try_sell_value", (PyCFunction)(void*)(__Pyx_PyCFunction_FastCallWithKeywords)__pyx_pw_5utils_15BackTestEngineC_3try_sell_value, __Pyx_METH_FASTCALL|METH_KEYWORDS, __pyx_doc_5utils_15BackTestEngineC_2try_sell_value};
+static PyObject *__pyx_pw_5utils_15BackTestEngineC_3try_sell_value(PyObject *__pyx_self, 
 #if CYTHON_METH_FASTCALL
 PyObject *const *__pyx_args, Py_ssize_t __pyx_nargs, PyObject *__pyx_kwds
 #else
@@ -4709,12 +4709,12 @@ PyObject *__pyx_args, PyObject *__pyx_kwds
       __Pyx_Arg_XDECREF_FASTCALL(values[__pyx_temp]);
     }
   }
-  __Pyx_AddTraceback("utils.BackTest.try_sell_value", __pyx_clineno, __pyx_lineno, __pyx_filename);
+  __Pyx_AddTraceback("utils.BackTestEngineC.try_sell_value", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __Pyx_RefNannyFinishContext();
   return NULL;
   __pyx_L4_argument_unpacking_done:;
   if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v_a), (&PyDict_Type), 0, "a", 1))) __PYX_ERR(0, 30, __pyx_L1_error)
-  __pyx_r = __pyx_pf_5utils_8BackTest_2try_sell_value(__pyx_self, __pyx_v_a, __pyx_v_key, __pyx_v_value, __pyx_v_direction, __pyx_v_is_close, __pyx_v_close);
+  __pyx_r = __pyx_pf_5utils_15BackTestEngineC_2try_sell_value(__pyx_self, __pyx_v_a, __pyx_v_key, __pyx_v_value, __pyx_v_direction, __pyx_v_is_close, __pyx_v_close);
 
   /* function exit code */
   goto __pyx_L0;
@@ -4731,7 +4731,7 @@ PyObject *__pyx_args, PyObject *__pyx_kwds
   return __pyx_r;
 }
 
-static PyObject *__pyx_pf_5utils_8BackTest_2try_sell_value(CYTHON_UNUSED PyObject *__pyx_self, PyObject *__pyx_v_a, PyObject *__pyx_v_key, PyObject *__pyx_v_value, PyObject *__pyx_v_direction, PyObject *__pyx_v_is_close, PyObject *__pyx_v_close) {
+static PyObject *__pyx_pf_5utils_15BackTestEngineC_2try_sell_value(CYTHON_UNUSED PyObject *__pyx_self, PyObject *__pyx_v_a, PyObject *__pyx_v_key, PyObject *__pyx_v_value, PyObject *__pyx_v_direction, PyObject *__pyx_v_is_close, PyObject *__pyx_v_close) {
   PyObject *__pyx_v_real_key = NULL;
   PyObject *__pyx_v_earn = NULL;
   PyObject *__pyx_v_real_earn = NULL;
@@ -4749,7 +4749,7 @@ static PyObject *__pyx_pf_5utils_8BackTest_2try_sell_value(CYTHON_UNUSED PyObjec
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("try_sell_value", 1);
 
-  /* "utils/BackTest.pyx":39
+  /* "utils/BackTestEngineC.pyx":39
  *         direction (_type_): _description_
  *     """
  *     assert value[0]>=0             # <<<<<<<<<<<<<<
@@ -4773,7 +4773,7 @@ static PyObject *__pyx_pf_5utils_8BackTest_2try_sell_value(CYTHON_UNUSED PyObjec
   if ((1)); else __PYX_ERR(0, 39, __pyx_L1_error)
   #endif
 
-  /* "utils/BackTest.pyx":40
+  /* "utils/BackTestEngineC.pyx":40
  *     """
  *     assert value[0]>=0
  *     assert direction=="long" or direction=="short"             # <<<<<<<<<<<<<<
@@ -4800,7 +4800,7 @@ static PyObject *__pyx_pf_5utils_8BackTest_2try_sell_value(CYTHON_UNUSED PyObjec
   if ((1)); else __PYX_ERR(0, 40, __pyx_L1_error)
   #endif
 
-  /* "utils/BackTest.pyx":41
+  /* "utils/BackTestEngineC.pyx":41
  *     assert value[0]>=0
  *     assert direction=="long" or direction=="short"
  *     real_key = key+"_"+direction             # <<<<<<<<<<<<<<
@@ -4815,7 +4815,7 @@ static PyObject *__pyx_pf_5utils_8BackTest_2try_sell_value(CYTHON_UNUSED PyObjec
   __pyx_v_real_key = __pyx_t_1;
   __pyx_t_1 = 0;
 
-  /* "utils/BackTest.pyx":42
+  /* "utils/BackTestEngineC.pyx":42
  *     assert direction=="long" or direction=="short"
  *     real_key = key+"_"+direction
  *     assert value[0]<=a[real_key][0]             # <<<<<<<<<<<<<<
@@ -4845,7 +4845,7 @@ static PyObject *__pyx_pf_5utils_8BackTest_2try_sell_value(CYTHON_UNUSED PyObjec
   if ((1)); else __PYX_ERR(0, 42, __pyx_L1_error)
   #endif
 
-  /* "utils/BackTest.pyx":43
+  /* "utils/BackTestEngineC.pyx":43
  *     real_key = key+"_"+direction
  *     assert value[0]<=a[real_key][0]
  *     earn=0             # <<<<<<<<<<<<<<
@@ -4855,7 +4855,7 @@ static PyObject *__pyx_pf_5utils_8BackTest_2try_sell_value(CYTHON_UNUSED PyObjec
   __Pyx_INCREF(__pyx_int_0);
   __pyx_v_earn = __pyx_int_0;
 
-  /* "utils/BackTest.pyx":45
+  /* "utils/BackTestEngineC.pyx":45
  *     earn=0
  * 
  *     if real_key not in a.keys():             # <<<<<<<<<<<<<<
@@ -4868,7 +4868,7 @@ static PyObject *__pyx_pf_5utils_8BackTest_2try_sell_value(CYTHON_UNUSED PyObjec
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
   if (__pyx_t_3) {
 
-    /* "utils/BackTest.pyx":46
+    /* "utils/BackTestEngineC.pyx":46
  * 
  *     if real_key not in a.keys():
  *         return 0             # <<<<<<<<<<<<<<
@@ -4880,7 +4880,7 @@ static PyObject *__pyx_pf_5utils_8BackTest_2try_sell_value(CYTHON_UNUSED PyObjec
     __pyx_r = __pyx_int_0;
     goto __pyx_L0;
 
-    /* "utils/BackTest.pyx":45
+    /* "utils/BackTestEngineC.pyx":45
  *     earn=0
  * 
  *     if real_key not in a.keys():             # <<<<<<<<<<<<<<
@@ -4889,7 +4889,7 @@ static PyObject *__pyx_pf_5utils_8BackTest_2try_sell_value(CYTHON_UNUSED PyObjec
  */
   }
 
-  /* "utils/BackTest.pyx":47
+  /* "utils/BackTestEngineC.pyx":47
  *     if real_key not in a.keys():
  *         return 0
  *     if is_close:             # <<<<<<<<<<<<<<
@@ -4899,7 +4899,7 @@ static PyObject *__pyx_pf_5utils_8BackTest_2try_sell_value(CYTHON_UNUSED PyObjec
   __pyx_t_3 = __Pyx_PyObject_IsTrue(__pyx_v_is_close); if (unlikely((__pyx_t_3 < 0))) __PYX_ERR(0, 47, __pyx_L1_error)
   if (__pyx_t_3) {
 
-    /* "utils/BackTest.pyx":48
+    /* "utils/BackTestEngineC.pyx":48
  *         return 0
  *     if is_close:
  *         earn=  int(a[real_key][2])*int(value[0])//int(a[real_key][0])             # <<<<<<<<<<<<<<
@@ -4938,7 +4938,7 @@ static PyObject *__pyx_pf_5utils_8BackTest_2try_sell_value(CYTHON_UNUSED PyObjec
     __Pyx_DECREF_SET(__pyx_v_earn, __pyx_t_2);
     __pyx_t_2 = 0;
 
-    /* "utils/BackTest.pyx":49
+    /* "utils/BackTestEngineC.pyx":49
  *     if is_close:
  *         earn=  int(a[real_key][2])*int(value[0])//int(a[real_key][0])
  *         a[real_key][2] -=earn#amount*close_price             # <<<<<<<<<<<<<<
@@ -4957,7 +4957,7 @@ static PyObject *__pyx_pf_5utils_8BackTest_2try_sell_value(CYTHON_UNUSED PyObjec
     __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
     __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
 
-    /* "utils/BackTest.pyx":50
+    /* "utils/BackTestEngineC.pyx":50
  *         earn=  int(a[real_key][2])*int(value[0])//int(a[real_key][0])
  *         a[real_key][2] -=earn#amount*close_price
  *         a[real_key][0] -=value[0]             # <<<<<<<<<<<<<<
@@ -4979,7 +4979,7 @@ static PyObject *__pyx_pf_5utils_8BackTest_2try_sell_value(CYTHON_UNUSED PyObjec
     __Pyx_DECREF(__pyx_t_7); __pyx_t_7 = 0;
     __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
 
-    /* "utils/BackTest.pyx":47
+    /* "utils/BackTestEngineC.pyx":47
  *     if real_key not in a.keys():
  *         return 0
  *     if is_close:             # <<<<<<<<<<<<<<
@@ -4989,7 +4989,7 @@ static PyObject *__pyx_pf_5utils_8BackTest_2try_sell_value(CYTHON_UNUSED PyObjec
     goto __pyx_L6;
   }
 
-  /* "utils/BackTest.pyx":52
+  /* "utils/BackTestEngineC.pyx":52
  *         a[real_key][0] -=value[0]
  *     else:
  *         earn=  int(a[real_key][2])*int(value[0])//int(a[real_key][0])             # <<<<<<<<<<<<<<
@@ -5029,7 +5029,7 @@ static PyObject *__pyx_pf_5utils_8BackTest_2try_sell_value(CYTHON_UNUSED PyObjec
     __Pyx_DECREF_SET(__pyx_v_earn, __pyx_t_2);
     __pyx_t_2 = 0;
 
-    /* "utils/BackTest.pyx":53
+    /* "utils/BackTestEngineC.pyx":53
  *     else:
  *         earn=  int(a[real_key][2])*int(value[0])//int(a[real_key][0])
  *         a[real_key][2] -=earn#amount*close_price             # <<<<<<<<<<<<<<
@@ -5048,7 +5048,7 @@ static PyObject *__pyx_pf_5utils_8BackTest_2try_sell_value(CYTHON_UNUSED PyObjec
     __Pyx_DECREF(__pyx_t_7); __pyx_t_7 = 0;
     __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
 
-    /* "utils/BackTest.pyx":54
+    /* "utils/BackTestEngineC.pyx":54
  *         earn=  int(a[real_key][2])*int(value[0])//int(a[real_key][0])
  *         a[real_key][2] -=earn#amount*close_price
  *         a[real_key][0] -=value[0]             # <<<<<<<<<<<<<<
@@ -5070,7 +5070,7 @@ static PyObject *__pyx_pf_5utils_8BackTest_2try_sell_value(CYTHON_UNUSED PyObjec
     __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
     __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
 
-    /* "utils/BackTest.pyx":55
+    /* "utils/BackTestEngineC.pyx":55
  *         a[real_key][2] -=earn#amount*close_price
  *         a[real_key][0] -=value[0]
  *         real_earn = (value[1]-close)*value[0] if direction=="long" else -(value[1]-close)*value[0]             # <<<<<<<<<<<<<<
@@ -5113,7 +5113,7 @@ static PyObject *__pyx_pf_5utils_8BackTest_2try_sell_value(CYTHON_UNUSED PyObjec
     __pyx_v_real_earn = __pyx_t_2;
     __pyx_t_2 = 0;
 
-    /* "utils/BackTest.pyx":56
+    /* "utils/BackTestEngineC.pyx":56
  *         a[real_key][0] -=value[0]
  *         real_earn = (value[1]-close)*value[0] if direction=="long" else -(value[1]-close)*value[0]
  *         earn +=real_earn             # <<<<<<<<<<<<<<
@@ -5127,7 +5127,7 @@ static PyObject *__pyx_pf_5utils_8BackTest_2try_sell_value(CYTHON_UNUSED PyObjec
   }
   __pyx_L6:;
 
-  /* "utils/BackTest.pyx":57
+  /* "utils/BackTestEngineC.pyx":57
  *         real_earn = (value[1]-close)*value[0] if direction=="long" else -(value[1]-close)*value[0]
  *         earn +=real_earn
  *     return earn             # <<<<<<<<<<<<<<
@@ -5139,7 +5139,7 @@ static PyObject *__pyx_pf_5utils_8BackTest_2try_sell_value(CYTHON_UNUSED PyObjec
   __pyx_r = __pyx_v_earn;
   goto __pyx_L0;
 
-  /* "utils/BackTest.pyx":30
+  /* "utils/BackTestEngineC.pyx":30
  *         earn = (close-value[1])*value[0] if info[1]=="long" else (value[1]-close)*value[0]
  *         a[key][2]+=earn
  * def try_sell_value(a:dict,key,value,direction,is_close=True,close=0):             # <<<<<<<<<<<<<<
@@ -5153,7 +5153,7 @@ static PyObject *__pyx_pf_5utils_8BackTest_2try_sell_value(CYTHON_UNUSED PyObjec
   __Pyx_XDECREF(__pyx_t_2);
   __Pyx_XDECREF(__pyx_t_5);
   __Pyx_XDECREF(__pyx_t_7);
-  __Pyx_AddTraceback("utils.BackTest.try_sell_value", __pyx_clineno, __pyx_lineno, __pyx_filename);
+  __Pyx_AddTraceback("utils.BackTestEngineC.try_sell_value", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __pyx_r = NULL;
   __pyx_L0:;
   __Pyx_XDECREF(__pyx_v_real_key);
@@ -5164,7 +5164,7 @@ static PyObject *__pyx_pf_5utils_8BackTest_2try_sell_value(CYTHON_UNUSED PyObjec
   return __pyx_r;
 }
 
-/* "utils/BackTest.pyx":66
+/* "utils/BackTestEngineC.pyx":66
  * 
  * class context():
  *     def __init__(self) -> None:             # <<<<<<<<<<<<<<
@@ -5173,15 +5173,15 @@ static PyObject *__pyx_pf_5utils_8BackTest_2try_sell_value(CYTHON_UNUSED PyObjec
  */
 
 /* Python wrapper */
-static PyObject *__pyx_pw_5utils_8BackTest_7context_1__init__(PyObject *__pyx_self, 
+static PyObject *__pyx_pw_5utils_15BackTestEngineC_7context_1__init__(PyObject *__pyx_self, 
 #if CYTHON_METH_FASTCALL
 PyObject *const *__pyx_args, Py_ssize_t __pyx_nargs, PyObject *__pyx_kwds
 #else
 PyObject *__pyx_args, PyObject *__pyx_kwds
 #endif
 ); /*proto*/
-static PyMethodDef __pyx_mdef_5utils_8BackTest_7context_1__init__ = {"__init__", (PyCFunction)(void*)(__Pyx_PyCFunction_FastCallWithKeywords)__pyx_pw_5utils_8BackTest_7context_1__init__, __Pyx_METH_FASTCALL|METH_KEYWORDS, 0};
-static PyObject *__pyx_pw_5utils_8BackTest_7context_1__init__(PyObject *__pyx_self, 
+static PyMethodDef __pyx_mdef_5utils_15BackTestEngineC_7context_1__init__ = {"__init__", (PyCFunction)(void*)(__Pyx_PyCFunction_FastCallWithKeywords)__pyx_pw_5utils_15BackTestEngineC_7context_1__init__, __Pyx_METH_FASTCALL|METH_KEYWORDS, 0};
+static PyObject *__pyx_pw_5utils_15BackTestEngineC_7context_1__init__(PyObject *__pyx_self, 
 #if CYTHON_METH_FASTCALL
 PyObject *const *__pyx_args, Py_ssize_t __pyx_nargs, PyObject *__pyx_kwds
 #else
@@ -5251,11 +5251,11 @@ PyObject *__pyx_args, PyObject *__pyx_kwds
       __Pyx_Arg_XDECREF_FASTCALL(values[__pyx_temp]);
     }
   }
-  __Pyx_AddTraceback("utils.BackTest.context.__init__", __pyx_clineno, __pyx_lineno, __pyx_filename);
+  __Pyx_AddTraceback("utils.BackTestEngineC.context.__init__", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __Pyx_RefNannyFinishContext();
   return NULL;
   __pyx_L4_argument_unpacking_done:;
-  __pyx_r = __pyx_pf_5utils_8BackTest_7context___init__(__pyx_self, __pyx_v_self);
+  __pyx_r = __pyx_pf_5utils_15BackTestEngineC_7context___init__(__pyx_self, __pyx_v_self);
 
   /* function exit code */
   {
@@ -5268,7 +5268,7 @@ PyObject *__pyx_args, PyObject *__pyx_kwds
   return __pyx_r;
 }
 
-static PyObject *__pyx_pf_5utils_8BackTest_7context___init__(CYTHON_UNUSED PyObject *__pyx_self, CYTHON_UNUSED PyObject *__pyx_v_self) {
+static PyObject *__pyx_pf_5utils_15BackTestEngineC_7context___init__(CYTHON_UNUSED PyObject *__pyx_self, CYTHON_UNUSED PyObject *__pyx_v_self) {
   PyObject *__pyx_r = NULL;
   __Pyx_RefNannyDeclarations
   __Pyx_RefNannySetupContext("__init__", 1);
@@ -5280,7 +5280,7 @@ static PyObject *__pyx_pf_5utils_8BackTest_7context___init__(CYTHON_UNUSED PyObj
   return __pyx_r;
 }
 
-/* "utils/BackTest.pyx":70
+/* "utils/BackTestEngineC.pyx":70
  * class ReadingError(Exception):
  *     pass
  * def timer(func):             # <<<<<<<<<<<<<<
@@ -5289,15 +5289,15 @@ static PyObject *__pyx_pf_5utils_8BackTest_7context___init__(CYTHON_UNUSED PyObj
  */
 
 /* Python wrapper */
-static PyObject *__pyx_pw_5utils_8BackTest_5timer(PyObject *__pyx_self, 
+static PyObject *__pyx_pw_5utils_15BackTestEngineC_5timer(PyObject *__pyx_self, 
 #if CYTHON_METH_FASTCALL
 PyObject *const *__pyx_args, Py_ssize_t __pyx_nargs, PyObject *__pyx_kwds
 #else
 PyObject *__pyx_args, PyObject *__pyx_kwds
 #endif
 ); /*proto*/
-static PyMethodDef __pyx_mdef_5utils_8BackTest_5timer = {"timer", (PyCFunction)(void*)(__Pyx_PyCFunction_FastCallWithKeywords)__pyx_pw_5utils_8BackTest_5timer, __Pyx_METH_FASTCALL|METH_KEYWORDS, 0};
-static PyObject *__pyx_pw_5utils_8BackTest_5timer(PyObject *__pyx_self, 
+static PyMethodDef __pyx_mdef_5utils_15BackTestEngineC_5timer = {"timer", (PyCFunction)(void*)(__Pyx_PyCFunction_FastCallWithKeywords)__pyx_pw_5utils_15BackTestEngineC_5timer, __Pyx_METH_FASTCALL|METH_KEYWORDS, 0};
+static PyObject *__pyx_pw_5utils_15BackTestEngineC_5timer(PyObject *__pyx_self, 
 #if CYTHON_METH_FASTCALL
 PyObject *const *__pyx_args, Py_ssize_t __pyx_nargs, PyObject *__pyx_kwds
 #else
@@ -5367,11 +5367,11 @@ PyObject *__pyx_args, PyObject *__pyx_kwds
       __Pyx_Arg_XDECREF_FASTCALL(values[__pyx_temp]);
     }
   }
-  __Pyx_AddTraceback("utils.BackTest.timer", __pyx_clineno, __pyx_lineno, __pyx_filename);
+  __Pyx_AddTraceback("utils.BackTestEngineC.timer", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __Pyx_RefNannyFinishContext();
   return NULL;
   __pyx_L4_argument_unpacking_done:;
-  __pyx_r = __pyx_pf_5utils_8BackTest_4timer(__pyx_self, __pyx_v_func);
+  __pyx_r = __pyx_pf_5utils_15BackTestEngineC_4timer(__pyx_self, __pyx_v_func);
 
   /* function exit code */
   {
@@ -5384,7 +5384,7 @@ PyObject *__pyx_args, PyObject *__pyx_kwds
   return __pyx_r;
 }
 
-/* "utils/BackTest.pyx":71
+/* "utils/BackTestEngineC.pyx":71
  *     pass
  * def timer(func):
  *     def func_wrapper(*args,**kwargs):             # <<<<<<<<<<<<<<
@@ -5393,9 +5393,9 @@ PyObject *__pyx_args, PyObject *__pyx_kwds
  */
 
 /* Python wrapper */
-static PyObject *__pyx_pw_5utils_8BackTest_5timer_1func_wrapper(PyObject *__pyx_self, PyObject *__pyx_args, PyObject *__pyx_kwds); /*proto*/
-static PyMethodDef __pyx_mdef_5utils_8BackTest_5timer_1func_wrapper = {"func_wrapper", (PyCFunction)(void*)(PyCFunctionWithKeywords)__pyx_pw_5utils_8BackTest_5timer_1func_wrapper, METH_VARARGS|METH_KEYWORDS, 0};
-static PyObject *__pyx_pw_5utils_8BackTest_5timer_1func_wrapper(PyObject *__pyx_self, PyObject *__pyx_args, PyObject *__pyx_kwds) {
+static PyObject *__pyx_pw_5utils_15BackTestEngineC_5timer_1func_wrapper(PyObject *__pyx_self, PyObject *__pyx_args, PyObject *__pyx_kwds); /*proto*/
+static PyMethodDef __pyx_mdef_5utils_15BackTestEngineC_5timer_1func_wrapper = {"func_wrapper", (PyCFunction)(void*)(PyCFunctionWithKeywords)__pyx_pw_5utils_15BackTestEngineC_5timer_1func_wrapper, METH_VARARGS|METH_KEYWORDS, 0};
+static PyObject *__pyx_pw_5utils_15BackTestEngineC_5timer_1func_wrapper(PyObject *__pyx_self, PyObject *__pyx_args, PyObject *__pyx_kwds) {
   PyObject *__pyx_v_args = 0;
   PyObject *__pyx_v_kwargs = 0;
   CYTHON_UNUSED Py_ssize_t __pyx_nargs;
@@ -5421,7 +5421,7 @@ static PyObject *__pyx_pw_5utils_8BackTest_5timer_1func_wrapper(PyObject *__pyx_
   }
   __Pyx_INCREF(__pyx_args);
   __pyx_v_args = __pyx_args;
-  __pyx_r = __pyx_pf_5utils_8BackTest_5timer_func_wrapper(__pyx_self, __pyx_v_args, __pyx_v_kwargs);
+  __pyx_r = __pyx_pf_5utils_15BackTestEngineC_5timer_func_wrapper(__pyx_self, __pyx_v_args, __pyx_v_kwargs);
 
   /* function exit code */
   __Pyx_DECREF(__pyx_v_args);
@@ -5430,9 +5430,9 @@ static PyObject *__pyx_pw_5utils_8BackTest_5timer_1func_wrapper(PyObject *__pyx_
   return __pyx_r;
 }
 
-static PyObject *__pyx_pf_5utils_8BackTest_5timer_func_wrapper(PyObject *__pyx_self, PyObject *__pyx_v_args, PyObject *__pyx_v_kwargs) {
-  struct __pyx_obj_5utils_8BackTest___pyx_scope_struct__timer *__pyx_cur_scope;
-  struct __pyx_obj_5utils_8BackTest___pyx_scope_struct__timer *__pyx_outer_scope;
+static PyObject *__pyx_pf_5utils_15BackTestEngineC_5timer_func_wrapper(PyObject *__pyx_self, PyObject *__pyx_v_args, PyObject *__pyx_v_kwargs) {
+  struct __pyx_obj_5utils_15BackTestEngineC___pyx_scope_struct__timer *__pyx_cur_scope;
+  struct __pyx_obj_5utils_15BackTestEngineC___pyx_scope_struct__timer *__pyx_outer_scope;
   PyObject *__pyx_v_time = NULL;
   PyObject *__pyx_v_time_start = NULL;
   PyObject *__pyx_v_result = NULL;
@@ -5449,10 +5449,10 @@ static PyObject *__pyx_pf_5utils_8BackTest_5timer_func_wrapper(PyObject *__pyx_s
   const char *__pyx_filename = NULL;
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("func_wrapper", 1);
-  __pyx_outer_scope = (struct __pyx_obj_5utils_8BackTest___pyx_scope_struct__timer *) __Pyx_CyFunction_GetClosure(__pyx_self);
+  __pyx_outer_scope = (struct __pyx_obj_5utils_15BackTestEngineC___pyx_scope_struct__timer *) __Pyx_CyFunction_GetClosure(__pyx_self);
   __pyx_cur_scope = __pyx_outer_scope;
 
-  /* "utils/BackTest.pyx":72
+  /* "utils/BackTestEngineC.pyx":72
  * def timer(func):
  *     def func_wrapper(*args,**kwargs):
  *         from time import time             # <<<<<<<<<<<<<<
@@ -5474,7 +5474,7 @@ static PyObject *__pyx_pf_5utils_8BackTest_5timer_func_wrapper(PyObject *__pyx_s
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
 
-  /* "utils/BackTest.pyx":73
+  /* "utils/BackTestEngineC.pyx":73
  *     def func_wrapper(*args,**kwargs):
  *         from time import time
  *         time_start = time()             # <<<<<<<<<<<<<<
@@ -5507,7 +5507,7 @@ static PyObject *__pyx_pf_5utils_8BackTest_5timer_func_wrapper(PyObject *__pyx_s
   __pyx_v_time_start = __pyx_t_2;
   __pyx_t_2 = 0;
 
-  /* "utils/BackTest.pyx":74
+  /* "utils/BackTestEngineC.pyx":74
  *         from time import time
  *         time_start = time()
  *         result = func(*args,**kwargs)             # <<<<<<<<<<<<<<
@@ -5523,7 +5523,7 @@ static PyObject *__pyx_pf_5utils_8BackTest_5timer_func_wrapper(PyObject *__pyx_s
   __pyx_v_result = __pyx_t_1;
   __pyx_t_1 = 0;
 
-  /* "utils/BackTest.pyx":75
+  /* "utils/BackTestEngineC.pyx":75
  *         time_start = time()
  *         result = func(*args,**kwargs)
  *         time_end = time()             # <<<<<<<<<<<<<<
@@ -5556,7 +5556,7 @@ static PyObject *__pyx_pf_5utils_8BackTest_5timer_func_wrapper(PyObject *__pyx_s
   __pyx_v_time_end = __pyx_t_1;
   __pyx_t_1 = 0;
 
-  /* "utils/BackTest.pyx":76
+  /* "utils/BackTestEngineC.pyx":76
  *         result = func(*args,**kwargs)
  *         time_end = time()
  *         time_spend = time_end - time_start             # <<<<<<<<<<<<<<
@@ -5568,7 +5568,7 @@ static PyObject *__pyx_pf_5utils_8BackTest_5timer_func_wrapper(PyObject *__pyx_s
   __pyx_v_time_spend = __pyx_t_1;
   __pyx_t_1 = 0;
 
-  /* "utils/BackTest.pyx":77
+  /* "utils/BackTestEngineC.pyx":77
  *         time_end = time()
  *         time_spend = time_end - time_start
  *         print('\n{0} cost time {1} s\n'.format(func.__name__, time_spend))             # <<<<<<<<<<<<<<
@@ -5608,7 +5608,7 @@ static PyObject *__pyx_pf_5utils_8BackTest_5timer_func_wrapper(PyObject *__pyx_s
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
 
-  /* "utils/BackTest.pyx":78
+  /* "utils/BackTestEngineC.pyx":78
  *         time_spend = time_end - time_start
  *         print('\n{0} cost time {1} s\n'.format(func.__name__, time_spend))
  *         return result             # <<<<<<<<<<<<<<
@@ -5620,7 +5620,7 @@ static PyObject *__pyx_pf_5utils_8BackTest_5timer_func_wrapper(PyObject *__pyx_s
   __pyx_r = __pyx_v_result;
   goto __pyx_L0;
 
-  /* "utils/BackTest.pyx":71
+  /* "utils/BackTestEngineC.pyx":71
  *     pass
  * def timer(func):
  *     def func_wrapper(*args,**kwargs):             # <<<<<<<<<<<<<<
@@ -5634,7 +5634,7 @@ static PyObject *__pyx_pf_5utils_8BackTest_5timer_func_wrapper(PyObject *__pyx_s
   __Pyx_XDECREF(__pyx_t_2);
   __Pyx_XDECREF(__pyx_t_3);
   __Pyx_XDECREF(__pyx_t_5);
-  __Pyx_AddTraceback("utils.BackTest.timer.func_wrapper", __pyx_clineno, __pyx_lineno, __pyx_filename);
+  __Pyx_AddTraceback("utils.BackTestEngineC.timer.func_wrapper", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __pyx_r = NULL;
   __pyx_L0:;
   __Pyx_XDECREF(__pyx_v_time);
@@ -5647,7 +5647,7 @@ static PyObject *__pyx_pf_5utils_8BackTest_5timer_func_wrapper(PyObject *__pyx_s
   return __pyx_r;
 }
 
-/* "utils/BackTest.pyx":70
+/* "utils/BackTestEngineC.pyx":70
  * class ReadingError(Exception):
  *     pass
  * def timer(func):             # <<<<<<<<<<<<<<
@@ -5655,8 +5655,8 @@ static PyObject *__pyx_pf_5utils_8BackTest_5timer_func_wrapper(PyObject *__pyx_s
  *         from time import time
  */
 
-static PyObject *__pyx_pf_5utils_8BackTest_4timer(CYTHON_UNUSED PyObject *__pyx_self, PyObject *__pyx_v_func) {
-  struct __pyx_obj_5utils_8BackTest___pyx_scope_struct__timer *__pyx_cur_scope;
+static PyObject *__pyx_pf_5utils_15BackTestEngineC_4timer(CYTHON_UNUSED PyObject *__pyx_self, PyObject *__pyx_v_func) {
+  struct __pyx_obj_5utils_15BackTestEngineC___pyx_scope_struct__timer *__pyx_cur_scope;
   PyObject *__pyx_v_func_wrapper = 0;
   PyObject *__pyx_r = NULL;
   __Pyx_RefNannyDeclarations
@@ -5665,9 +5665,9 @@ static PyObject *__pyx_pf_5utils_8BackTest_4timer(CYTHON_UNUSED PyObject *__pyx_
   const char *__pyx_filename = NULL;
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("timer", 0);
-  __pyx_cur_scope = (struct __pyx_obj_5utils_8BackTest___pyx_scope_struct__timer *)__pyx_tp_new_5utils_8BackTest___pyx_scope_struct__timer(__pyx_ptype_5utils_8BackTest___pyx_scope_struct__timer, __pyx_empty_tuple, NULL);
+  __pyx_cur_scope = (struct __pyx_obj_5utils_15BackTestEngineC___pyx_scope_struct__timer *)__pyx_tp_new_5utils_15BackTestEngineC___pyx_scope_struct__timer(__pyx_ptype_5utils_15BackTestEngineC___pyx_scope_struct__timer, __pyx_empty_tuple, NULL);
   if (unlikely(!__pyx_cur_scope)) {
-    __pyx_cur_scope = ((struct __pyx_obj_5utils_8BackTest___pyx_scope_struct__timer *)Py_None);
+    __pyx_cur_scope = ((struct __pyx_obj_5utils_15BackTestEngineC___pyx_scope_struct__timer *)Py_None);
     __Pyx_INCREF(Py_None);
     __PYX_ERR(0, 70, __pyx_L1_error)
   } else {
@@ -5677,19 +5677,19 @@ static PyObject *__pyx_pf_5utils_8BackTest_4timer(CYTHON_UNUSED PyObject *__pyx_
   __Pyx_INCREF(__pyx_cur_scope->__pyx_v_func);
   __Pyx_GIVEREF(__pyx_cur_scope->__pyx_v_func);
 
-  /* "utils/BackTest.pyx":71
+  /* "utils/BackTestEngineC.pyx":71
  *     pass
  * def timer(func):
  *     def func_wrapper(*args,**kwargs):             # <<<<<<<<<<<<<<
  *         from time import time
  *         time_start = time()
  */
-  __pyx_t_1 = __Pyx_CyFunction_New(&__pyx_mdef_5utils_8BackTest_5timer_1func_wrapper, 0, __pyx_n_s_timer_locals_func_wrapper, ((PyObject*)__pyx_cur_scope), __pyx_n_s_utils_BackTest, __pyx_d, ((PyObject *)__pyx_codeobj__4)); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 71, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_CyFunction_New(&__pyx_mdef_5utils_15BackTestEngineC_5timer_1func_wrapper, 0, __pyx_n_s_timer_locals_func_wrapper, ((PyObject*)__pyx_cur_scope), __pyx_n_s_utils_BackTestEngineC, __pyx_d, ((PyObject *)__pyx_codeobj__4)); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 71, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __pyx_v_func_wrapper = __pyx_t_1;
   __pyx_t_1 = 0;
 
-  /* "utils/BackTest.pyx":79
+  /* "utils/BackTestEngineC.pyx":79
  *         print('\n{0} cost time {1} s\n'.format(func.__name__, time_spend))
  *         return result
  *     return func_wrapper             # <<<<<<<<<<<<<<
@@ -5701,7 +5701,7 @@ static PyObject *__pyx_pf_5utils_8BackTest_4timer(CYTHON_UNUSED PyObject *__pyx_
   __pyx_r = __pyx_v_func_wrapper;
   goto __pyx_L0;
 
-  /* "utils/BackTest.pyx":70
+  /* "utils/BackTestEngineC.pyx":70
  * class ReadingError(Exception):
  *     pass
  * def timer(func):             # <<<<<<<<<<<<<<
@@ -5712,7 +5712,7 @@ static PyObject *__pyx_pf_5utils_8BackTest_4timer(CYTHON_UNUSED PyObject *__pyx_
   /* function exit code */
   __pyx_L1_error:;
   __Pyx_XDECREF(__pyx_t_1);
-  __Pyx_AddTraceback("utils.BackTest.timer", __pyx_clineno, __pyx_lineno, __pyx_filename);
+  __Pyx_AddTraceback("utils.BackTestEngineC.timer", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __pyx_r = NULL;
   __pyx_L0:;
   __Pyx_XDECREF(__pyx_v_func_wrapper);
@@ -5722,7 +5722,7 @@ static PyObject *__pyx_pf_5utils_8BackTest_4timer(CYTHON_UNUSED PyObject *__pyx_
   return __pyx_r;
 }
 
-/* "utils/BackTest.pyx":108
+/* "utils/BackTestEngineC.pyx":108
  *                  value(dataframe)
  *     """
  *     def __init__(self,cash=100000000,margin_rate=0.2,margin_limit=0.8,debug=True):             # <<<<<<<<<<<<<<
@@ -5731,16 +5731,16 @@ static PyObject *__pyx_pf_5utils_8BackTest_4timer(CYTHON_UNUSED PyObject *__pyx_
  */
 
 /* Python wrapper */
-static PyObject *__pyx_pw_5utils_8BackTest_8BackTest_1__init__(PyObject *__pyx_self, 
+static PyObject *__pyx_pw_5utils_15BackTestEngineC_8BackTest_1__init__(PyObject *__pyx_self, 
 #if CYTHON_METH_FASTCALL
 PyObject *const *__pyx_args, Py_ssize_t __pyx_nargs, PyObject *__pyx_kwds
 #else
 PyObject *__pyx_args, PyObject *__pyx_kwds
 #endif
 ); /*proto*/
-PyDoc_STRVAR(__pyx_doc_5utils_8BackTest_8BackTest___init__, "_summary_\n\n        Args:\n            cash (int, optional): \345\210\235\345\247\213\350\265\204\351\207\221\357\274\214\351\273\230\350\256\244100000000.\n            margin_rate (float, optional): \344\277\235\350\257\201\351\207\221\346\257\224\344\276\213. Defaults to 0.2.\n            margin_limit (float, optional): \344\277\235\350\257\201\351\207\221\344\270\213\351\231\220\357\274\214\345\275\223\344\277\235\350\257\201\351\207\221\344\275\216\344\272\216\344\277\235\350\257\201\351\207\221\344\270\213\351\231\220*\346\234\237\350\264\247\344\273\267\345\200\274*\344\277\235\350\257\201\351\207\221\346\257\224\344\276\213\346\227\266\350\247\246\345\217\221\350\241\245\344\272\244\344\277\235\350\257\201\351\207\221. Defaults to 0.8.\n            debug (bool, optional): debug\344\270\272True\346\227\266\344\274\232\346\211\223\345\215\260\346\257\217\347\254\224\344\272\244\346\230\223\344\273\245\345\217\212debug\344\277\241\346\201\257\357\274\214\346\255\243\345\270\270\346\203\205\345\206\265\344\270\213\347\233\264\346\216\245\350\256\276\344\270\272false\345\212\240\345\277\253\345\233\236\346\265\213\351\200\237\345\272\246. Defaults to True.\n        ");
-static PyMethodDef __pyx_mdef_5utils_8BackTest_8BackTest_1__init__ = {"__init__", (PyCFunction)(void*)(__Pyx_PyCFunction_FastCallWithKeywords)__pyx_pw_5utils_8BackTest_8BackTest_1__init__, __Pyx_METH_FASTCALL|METH_KEYWORDS, __pyx_doc_5utils_8BackTest_8BackTest___init__};
-static PyObject *__pyx_pw_5utils_8BackTest_8BackTest_1__init__(PyObject *__pyx_self, 
+PyDoc_STRVAR(__pyx_doc_5utils_15BackTestEngineC_8BackTest___init__, "_summary_\n\n        Args:\n            cash (int, optional): \345\210\235\345\247\213\350\265\204\351\207\221\357\274\214\351\273\230\350\256\244100000000.\n            margin_rate (float, optional): \344\277\235\350\257\201\351\207\221\346\257\224\344\276\213. Defaults to 0.2.\n            margin_limit (float, optional): \344\277\235\350\257\201\351\207\221\344\270\213\351\231\220\357\274\214\345\275\223\344\277\235\350\257\201\351\207\221\344\275\216\344\272\216\344\277\235\350\257\201\351\207\221\344\270\213\351\231\220*\346\234\237\350\264\247\344\273\267\345\200\274*\344\277\235\350\257\201\351\207\221\346\257\224\344\276\213\346\227\266\350\247\246\345\217\221\350\241\245\344\272\244\344\277\235\350\257\201\351\207\221. Defaults to 0.8.\n            debug (bool, optional): debug\344\270\272True\346\227\266\344\274\232\346\211\223\345\215\260\346\257\217\347\254\224\344\272\244\346\230\223\344\273\245\345\217\212debug\344\277\241\346\201\257\357\274\214\346\255\243\345\270\270\346\203\205\345\206\265\344\270\213\347\233\264\346\216\245\350\256\276\344\270\272false\345\212\240\345\277\253\345\233\236\346\265\213\351\200\237\345\272\246. Defaults to True.\n        ");
+static PyMethodDef __pyx_mdef_5utils_15BackTestEngineC_8BackTest_1__init__ = {"__init__", (PyCFunction)(void*)(__Pyx_PyCFunction_FastCallWithKeywords)__pyx_pw_5utils_15BackTestEngineC_8BackTest_1__init__, __Pyx_METH_FASTCALL|METH_KEYWORDS, __pyx_doc_5utils_15BackTestEngineC_8BackTest___init__};
+static PyObject *__pyx_pw_5utils_15BackTestEngineC_8BackTest_1__init__(PyObject *__pyx_self, 
 #if CYTHON_METH_FASTCALL
 PyObject *const *__pyx_args, Py_ssize_t __pyx_nargs, PyObject *__pyx_kwds
 #else
@@ -5868,11 +5868,11 @@ PyObject *__pyx_args, PyObject *__pyx_kwds
       __Pyx_Arg_XDECREF_FASTCALL(values[__pyx_temp]);
     }
   }
-  __Pyx_AddTraceback("utils.BackTest.BackTest.__init__", __pyx_clineno, __pyx_lineno, __pyx_filename);
+  __Pyx_AddTraceback("utils.BackTestEngineC.BackTest.__init__", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __Pyx_RefNannyFinishContext();
   return NULL;
   __pyx_L4_argument_unpacking_done:;
-  __pyx_r = __pyx_pf_5utils_8BackTest_8BackTest___init__(__pyx_self, __pyx_v_self, __pyx_v_cash, __pyx_v_margin_rate, __pyx_v_margin_limit, __pyx_v_debug);
+  __pyx_r = __pyx_pf_5utils_15BackTestEngineC_8BackTest___init__(__pyx_self, __pyx_v_self, __pyx_v_cash, __pyx_v_margin_rate, __pyx_v_margin_limit, __pyx_v_debug);
 
   /* function exit code */
   {
@@ -5885,7 +5885,7 @@ PyObject *__pyx_args, PyObject *__pyx_kwds
   return __pyx_r;
 }
 
-static PyObject *__pyx_pf_5utils_8BackTest_8BackTest___init__(CYTHON_UNUSED PyObject *__pyx_self, PyObject *__pyx_v_self, PyObject *__pyx_v_cash, PyObject *__pyx_v_margin_rate, PyObject *__pyx_v_margin_limit, PyObject *__pyx_v_debug) {
+static PyObject *__pyx_pf_5utils_15BackTestEngineC_8BackTest___init__(CYTHON_UNUSED PyObject *__pyx_self, PyObject *__pyx_v_self, PyObject *__pyx_v_cash, PyObject *__pyx_v_margin_rate, PyObject *__pyx_v_margin_limit, PyObject *__pyx_v_debug) {
   PyObject *__pyx_r = NULL;
   __Pyx_RefNannyDeclarations
   PyObject *__pyx_t_1 = NULL;
@@ -5898,7 +5898,7 @@ static PyObject *__pyx_pf_5utils_8BackTest_8BackTest___init__(CYTHON_UNUSED PyOb
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("__init__", 1);
 
-  /* "utils/BackTest.pyx":117
+  /* "utils/BackTestEngineC.pyx":117
  *             debug (bool, optional): debugTruedebugfalse. Defaults to True.
  *         """
  *         self.context=context()#contextfactorbefore_tradeafter_tradehandle_bar             # <<<<<<<<<<<<<<
@@ -5932,7 +5932,7 @@ static PyObject *__pyx_pf_5utils_8BackTest_8BackTest___init__(CYTHON_UNUSED PyOb
   if (__Pyx_PyObject_SetAttrStr(__pyx_v_self, __pyx_n_s_context, __pyx_t_1) < 0) __PYX_ERR(0, 117, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
 
-  /* "utils/BackTest.pyx":118
+  /* "utils/BackTestEngineC.pyx":118
  *         """
  *         self.context=context()#contextfactorbefore_tradeafter_tradehandle_bar
  *         self.debug = debug             # <<<<<<<<<<<<<<
@@ -5941,7 +5941,7 @@ static PyObject *__pyx_pf_5utils_8BackTest_8BackTest___init__(CYTHON_UNUSED PyOb
  */
   if (__Pyx_PyObject_SetAttrStr(__pyx_v_self, __pyx_n_s_debug, __pyx_v_debug) < 0) __PYX_ERR(0, 118, __pyx_L1_error)
 
-  /* "utils/BackTest.pyx":119
+  /* "utils/BackTestEngineC.pyx":119
  *         self.context=context()#contextfactorbefore_tradeafter_tradehandle_bar
  *         self.debug = debug
  *         self.data = {}#subscribe             # <<<<<<<<<<<<<<
@@ -5953,7 +5953,7 @@ static PyObject *__pyx_pf_5utils_8BackTest_8BackTest___init__(CYTHON_UNUSED PyOb
   if (__Pyx_PyObject_SetAttrStr(__pyx_v_self, __pyx_n_s_data, __pyx_t_1) < 0) __PYX_ERR(0, 119, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
 
-  /* "utils/BackTest.pyx":120
+  /* "utils/BackTestEngineC.pyx":120
  *         self.debug = debug
  *         self.data = {}#subscribe
  *         self.position = context()#position             # <<<<<<<<<<<<<<
@@ -5987,7 +5987,7 @@ static PyObject *__pyx_pf_5utils_8BackTest_8BackTest___init__(CYTHON_UNUSED PyOb
   if (__Pyx_PyObject_SetAttrStr(__pyx_v_self, __pyx_n_s_position, __pyx_t_1) < 0) __PYX_ERR(0, 120, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
 
-  /* "utils/BackTest.pyx":123
+  /* "utils/BackTestEngineC.pyx":123
  *         # 2e8 + 1002e8
  *         # int100000.01
  *         self.position.cash=cash*10000             # <<<<<<<<<<<<<<
@@ -6002,7 +6002,7 @@ static PyObject *__pyx_pf_5utils_8BackTest_8BackTest___init__(CYTHON_UNUSED PyOb
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
 
-  /* "utils/BackTest.pyx":124
+  /* "utils/BackTestEngineC.pyx":124
  *         # int100000.01
  *         self.position.cash=cash*10000
  *         self.position.original_cash = cash*10000#             # <<<<<<<<<<<<<<
@@ -6017,7 +6017,7 @@ static PyObject *__pyx_pf_5utils_8BackTest_8BackTest___init__(CYTHON_UNUSED PyOb
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
 
-  /* "utils/BackTest.pyx":125
+  /* "utils/BackTestEngineC.pyx":125
  *         self.position.cash=cash*10000
  *         self.position.original_cash = cash*10000#
  *         self.position.hold = {}#hold item[amount,price*10000,guarantee]             # <<<<<<<<<<<<<<
@@ -6032,7 +6032,7 @@ static PyObject *__pyx_pf_5utils_8BackTest_8BackTest___init__(CYTHON_UNUSED PyOb
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
 
-  /* "utils/BackTest.pyx":126
+  /* "utils/BackTestEngineC.pyx":126
  *         self.position.original_cash = cash*10000#
  *         self.position.hold = {}#hold item[amount,price*10000,guarantee]
  *         self.position.asset=[]#             # <<<<<<<<<<<<<<
@@ -6047,7 +6047,7 @@ static PyObject *__pyx_pf_5utils_8BackTest_8BackTest___init__(CYTHON_UNUSED PyOb
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
 
-  /* "utils/BackTest.pyx":129
+  /* "utils/BackTestEngineC.pyx":129
  * 
  *         #self.hold =pd.DataFrame(columns=["date","type","hold","direction","average_cost"])#
  *         self.trade_record = pd.DataFrame(columns=["date","type","amount","direction","B/S","price"])#             # <<<<<<<<<<<<<<
@@ -6090,7 +6090,7 @@ static PyObject *__pyx_pf_5utils_8BackTest_8BackTest___init__(CYTHON_UNUSED PyOb
   if (__Pyx_PyObject_SetAttrStr(__pyx_v_self, __pyx_n_s_trade_record, __pyx_t_3) < 0) __PYX_ERR(0, 129, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
 
-  /* "utils/BackTest.pyx":130
+  /* "utils/BackTestEngineC.pyx":130
  *         #self.hold =pd.DataFrame(columns=["date","type","hold","direction","average_cost"])#
  *         self.trade_record = pd.DataFrame(columns=["date","type","amount","direction","B/S","price"])#
  *         self.instrument = {"margin_rate":margin_rate,"margin_limit":margin_limit}#             # <<<<<<<<<<<<<<
@@ -6104,7 +6104,7 @@ static PyObject *__pyx_pf_5utils_8BackTest_8BackTest___init__(CYTHON_UNUSED PyOb
   if (__Pyx_PyObject_SetAttrStr(__pyx_v_self, __pyx_n_s_instrument, __pyx_t_3) < 0) __PYX_ERR(0, 130, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
 
-  /* "utils/BackTest.pyx":131
+  /* "utils/BackTestEngineC.pyx":131
  *         self.trade_record = pd.DataFrame(columns=["date","type","amount","direction","B/S","price"])#
  *         self.instrument = {"margin_rate":margin_rate,"margin_limit":margin_limit}#
  *         self.init(self.context)#             # <<<<<<<<<<<<<<
@@ -6140,7 +6140,7 @@ static PyObject *__pyx_pf_5utils_8BackTest_8BackTest___init__(CYTHON_UNUSED PyOb
   }
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
 
-  /* "utils/BackTest.pyx":108
+  /* "utils/BackTestEngineC.pyx":108
  *                  value(dataframe)
  *     """
  *     def __init__(self,cash=100000000,margin_rate=0.2,margin_limit=0.8,debug=True):             # <<<<<<<<<<<<<<
@@ -6156,7 +6156,7 @@ static PyObject *__pyx_pf_5utils_8BackTest_8BackTest___init__(CYTHON_UNUSED PyOb
   __Pyx_XDECREF(__pyx_t_2);
   __Pyx_XDECREF(__pyx_t_3);
   __Pyx_XDECREF(__pyx_t_5);
-  __Pyx_AddTraceback("utils.BackTest.BackTest.__init__", __pyx_clineno, __pyx_lineno, __pyx_filename);
+  __Pyx_AddTraceback("utils.BackTestEngineC.BackTest.__init__", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __pyx_r = NULL;
   __pyx_L0:;
   __Pyx_XGIVEREF(__pyx_r);
@@ -6164,7 +6164,7 @@ static PyObject *__pyx_pf_5utils_8BackTest_8BackTest___init__(CYTHON_UNUSED PyOb
   return __pyx_r;
 }
 
-/* "utils/BackTest.pyx":133
+/* "utils/BackTestEngineC.pyx":133
  *         self.init(self.context)#
  *         pass
  *     def init(self,context):             # <<<<<<<<<<<<<<
@@ -6173,16 +6173,16 @@ static PyObject *__pyx_pf_5utils_8BackTest_8BackTest___init__(CYTHON_UNUSED PyOb
  */
 
 /* Python wrapper */
-static PyObject *__pyx_pw_5utils_8BackTest_8BackTest_3init(PyObject *__pyx_self, 
+static PyObject *__pyx_pw_5utils_15BackTestEngineC_8BackTest_3init(PyObject *__pyx_self, 
 #if CYTHON_METH_FASTCALL
 PyObject *const *__pyx_args, Py_ssize_t __pyx_nargs, PyObject *__pyx_kwds
 #else
 PyObject *__pyx_args, PyObject *__pyx_kwds
 #endif
 ); /*proto*/
-PyDoc_STRVAR(__pyx_doc_5utils_8BackTest_8BackTest_2init, "_summary_\n\n        Args:\n            context (_type_): \350\207\252\345\256\232\344\271\211\345\210\235\345\247\213\345\214\226\347\232\204\344\277\241\346\201\257\351\203\275\346\224\276\345\234\250\350\277\231\351\207\214\357\274\214\346\263\250\346\204\217context.name\345\277\205\351\241\273\350\256\276\347\275\256\357\274\214\345\256\203\344\274\232\344\275\234\344\270\272\346\234\200\347\273\210\345\233\236\346\265\213\346\233\262\347\272\277xlsx\347\232\204\346\226\207\344\273\266\345\220\215\n        ");
-static PyMethodDef __pyx_mdef_5utils_8BackTest_8BackTest_3init = {"init", (PyCFunction)(void*)(__Pyx_PyCFunction_FastCallWithKeywords)__pyx_pw_5utils_8BackTest_8BackTest_3init, __Pyx_METH_FASTCALL|METH_KEYWORDS, __pyx_doc_5utils_8BackTest_8BackTest_2init};
-static PyObject *__pyx_pw_5utils_8BackTest_8BackTest_3init(PyObject *__pyx_self, 
+PyDoc_STRVAR(__pyx_doc_5utils_15BackTestEngineC_8BackTest_2init, "_summary_\n\n        Args:\n            context (_type_): \350\207\252\345\256\232\344\271\211\345\210\235\345\247\213\345\214\226\347\232\204\344\277\241\346\201\257\351\203\275\346\224\276\345\234\250\350\277\231\351\207\214\357\274\214\346\263\250\346\204\217context.name\345\277\205\351\241\273\350\256\276\347\275\256\357\274\214\345\256\203\344\274\232\344\275\234\344\270\272\346\234\200\347\273\210\345\233\236\346\265\213\346\233\262\347\272\277xlsx\347\232\204\346\226\207\344\273\266\345\220\215\n        ");
+static PyMethodDef __pyx_mdef_5utils_15BackTestEngineC_8BackTest_3init = {"init", (PyCFunction)(void*)(__Pyx_PyCFunction_FastCallWithKeywords)__pyx_pw_5utils_15BackTestEngineC_8BackTest_3init, __Pyx_METH_FASTCALL|METH_KEYWORDS, __pyx_doc_5utils_15BackTestEngineC_8BackTest_2init};
+static PyObject *__pyx_pw_5utils_15BackTestEngineC_8BackTest_3init(PyObject *__pyx_self, 
 #if CYTHON_METH_FASTCALL
 PyObject *const *__pyx_args, Py_ssize_t __pyx_nargs, PyObject *__pyx_kwds
 #else
@@ -6267,11 +6267,11 @@ PyObject *__pyx_args, PyObject *__pyx_kwds
       __Pyx_Arg_XDECREF_FASTCALL(values[__pyx_temp]);
     }
   }
-  __Pyx_AddTraceback("utils.BackTest.BackTest.init", __pyx_clineno, __pyx_lineno, __pyx_filename);
+  __Pyx_AddTraceback("utils.BackTestEngineC.BackTest.init", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __Pyx_RefNannyFinishContext();
   return NULL;
   __pyx_L4_argument_unpacking_done:;
-  __pyx_r = __pyx_pf_5utils_8BackTest_8BackTest_2init(__pyx_self, __pyx_v_self, __pyx_v_context);
+  __pyx_r = __pyx_pf_5utils_15BackTestEngineC_8BackTest_2init(__pyx_self, __pyx_v_self, __pyx_v_context);
 
   /* function exit code */
   {
@@ -6284,7 +6284,7 @@ PyObject *__pyx_args, PyObject *__pyx_kwds
   return __pyx_r;
 }
 
-static PyObject *__pyx_pf_5utils_8BackTest_8BackTest_2init(CYTHON_UNUSED PyObject *__pyx_self, CYTHON_UNUSED PyObject *__pyx_v_self, CYTHON_UNUSED PyObject *__pyx_v_context) {
+static PyObject *__pyx_pf_5utils_15BackTestEngineC_8BackTest_2init(CYTHON_UNUSED PyObject *__pyx_self, CYTHON_UNUSED PyObject *__pyx_v_self, CYTHON_UNUSED PyObject *__pyx_v_context) {
   PyObject *__pyx_r = NULL;
   __Pyx_RefNannyDeclarations
   __Pyx_RefNannySetupContext("init", 1);
@@ -6296,7 +6296,7 @@ static PyObject *__pyx_pf_5utils_8BackTest_8BackTest_2init(CYTHON_UNUSED PyObjec
   return __pyx_r;
 }
 
-/* "utils/BackTest.pyx":141
+/* "utils/BackTestEngineC.pyx":141
  *         pass
  * 
  *     def subscribe(self,future_type:str):             # <<<<<<<<<<<<<<
@@ -6305,16 +6305,16 @@ static PyObject *__pyx_pf_5utils_8BackTest_8BackTest_2init(CYTHON_UNUSED PyObjec
  */
 
 /* Python wrapper */
-static PyObject *__pyx_pw_5utils_8BackTest_8BackTest_5subscribe(PyObject *__pyx_self, 
+static PyObject *__pyx_pw_5utils_15BackTestEngineC_8BackTest_5subscribe(PyObject *__pyx_self, 
 #if CYTHON_METH_FASTCALL
 PyObject *const *__pyx_args, Py_ssize_t __pyx_nargs, PyObject *__pyx_kwds
 #else
 PyObject *__pyx_args, PyObject *__pyx_kwds
 #endif
 ); /*proto*/
-PyDoc_STRVAR(__pyx_doc_5utils_8BackTest_8BackTest_4subscribe, "_summary_\n\n        Args:\n            future_type (str): \350\256\242\351\230\205 \345\223\201\347\247\215\345\212\240\350\275\275\345\210\260self.data\n\n        \n        ");
-static PyMethodDef __pyx_mdef_5utils_8BackTest_8BackTest_5subscribe = {"subscribe", (PyCFunction)(void*)(__Pyx_PyCFunction_FastCallWithKeywords)__pyx_pw_5utils_8BackTest_8BackTest_5subscribe, __Pyx_METH_FASTCALL|METH_KEYWORDS, __pyx_doc_5utils_8BackTest_8BackTest_4subscribe};
-static PyObject *__pyx_pw_5utils_8BackTest_8BackTest_5subscribe(PyObject *__pyx_self, 
+PyDoc_STRVAR(__pyx_doc_5utils_15BackTestEngineC_8BackTest_4subscribe, "_summary_\n\n        Args:\n            future_type (str): \350\256\242\351\230\205 \345\223\201\347\247\215\345\212\240\350\275\275\345\210\260self.data\n\n        \n        ");
+static PyMethodDef __pyx_mdef_5utils_15BackTestEngineC_8BackTest_5subscribe = {"subscribe", (PyCFunction)(void*)(__Pyx_PyCFunction_FastCallWithKeywords)__pyx_pw_5utils_15BackTestEngineC_8BackTest_5subscribe, __Pyx_METH_FASTCALL|METH_KEYWORDS, __pyx_doc_5utils_15BackTestEngineC_8BackTest_4subscribe};
+static PyObject *__pyx_pw_5utils_15BackTestEngineC_8BackTest_5subscribe(PyObject *__pyx_self, 
 #if CYTHON_METH_FASTCALL
 PyObject *const *__pyx_args, Py_ssize_t __pyx_nargs, PyObject *__pyx_kwds
 #else
@@ -6399,12 +6399,12 @@ PyObject *__pyx_args, PyObject *__pyx_kwds
       __Pyx_Arg_XDECREF_FASTCALL(values[__pyx_temp]);
     }
   }
-  __Pyx_AddTraceback("utils.BackTest.BackTest.subscribe", __pyx_clineno, __pyx_lineno, __pyx_filename);
+  __Pyx_AddTraceback("utils.BackTestEngineC.BackTest.subscribe", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __Pyx_RefNannyFinishContext();
   return NULL;
   __pyx_L4_argument_unpacking_done:;
   if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v_future_type), (&PyString_Type), 0, "future_type", 1))) __PYX_ERR(0, 141, __pyx_L1_error)
-  __pyx_r = __pyx_pf_5utils_8BackTest_8BackTest_4subscribe(__pyx_self, __pyx_v_self, __pyx_v_future_type);
+  __pyx_r = __pyx_pf_5utils_15BackTestEngineC_8BackTest_4subscribe(__pyx_self, __pyx_v_self, __pyx_v_future_type);
 
   /* function exit code */
   goto __pyx_L0;
@@ -6421,7 +6421,7 @@ PyObject *__pyx_args, PyObject *__pyx_kwds
   return __pyx_r;
 }
 
-static PyObject *__pyx_pf_5utils_8BackTest_8BackTest_4subscribe(CYTHON_UNUSED PyObject *__pyx_self, PyObject *__pyx_v_self, PyObject *__pyx_v_future_type) {
+static PyObject *__pyx_pf_5utils_15BackTestEngineC_8BackTest_4subscribe(CYTHON_UNUSED PyObject *__pyx_self, PyObject *__pyx_v_self, PyObject *__pyx_v_future_type) {
   PyObject *__pyx_v_future_data = NULL;
   PyObject *__pyx_r = NULL;
   __Pyx_RefNannyDeclarations
@@ -6441,7 +6441,7 @@ static PyObject *__pyx_pf_5utils_8BackTest_8BackTest_4subscribe(CYTHON_UNUSED Py
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("subscribe", 1);
 
-  /* "utils/BackTest.pyx":149
+  /* "utils/BackTestEngineC.pyx":149
  * 
  *         """
  *         try:             # <<<<<<<<<<<<<<
@@ -6457,7 +6457,7 @@ static PyObject *__pyx_pf_5utils_8BackTest_8BackTest_4subscribe(CYTHON_UNUSED Py
     __Pyx_XGOTREF(__pyx_t_3);
     /*try:*/ {
 
-      /* "utils/BackTest.pyx":150
+      /* "utils/BackTestEngineC.pyx":150
  *         """
  *         try:
  *             future_data = pd.read_excel("data/"+future_type+"_daily.xlsx")             # <<<<<<<<<<<<<<
@@ -6500,7 +6500,7 @@ static PyObject *__pyx_pf_5utils_8BackTest_8BackTest_4subscribe(CYTHON_UNUSED Py
       __pyx_v_future_data = __pyx_t_4;
       __pyx_t_4 = 0;
 
-      /* "utils/BackTest.pyx":149
+      /* "utils/BackTestEngineC.pyx":149
  * 
  *         """
  *         try:             # <<<<<<<<<<<<<<
@@ -6518,7 +6518,7 @@ static PyObject *__pyx_pf_5utils_8BackTest_8BackTest_4subscribe(CYTHON_UNUSED Py
     __Pyx_XDECREF(__pyx_t_6); __pyx_t_6 = 0;
     __Pyx_XDECREF(__pyx_t_7); __pyx_t_7 = 0;
 
-    /* "utils/BackTest.pyx":152
+    /* "utils/BackTestEngineC.pyx":152
  *             future_data = pd.read_excel("data/"+future_type+"_daily.xlsx")
  * 
  *         except:             # <<<<<<<<<<<<<<
@@ -6526,13 +6526,13 @@ static PyObject *__pyx_pf_5utils_8BackTest_8BackTest_4subscribe(CYTHON_UNUSED Py
  *         self.data[future_type]=future_data
  */
     /*except:*/ {
-      __Pyx_AddTraceback("utils.BackTest.BackTest.subscribe", __pyx_clineno, __pyx_lineno, __pyx_filename);
+      __Pyx_AddTraceback("utils.BackTestEngineC.BackTest.subscribe", __pyx_clineno, __pyx_lineno, __pyx_filename);
       if (__Pyx_GetException(&__pyx_t_4, &__pyx_t_6, &__pyx_t_7) < 0) __PYX_ERR(0, 152, __pyx_L5_except_error)
       __Pyx_XGOTREF(__pyx_t_4);
       __Pyx_XGOTREF(__pyx_t_6);
       __Pyx_XGOTREF(__pyx_t_7);
 
-      /* "utils/BackTest.pyx":153
+      /* "utils/BackTestEngineC.pyx":153
  * 
  *         except:
  *             raise ReadingError("Cannot load data/"+future_type+"_daily.xlsx")             # <<<<<<<<<<<<<<
@@ -6574,7 +6574,7 @@ static PyObject *__pyx_pf_5utils_8BackTest_8BackTest_4subscribe(CYTHON_UNUSED Py
       __PYX_ERR(0, 153, __pyx_L5_except_error)
     }
 
-    /* "utils/BackTest.pyx":149
+    /* "utils/BackTestEngineC.pyx":149
  * 
  *         """
  *         try:             # <<<<<<<<<<<<<<
@@ -6590,7 +6590,7 @@ static PyObject *__pyx_pf_5utils_8BackTest_8BackTest_4subscribe(CYTHON_UNUSED Py
     __pyx_L8_try_end:;
   }
 
-  /* "utils/BackTest.pyx":154
+  /* "utils/BackTestEngineC.pyx":154
  *         except:
  *             raise ReadingError("Cannot load data/"+future_type+"_daily.xlsx")
  *         self.data[future_type]=future_data             # <<<<<<<<<<<<<<
@@ -6602,7 +6602,7 @@ static PyObject *__pyx_pf_5utils_8BackTest_8BackTest_4subscribe(CYTHON_UNUSED Py
   if (unlikely((PyObject_SetItem(__pyx_t_7, __pyx_v_future_type, __pyx_v_future_data) < 0))) __PYX_ERR(0, 154, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_7); __pyx_t_7 = 0;
 
-  /* "utils/BackTest.pyx":141
+  /* "utils/BackTestEngineC.pyx":141
  *         pass
  * 
  *     def subscribe(self,future_type:str):             # <<<<<<<<<<<<<<
@@ -6621,7 +6621,7 @@ static PyObject *__pyx_pf_5utils_8BackTest_8BackTest_4subscribe(CYTHON_UNUSED Py
   __Pyx_XDECREF(__pyx_t_9);
   __Pyx_XDECREF(__pyx_t_10);
   __Pyx_XDECREF(__pyx_t_11);
-  __Pyx_AddTraceback("utils.BackTest.BackTest.subscribe", __pyx_clineno, __pyx_lineno, __pyx_filename);
+  __Pyx_AddTraceback("utils.BackTestEngineC.BackTest.subscribe", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __pyx_r = NULL;
   __pyx_L0:;
   __Pyx_XDECREF(__pyx_v_future_data);
@@ -6630,7 +6630,7 @@ static PyObject *__pyx_pf_5utils_8BackTest_8BackTest_4subscribe(CYTHON_UNUSED Py
   return __pyx_r;
 }
 
-/* "utils/BackTest.pyx":156
+/* "utils/BackTestEngineC.pyx":156
  *         self.data[future_type]=future_data
  * 
  *     def log(self,s:str):             # <<<<<<<<<<<<<<
@@ -6639,16 +6639,16 @@ static PyObject *__pyx_pf_5utils_8BackTest_8BackTest_4subscribe(CYTHON_UNUSED Py
  */
 
 /* Python wrapper */
-static PyObject *__pyx_pw_5utils_8BackTest_8BackTest_7log(PyObject *__pyx_self, 
+static PyObject *__pyx_pw_5utils_15BackTestEngineC_8BackTest_7log(PyObject *__pyx_self, 
 #if CYTHON_METH_FASTCALL
 PyObject *const *__pyx_args, Py_ssize_t __pyx_nargs, PyObject *__pyx_kwds
 #else
 PyObject *__pyx_args, PyObject *__pyx_kwds
 #endif
 ); /*proto*/
-PyDoc_STRVAR(__pyx_doc_5utils_8BackTest_8BackTest_6log, "_summary_\n\n        debug\344\270\272true\346\227\266\346\211\215\344\274\232\346\211\223\345\215\260\n        ");
-static PyMethodDef __pyx_mdef_5utils_8BackTest_8BackTest_7log = {"log", (PyCFunction)(void*)(__Pyx_PyCFunction_FastCallWithKeywords)__pyx_pw_5utils_8BackTest_8BackTest_7log, __Pyx_METH_FASTCALL|METH_KEYWORDS, __pyx_doc_5utils_8BackTest_8BackTest_6log};
-static PyObject *__pyx_pw_5utils_8BackTest_8BackTest_7log(PyObject *__pyx_self, 
+PyDoc_STRVAR(__pyx_doc_5utils_15BackTestEngineC_8BackTest_6log, "_summary_\n\n        debug\344\270\272true\346\227\266\346\211\215\344\274\232\346\211\223\345\215\260\n        ");
+static PyMethodDef __pyx_mdef_5utils_15BackTestEngineC_8BackTest_7log = {"log", (PyCFunction)(void*)(__Pyx_PyCFunction_FastCallWithKeywords)__pyx_pw_5utils_15BackTestEngineC_8BackTest_7log, __Pyx_METH_FASTCALL|METH_KEYWORDS, __pyx_doc_5utils_15BackTestEngineC_8BackTest_6log};
+static PyObject *__pyx_pw_5utils_15BackTestEngineC_8BackTest_7log(PyObject *__pyx_self, 
 #if CYTHON_METH_FASTCALL
 PyObject *const *__pyx_args, Py_ssize_t __pyx_nargs, PyObject *__pyx_kwds
 #else
@@ -6733,12 +6733,12 @@ PyObject *__pyx_args, PyObject *__pyx_kwds
       __Pyx_Arg_XDECREF_FASTCALL(values[__pyx_temp]);
     }
   }
-  __Pyx_AddTraceback("utils.BackTest.BackTest.log", __pyx_clineno, __pyx_lineno, __pyx_filename);
+  __Pyx_AddTraceback("utils.BackTestEngineC.BackTest.log", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __Pyx_RefNannyFinishContext();
   return NULL;
   __pyx_L4_argument_unpacking_done:;
   if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v_s), (&PyString_Type), 0, "s", 1))) __PYX_ERR(0, 156, __pyx_L1_error)
-  __pyx_r = __pyx_pf_5utils_8BackTest_8BackTest_6log(__pyx_self, __pyx_v_self, __pyx_v_s);
+  __pyx_r = __pyx_pf_5utils_15BackTestEngineC_8BackTest_6log(__pyx_self, __pyx_v_self, __pyx_v_s);
 
   /* function exit code */
   goto __pyx_L0;
@@ -6755,7 +6755,7 @@ PyObject *__pyx_args, PyObject *__pyx_kwds
   return __pyx_r;
 }
 
-static PyObject *__pyx_pf_5utils_8BackTest_8BackTest_6log(CYTHON_UNUSED PyObject *__pyx_self, PyObject *__pyx_v_self, PyObject *__pyx_v_s) {
+static PyObject *__pyx_pf_5utils_15BackTestEngineC_8BackTest_6log(CYTHON_UNUSED PyObject *__pyx_self, PyObject *__pyx_v_self, PyObject *__pyx_v_s) {
   PyObject *__pyx_r = NULL;
   __Pyx_RefNannyDeclarations
   PyObject *__pyx_t_1 = NULL;
@@ -6766,7 +6766,7 @@ static PyObject *__pyx_pf_5utils_8BackTest_8BackTest_6log(CYTHON_UNUSED PyObject
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("log", 1);
 
-  /* "utils/BackTest.pyx":161
+  /* "utils/BackTestEngineC.pyx":161
  *         debugtrue
  *         """
  *         if (not self.debug):             # <<<<<<<<<<<<<<
@@ -6782,7 +6782,7 @@ static PyObject *__pyx_pf_5utils_8BackTest_8BackTest_6log(CYTHON_UNUSED PyObject
     goto __pyx_L3;
   }
 
-  /* "utils/BackTest.pyx":164
+  /* "utils/BackTestEngineC.pyx":164
  *             pass
  *         else:
  *             print(s)             # <<<<<<<<<<<<<<
@@ -6796,7 +6796,7 @@ static PyObject *__pyx_pf_5utils_8BackTest_8BackTest_6log(CYTHON_UNUSED PyObject
   }
   __pyx_L3:;
 
-  /* "utils/BackTest.pyx":156
+  /* "utils/BackTestEngineC.pyx":156
  *         self.data[future_type]=future_data
  * 
  *     def log(self,s:str):             # <<<<<<<<<<<<<<
@@ -6809,7 +6809,7 @@ static PyObject *__pyx_pf_5utils_8BackTest_8BackTest_6log(CYTHON_UNUSED PyObject
   goto __pyx_L0;
   __pyx_L1_error:;
   __Pyx_XDECREF(__pyx_t_1);
-  __Pyx_AddTraceback("utils.BackTest.BackTest.log", __pyx_clineno, __pyx_lineno, __pyx_filename);
+  __Pyx_AddTraceback("utils.BackTestEngineC.BackTest.log", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __pyx_r = NULL;
   __pyx_L0:;
   __Pyx_XGIVEREF(__pyx_r);
@@ -6817,7 +6817,7 @@ static PyObject *__pyx_pf_5utils_8BackTest_8BackTest_6log(CYTHON_UNUSED PyObject
   return __pyx_r;
 }
 
-/* "utils/BackTest.pyx":166
+/* "utils/BackTestEngineC.pyx":166
  *             print(s)
  * 
  *     def before_trade(self, context, m_data:pd.DataFrame):             # <<<<<<<<<<<<<<
@@ -6826,16 +6826,16 @@ static PyObject *__pyx_pf_5utils_8BackTest_8BackTest_6log(CYTHON_UNUSED PyObject
  */
 
 /* Python wrapper */
-static PyObject *__pyx_pw_5utils_8BackTest_8BackTest_9before_trade(PyObject *__pyx_self, 
+static PyObject *__pyx_pw_5utils_15BackTestEngineC_8BackTest_9before_trade(PyObject *__pyx_self, 
 #if CYTHON_METH_FASTCALL
 PyObject *const *__pyx_args, Py_ssize_t __pyx_nargs, PyObject *__pyx_kwds
 #else
 PyObject *__pyx_args, PyObject *__pyx_kwds
 #endif
 ); /*proto*/
-PyDoc_STRVAR(__pyx_doc_5utils_8BackTest_8BackTest_8before_trade, "_summary_\n\n        \351\234\200\350\246\201\351\207\215\350\275\275\n        ");
-static PyMethodDef __pyx_mdef_5utils_8BackTest_8BackTest_9before_trade = {"before_trade", (PyCFunction)(void*)(__Pyx_PyCFunction_FastCallWithKeywords)__pyx_pw_5utils_8BackTest_8BackTest_9before_trade, __Pyx_METH_FASTCALL|METH_KEYWORDS, __pyx_doc_5utils_8BackTest_8BackTest_8before_trade};
-static PyObject *__pyx_pw_5utils_8BackTest_8BackTest_9before_trade(PyObject *__pyx_self, 
+PyDoc_STRVAR(__pyx_doc_5utils_15BackTestEngineC_8BackTest_8before_trade, "_summary_\n\n        \351\234\200\350\246\201\351\207\215\350\275\275\n        ");
+static PyMethodDef __pyx_mdef_5utils_15BackTestEngineC_8BackTest_9before_trade = {"before_trade", (PyCFunction)(void*)(__Pyx_PyCFunction_FastCallWithKeywords)__pyx_pw_5utils_15BackTestEngineC_8BackTest_9before_trade, __Pyx_METH_FASTCALL|METH_KEYWORDS, __pyx_doc_5utils_15BackTestEngineC_8BackTest_8before_trade};
+static PyObject *__pyx_pw_5utils_15BackTestEngineC_8BackTest_9before_trade(PyObject *__pyx_self, 
 #if CYTHON_METH_FASTCALL
 PyObject *const *__pyx_args, Py_ssize_t __pyx_nargs, PyObject *__pyx_kwds
 #else
@@ -6935,11 +6935,11 @@ PyObject *__pyx_args, PyObject *__pyx_kwds
       __Pyx_Arg_XDECREF_FASTCALL(values[__pyx_temp]);
     }
   }
-  __Pyx_AddTraceback("utils.BackTest.BackTest.before_trade", __pyx_clineno, __pyx_lineno, __pyx_filename);
+  __Pyx_AddTraceback("utils.BackTestEngineC.BackTest.before_trade", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __Pyx_RefNannyFinishContext();
   return NULL;
   __pyx_L4_argument_unpacking_done:;
-  __pyx_r = __pyx_pf_5utils_8BackTest_8BackTest_8before_trade(__pyx_self, __pyx_v_self, __pyx_v_context, __pyx_v_m_data);
+  __pyx_r = __pyx_pf_5utils_15BackTestEngineC_8BackTest_8before_trade(__pyx_self, __pyx_v_self, __pyx_v_context, __pyx_v_m_data);
 
   /* function exit code */
   {
@@ -6952,7 +6952,7 @@ PyObject *__pyx_args, PyObject *__pyx_kwds
   return __pyx_r;
 }
 
-static PyObject *__pyx_pf_5utils_8BackTest_8BackTest_8before_trade(CYTHON_UNUSED PyObject *__pyx_self, CYTHON_UNUSED PyObject *__pyx_v_self, CYTHON_UNUSED PyObject *__pyx_v_context, CYTHON_UNUSED PyObject *__pyx_v_m_data) {
+static PyObject *__pyx_pf_5utils_15BackTestEngineC_8BackTest_8before_trade(CYTHON_UNUSED PyObject *__pyx_self, CYTHON_UNUSED PyObject *__pyx_v_self, CYTHON_UNUSED PyObject *__pyx_v_context, CYTHON_UNUSED PyObject *__pyx_v_m_data) {
   PyObject *__pyx_r = NULL;
   __Pyx_RefNannyDeclarations
   __Pyx_RefNannySetupContext("before_trade", 1);
@@ -6964,7 +6964,7 @@ static PyObject *__pyx_pf_5utils_8BackTest_8BackTest_8before_trade(CYTHON_UNUSED
   return __pyx_r;
 }
 
-/* "utils/BackTest.pyx":172
+/* "utils/BackTestEngineC.pyx":172
  *         """
  *         pass
  *     def open_handle(self, context, m_data:pd.DataFrame):             # <<<<<<<<<<<<<<
@@ -6973,16 +6973,16 @@ static PyObject *__pyx_pf_5utils_8BackTest_8BackTest_8before_trade(CYTHON_UNUSED
  */
 
 /* Python wrapper */
-static PyObject *__pyx_pw_5utils_8BackTest_8BackTest_11open_handle(PyObject *__pyx_self, 
+static PyObject *__pyx_pw_5utils_15BackTestEngineC_8BackTest_11open_handle(PyObject *__pyx_self, 
 #if CYTHON_METH_FASTCALL
 PyObject *const *__pyx_args, Py_ssize_t __pyx_nargs, PyObject *__pyx_kwds
 #else
 PyObject *__pyx_args, PyObject *__pyx_kwds
 #endif
 ); /*proto*/
-PyDoc_STRVAR(__pyx_doc_5utils_8BackTest_8BackTest_10open_handle, "_summary_\n\n        \351\234\200\350\246\201\351\207\215\350\275\275\357\274\214\351\200\202\347\224\250\344\272\216\345\234\250\345\274\200\347\233\230\344\271\260\345\205\245\n        ");
-static PyMethodDef __pyx_mdef_5utils_8BackTest_8BackTest_11open_handle = {"open_handle", (PyCFunction)(void*)(__Pyx_PyCFunction_FastCallWithKeywords)__pyx_pw_5utils_8BackTest_8BackTest_11open_handle, __Pyx_METH_FASTCALL|METH_KEYWORDS, __pyx_doc_5utils_8BackTest_8BackTest_10open_handle};
-static PyObject *__pyx_pw_5utils_8BackTest_8BackTest_11open_handle(PyObject *__pyx_self, 
+PyDoc_STRVAR(__pyx_doc_5utils_15BackTestEngineC_8BackTest_10open_handle, "_summary_\n\n        \351\234\200\350\246\201\351\207\215\350\275\275\357\274\214\351\200\202\347\224\250\344\272\216\345\234\250\345\274\200\347\233\230\344\271\260\345\205\245\n        ");
+static PyMethodDef __pyx_mdef_5utils_15BackTestEngineC_8BackTest_11open_handle = {"open_handle", (PyCFunction)(void*)(__Pyx_PyCFunction_FastCallWithKeywords)__pyx_pw_5utils_15BackTestEngineC_8BackTest_11open_handle, __Pyx_METH_FASTCALL|METH_KEYWORDS, __pyx_doc_5utils_15BackTestEngineC_8BackTest_10open_handle};
+static PyObject *__pyx_pw_5utils_15BackTestEngineC_8BackTest_11open_handle(PyObject *__pyx_self, 
 #if CYTHON_METH_FASTCALL
 PyObject *const *__pyx_args, Py_ssize_t __pyx_nargs, PyObject *__pyx_kwds
 #else
@@ -7082,11 +7082,11 @@ PyObject *__pyx_args, PyObject *__pyx_kwds
       __Pyx_Arg_XDECREF_FASTCALL(values[__pyx_temp]);
     }
   }
-  __Pyx_AddTraceback("utils.BackTest.BackTest.open_handle", __pyx_clineno, __pyx_lineno, __pyx_filename);
+  __Pyx_AddTraceback("utils.BackTestEngineC.BackTest.open_handle", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __Pyx_RefNannyFinishContext();
   return NULL;
   __pyx_L4_argument_unpacking_done:;
-  __pyx_r = __pyx_pf_5utils_8BackTest_8BackTest_10open_handle(__pyx_self, __pyx_v_self, __pyx_v_context, __pyx_v_m_data);
+  __pyx_r = __pyx_pf_5utils_15BackTestEngineC_8BackTest_10open_handle(__pyx_self, __pyx_v_self, __pyx_v_context, __pyx_v_m_data);
 
   /* function exit code */
   {
@@ -7099,7 +7099,7 @@ PyObject *__pyx_args, PyObject *__pyx_kwds
   return __pyx_r;
 }
 
-static PyObject *__pyx_pf_5utils_8BackTest_8BackTest_10open_handle(CYTHON_UNUSED PyObject *__pyx_self, CYTHON_UNUSED PyObject *__pyx_v_self, CYTHON_UNUSED PyObject *__pyx_v_context, CYTHON_UNUSED PyObject *__pyx_v_m_data) {
+static PyObject *__pyx_pf_5utils_15BackTestEngineC_8BackTest_10open_handle(CYTHON_UNUSED PyObject *__pyx_self, CYTHON_UNUSED PyObject *__pyx_v_self, CYTHON_UNUSED PyObject *__pyx_v_context, CYTHON_UNUSED PyObject *__pyx_v_m_data) {
   PyObject *__pyx_r = NULL;
   __Pyx_RefNannyDeclarations
   __Pyx_RefNannySetupContext("open_handle", 1);
@@ -7111,7 +7111,7 @@ static PyObject *__pyx_pf_5utils_8BackTest_8BackTest_10open_handle(CYTHON_UNUSED
   return __pyx_r;
 }
 
-/* "utils/BackTest.pyx":178
+/* "utils/BackTestEngineC.pyx":178
  *         """
  *         pass
  *     def after_trade(self,context,):             # <<<<<<<<<<<<<<
@@ -7120,16 +7120,16 @@ static PyObject *__pyx_pf_5utils_8BackTest_8BackTest_10open_handle(CYTHON_UNUSED
  */
 
 /* Python wrapper */
-static PyObject *__pyx_pw_5utils_8BackTest_8BackTest_13after_trade(PyObject *__pyx_self, 
+static PyObject *__pyx_pw_5utils_15BackTestEngineC_8BackTest_13after_trade(PyObject *__pyx_self, 
 #if CYTHON_METH_FASTCALL
 PyObject *const *__pyx_args, Py_ssize_t __pyx_nargs, PyObject *__pyx_kwds
 #else
 PyObject *__pyx_args, PyObject *__pyx_kwds
 #endif
 ); /*proto*/
-PyDoc_STRVAR(__pyx_doc_5utils_8BackTest_8BackTest_12after_trade, "_summary_\n\n        \351\234\200\350\246\201\351\207\215\350\275\275\n        ");
-static PyMethodDef __pyx_mdef_5utils_8BackTest_8BackTest_13after_trade = {"after_trade", (PyCFunction)(void*)(__Pyx_PyCFunction_FastCallWithKeywords)__pyx_pw_5utils_8BackTest_8BackTest_13after_trade, __Pyx_METH_FASTCALL|METH_KEYWORDS, __pyx_doc_5utils_8BackTest_8BackTest_12after_trade};
-static PyObject *__pyx_pw_5utils_8BackTest_8BackTest_13after_trade(PyObject *__pyx_self, 
+PyDoc_STRVAR(__pyx_doc_5utils_15BackTestEngineC_8BackTest_12after_trade, "_summary_\n\n        \351\234\200\350\246\201\351\207\215\350\275\275\n        ");
+static PyMethodDef __pyx_mdef_5utils_15BackTestEngineC_8BackTest_13after_trade = {"after_trade", (PyCFunction)(void*)(__Pyx_PyCFunction_FastCallWithKeywords)__pyx_pw_5utils_15BackTestEngineC_8BackTest_13after_trade, __Pyx_METH_FASTCALL|METH_KEYWORDS, __pyx_doc_5utils_15BackTestEngineC_8BackTest_12after_trade};
+static PyObject *__pyx_pw_5utils_15BackTestEngineC_8BackTest_13after_trade(PyObject *__pyx_self, 
 #if CYTHON_METH_FASTCALL
 PyObject *const *__pyx_args, Py_ssize_t __pyx_nargs, PyObject *__pyx_kwds
 #else
@@ -7214,11 +7214,11 @@ PyObject *__pyx_args, PyObject *__pyx_kwds
       __Pyx_Arg_XDECREF_FASTCALL(values[__pyx_temp]);
     }
   }
-  __Pyx_AddTraceback("utils.BackTest.BackTest.after_trade", __pyx_clineno, __pyx_lineno, __pyx_filename);
+  __Pyx_AddTraceback("utils.BackTestEngineC.BackTest.after_trade", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __Pyx_RefNannyFinishContext();
   return NULL;
   __pyx_L4_argument_unpacking_done:;
-  __pyx_r = __pyx_pf_5utils_8BackTest_8BackTest_12after_trade(__pyx_self, __pyx_v_self, __pyx_v_context);
+  __pyx_r = __pyx_pf_5utils_15BackTestEngineC_8BackTest_12after_trade(__pyx_self, __pyx_v_self, __pyx_v_context);
 
   /* function exit code */
   {
@@ -7231,7 +7231,7 @@ PyObject *__pyx_args, PyObject *__pyx_kwds
   return __pyx_r;
 }
 
-static PyObject *__pyx_pf_5utils_8BackTest_8BackTest_12after_trade(CYTHON_UNUSED PyObject *__pyx_self, CYTHON_UNUSED PyObject *__pyx_v_self, CYTHON_UNUSED PyObject *__pyx_v_context) {
+static PyObject *__pyx_pf_5utils_15BackTestEngineC_8BackTest_12after_trade(CYTHON_UNUSED PyObject *__pyx_self, CYTHON_UNUSED PyObject *__pyx_v_self, CYTHON_UNUSED PyObject *__pyx_v_context) {
   PyObject *__pyx_r = NULL;
   __Pyx_RefNannyDeclarations
   __Pyx_RefNannySetupContext("after_trade", 1);
@@ -7243,7 +7243,7 @@ static PyObject *__pyx_pf_5utils_8BackTest_8BackTest_12after_trade(CYTHON_UNUSED
   return __pyx_r;
 }
 
-/* "utils/BackTest.pyx":184
+/* "utils/BackTestEngineC.pyx":184
  *         """
  *         pass
  *     def handle_bar(self,m_data:pd.DataFrame,context):             # <<<<<<<<<<<<<<
@@ -7252,16 +7252,16 @@ static PyObject *__pyx_pf_5utils_8BackTest_8BackTest_12after_trade(CYTHON_UNUSED
  */
 
 /* Python wrapper */
-static PyObject *__pyx_pw_5utils_8BackTest_8BackTest_15handle_bar(PyObject *__pyx_self, 
+static PyObject *__pyx_pw_5utils_15BackTestEngineC_8BackTest_15handle_bar(PyObject *__pyx_self, 
 #if CYTHON_METH_FASTCALL
 PyObject *const *__pyx_args, Py_ssize_t __pyx_nargs, PyObject *__pyx_kwds
 #else
 PyObject *__pyx_args, PyObject *__pyx_kwds
 #endif
 ); /*proto*/
-PyDoc_STRVAR(__pyx_doc_5utils_8BackTest_8BackTest_14handle_bar, "_summary_\n\n        Args:\n            m_data (Dataframe): \350\277\231\346\230\257\345\210\260\345\275\223\345\211\215\346\227\245\344\270\272\346\255\242\347\232\204\346\211\200\346\234\211\346\225\260\346\215\256\357\274\214\346\263\250\346\204\217\345\233\236\346\265\213\347\232\204\346\227\266\345\200\231\345\217\252\350\203\275\347\224\250\346\234\200\345\220\216\344\270\200\350\241\214\347\232\204\346\224\266\347\233\230\344\273\267\344\275\234\344\270\272\344\271\260\345\205\245\344\273\267\357\274\214\345\205\266\344\275\231\346\225\260\346\215\256\350\256\241\347\256\227\345\272\224\345\275\223\344\273\216\345\200\222\346\225\260\347\254\254\344\272\214\350\241\214\345\274\200\345\247\213\357\274\214\351\230\262\346\255\242\346\234\252\346\235\245\345\207\275\346\225\260\n            context (_type_): _description_\n        ");
-static PyMethodDef __pyx_mdef_5utils_8BackTest_8BackTest_15handle_bar = {"handle_bar", (PyCFunction)(void*)(__Pyx_PyCFunction_FastCallWithKeywords)__pyx_pw_5utils_8BackTest_8BackTest_15handle_bar, __Pyx_METH_FASTCALL|METH_KEYWORDS, __pyx_doc_5utils_8BackTest_8BackTest_14handle_bar};
-static PyObject *__pyx_pw_5utils_8BackTest_8BackTest_15handle_bar(PyObject *__pyx_self, 
+PyDoc_STRVAR(__pyx_doc_5utils_15BackTestEngineC_8BackTest_14handle_bar, "_summary_\n\n        Args:\n            m_data (Dataframe): \350\277\231\346\230\257\345\210\260\345\275\223\345\211\215\346\227\245\344\270\272\346\255\242\347\232\204\346\211\200\346\234\211\346\225\260\346\215\256\357\274\214\346\263\250\346\204\217\345\233\236\346\265\213\347\232\204\346\227\266\345\200\231\345\217\252\350\203\275\347\224\250\346\234\200\345\220\216\344\270\200\350\241\214\347\232\204\346\224\266\347\233\230\344\273\267\344\275\234\344\270\272\344\271\260\345\205\245\344\273\267\357\274\214\345\205\266\344\275\231\346\225\260\346\215\256\350\256\241\347\256\227\345\272\224\345\275\223\344\273\216\345\200\222\346\225\260\347\254\254\344\272\214\350\241\214\345\274\200\345\247\213\357\274\214\351\230\262\346\255\242\346\234\252\346\235\245\345\207\275\346\225\260\n            context (_type_): _description_\n        ");
+static PyMethodDef __pyx_mdef_5utils_15BackTestEngineC_8BackTest_15handle_bar = {"handle_bar", (PyCFunction)(void*)(__Pyx_PyCFunction_FastCallWithKeywords)__pyx_pw_5utils_15BackTestEngineC_8BackTest_15handle_bar, __Pyx_METH_FASTCALL|METH_KEYWORDS, __pyx_doc_5utils_15BackTestEngineC_8BackTest_14handle_bar};
+static PyObject *__pyx_pw_5utils_15BackTestEngineC_8BackTest_15handle_bar(PyObject *__pyx_self, 
 #if CYTHON_METH_FASTCALL
 PyObject *const *__pyx_args, Py_ssize_t __pyx_nargs, PyObject *__pyx_kwds
 #else
@@ -7361,11 +7361,11 @@ PyObject *__pyx_args, PyObject *__pyx_kwds
       __Pyx_Arg_XDECREF_FASTCALL(values[__pyx_temp]);
     }
   }
-  __Pyx_AddTraceback("utils.BackTest.BackTest.handle_bar", __pyx_clineno, __pyx_lineno, __pyx_filename);
+  __Pyx_AddTraceback("utils.BackTestEngineC.BackTest.handle_bar", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __Pyx_RefNannyFinishContext();
   return NULL;
   __pyx_L4_argument_unpacking_done:;
-  __pyx_r = __pyx_pf_5utils_8BackTest_8BackTest_14handle_bar(__pyx_self, __pyx_v_self, __pyx_v_m_data, __pyx_v_context);
+  __pyx_r = __pyx_pf_5utils_15BackTestEngineC_8BackTest_14handle_bar(__pyx_self, __pyx_v_self, __pyx_v_m_data, __pyx_v_context);
 
   /* function exit code */
   {
@@ -7378,7 +7378,7 @@ PyObject *__pyx_args, PyObject *__pyx_kwds
   return __pyx_r;
 }
 
-static PyObject *__pyx_pf_5utils_8BackTest_8BackTest_14handle_bar(CYTHON_UNUSED PyObject *__pyx_self, CYTHON_UNUSED PyObject *__pyx_v_self, CYTHON_UNUSED PyObject *__pyx_v_m_data, CYTHON_UNUSED PyObject *__pyx_v_context) {
+static PyObject *__pyx_pf_5utils_15BackTestEngineC_8BackTest_14handle_bar(CYTHON_UNUSED PyObject *__pyx_self, CYTHON_UNUSED PyObject *__pyx_v_self, CYTHON_UNUSED PyObject *__pyx_v_m_data, CYTHON_UNUSED PyObject *__pyx_v_context) {
   PyObject *__pyx_r = NULL;
   __Pyx_RefNannyDeclarations
   __Pyx_RefNannySetupContext("handle_bar", 1);
@@ -7390,7 +7390,7 @@ static PyObject *__pyx_pf_5utils_8BackTest_8BackTest_14handle_bar(CYTHON_UNUSED 
   return __pyx_r;
 }
 
-/* "utils/BackTest.pyx":193
+/* "utils/BackTestEngineC.pyx":193
  *         pass
  * 
  *     def process(self,m_data):             # <<<<<<<<<<<<<<
@@ -7399,16 +7399,16 @@ static PyObject *__pyx_pf_5utils_8BackTest_8BackTest_14handle_bar(CYTHON_UNUSED 
  */
 
 /* Python wrapper */
-static PyObject *__pyx_pw_5utils_8BackTest_8BackTest_17process(PyObject *__pyx_self, 
+static PyObject *__pyx_pw_5utils_15BackTestEngineC_8BackTest_17process(PyObject *__pyx_self, 
 #if CYTHON_METH_FASTCALL
 PyObject *const *__pyx_args, Py_ssize_t __pyx_nargs, PyObject *__pyx_kwds
 #else
 PyObject *__pyx_args, PyObject *__pyx_kwds
 #endif
 ); /*proto*/
-PyDoc_STRVAR(__pyx_doc_5utils_8BackTest_8BackTest_16process, "_summary_\n        \346\257\217\346\227\245\346\265\201\347\250\213\345\233\276 \344\272\244\346\230\223\345\211\215\345\271\262\347\202\271\344\272\213->\347\233\230\344\275\215\350\256\241\347\256\227\351\234\200\350\246\201\350\241\245\344\272\244\347\232\204\344\277\235\350\257\201\351\207\221\344\273\216\347\216\260\351\207\221\346\211\243\351\231\244->\345\234\250\347\233\230\345\260\276\345\206\263\345\256\232\346\230\257\345\220\246\344\271\260\345\215\226->\347\233\230\345\220\216\345\201\232\347\202\271\344\272\213\n\n        Args:\n            m_data (_type_): \345\255\227\345\205\270\345\275\242\345\274\217\357\274\214\344\276\213\345\246\202m_data[\"CU\"]\346\230\257\344\270\200\344\270\252dataframe\357\274\214\344\277\235\345\255\230\344\272\206\351\223\234\344\273\216\345\216\206\345\217\262\346\234\200\346\227\251\347\232\204\346\225\260\346\215\256\345\210\260\345\275\223\345\211\215\344\272\244\346\230\223\346\227\245\347\232\204\346\211\200\346\234\211\346\225\260\346\215\256\n        ");
-static PyMethodDef __pyx_mdef_5utils_8BackTest_8BackTest_17process = {"process", (PyCFunction)(void*)(__Pyx_PyCFunction_FastCallWithKeywords)__pyx_pw_5utils_8BackTest_8BackTest_17process, __Pyx_METH_FASTCALL|METH_KEYWORDS, __pyx_doc_5utils_8BackTest_8BackTest_16process};
-static PyObject *__pyx_pw_5utils_8BackTest_8BackTest_17process(PyObject *__pyx_self, 
+PyDoc_STRVAR(__pyx_doc_5utils_15BackTestEngineC_8BackTest_16process, "_summary_\n        \346\257\217\346\227\245\346\265\201\347\250\213\345\233\276 \344\272\244\346\230\223\345\211\215\345\271\262\347\202\271\344\272\213->\347\233\230\344\275\215\350\256\241\347\256\227\351\234\200\350\246\201\350\241\245\344\272\244\347\232\204\344\277\235\350\257\201\351\207\221\344\273\216\347\216\260\351\207\221\346\211\243\351\231\244->\345\234\250\347\233\230\345\260\276\345\206\263\345\256\232\346\230\257\345\220\246\344\271\260\345\215\226->\347\233\230\345\220\216\345\201\232\347\202\271\344\272\213\n\n        Args:\n            m_data (_type_): \345\255\227\345\205\270\345\275\242\345\274\217\357\274\214\344\276\213\345\246\202m_data[\"CU\"]\346\230\257\344\270\200\344\270\252dataframe\357\274\214\344\277\235\345\255\230\344\272\206\351\223\234\344\273\216\345\216\206\345\217\262\346\234\200\346\227\251\347\232\204\346\225\260\346\215\256\345\210\260\345\275\223\345\211\215\344\272\244\346\230\223\346\227\245\347\232\204\346\211\200\346\234\211\346\225\260\346\215\256\n        ");
+static PyMethodDef __pyx_mdef_5utils_15BackTestEngineC_8BackTest_17process = {"process", (PyCFunction)(void*)(__Pyx_PyCFunction_FastCallWithKeywords)__pyx_pw_5utils_15BackTestEngineC_8BackTest_17process, __Pyx_METH_FASTCALL|METH_KEYWORDS, __pyx_doc_5utils_15BackTestEngineC_8BackTest_16process};
+static PyObject *__pyx_pw_5utils_15BackTestEngineC_8BackTest_17process(PyObject *__pyx_self, 
 #if CYTHON_METH_FASTCALL
 PyObject *const *__pyx_args, Py_ssize_t __pyx_nargs, PyObject *__pyx_kwds
 #else
@@ -7493,11 +7493,11 @@ PyObject *__pyx_args, PyObject *__pyx_kwds
       __Pyx_Arg_XDECREF_FASTCALL(values[__pyx_temp]);
     }
   }
-  __Pyx_AddTraceback("utils.BackTest.BackTest.process", __pyx_clineno, __pyx_lineno, __pyx_filename);
+  __Pyx_AddTraceback("utils.BackTestEngineC.BackTest.process", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __Pyx_RefNannyFinishContext();
   return NULL;
   __pyx_L4_argument_unpacking_done:;
-  __pyx_r = __pyx_pf_5utils_8BackTest_8BackTest_16process(__pyx_self, __pyx_v_self, __pyx_v_m_data);
+  __pyx_r = __pyx_pf_5utils_15BackTestEngineC_8BackTest_16process(__pyx_self, __pyx_v_self, __pyx_v_m_data);
 
   /* function exit code */
   {
@@ -7510,7 +7510,7 @@ PyObject *__pyx_args, PyObject *__pyx_kwds
   return __pyx_r;
 }
 
-static PyObject *__pyx_pf_5utils_8BackTest_8BackTest_16process(CYTHON_UNUSED PyObject *__pyx_self, PyObject *__pyx_v_self, PyObject *__pyx_v_m_data) {
+static PyObject *__pyx_pf_5utils_15BackTestEngineC_8BackTest_16process(CYTHON_UNUSED PyObject *__pyx_self, PyObject *__pyx_v_self, PyObject *__pyx_v_m_data) {
   PyObject *__pyx_r = NULL;
   __Pyx_RefNannyDeclarations
   PyObject *__pyx_t_1 = NULL;
@@ -7523,7 +7523,7 @@ static PyObject *__pyx_pf_5utils_8BackTest_8BackTest_16process(CYTHON_UNUSED PyO
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("process", 1);
 
-  /* "utils/BackTest.pyx":201
+  /* "utils/BackTestEngineC.pyx":201
  *         """
  * 
  *         self.check_hold(m_data)#             # <<<<<<<<<<<<<<
@@ -7556,7 +7556,7 @@ static PyObject *__pyx_pf_5utils_8BackTest_8BackTest_16process(CYTHON_UNUSED PyO
   }
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
 
-  /* "utils/BackTest.pyx":202
+  /* "utils/BackTestEngineC.pyx":202
  * 
  *         self.check_hold(m_data)#
  *         self.handle_bar(m_data,self.context)             # <<<<<<<<<<<<<<
@@ -7592,7 +7592,7 @@ static PyObject *__pyx_pf_5utils_8BackTest_8BackTest_16process(CYTHON_UNUSED PyO
   }
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
 
-  /* "utils/BackTest.pyx":203
+  /* "utils/BackTestEngineC.pyx":203
  *         self.check_hold(m_data)#
  *         self.handle_bar(m_data,self.context)
  *         self.after_trade(self.context)             # <<<<<<<<<<<<<<
@@ -7628,7 +7628,7 @@ static PyObject *__pyx_pf_5utils_8BackTest_8BackTest_16process(CYTHON_UNUSED PyO
   }
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
 
-  /* "utils/BackTest.pyx":193
+  /* "utils/BackTestEngineC.pyx":193
  *         pass
  * 
  *     def process(self,m_data):             # <<<<<<<<<<<<<<
@@ -7644,7 +7644,7 @@ static PyObject *__pyx_pf_5utils_8BackTest_8BackTest_16process(CYTHON_UNUSED PyO
   __Pyx_XDECREF(__pyx_t_2);
   __Pyx_XDECREF(__pyx_t_3);
   __Pyx_XDECREF(__pyx_t_5);
-  __Pyx_AddTraceback("utils.BackTest.BackTest.process", __pyx_clineno, __pyx_lineno, __pyx_filename);
+  __Pyx_AddTraceback("utils.BackTestEngineC.BackTest.process", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __pyx_r = NULL;
   __pyx_L0:;
   __Pyx_XGIVEREF(__pyx_r);
@@ -7652,7 +7652,7 @@ static PyObject *__pyx_pf_5utils_8BackTest_8BackTest_16process(CYTHON_UNUSED PyO
   return __pyx_r;
 }
 
-/* "utils/BackTest.pyx":204
+/* "utils/BackTestEngineC.pyx":204
  *         self.handle_bar(m_data,self.context)
  *         self.after_trade(self.context)
  *     def check_hold(self,m_data):             # <<<<<<<<<<<<<<
@@ -7661,16 +7661,16 @@ static PyObject *__pyx_pf_5utils_8BackTest_8BackTest_16process(CYTHON_UNUSED PyO
  */
 
 /* Python wrapper */
-static PyObject *__pyx_pw_5utils_8BackTest_8BackTest_19check_hold(PyObject *__pyx_self, 
+static PyObject *__pyx_pw_5utils_15BackTestEngineC_8BackTest_19check_hold(PyObject *__pyx_self, 
 #if CYTHON_METH_FASTCALL
 PyObject *const *__pyx_args, Py_ssize_t __pyx_nargs, PyObject *__pyx_kwds
 #else
 PyObject *__pyx_args, PyObject *__pyx_kwds
 #endif
 ); /*proto*/
-PyDoc_STRVAR(__pyx_doc_5utils_8BackTest_8BackTest_18check_hold, "_summary_\n        \350\241\245\344\272\244\344\277\235\350\257\201\351\207\221\357\274\214\345\234\250\344\270\215\345\212\240\346\235\240\346\235\206\347\232\204\346\235\241\344\273\266\344\270\213\357\274\210margin_rate=1,margin_limit=0\357\274\211\344\270\215\344\274\232\347\224\237\346\225\210\n\n        Args:\n            m_data (_type_): \345\220\214process\n        ");
-static PyMethodDef __pyx_mdef_5utils_8BackTest_8BackTest_19check_hold = {"check_hold", (PyCFunction)(void*)(__Pyx_PyCFunction_FastCallWithKeywords)__pyx_pw_5utils_8BackTest_8BackTest_19check_hold, __Pyx_METH_FASTCALL|METH_KEYWORDS, __pyx_doc_5utils_8BackTest_8BackTest_18check_hold};
-static PyObject *__pyx_pw_5utils_8BackTest_8BackTest_19check_hold(PyObject *__pyx_self, 
+PyDoc_STRVAR(__pyx_doc_5utils_15BackTestEngineC_8BackTest_18check_hold, "_summary_\n        \350\241\245\344\272\244\344\277\235\350\257\201\351\207\221\357\274\214\345\234\250\344\270\215\345\212\240\346\235\240\346\235\206\347\232\204\346\235\241\344\273\266\344\270\213\357\274\210margin_rate=1,margin_limit=0\357\274\211\344\270\215\344\274\232\347\224\237\346\225\210\n\n        Args:\n            m_data (_type_): \345\220\214process\n        ");
+static PyMethodDef __pyx_mdef_5utils_15BackTestEngineC_8BackTest_19check_hold = {"check_hold", (PyCFunction)(void*)(__Pyx_PyCFunction_FastCallWithKeywords)__pyx_pw_5utils_15BackTestEngineC_8BackTest_19check_hold, __Pyx_METH_FASTCALL|METH_KEYWORDS, __pyx_doc_5utils_15BackTestEngineC_8BackTest_18check_hold};
+static PyObject *__pyx_pw_5utils_15BackTestEngineC_8BackTest_19check_hold(PyObject *__pyx_self, 
 #if CYTHON_METH_FASTCALL
 PyObject *const *__pyx_args, Py_ssize_t __pyx_nargs, PyObject *__pyx_kwds
 #else
@@ -7755,11 +7755,11 @@ PyObject *__pyx_args, PyObject *__pyx_kwds
       __Pyx_Arg_XDECREF_FASTCALL(values[__pyx_temp]);
     }
   }
-  __Pyx_AddTraceback("utils.BackTest.BackTest.check_hold", __pyx_clineno, __pyx_lineno, __pyx_filename);
+  __Pyx_AddTraceback("utils.BackTestEngineC.BackTest.check_hold", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __Pyx_RefNannyFinishContext();
   return NULL;
   __pyx_L4_argument_unpacking_done:;
-  __pyx_r = __pyx_pf_5utils_8BackTest_8BackTest_18check_hold(__pyx_self, __pyx_v_self, __pyx_v_m_data);
+  __pyx_r = __pyx_pf_5utils_15BackTestEngineC_8BackTest_18check_hold(__pyx_self, __pyx_v_self, __pyx_v_m_data);
 
   /* function exit code */
   {
@@ -7772,7 +7772,7 @@ PyObject *__pyx_args, PyObject *__pyx_kwds
   return __pyx_r;
 }
 
-static PyObject *__pyx_pf_5utils_8BackTest_8BackTest_18check_hold(CYTHON_UNUSED PyObject *__pyx_self, PyObject *__pyx_v_self, PyObject *__pyx_v_m_data) {
+static PyObject *__pyx_pf_5utils_15BackTestEngineC_8BackTest_18check_hold(CYTHON_UNUSED PyObject *__pyx_self, PyObject *__pyx_v_self, PyObject *__pyx_v_m_data) {
   PyObject *__pyx_v_future_type = NULL;
   PyObject *__pyx_v_value = NULL;
   PyObject *__pyx_v_current_close = NULL;
@@ -7802,7 +7802,7 @@ static PyObject *__pyx_pf_5utils_8BackTest_8BackTest_18check_hold(CYTHON_UNUSED 
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("check_hold", 1);
 
-  /* "utils/BackTest.pyx":211
+  /* "utils/BackTestEngineC.pyx":211
  *             m_data (_type_): process
  *         """
  *         for future_type, value in m_data.items():             # <<<<<<<<<<<<<<
@@ -7830,7 +7830,7 @@ static PyObject *__pyx_pf_5utils_8BackTest_8BackTest_18check_hold(CYTHON_UNUSED 
     __Pyx_XDECREF_SET(__pyx_v_value, __pyx_t_6);
     __pyx_t_6 = 0;
 
-    /* "utils/BackTest.pyx":212
+    /* "utils/BackTestEngineC.pyx":212
  *         """
  *         for future_type, value in m_data.items():
  *             try:             # <<<<<<<<<<<<<<
@@ -7846,7 +7846,7 @@ static PyObject *__pyx_pf_5utils_8BackTest_8BackTest_18check_hold(CYTHON_UNUSED 
       __Pyx_XGOTREF(__pyx_t_10);
       /*try:*/ {
 
-        /* "utils/BackTest.pyx":213
+        /* "utils/BackTestEngineC.pyx":213
  *         for future_type, value in m_data.items():
  *             try:
  *                 current_close = value["close"].iloc[-1]             # <<<<<<<<<<<<<<
@@ -7864,7 +7864,7 @@ static PyObject *__pyx_pf_5utils_8BackTest_8BackTest_18check_hold(CYTHON_UNUSED 
         __Pyx_XDECREF_SET(__pyx_v_current_close, __pyx_t_6);
         __pyx_t_6 = 0;
 
-        /* "utils/BackTest.pyx":212
+        /* "utils/BackTestEngineC.pyx":212
  *         """
  *         for future_type, value in m_data.items():
  *             try:             # <<<<<<<<<<<<<<
@@ -7880,7 +7880,7 @@ static PyObject *__pyx_pf_5utils_8BackTest_8BackTest_18check_hold(CYTHON_UNUSED 
       __Pyx_XDECREF(__pyx_t_5); __pyx_t_5 = 0;
       __Pyx_XDECREF(__pyx_t_6); __pyx_t_6 = 0;
 
-      /* "utils/BackTest.pyx":214
+      /* "utils/BackTestEngineC.pyx":214
  *             try:
  *                 current_close = value["close"].iloc[-1]
  *             except:             # <<<<<<<<<<<<<<
@@ -7888,13 +7888,13 @@ static PyObject *__pyx_pf_5utils_8BackTest_8BackTest_18check_hold(CYTHON_UNUSED 
  *             if (future_type+"_long") in self.position.hold.keys():
  */
       /*except:*/ {
-        __Pyx_AddTraceback("utils.BackTest.BackTest.check_hold", __pyx_clineno, __pyx_lineno, __pyx_filename);
+        __Pyx_AddTraceback("utils.BackTestEngineC.BackTest.check_hold", __pyx_clineno, __pyx_lineno, __pyx_filename);
         if (__Pyx_GetException(&__pyx_t_6, &__pyx_t_5, &__pyx_t_11) < 0) __PYX_ERR(0, 214, __pyx_L7_except_error)
         __Pyx_XGOTREF(__pyx_t_6);
         __Pyx_XGOTREF(__pyx_t_5);
         __Pyx_XGOTREF(__pyx_t_11);
 
-        /* "utils/BackTest.pyx":215
+        /* "utils/BackTestEngineC.pyx":215
  *                 current_close = value["close"].iloc[-1]
  *             except:
  *                 continue             # <<<<<<<<<<<<<<
@@ -7909,7 +7909,7 @@ static PyObject *__pyx_pf_5utils_8BackTest_8BackTest_18check_hold(CYTHON_UNUSED 
         goto __pyx_L11_try_continue;
       }
 
-      /* "utils/BackTest.pyx":212
+      /* "utils/BackTestEngineC.pyx":212
  *         """
  *         for future_type, value in m_data.items():
  *             try:             # <<<<<<<<<<<<<<
@@ -7931,7 +7931,7 @@ static PyObject *__pyx_pf_5utils_8BackTest_8BackTest_18check_hold(CYTHON_UNUSED 
       __pyx_L12_try_end:;
     }
 
-    /* "utils/BackTest.pyx":216
+    /* "utils/BackTestEngineC.pyx":216
  *             except:
  *                 continue
  *             if (future_type+"_long") in self.position.hold.keys():             # <<<<<<<<<<<<<<
@@ -7975,7 +7975,7 @@ static PyObject *__pyx_pf_5utils_8BackTest_8BackTest_18check_hold(CYTHON_UNUSED 
     __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
     if (__pyx_t_14) {
 
-      /* "utils/BackTest.pyx":217
+      /* "utils/BackTestEngineC.pyx":217
  *                 continue
  *             if (future_type+"_long") in self.position.hold.keys():
  *                 rest = self.position.hold[future_type+"_long"][2]#             # <<<<<<<<<<<<<<
@@ -7999,7 +7999,7 @@ static PyObject *__pyx_pf_5utils_8BackTest_8BackTest_18check_hold(CYTHON_UNUSED 
       __Pyx_XDECREF_SET(__pyx_v_rest, __pyx_t_5);
       __pyx_t_5 = 0;
 
-      /* "utils/BackTest.pyx":218
+      /* "utils/BackTestEngineC.pyx":218
  *             if (future_type+"_long") in self.position.hold.keys():
  *                 rest = self.position.hold[future_type+"_long"][2]#
  *                 limit = int(self.position.hold[future_type+"_long"][0]*int(current_close*10000)*self.instrument["margin_rate"]*self.instrument["margin_limit"])#             # <<<<<<<<<<<<<<
@@ -8053,7 +8053,7 @@ static PyObject *__pyx_pf_5utils_8BackTest_8BackTest_18check_hold(CYTHON_UNUSED 
       __Pyx_XDECREF_SET(__pyx_v_limit, __pyx_t_11);
       __pyx_t_11 = 0;
 
-      /* "utils/BackTest.pyx":219
+      /* "utils/BackTestEngineC.pyx":219
  *                 rest = self.position.hold[future_type+"_long"][2]#
  *                 limit = int(self.position.hold[future_type+"_long"][0]*int(current_close*10000)*self.instrument["margin_rate"]*self.instrument["margin_limit"])#
  *                 if(rest<limit):             # <<<<<<<<<<<<<<
@@ -8065,7 +8065,7 @@ static PyObject *__pyx_pf_5utils_8BackTest_8BackTest_18check_hold(CYTHON_UNUSED 
       __Pyx_DECREF(__pyx_t_11); __pyx_t_11 = 0;
       if (__pyx_t_14) {
 
-        /* "utils/BackTest.pyx":220
+        /* "utils/BackTestEngineC.pyx":220
  *                 limit = int(self.position.hold[future_type+"_long"][0]*int(current_close*10000)*self.instrument["margin_rate"]*self.instrument["margin_limit"])#
  *                 if(rest<limit):
  *                     adding=int(int(current_close*10000)*(self.position.hold[future_type+"_long"][0]*self.instrument["margin_rate"]))-rest             # <<<<<<<<<<<<<<
@@ -8113,7 +8113,7 @@ static PyObject *__pyx_pf_5utils_8BackTest_8BackTest_18check_hold(CYTHON_UNUSED 
         __Pyx_XDECREF_SET(__pyx_v_adding, __pyx_t_6);
         __pyx_t_6 = 0;
 
-        /* "utils/BackTest.pyx":221
+        /* "utils/BackTestEngineC.pyx":221
  *                 if(rest<limit):
  *                     adding=int(int(current_close*10000)*(self.position.hold[future_type+"_long"][0]*self.instrument["margin_rate"]))-rest
  *                     self.position.cash-=adding             # <<<<<<<<<<<<<<
@@ -8131,7 +8131,7 @@ static PyObject *__pyx_pf_5utils_8BackTest_8BackTest_18check_hold(CYTHON_UNUSED 
         __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
         __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
 
-        /* "utils/BackTest.pyx":222
+        /* "utils/BackTestEngineC.pyx":222
  *                     adding=int(int(current_close*10000)*(self.position.hold[future_type+"_long"][0]*self.instrument["margin_rate"]))-rest
  *                     self.position.cash-=adding
  *                     self.log(f"adding is {adding},rest is {rest}, limit is {limit}")             # <<<<<<<<<<<<<<
@@ -8205,7 +8205,7 @@ static PyObject *__pyx_pf_5utils_8BackTest_8BackTest_18check_hold(CYTHON_UNUSED 
         }
         __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
 
-        /* "utils/BackTest.pyx":223
+        /* "utils/BackTestEngineC.pyx":223
  *                     self.position.cash-=adding
  *                     self.log(f"adding is {adding},rest is {rest}, limit is {limit}")
  *                     if(self.position.cash<0):             # <<<<<<<<<<<<<<
@@ -8223,7 +8223,7 @@ static PyObject *__pyx_pf_5utils_8BackTest_8BackTest_18check_hold(CYTHON_UNUSED 
         __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
         if (__pyx_t_14) {
 
-          /* "utils/BackTest.pyx":224
+          /* "utils/BackTestEngineC.pyx":224
  *                     self.log(f"adding is {adding},rest is {rest}, limit is {limit}")
  *                     if(self.position.cash<0):
  *                         warnings.warn("")             # <<<<<<<<<<<<<<
@@ -8259,7 +8259,7 @@ static PyObject *__pyx_pf_5utils_8BackTest_8BackTest_18check_hold(CYTHON_UNUSED 
           }
           __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
 
-          /* "utils/BackTest.pyx":223
+          /* "utils/BackTestEngineC.pyx":223
  *                     self.position.cash-=adding
  *                     self.log(f"adding is {adding},rest is {rest}, limit is {limit}")
  *                     if(self.position.cash<0):             # <<<<<<<<<<<<<<
@@ -8268,7 +8268,7 @@ static PyObject *__pyx_pf_5utils_8BackTest_8BackTest_18check_hold(CYTHON_UNUSED 
  */
         }
 
-        /* "utils/BackTest.pyx":225
+        /* "utils/BackTestEngineC.pyx":225
  *                     if(self.position.cash<0):
  *                         warnings.warn("")
  *                     self.position.hold[future_type+"_long"][2]+=adding#             # <<<<<<<<<<<<<<
@@ -8296,7 +8296,7 @@ static PyObject *__pyx_pf_5utils_8BackTest_8BackTest_18check_hold(CYTHON_UNUSED 
         __Pyx_DECREF(__pyx_t_11); __pyx_t_11 = 0;
         __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
 
-        /* "utils/BackTest.pyx":219
+        /* "utils/BackTestEngineC.pyx":219
  *                 rest = self.position.hold[future_type+"_long"][2]#
  *                 limit = int(self.position.hold[future_type+"_long"][0]*int(current_close*10000)*self.instrument["margin_rate"]*self.instrument["margin_limit"])#
  *                 if(rest<limit):             # <<<<<<<<<<<<<<
@@ -8305,7 +8305,7 @@ static PyObject *__pyx_pf_5utils_8BackTest_8BackTest_18check_hold(CYTHON_UNUSED 
  */
       }
 
-      /* "utils/BackTest.pyx":216
+      /* "utils/BackTestEngineC.pyx":216
  *             except:
  *                 continue
  *             if (future_type+"_long") in self.position.hold.keys():             # <<<<<<<<<<<<<<
@@ -8314,7 +8314,7 @@ static PyObject *__pyx_pf_5utils_8BackTest_8BackTest_18check_hold(CYTHON_UNUSED 
  */
     }
 
-    /* "utils/BackTest.pyx":226
+    /* "utils/BackTestEngineC.pyx":226
  *                         warnings.warn("")
  *                     self.position.hold[future_type+"_long"][2]+=adding#
  *             if (future_type+"_short") in self.position.hold.keys():             # <<<<<<<<<<<<<<
@@ -8358,7 +8358,7 @@ static PyObject *__pyx_pf_5utils_8BackTest_8BackTest_18check_hold(CYTHON_UNUSED 
     __Pyx_DECREF(__pyx_t_11); __pyx_t_11 = 0;
     if (__pyx_t_14) {
 
-      /* "utils/BackTest.pyx":227
+      /* "utils/BackTestEngineC.pyx":227
  *                     self.position.hold[future_type+"_long"][2]+=adding#
  *             if (future_type+"_short") in self.position.hold.keys():
  *                 rest = self.position.hold[future_type+"_short"][2]#             # <<<<<<<<<<<<<<
@@ -8382,7 +8382,7 @@ static PyObject *__pyx_pf_5utils_8BackTest_8BackTest_18check_hold(CYTHON_UNUSED 
       __Pyx_XDECREF_SET(__pyx_v_rest, __pyx_t_11);
       __pyx_t_11 = 0;
 
-      /* "utils/BackTest.pyx":228
+      /* "utils/BackTestEngineC.pyx":228
  *             if (future_type+"_short") in self.position.hold.keys():
  *                 rest = self.position.hold[future_type+"_short"][2]#
  *                 limit = int(self.position.hold[future_type+"_short"][0]*int(current_close*10000)*self.instrument["margin_rate"]*self.instrument["margin_limit"])#             # <<<<<<<<<<<<<<
@@ -8436,7 +8436,7 @@ static PyObject *__pyx_pf_5utils_8BackTest_8BackTest_18check_hold(CYTHON_UNUSED 
       __Pyx_XDECREF_SET(__pyx_v_limit, __pyx_t_5);
       __pyx_t_5 = 0;
 
-      /* "utils/BackTest.pyx":229
+      /* "utils/BackTestEngineC.pyx":229
  *                 rest = self.position.hold[future_type+"_short"][2]#
  *                 limit = int(self.position.hold[future_type+"_short"][0]*int(current_close*10000)*self.instrument["margin_rate"]*self.instrument["margin_limit"])#
  *                 if(rest<limit):             # <<<<<<<<<<<<<<
@@ -8448,7 +8448,7 @@ static PyObject *__pyx_pf_5utils_8BackTest_8BackTest_18check_hold(CYTHON_UNUSED 
       __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
       if (__pyx_t_14) {
 
-        /* "utils/BackTest.pyx":230
+        /* "utils/BackTestEngineC.pyx":230
  *                 limit = int(self.position.hold[future_type+"_short"][0]*int(current_close*10000)*self.instrument["margin_rate"]*self.instrument["margin_limit"])#
  *                 if(rest<limit):
  *                     adding=int(int(current_close*10000)*(self.position.hold[future_type+"_short"][0]*self.instrument["margin_rate"]))-rest             # <<<<<<<<<<<<<<
@@ -8496,7 +8496,7 @@ static PyObject *__pyx_pf_5utils_8BackTest_8BackTest_18check_hold(CYTHON_UNUSED 
         __Pyx_XDECREF_SET(__pyx_v_adding, __pyx_t_6);
         __pyx_t_6 = 0;
 
-        /* "utils/BackTest.pyx":231
+        /* "utils/BackTestEngineC.pyx":231
  *                 if(rest<limit):
  *                     adding=int(int(current_close*10000)*(self.position.hold[future_type+"_short"][0]*self.instrument["margin_rate"]))-rest
  *                     self.position.cash-=adding             # <<<<<<<<<<<<<<
@@ -8514,7 +8514,7 @@ static PyObject *__pyx_pf_5utils_8BackTest_8BackTest_18check_hold(CYTHON_UNUSED 
         __Pyx_DECREF(__pyx_t_11); __pyx_t_11 = 0;
         __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
 
-        /* "utils/BackTest.pyx":232
+        /* "utils/BackTestEngineC.pyx":232
  *                     adding=int(int(current_close*10000)*(self.position.hold[future_type+"_short"][0]*self.instrument["margin_rate"]))-rest
  *                     self.position.cash-=adding
  *                     if(self.position.cash<0):             # <<<<<<<<<<<<<<
@@ -8532,7 +8532,7 @@ static PyObject *__pyx_pf_5utils_8BackTest_8BackTest_18check_hold(CYTHON_UNUSED 
         __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
         if (__pyx_t_14) {
 
-          /* "utils/BackTest.pyx":233
+          /* "utils/BackTestEngineC.pyx":233
  *                     self.position.cash-=adding
  *                     if(self.position.cash<0):
  *                         warnings.warn("")             # <<<<<<<<<<<<<<
@@ -8568,7 +8568,7 @@ static PyObject *__pyx_pf_5utils_8BackTest_8BackTest_18check_hold(CYTHON_UNUSED 
           }
           __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
 
-          /* "utils/BackTest.pyx":232
+          /* "utils/BackTestEngineC.pyx":232
  *                     adding=int(int(current_close*10000)*(self.position.hold[future_type+"_short"][0]*self.instrument["margin_rate"]))-rest
  *                     self.position.cash-=adding
  *                     if(self.position.cash<0):             # <<<<<<<<<<<<<<
@@ -8577,7 +8577,7 @@ static PyObject *__pyx_pf_5utils_8BackTest_8BackTest_18check_hold(CYTHON_UNUSED 
  */
         }
 
-        /* "utils/BackTest.pyx":234
+        /* "utils/BackTestEngineC.pyx":234
  *                     if(self.position.cash<0):
  *                         warnings.warn("")
  *                     self.position.hold[future_type+"_short"][2]+=adding#             # <<<<<<<<<<<<<<
@@ -8605,7 +8605,7 @@ static PyObject *__pyx_pf_5utils_8BackTest_8BackTest_18check_hold(CYTHON_UNUSED 
         __Pyx_DECREF(__pyx_t_12); __pyx_t_12 = 0;
         __Pyx_DECREF(__pyx_t_11); __pyx_t_11 = 0;
 
-        /* "utils/BackTest.pyx":229
+        /* "utils/BackTestEngineC.pyx":229
  *                 rest = self.position.hold[future_type+"_short"][2]#
  *                 limit = int(self.position.hold[future_type+"_short"][0]*int(current_close*10000)*self.instrument["margin_rate"]*self.instrument["margin_limit"])#
  *                 if(rest<limit):             # <<<<<<<<<<<<<<
@@ -8614,7 +8614,7 @@ static PyObject *__pyx_pf_5utils_8BackTest_8BackTest_18check_hold(CYTHON_UNUSED 
  */
       }
 
-      /* "utils/BackTest.pyx":226
+      /* "utils/BackTestEngineC.pyx":226
  *                         warnings.warn("")
  *                     self.position.hold[future_type+"_long"][2]+=adding#
  *             if (future_type+"_short") in self.position.hold.keys():             # <<<<<<<<<<<<<<
@@ -8626,7 +8626,7 @@ static PyObject *__pyx_pf_5utils_8BackTest_8BackTest_18check_hold(CYTHON_UNUSED 
   }
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
 
-  /* "utils/BackTest.pyx":204
+  /* "utils/BackTestEngineC.pyx":204
  *         self.handle_bar(m_data,self.context)
  *         self.after_trade(self.context)
  *     def check_hold(self,m_data):             # <<<<<<<<<<<<<<
@@ -8643,7 +8643,7 @@ static PyObject *__pyx_pf_5utils_8BackTest_8BackTest_18check_hold(CYTHON_UNUSED 
   __Pyx_XDECREF(__pyx_t_6);
   __Pyx_XDECREF(__pyx_t_11);
   __Pyx_XDECREF(__pyx_t_12);
-  __Pyx_AddTraceback("utils.BackTest.BackTest.check_hold", __pyx_clineno, __pyx_lineno, __pyx_filename);
+  __Pyx_AddTraceback("utils.BackTestEngineC.BackTest.check_hold", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __pyx_r = NULL;
   __pyx_L0:;
   __Pyx_XDECREF(__pyx_v_future_type);
@@ -8657,7 +8657,7 @@ static PyObject *__pyx_pf_5utils_8BackTest_8BackTest_18check_hold(CYTHON_UNUSED 
   return __pyx_r;
 }
 
-/* "utils/BackTest.pyx":236
+/* "utils/BackTestEngineC.pyx":236
  *                     self.position.hold[future_type+"_short"][2]+=adding#
  * 
  *     def order_target_num(self,price,amount:int,multiplier:int,future_type:str,direction):             # <<<<<<<<<<<<<<
@@ -8666,16 +8666,16 @@ static PyObject *__pyx_pf_5utils_8BackTest_8BackTest_18check_hold(CYTHON_UNUSED 
  */
 
 /* Python wrapper */
-static PyObject *__pyx_pw_5utils_8BackTest_8BackTest_21order_target_num(PyObject *__pyx_self, 
+static PyObject *__pyx_pw_5utils_15BackTestEngineC_8BackTest_21order_target_num(PyObject *__pyx_self, 
 #if CYTHON_METH_FASTCALL
 PyObject *const *__pyx_args, Py_ssize_t __pyx_nargs, PyObject *__pyx_kwds
 #else
 PyObject *__pyx_args, PyObject *__pyx_kwds
 #endif
 ); /*proto*/
-PyDoc_STRVAR(__pyx_doc_5utils_8BackTest_8BackTest_20order_target_num, "_summary_\n        \347\224\250\344\272\216\345\234\250handle_bar\344\270\213\345\215\225\n\n        Args:\n            price (_type_): \344\270\213\345\215\225\344\273\267\n            amount (int): \344\270\213\345\215\225\346\211\213\346\225\260\n            multiplier (int): \345\220\210\347\272\246\344\271\230\346\225\260\n            future_type (str): \346\234\237\350\264\247\347\247\215\347\261\273\344\273\243\347\240\201\n            direction (_type_): \346\226\271\345\220\221 long or short \n        ");
-static PyMethodDef __pyx_mdef_5utils_8BackTest_8BackTest_21order_target_num = {"order_target_num", (PyCFunction)(void*)(__Pyx_PyCFunction_FastCallWithKeywords)__pyx_pw_5utils_8BackTest_8BackTest_21order_target_num, __Pyx_METH_FASTCALL|METH_KEYWORDS, __pyx_doc_5utils_8BackTest_8BackTest_20order_target_num};
-static PyObject *__pyx_pw_5utils_8BackTest_8BackTest_21order_target_num(PyObject *__pyx_self, 
+PyDoc_STRVAR(__pyx_doc_5utils_15BackTestEngineC_8BackTest_20order_target_num, "_summary_\n        \347\224\250\344\272\216\345\234\250handle_bar\344\270\213\345\215\225\n\n        Args:\n            price (_type_): \344\270\213\345\215\225\344\273\267\n            amount (int): \344\270\213\345\215\225\346\211\213\346\225\260\n            multiplier (int): \345\220\210\347\272\246\344\271\230\346\225\260\n            future_type (str): \346\234\237\350\264\247\347\247\215\347\261\273\344\273\243\347\240\201\n            direction (_type_): \346\226\271\345\220\221 long or short \n        ");
+static PyMethodDef __pyx_mdef_5utils_15BackTestEngineC_8BackTest_21order_target_num = {"order_target_num", (PyCFunction)(void*)(__Pyx_PyCFunction_FastCallWithKeywords)__pyx_pw_5utils_15BackTestEngineC_8BackTest_21order_target_num, __Pyx_METH_FASTCALL|METH_KEYWORDS, __pyx_doc_5utils_15BackTestEngineC_8BackTest_20order_target_num};
+static PyObject *__pyx_pw_5utils_15BackTestEngineC_8BackTest_21order_target_num(PyObject *__pyx_self, 
 #if CYTHON_METH_FASTCALL
 PyObject *const *__pyx_args, Py_ssize_t __pyx_nargs, PyObject *__pyx_kwds
 #else
@@ -8820,14 +8820,14 @@ PyObject *__pyx_args, PyObject *__pyx_kwds
       __Pyx_Arg_XDECREF_FASTCALL(values[__pyx_temp]);
     }
   }
-  __Pyx_AddTraceback("utils.BackTest.BackTest.order_target_num", __pyx_clineno, __pyx_lineno, __pyx_filename);
+  __Pyx_AddTraceback("utils.BackTestEngineC.BackTest.order_target_num", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __Pyx_RefNannyFinishContext();
   return NULL;
   __pyx_L4_argument_unpacking_done:;
   if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v_amount), (&PyInt_Type), 0, "amount", 1))) __PYX_ERR(0, 236, __pyx_L1_error)
   if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v_multiplier), (&PyInt_Type), 0, "multiplier", 1))) __PYX_ERR(0, 236, __pyx_L1_error)
   if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v_future_type), (&PyString_Type), 0, "future_type", 1))) __PYX_ERR(0, 236, __pyx_L1_error)
-  __pyx_r = __pyx_pf_5utils_8BackTest_8BackTest_20order_target_num(__pyx_self, __pyx_v_self, __pyx_v_price, __pyx_v_amount, __pyx_v_multiplier, __pyx_v_future_type, __pyx_v_direction);
+  __pyx_r = __pyx_pf_5utils_15BackTestEngineC_8BackTest_20order_target_num(__pyx_self, __pyx_v_self, __pyx_v_price, __pyx_v_amount, __pyx_v_multiplier, __pyx_v_future_type, __pyx_v_direction);
 
   /* function exit code */
   goto __pyx_L0;
@@ -8844,7 +8844,7 @@ PyObject *__pyx_args, PyObject *__pyx_kwds
   return __pyx_r;
 }
 
-static PyObject *__pyx_pf_5utils_8BackTest_8BackTest_20order_target_num(CYTHON_UNUSED PyObject *__pyx_self, PyObject *__pyx_v_self, PyObject *__pyx_v_price, PyObject *__pyx_v_amount, PyObject *__pyx_v_multiplier, PyObject *__pyx_v_future_type, PyObject *__pyx_v_direction) {
+static PyObject *__pyx_pf_5utils_15BackTestEngineC_8BackTest_20order_target_num(CYTHON_UNUSED PyObject *__pyx_self, PyObject *__pyx_v_self, PyObject *__pyx_v_price, PyObject *__pyx_v_amount, PyObject *__pyx_v_multiplier, PyObject *__pyx_v_future_type, PyObject *__pyx_v_direction) {
   PyObject *__pyx_v_margin = NULL;
   PyObject *__pyx_r = NULL;
   __Pyx_RefNannyDeclarations
@@ -8867,7 +8867,7 @@ static PyObject *__pyx_pf_5utils_8BackTest_8BackTest_20order_target_num(CYTHON_U
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("order_target_num", 1);
 
-  /* "utils/BackTest.pyx":247
+  /* "utils/BackTestEngineC.pyx":247
  *             direction (_type_):  long or short
  *         """
  *         assert direction=="long" or direction=="short"             # <<<<<<<<<<<<<<
@@ -8894,7 +8894,7 @@ static PyObject *__pyx_pf_5utils_8BackTest_8BackTest_20order_target_num(CYTHON_U
   if ((1)); else __PYX_ERR(0, 247, __pyx_L1_error)
   #endif
 
-  /* "utils/BackTest.pyx":248
+  /* "utils/BackTestEngineC.pyx":248
  *         """
  *         assert direction=="long" or direction=="short"
  *         margin =int(price*10000*multiplier*amount*self.instrument["margin_rate"])             # <<<<<<<<<<<<<<
@@ -8924,7 +8924,7 @@ static PyObject *__pyx_pf_5utils_8BackTest_8BackTest_20order_target_num(CYTHON_U
   __pyx_v_margin = __pyx_t_5;
   __pyx_t_5 = 0;
 
-  /* "utils/BackTest.pyx":249
+  /* "utils/BackTestEngineC.pyx":249
  *         assert direction=="long" or direction=="short"
  *         margin =int(price*10000*multiplier*amount*self.instrument["margin_rate"])
  *         if(margin>self.position.cash):             # <<<<<<<<<<<<<<
@@ -8942,7 +8942,7 @@ static PyObject *__pyx_pf_5utils_8BackTest_8BackTest_20order_target_num(CYTHON_U
   __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
   if (__pyx_t_1) {
 
-    /* "utils/BackTest.pyx":250
+    /* "utils/BackTestEngineC.pyx":250
  *         margin =int(price*10000*multiplier*amount*self.instrument["margin_rate"])
  *         if(margin>self.position.cash):
  *             warnings.warn("")             # <<<<<<<<<<<<<<
@@ -8978,7 +8978,7 @@ static PyObject *__pyx_pf_5utils_8BackTest_8BackTest_20order_target_num(CYTHON_U
     }
     __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
 
-    /* "utils/BackTest.pyx":251
+    /* "utils/BackTestEngineC.pyx":251
  *         if(margin>self.position.cash):
  *             warnings.warn("")
  *             return             # <<<<<<<<<<<<<<
@@ -8989,7 +8989,7 @@ static PyObject *__pyx_pf_5utils_8BackTest_8BackTest_20order_target_num(CYTHON_U
     __pyx_r = Py_None; __Pyx_INCREF(Py_None);
     goto __pyx_L0;
 
-    /* "utils/BackTest.pyx":249
+    /* "utils/BackTestEngineC.pyx":249
  *         assert direction=="long" or direction=="short"
  *         margin =int(price*10000*multiplier*amount*self.instrument["margin_rate"])
  *         if(margin>self.position.cash):             # <<<<<<<<<<<<<<
@@ -8998,7 +8998,7 @@ static PyObject *__pyx_pf_5utils_8BackTest_8BackTest_20order_target_num(CYTHON_U
  */
   }
 
-  /* "utils/BackTest.pyx":252
+  /* "utils/BackTestEngineC.pyx":252
  *             warnings.warn("")
  *             return
  *         self.log(f"Bid-close:{price},order:{amount*multiplier}")             # <<<<<<<<<<<<<<
@@ -9064,7 +9064,7 @@ static PyObject *__pyx_pf_5utils_8BackTest_8BackTest_20order_target_num(CYTHON_U
   }
   __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
 
-  /* "utils/BackTest.pyx":253
+  /* "utils/BackTestEngineC.pyx":253
  *             return
  *         self.log(f"Bid-close:{price},order:{amount*multiplier}")
  *         try_set_value(self.position.hold,future_type+"_"+direction,np.array([amount*multiplier,             # <<<<<<<<<<<<<<
@@ -9091,7 +9091,7 @@ static PyObject *__pyx_pf_5utils_8BackTest_8BackTest_20order_target_num(CYTHON_U
   __pyx_t_11 = PyNumber_Multiply(__pyx_v_amount, __pyx_v_multiplier); if (unlikely(!__pyx_t_11)) __PYX_ERR(0, 253, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_11);
 
-  /* "utils/BackTest.pyx":254
+  /* "utils/BackTestEngineC.pyx":254
  *         self.log(f"Bid-close:{price},order:{amount*multiplier}")
  *         try_set_value(self.position.hold,future_type+"_"+direction,np.array([amount*multiplier,
  *                                                                                  int(price*10000),             # <<<<<<<<<<<<<<
@@ -9104,7 +9104,7 @@ static PyObject *__pyx_pf_5utils_8BackTest_8BackTest_20order_target_num(CYTHON_U
   __Pyx_GOTREF(__pyx_t_14);
   __Pyx_DECREF(__pyx_t_13); __pyx_t_13 = 0;
 
-  /* "utils/BackTest.pyx":253
+  /* "utils/BackTestEngineC.pyx":253
  *             return
  *         self.log(f"Bid-close:{price},order:{amount*multiplier}")
  *         try_set_value(self.position.hold,future_type+"_"+direction,np.array([amount*multiplier,             # <<<<<<<<<<<<<<
@@ -9172,7 +9172,7 @@ static PyObject *__pyx_pf_5utils_8BackTest_8BackTest_20order_target_num(CYTHON_U
   }
   __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
 
-  /* "utils/BackTest.pyx":258
+  /* "utils/BackTestEngineC.pyx":258
  *                                                                                 )
  *                           )#
  *         self.position.cash-=margin             # <<<<<<<<<<<<<<
@@ -9190,7 +9190,7 @@ static PyObject *__pyx_pf_5utils_8BackTest_8BackTest_20order_target_num(CYTHON_U
   __Pyx_DECREF(__pyx_t_10); __pyx_t_10 = 0;
   __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
 
-  /* "utils/BackTest.pyx":259
+  /* "utils/BackTestEngineC.pyx":259
  *                           )#
  *         self.position.cash-=margin
  *         self.trade_record.loc[len(self.trade_record)]=[self.current,future_type,amount*multiplier,direction,"B",price]             # <<<<<<<<<<<<<<
@@ -9234,7 +9234,7 @@ static PyObject *__pyx_pf_5utils_8BackTest_8BackTest_20order_target_num(CYTHON_U
   __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
 
-  /* "utils/BackTest.pyx":260
+  /* "utils/BackTestEngineC.pyx":260
  *         self.position.cash-=margin
  *         self.trade_record.loc[len(self.trade_record)]=[self.current,future_type,amount*multiplier,direction,"B",price]
  *         return             # <<<<<<<<<<<<<<
@@ -9245,7 +9245,7 @@ static PyObject *__pyx_pf_5utils_8BackTest_8BackTest_20order_target_num(CYTHON_U
   __pyx_r = Py_None; __Pyx_INCREF(Py_None);
   goto __pyx_L0;
 
-  /* "utils/BackTest.pyx":236
+  /* "utils/BackTestEngineC.pyx":236
  *                     self.position.hold[future_type+"_short"][2]+=adding#
  * 
  *     def order_target_num(self,price,amount:int,multiplier:int,future_type:str,direction):             # <<<<<<<<<<<<<<
@@ -9264,7 +9264,7 @@ static PyObject *__pyx_pf_5utils_8BackTest_8BackTest_20order_target_num(CYTHON_U
   __Pyx_XDECREF(__pyx_t_12);
   __Pyx_XDECREF(__pyx_t_13);
   __Pyx_XDECREF(__pyx_t_14);
-  __Pyx_AddTraceback("utils.BackTest.BackTest.order_target_num", __pyx_clineno, __pyx_lineno, __pyx_filename);
+  __Pyx_AddTraceback("utils.BackTestEngineC.BackTest.order_target_num", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __pyx_r = NULL;
   __pyx_L0:;
   __Pyx_XDECREF(__pyx_v_margin);
@@ -9273,7 +9273,7 @@ static PyObject *__pyx_pf_5utils_8BackTest_8BackTest_20order_target_num(CYTHON_U
   return __pyx_r;
 }
 
-/* "utils/BackTest.pyx":261
+/* "utils/BackTestEngineC.pyx":261
  *         self.trade_record.loc[len(self.trade_record)]=[self.current,future_type,amount*multiplier,direction,"B",price]
  *         return
  *     def sell_target_num(self,price,amount:int,multiplier:int,future_type:str,direction,is_close=True,close=0):             # <<<<<<<<<<<<<<
@@ -9282,16 +9282,16 @@ static PyObject *__pyx_pf_5utils_8BackTest_8BackTest_20order_target_num(CYTHON_U
  */
 
 /* Python wrapper */
-static PyObject *__pyx_pw_5utils_8BackTest_8BackTest_23sell_target_num(PyObject *__pyx_self, 
+static PyObject *__pyx_pw_5utils_15BackTestEngineC_8BackTest_23sell_target_num(PyObject *__pyx_self, 
 #if CYTHON_METH_FASTCALL
 PyObject *const *__pyx_args, Py_ssize_t __pyx_nargs, PyObject *__pyx_kwds
 #else
 PyObject *__pyx_args, PyObject *__pyx_kwds
 #endif
 ); /*proto*/
-PyDoc_STRVAR(__pyx_doc_5utils_8BackTest_8BackTest_22sell_target_num, "_summary_\n        \347\224\250\344\272\216\345\271\263\344\273\223\n\n        Args:\n            price (_type_): \345\215\226\345\215\225\344\273\267\n            amount (int): \346\211\213\346\225\260\n            multiplier (int): \345\220\210\347\272\246\344\271\230\346\225\260\n            future_type (str): \346\234\237\350\264\247\344\273\243\347\240\201\n            direction (_type_): \346\226\271\345\220\221\n        ");
-static PyMethodDef __pyx_mdef_5utils_8BackTest_8BackTest_23sell_target_num = {"sell_target_num", (PyCFunction)(void*)(__Pyx_PyCFunction_FastCallWithKeywords)__pyx_pw_5utils_8BackTest_8BackTest_23sell_target_num, __Pyx_METH_FASTCALL|METH_KEYWORDS, __pyx_doc_5utils_8BackTest_8BackTest_22sell_target_num};
-static PyObject *__pyx_pw_5utils_8BackTest_8BackTest_23sell_target_num(PyObject *__pyx_self, 
+PyDoc_STRVAR(__pyx_doc_5utils_15BackTestEngineC_8BackTest_22sell_target_num, "_summary_\n        \347\224\250\344\272\216\345\271\263\344\273\223\n\n        Args:\n            price (_type_): \345\215\226\345\215\225\344\273\267\n            amount (int): \346\211\213\346\225\260\n            multiplier (int): \345\220\210\347\272\246\344\271\230\346\225\260\n            future_type (str): \346\234\237\350\264\247\344\273\243\347\240\201\n            direction (_type_): \346\226\271\345\220\221\n        ");
+static PyMethodDef __pyx_mdef_5utils_15BackTestEngineC_8BackTest_23sell_target_num = {"sell_target_num", (PyCFunction)(void*)(__Pyx_PyCFunction_FastCallWithKeywords)__pyx_pw_5utils_15BackTestEngineC_8BackTest_23sell_target_num, __Pyx_METH_FASTCALL|METH_KEYWORDS, __pyx_doc_5utils_15BackTestEngineC_8BackTest_22sell_target_num};
+static PyObject *__pyx_pw_5utils_15BackTestEngineC_8BackTest_23sell_target_num(PyObject *__pyx_self, 
 #if CYTHON_METH_FASTCALL
 PyObject *const *__pyx_args, Py_ssize_t __pyx_nargs, PyObject *__pyx_kwds
 #else
@@ -9466,14 +9466,14 @@ PyObject *__pyx_args, PyObject *__pyx_kwds
       __Pyx_Arg_XDECREF_FASTCALL(values[__pyx_temp]);
     }
   }
-  __Pyx_AddTraceback("utils.BackTest.BackTest.sell_target_num", __pyx_clineno, __pyx_lineno, __pyx_filename);
+  __Pyx_AddTraceback("utils.BackTestEngineC.BackTest.sell_target_num", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __Pyx_RefNannyFinishContext();
   return NULL;
   __pyx_L4_argument_unpacking_done:;
   if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v_amount), (&PyInt_Type), 0, "amount", 1))) __PYX_ERR(0, 261, __pyx_L1_error)
   if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v_multiplier), (&PyInt_Type), 0, "multiplier", 1))) __PYX_ERR(0, 261, __pyx_L1_error)
   if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v_future_type), (&PyString_Type), 0, "future_type", 1))) __PYX_ERR(0, 261, __pyx_L1_error)
-  __pyx_r = __pyx_pf_5utils_8BackTest_8BackTest_22sell_target_num(__pyx_self, __pyx_v_self, __pyx_v_price, __pyx_v_amount, __pyx_v_multiplier, __pyx_v_future_type, __pyx_v_direction, __pyx_v_is_close, __pyx_v_close);
+  __pyx_r = __pyx_pf_5utils_15BackTestEngineC_8BackTest_22sell_target_num(__pyx_self, __pyx_v_self, __pyx_v_price, __pyx_v_amount, __pyx_v_multiplier, __pyx_v_future_type, __pyx_v_direction, __pyx_v_is_close, __pyx_v_close);
 
   /* function exit code */
   goto __pyx_L0;
@@ -9490,7 +9490,7 @@ PyObject *__pyx_args, PyObject *__pyx_kwds
   return __pyx_r;
 }
 
-static PyObject *__pyx_pf_5utils_8BackTest_8BackTest_22sell_target_num(CYTHON_UNUSED PyObject *__pyx_self, PyObject *__pyx_v_self, PyObject *__pyx_v_price, PyObject *__pyx_v_amount, PyObject *__pyx_v_multiplier, PyObject *__pyx_v_future_type, PyObject *__pyx_v_direction, PyObject *__pyx_v_is_close, PyObject *__pyx_v_close) {
+static PyObject *__pyx_pf_5utils_15BackTestEngineC_8BackTest_22sell_target_num(CYTHON_UNUSED PyObject *__pyx_self, PyObject *__pyx_v_self, PyObject *__pyx_v_price, PyObject *__pyx_v_amount, PyObject *__pyx_v_multiplier, PyObject *__pyx_v_future_type, PyObject *__pyx_v_direction, PyObject *__pyx_v_is_close, PyObject *__pyx_v_close) {
   PyObject *__pyx_v_earn = NULL;
   PyObject *__pyx_r = NULL;
   __Pyx_RefNannyDeclarations
@@ -9512,7 +9512,7 @@ static PyObject *__pyx_pf_5utils_8BackTest_8BackTest_22sell_target_num(CYTHON_UN
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("sell_target_num", 1);
 
-  /* "utils/BackTest.pyx":272
+  /* "utils/BackTestEngineC.pyx":272
  *             direction (_type_):
  *         """
  *         assert direction=="long" or direction=="short"             # <<<<<<<<<<<<<<
@@ -9539,7 +9539,7 @@ static PyObject *__pyx_pf_5utils_8BackTest_8BackTest_22sell_target_num(CYTHON_UN
   if ((1)); else __PYX_ERR(0, 272, __pyx_L1_error)
   #endif
 
-  /* "utils/BackTest.pyx":273
+  /* "utils/BackTestEngineC.pyx":273
  *         """
  *         assert direction=="long" or direction=="short"
  *         if(amount<=0):             # <<<<<<<<<<<<<<
@@ -9551,7 +9551,7 @@ static PyObject *__pyx_pf_5utils_8BackTest_8BackTest_22sell_target_num(CYTHON_UN
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
   if (__pyx_t_1) {
 
-    /* "utils/BackTest.pyx":274
+    /* "utils/BackTestEngineC.pyx":274
  *         assert direction=="long" or direction=="short"
  *         if(amount<=0):
  *             warnings.warn(f"{self.current}:0{future_type},{amount}")             # <<<<<<<<<<<<<<
@@ -9629,7 +9629,7 @@ static PyObject *__pyx_pf_5utils_8BackTest_8BackTest_22sell_target_num(CYTHON_UN
     }
     __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
 
-    /* "utils/BackTest.pyx":275
+    /* "utils/BackTestEngineC.pyx":275
  *         if(amount<=0):
  *             warnings.warn(f"{self.current}:0{future_type},{amount}")
  *             return             # <<<<<<<<<<<<<<
@@ -9640,7 +9640,7 @@ static PyObject *__pyx_pf_5utils_8BackTest_8BackTest_22sell_target_num(CYTHON_UN
     __pyx_r = Py_None; __Pyx_INCREF(Py_None);
     goto __pyx_L0;
 
-    /* "utils/BackTest.pyx":273
+    /* "utils/BackTestEngineC.pyx":273
  *         """
  *         assert direction=="long" or direction=="short"
  *         if(amount<=0):             # <<<<<<<<<<<<<<
@@ -9649,7 +9649,7 @@ static PyObject *__pyx_pf_5utils_8BackTest_8BackTest_22sell_target_num(CYTHON_UN
  */
   }
 
-  /* "utils/BackTest.pyx":277
+  /* "utils/BackTestEngineC.pyx":277
  *             return
  *         if(True):
  *             self.log(f"ofr-close:{price},amount:{amount*multiplier}")             # <<<<<<<<<<<<<<
@@ -9715,7 +9715,7 @@ static PyObject *__pyx_pf_5utils_8BackTest_8BackTest_22sell_target_num(CYTHON_UN
   }
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
 
-  /* "utils/BackTest.pyx":278
+  /* "utils/BackTestEngineC.pyx":278
  *         if(True):
  *             self.log(f"ofr-close:{price},amount:{amount*multiplier}")
  *             earn=try_sell_value(self.position.hold,future_type,             # <<<<<<<<<<<<<<
@@ -9730,7 +9730,7 @@ static PyObject *__pyx_pf_5utils_8BackTest_8BackTest_22sell_target_num(CYTHON_UN
   __Pyx_GOTREF(__pyx_t_9);
   __Pyx_DECREF(__pyx_t_8); __pyx_t_8 = 0;
 
-  /* "utils/BackTest.pyx":279
+  /* "utils/BackTestEngineC.pyx":279
  *             self.log(f"ofr-close:{price},amount:{amount*multiplier}")
  *             earn=try_sell_value(self.position.hold,future_type,
  *                            np.array([amount*multiplier,int(price*10000)]),             # <<<<<<<<<<<<<<
@@ -9781,7 +9781,7 @@ static PyObject *__pyx_pf_5utils_8BackTest_8BackTest_22sell_target_num(CYTHON_UN
     __Pyx_DECREF(__pyx_t_11); __pyx_t_11 = 0;
   }
 
-  /* "utils/BackTest.pyx":280
+  /* "utils/BackTestEngineC.pyx":280
  *             earn=try_sell_value(self.position.hold,future_type,
  *                            np.array([amount*multiplier,int(price*10000)]),
  *                            direction,is_close,int(close*10000)             # <<<<<<<<<<<<<<
@@ -9821,7 +9821,7 @@ static PyObject *__pyx_pf_5utils_8BackTest_8BackTest_22sell_target_num(CYTHON_UN
   __pyx_v_earn = __pyx_t_3;
   __pyx_t_3 = 0;
 
-  /* "utils/BackTest.pyx":282
+  /* "utils/BackTestEngineC.pyx":282
  *                            direction,is_close,int(close*10000)
  *                           )
  *             self.position.cash+=earn             # <<<<<<<<<<<<<<
@@ -9839,7 +9839,7 @@ static PyObject *__pyx_pf_5utils_8BackTest_8BackTest_22sell_target_num(CYTHON_UN
   __Pyx_DECREF(__pyx_t_12); __pyx_t_12 = 0;
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
 
-  /* "utils/BackTest.pyx":283
+  /* "utils/BackTestEngineC.pyx":283
  *                           )
  *             self.position.cash+=earn
  *             self.trade_record.loc[len(self.trade_record)]=[self.current,future_type,amount*multiplier,direction,"S",price]             # <<<<<<<<<<<<<<
@@ -9883,7 +9883,7 @@ static PyObject *__pyx_pf_5utils_8BackTest_8BackTest_22sell_target_num(CYTHON_UN
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
   __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
 
-  /* "utils/BackTest.pyx":284
+  /* "utils/BackTestEngineC.pyx":284
  *             self.position.cash+=earn
  *             self.trade_record.loc[len(self.trade_record)]=[self.current,future_type,amount*multiplier,direction,"S",price]
  *         return             # <<<<<<<<<<<<<<
@@ -9894,7 +9894,7 @@ static PyObject *__pyx_pf_5utils_8BackTest_8BackTest_22sell_target_num(CYTHON_UN
   __pyx_r = Py_None; __Pyx_INCREF(Py_None);
   goto __pyx_L0;
 
-  /* "utils/BackTest.pyx":261
+  /* "utils/BackTestEngineC.pyx":261
  *         self.trade_record.loc[len(self.trade_record)]=[self.current,future_type,amount*multiplier,direction,"B",price]
  *         return
  *     def sell_target_num(self,price,amount:int,multiplier:int,future_type:str,direction,is_close=True,close=0):             # <<<<<<<<<<<<<<
@@ -9912,7 +9912,7 @@ static PyObject *__pyx_pf_5utils_8BackTest_8BackTest_22sell_target_num(CYTHON_UN
   __Pyx_XDECREF(__pyx_t_11);
   __Pyx_XDECREF(__pyx_t_12);
   __Pyx_XDECREF(__pyx_t_13);
-  __Pyx_AddTraceback("utils.BackTest.BackTest.sell_target_num", __pyx_clineno, __pyx_lineno, __pyx_filename);
+  __Pyx_AddTraceback("utils.BackTestEngineC.BackTest.sell_target_num", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __pyx_r = NULL;
   __pyx_L0:;
   __Pyx_XDECREF(__pyx_v_earn);
@@ -9921,7 +9921,7 @@ static PyObject *__pyx_pf_5utils_8BackTest_8BackTest_22sell_target_num(CYTHON_UN
   return __pyx_r;
 }
 
-/* "utils/BackTest.pyx":285
+/* "utils/BackTestEngineC.pyx":285
  *             self.trade_record.loc[len(self.trade_record)]=[self.current,future_type,amount*multiplier,direction,"S",price]
  *         return
  *     def sell_all_target(self, m_data):             # <<<<<<<<<<<<<<
@@ -9930,15 +9930,15 @@ static PyObject *__pyx_pf_5utils_8BackTest_8BackTest_22sell_target_num(CYTHON_UN
  */
 
 /* Python wrapper */
-static PyObject *__pyx_pw_5utils_8BackTest_8BackTest_25sell_all_target(PyObject *__pyx_self, 
+static PyObject *__pyx_pw_5utils_15BackTestEngineC_8BackTest_25sell_all_target(PyObject *__pyx_self, 
 #if CYTHON_METH_FASTCALL
 PyObject *const *__pyx_args, Py_ssize_t __pyx_nargs, PyObject *__pyx_kwds
 #else
 PyObject *__pyx_args, PyObject *__pyx_kwds
 #endif
 ); /*proto*/
-static PyMethodDef __pyx_mdef_5utils_8BackTest_8BackTest_25sell_all_target = {"sell_all_target", (PyCFunction)(void*)(__Pyx_PyCFunction_FastCallWithKeywords)__pyx_pw_5utils_8BackTest_8BackTest_25sell_all_target, __Pyx_METH_FASTCALL|METH_KEYWORDS, 0};
-static PyObject *__pyx_pw_5utils_8BackTest_8BackTest_25sell_all_target(PyObject *__pyx_self, 
+static PyMethodDef __pyx_mdef_5utils_15BackTestEngineC_8BackTest_25sell_all_target = {"sell_all_target", (PyCFunction)(void*)(__Pyx_PyCFunction_FastCallWithKeywords)__pyx_pw_5utils_15BackTestEngineC_8BackTest_25sell_all_target, __Pyx_METH_FASTCALL|METH_KEYWORDS, 0};
+static PyObject *__pyx_pw_5utils_15BackTestEngineC_8BackTest_25sell_all_target(PyObject *__pyx_self, 
 #if CYTHON_METH_FASTCALL
 PyObject *const *__pyx_args, Py_ssize_t __pyx_nargs, PyObject *__pyx_kwds
 #else
@@ -10023,11 +10023,11 @@ PyObject *__pyx_args, PyObject *__pyx_kwds
       __Pyx_Arg_XDECREF_FASTCALL(values[__pyx_temp]);
     }
   }
-  __Pyx_AddTraceback("utils.BackTest.BackTest.sell_all_target", __pyx_clineno, __pyx_lineno, __pyx_filename);
+  __Pyx_AddTraceback("utils.BackTestEngineC.BackTest.sell_all_target", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __Pyx_RefNannyFinishContext();
   return NULL;
   __pyx_L4_argument_unpacking_done:;
-  __pyx_r = __pyx_pf_5utils_8BackTest_8BackTest_24sell_all_target(__pyx_self, __pyx_v_self, __pyx_v_m_data);
+  __pyx_r = __pyx_pf_5utils_15BackTestEngineC_8BackTest_24sell_all_target(__pyx_self, __pyx_v_self, __pyx_v_m_data);
 
   /* function exit code */
   {
@@ -10040,7 +10040,7 @@ PyObject *__pyx_args, PyObject *__pyx_kwds
   return __pyx_r;
 }
 
-static PyObject *__pyx_pf_5utils_8BackTest_8BackTest_24sell_all_target(CYTHON_UNUSED PyObject *__pyx_self, PyObject *__pyx_v_self, PyObject *__pyx_v_m_data) {
+static PyObject *__pyx_pf_5utils_15BackTestEngineC_8BackTest_24sell_all_target(CYTHON_UNUSED PyObject *__pyx_self, PyObject *__pyx_v_self, PyObject *__pyx_v_m_data) {
   PyObject *__pyx_v_future_type_dir = NULL;
   PyObject *__pyx_v_amount = NULL;
   PyObject *__pyx_v_info = NULL;
@@ -10066,7 +10066,7 @@ static PyObject *__pyx_pf_5utils_8BackTest_8BackTest_24sell_all_target(CYTHON_UN
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("sell_all_target", 1);
 
-  /* "utils/BackTest.pyx":286
+  /* "utils/BackTestEngineC.pyx":286
  *         return
  *     def sell_all_target(self, m_data):
  *         for future_type_dir, amount in self.position.hold.items():             # <<<<<<<<<<<<<<
@@ -10100,7 +10100,7 @@ static PyObject *__pyx_pf_5utils_8BackTest_8BackTest_24sell_all_target(CYTHON_UN
     __Pyx_XDECREF_SET(__pyx_v_amount, __pyx_t_6);
     __pyx_t_6 = 0;
 
-    /* "utils/BackTest.pyx":287
+    /* "utils/BackTestEngineC.pyx":287
  *     def sell_all_target(self, m_data):
  *         for future_type_dir, amount in self.position.hold.items():
  *                 info = future_type_dir.split("_")             # <<<<<<<<<<<<<<
@@ -10134,7 +10134,7 @@ static PyObject *__pyx_pf_5utils_8BackTest_8BackTest_24sell_all_target(CYTHON_UN
     __Pyx_XDECREF_SET(__pyx_v_info, __pyx_t_6);
     __pyx_t_6 = 0;
 
-    /* "utils/BackTest.pyx":288
+    /* "utils/BackTestEngineC.pyx":288
  *         for future_type_dir, amount in self.position.hold.items():
  *                 info = future_type_dir.split("_")
  *                 future_type = info[0]             # <<<<<<<<<<<<<<
@@ -10146,7 +10146,7 @@ static PyObject *__pyx_pf_5utils_8BackTest_8BackTest_24sell_all_target(CYTHON_UN
     __Pyx_XDECREF_SET(__pyx_v_future_type, __pyx_t_6);
     __pyx_t_6 = 0;
 
-    /* "utils/BackTest.pyx":289
+    /* "utils/BackTestEngineC.pyx":289
  *                 info = future_type_dir.split("_")
  *                 future_type = info[0]
  *                 direction = info[1]             # <<<<<<<<<<<<<<
@@ -10158,7 +10158,7 @@ static PyObject *__pyx_pf_5utils_8BackTest_8BackTest_24sell_all_target(CYTHON_UN
     __Pyx_XDECREF_SET(__pyx_v_direction, __pyx_t_6);
     __pyx_t_6 = 0;
 
-    /* "utils/BackTest.pyx":290
+    /* "utils/BackTestEngineC.pyx":290
  *                 future_type = info[0]
  *                 direction = info[1]
  *                 multi = m_data[future_type]["multiplier"].iloc[-1]             # <<<<<<<<<<<<<<
@@ -10179,7 +10179,7 @@ static PyObject *__pyx_pf_5utils_8BackTest_8BackTest_24sell_all_target(CYTHON_UN
     __Pyx_XDECREF_SET(__pyx_v_multi, __pyx_t_5);
     __pyx_t_5 = 0;
 
-    /* "utils/BackTest.pyx":291
+    /* "utils/BackTestEngineC.pyx":291
  *                 direction = info[1]
  *                 multi = m_data[future_type]["multiplier"].iloc[-1]
  *                 if(amount[0]//multi<=0):             # <<<<<<<<<<<<<<
@@ -10197,7 +10197,7 @@ static PyObject *__pyx_pf_5utils_8BackTest_8BackTest_24sell_all_target(CYTHON_UN
     __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
     if (__pyx_t_10) {
 
-      /* "utils/BackTest.pyx":292
+      /* "utils/BackTestEngineC.pyx":292
  *                 multi = m_data[future_type]["multiplier"].iloc[-1]
  *                 if(amount[0]//multi<=0):
  *                     continue             # <<<<<<<<<<<<<<
@@ -10206,7 +10206,7 @@ static PyObject *__pyx_pf_5utils_8BackTest_8BackTest_24sell_all_target(CYTHON_UN
  */
       goto __pyx_L3_continue;
 
-      /* "utils/BackTest.pyx":291
+      /* "utils/BackTestEngineC.pyx":291
  *                 direction = info[1]
  *                 multi = m_data[future_type]["multiplier"].iloc[-1]
  *                 if(amount[0]//multi<=0):             # <<<<<<<<<<<<<<
@@ -10215,7 +10215,7 @@ static PyObject *__pyx_pf_5utils_8BackTest_8BackTest_24sell_all_target(CYTHON_UN
  */
     }
 
-    /* "utils/BackTest.pyx":293
+    /* "utils/BackTestEngineC.pyx":293
  *                 if(amount[0]//multi<=0):
  *                     continue
  *                 self.sell_target_num(m_data[future_type]["close"].iloc[-1],amount[0]//multi,multi,future_type,direction)             # <<<<<<<<<<<<<<
@@ -10269,7 +10269,7 @@ static PyObject *__pyx_pf_5utils_8BackTest_8BackTest_24sell_all_target(CYTHON_UN
   }
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
 
-  /* "utils/BackTest.pyx":285
+  /* "utils/BackTestEngineC.pyx":285
  *             self.trade_record.loc[len(self.trade_record)]=[self.current,future_type,amount*multiplier,direction,"S",price]
  *         return
  *     def sell_all_target(self, m_data):             # <<<<<<<<<<<<<<
@@ -10287,7 +10287,7 @@ static PyObject *__pyx_pf_5utils_8BackTest_8BackTest_24sell_all_target(CYTHON_UN
   __Pyx_XDECREF(__pyx_t_8);
   __Pyx_XDECREF(__pyx_t_11);
   __Pyx_XDECREF(__pyx_t_12);
-  __Pyx_AddTraceback("utils.BackTest.BackTest.sell_all_target", __pyx_clineno, __pyx_lineno, __pyx_filename);
+  __Pyx_AddTraceback("utils.BackTestEngineC.BackTest.sell_all_target", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __pyx_r = NULL;
   __pyx_L0:;
   __Pyx_XDECREF(__pyx_v_future_type_dir);
@@ -10301,7 +10301,7 @@ static PyObject *__pyx_pf_5utils_8BackTest_8BackTest_24sell_all_target(CYTHON_UN
   return __pyx_r;
 }
 
-/* "utils/BackTest.pyx":296
+/* "utils/BackTestEngineC.pyx":296
  *     #
  *     # @timer
  *     def loop_process(self,start,end,saving_dir="back/"):             # <<<<<<<<<<<<<<
@@ -10310,16 +10310,16 @@ static PyObject *__pyx_pf_5utils_8BackTest_8BackTest_24sell_all_target(CYTHON_UN
  */
 
 /* Python wrapper */
-static PyObject *__pyx_pw_5utils_8BackTest_8BackTest_27loop_process(PyObject *__pyx_self, 
+static PyObject *__pyx_pw_5utils_15BackTestEngineC_8BackTest_27loop_process(PyObject *__pyx_self, 
 #if CYTHON_METH_FASTCALL
 PyObject *const *__pyx_args, Py_ssize_t __pyx_nargs, PyObject *__pyx_kwds
 #else
 PyObject *__pyx_args, PyObject *__pyx_kwds
 #endif
 ); /*proto*/
-PyDoc_STRVAR(__pyx_doc_5utils_8BackTest_8BackTest_26loop_process, "_summary_\n        \345\233\236\346\265\213\344\270\273\345\207\275\346\225\260\n\n        Args:\n            start (_type_): \345\274\200\345\247\213\346\227\245\346\234\237\357\274\214\345\246\202 20120106\n            end (_type_): \347\273\223\346\235\237\346\227\245\346\234\237\357\274\214 \345\246\20220210101\n        ");
-static PyMethodDef __pyx_mdef_5utils_8BackTest_8BackTest_27loop_process = {"loop_process", (PyCFunction)(void*)(__Pyx_PyCFunction_FastCallWithKeywords)__pyx_pw_5utils_8BackTest_8BackTest_27loop_process, __Pyx_METH_FASTCALL|METH_KEYWORDS, __pyx_doc_5utils_8BackTest_8BackTest_26loop_process};
-static PyObject *__pyx_pw_5utils_8BackTest_8BackTest_27loop_process(PyObject *__pyx_self, 
+PyDoc_STRVAR(__pyx_doc_5utils_15BackTestEngineC_8BackTest_26loop_process, "_summary_\n        \345\233\236\346\265\213\344\270\273\345\207\275\346\225\260\n\n        Args:\n            start (_type_): \345\274\200\345\247\213\346\227\245\346\234\237\357\274\214\345\246\202 20120106\n            end (_type_): \347\273\223\346\235\237\346\227\245\346\234\237\357\274\214 \345\246\20220210101\n        ");
+static PyMethodDef __pyx_mdef_5utils_15BackTestEngineC_8BackTest_27loop_process = {"loop_process", (PyCFunction)(void*)(__Pyx_PyCFunction_FastCallWithKeywords)__pyx_pw_5utils_15BackTestEngineC_8BackTest_27loop_process, __Pyx_METH_FASTCALL|METH_KEYWORDS, __pyx_doc_5utils_15BackTestEngineC_8BackTest_26loop_process};
+static PyObject *__pyx_pw_5utils_15BackTestEngineC_8BackTest_27loop_process(PyObject *__pyx_self, 
 #if CYTHON_METH_FASTCALL
 PyObject *const *__pyx_args, Py_ssize_t __pyx_nargs, PyObject *__pyx_kwds
 #else
@@ -10435,11 +10435,11 @@ PyObject *__pyx_args, PyObject *__pyx_kwds
       __Pyx_Arg_XDECREF_FASTCALL(values[__pyx_temp]);
     }
   }
-  __Pyx_AddTraceback("utils.BackTest.BackTest.loop_process", __pyx_clineno, __pyx_lineno, __pyx_filename);
+  __Pyx_AddTraceback("utils.BackTestEngineC.BackTest.loop_process", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __Pyx_RefNannyFinishContext();
   return NULL;
   __pyx_L4_argument_unpacking_done:;
-  __pyx_r = __pyx_pf_5utils_8BackTest_8BackTest_26loop_process(__pyx_self, __pyx_v_self, __pyx_v_start, __pyx_v_end, __pyx_v_saving_dir);
+  __pyx_r = __pyx_pf_5utils_15BackTestEngineC_8BackTest_26loop_process(__pyx_self, __pyx_v_self, __pyx_v_start, __pyx_v_end, __pyx_v_saving_dir);
 
   /* function exit code */
   {
@@ -10452,7 +10452,7 @@ PyObject *__pyx_args, PyObject *__pyx_kwds
   return __pyx_r;
 }
 
-/* "utils/BackTest.pyx":325
+/* "utils/BackTestEngineC.pyx":325
  *         real_time_series:pd.DataFrame=real_time_series.to_frame()
  *         real_time_series[self.context.name]=np.array(self.position.asset)
  *         real_time_series[self.context.name]=real_time_series[self.context.name].apply(lambda x:x/10000)             # <<<<<<<<<<<<<<
@@ -10461,15 +10461,15 @@ PyObject *__pyx_args, PyObject *__pyx_kwds
  */
 
 /* Python wrapper */
-static PyObject *__pyx_pw_5utils_8BackTest_8BackTest_12loop_process_lambda(PyObject *__pyx_self, 
+static PyObject *__pyx_pw_5utils_15BackTestEngineC_8BackTest_12loop_process_lambda(PyObject *__pyx_self, 
 #if CYTHON_METH_FASTCALL
 PyObject *const *__pyx_args, Py_ssize_t __pyx_nargs, PyObject *__pyx_kwds
 #else
 PyObject *__pyx_args, PyObject *__pyx_kwds
 #endif
 ); /*proto*/
-static PyMethodDef __pyx_mdef_5utils_8BackTest_8BackTest_12loop_process_lambda = {"lambda", (PyCFunction)(void*)(__Pyx_PyCFunction_FastCallWithKeywords)__pyx_pw_5utils_8BackTest_8BackTest_12loop_process_lambda, __Pyx_METH_FASTCALL|METH_KEYWORDS, 0};
-static PyObject *__pyx_pw_5utils_8BackTest_8BackTest_12loop_process_lambda(PyObject *__pyx_self, 
+static PyMethodDef __pyx_mdef_5utils_15BackTestEngineC_8BackTest_12loop_process_lambda = {"lambda", (PyCFunction)(void*)(__Pyx_PyCFunction_FastCallWithKeywords)__pyx_pw_5utils_15BackTestEngineC_8BackTest_12loop_process_lambda, __Pyx_METH_FASTCALL|METH_KEYWORDS, 0};
+static PyObject *__pyx_pw_5utils_15BackTestEngineC_8BackTest_12loop_process_lambda(PyObject *__pyx_self, 
 #if CYTHON_METH_FASTCALL
 PyObject *const *__pyx_args, Py_ssize_t __pyx_nargs, PyObject *__pyx_kwds
 #else
@@ -10539,7 +10539,7 @@ PyObject *__pyx_args, PyObject *__pyx_kwds
       __Pyx_Arg_XDECREF_FASTCALL(values[__pyx_temp]);
     }
   }
-  __Pyx_AddTraceback("utils.BackTest.BackTest.loop_process.lambda", __pyx_clineno, __pyx_lineno, __pyx_filename);
+  __Pyx_AddTraceback("utils.BackTestEngineC.BackTest.loop_process.lambda", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __Pyx_RefNannyFinishContext();
   return NULL;
   __pyx_L4_argument_unpacking_done:;
@@ -10574,7 +10574,7 @@ static PyObject *__pyx_lambda_funcdef_lambda(CYTHON_UNUSED PyObject *__pyx_self,
   /* function exit code */
   __pyx_L1_error:;
   __Pyx_XDECREF(__pyx_t_1);
-  __Pyx_AddTraceback("utils.BackTest.BackTest.loop_process.lambda", __pyx_clineno, __pyx_lineno, __pyx_filename);
+  __Pyx_AddTraceback("utils.BackTestEngineC.BackTest.loop_process.lambda", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __pyx_r = NULL;
   __pyx_L0:;
   __Pyx_XGIVEREF(__pyx_r);
@@ -10582,7 +10582,7 @@ static PyObject *__pyx_lambda_funcdef_lambda(CYTHON_UNUSED PyObject *__pyx_self,
   return __pyx_r;
 }
 
-/* "utils/BackTest.pyx":296
+/* "utils/BackTestEngineC.pyx":296
  *     #
  *     # @timer
  *     def loop_process(self,start,end,saving_dir="back/"):             # <<<<<<<<<<<<<<
@@ -10590,7 +10590,7 @@ static PyObject *__pyx_lambda_funcdef_lambda(CYTHON_UNUSED PyObject *__pyx_self,
  * 
  */
 
-static PyObject *__pyx_pf_5utils_8BackTest_8BackTest_26loop_process(CYTHON_UNUSED PyObject *__pyx_self, PyObject *__pyx_v_self, PyObject *__pyx_v_start, PyObject *__pyx_v_end, PyObject *__pyx_v_saving_dir) {
+static PyObject *__pyx_pf_5utils_15BackTestEngineC_8BackTest_26loop_process(CYTHON_UNUSED PyObject *__pyx_self, PyObject *__pyx_v_self, PyObject *__pyx_v_start, PyObject *__pyx_v_end, PyObject *__pyx_v_saving_dir) {
   PyObject *__pyx_v_time_series = NULL;
   PyObject *__pyx_v_start_date = NULL;
   PyObject *__pyx_v_real_time_series = NULL;
@@ -10622,7 +10622,7 @@ static PyObject *__pyx_pf_5utils_8BackTest_8BackTest_26loop_process(CYTHON_UNUSE
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("loop_process", 1);
 
-  /* "utils/BackTest.pyx":304
+  /* "utils/BackTestEngineC.pyx":304
  *             end (_type_):  20210101
  *         """
  *         time_series:pd.DataFrame = self.data[list(self.data.keys())[0]]["date"]             # <<<<<<<<<<<<<<
@@ -10674,7 +10674,7 @@ static PyObject *__pyx_pf_5utils_8BackTest_8BackTest_26loop_process(CYTHON_UNUSE
   __pyx_v_time_series = __pyx_t_2;
   __pyx_t_2 = 0;
 
-  /* "utils/BackTest.pyx":305
+  /* "utils/BackTestEngineC.pyx":305
  *         """
  *         time_series:pd.DataFrame = self.data[list(self.data.keys())[0]]["date"]
  *         time_series=time_series[time_series<=datetime.strptime(end,"%Y%m%d")]             # <<<<<<<<<<<<<<
@@ -10716,7 +10716,7 @@ static PyObject *__pyx_pf_5utils_8BackTest_8BackTest_26loop_process(CYTHON_UNUSE
   __Pyx_DECREF_SET(__pyx_v_time_series, __pyx_t_2);
   __pyx_t_2 = 0;
 
-  /* "utils/BackTest.pyx":306
+  /* "utils/BackTestEngineC.pyx":306
  *         time_series:pd.DataFrame = self.data[list(self.data.keys())[0]]["date"]
  *         time_series=time_series[time_series<=datetime.strptime(end,"%Y%m%d")]
  *         start_date = datetime.strptime(start,"%Y%m%d")             # <<<<<<<<<<<<<<
@@ -10753,7 +10753,7 @@ static PyObject *__pyx_pf_5utils_8BackTest_8BackTest_26loop_process(CYTHON_UNUSE
   __pyx_v_start_date = __pyx_t_2;
   __pyx_t_2 = 0;
 
-  /* "utils/BackTest.pyx":307
+  /* "utils/BackTestEngineC.pyx":307
  *         time_series=time_series[time_series<=datetime.strptime(end,"%Y%m%d")]
  *         start_date = datetime.strptime(start,"%Y%m%d")
  *         real_time_series =time_series[time_series>=start_date]             # <<<<<<<<<<<<<<
@@ -10767,7 +10767,7 @@ static PyObject *__pyx_pf_5utils_8BackTest_8BackTest_26loop_process(CYTHON_UNUSE
   __pyx_v_real_time_series = __pyx_t_4;
   __pyx_t_4 = 0;
 
-  /* "utils/BackTest.pyx":308
+  /* "utils/BackTestEngineC.pyx":308
  *         start_date = datetime.strptime(start,"%Y%m%d")
  *         real_time_series =time_series[time_series>=start_date]
  *         current_date=time_series[time_series>=start_date].iloc[0]             # <<<<<<<<<<<<<<
@@ -10787,7 +10787,7 @@ static PyObject *__pyx_pf_5utils_8BackTest_8BackTest_26loop_process(CYTHON_UNUSE
   __pyx_v_current_date = __pyx_t_2;
   __pyx_t_2 = 0;
 
-  /* "utils/BackTest.pyx":309
+  /* "utils/BackTestEngineC.pyx":309
  *         real_time_series =time_series[time_series>=start_date]
  *         current_date=time_series[time_series>=start_date].iloc[0]
  *         m_data={}#m_data-1-2             # <<<<<<<<<<<<<<
@@ -10799,7 +10799,7 @@ static PyObject *__pyx_pf_5utils_8BackTest_8BackTest_26loop_process(CYTHON_UNUSE
   __pyx_v_m_data = ((PyObject*)__pyx_t_2);
   __pyx_t_2 = 0;
 
-  /* "utils/BackTest.pyx":310
+  /* "utils/BackTestEngineC.pyx":310
  *         current_date=time_series[time_series>=start_date].iloc[0]
  *         m_data={}#m_data-1-2
  *         for future_type, value in self.data.items():             # <<<<<<<<<<<<<<
@@ -10830,7 +10830,7 @@ static PyObject *__pyx_pf_5utils_8BackTest_8BackTest_26loop_process(CYTHON_UNUSE
     __Pyx_XDECREF_SET(__pyx_v_value, __pyx_t_4);
     __pyx_t_4 = 0;
 
-    /* "utils/BackTest.pyx":311
+    /* "utils/BackTestEngineC.pyx":311
  *         m_data={}#m_data-1-2
  *         for future_type, value in self.data.items():
  *             m_data[future_type] = value[value["date"]<current_date]#start             # <<<<<<<<<<<<<<
@@ -10849,7 +10849,7 @@ static PyObject *__pyx_pf_5utils_8BackTest_8BackTest_26loop_process(CYTHON_UNUSE
   }
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
 
-  /* "utils/BackTest.pyx":312
+  /* "utils/BackTestEngineC.pyx":312
  *         for future_type, value in self.data.items():
  *             m_data[future_type] = value[value["date"]<current_date]#start
  *         for i in range(len(real_time_series)):             # <<<<<<<<<<<<<<
@@ -10861,7 +10861,7 @@ static PyObject *__pyx_pf_5utils_8BackTest_8BackTest_26loop_process(CYTHON_UNUSE
   for (__pyx_t_10 = 0; __pyx_t_10 < __pyx_t_6; __pyx_t_10+=1) {
     __pyx_v_i = __pyx_t_10;
 
-    /* "utils/BackTest.pyx":313
+    /* "utils/BackTestEngineC.pyx":313
  *             m_data[future_type] = value[value["date"]<current_date]#start
  *         for i in range(len(real_time_series)):
  *             current_date=real_time_series.iloc[i]             # <<<<<<<<<<<<<<
@@ -10876,7 +10876,7 @@ static PyObject *__pyx_pf_5utils_8BackTest_8BackTest_26loop_process(CYTHON_UNUSE
     __Pyx_DECREF_SET(__pyx_v_current_date, __pyx_t_4);
     __pyx_t_4 = 0;
 
-    /* "utils/BackTest.pyx":314
+    /* "utils/BackTestEngineC.pyx":314
  *         for i in range(len(real_time_series)):
  *             current_date=real_time_series.iloc[i]
  *             self.current=current_date             # <<<<<<<<<<<<<<
@@ -10885,7 +10885,7 @@ static PyObject *__pyx_pf_5utils_8BackTest_8BackTest_26loop_process(CYTHON_UNUSE
  */
     if (__Pyx_PyObject_SetAttrStr(__pyx_v_self, __pyx_n_s_current, __pyx_v_current_date) < 0) __PYX_ERR(0, 314, __pyx_L1_error)
 
-    /* "utils/BackTest.pyx":315
+    /* "utils/BackTestEngineC.pyx":315
  *             current_date=real_time_series.iloc[i]
  *             self.current=current_date
  *             for future_type, value in self.data.items():             # <<<<<<<<<<<<<<
@@ -10916,7 +10916,7 @@ static PyObject *__pyx_pf_5utils_8BackTest_8BackTest_26loop_process(CYTHON_UNUSE
       __Pyx_XDECREF_SET(__pyx_v_value, __pyx_t_2);
       __pyx_t_2 = 0;
 
-      /* "utils/BackTest.pyx":316
+      /* "utils/BackTestEngineC.pyx":316
  *             self.current=current_date
  *             for future_type, value in self.data.items():
  *                 m_data[future_type]= value[value["date"]<=current_date]#close             # <<<<<<<<<<<<<<
@@ -10935,7 +10935,7 @@ static PyObject *__pyx_pf_5utils_8BackTest_8BackTest_26loop_process(CYTHON_UNUSE
     }
     __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
 
-    /* "utils/BackTest.pyx":317
+    /* "utils/BackTestEngineC.pyx":317
  *             for future_type, value in self.data.items():
  *                 m_data[future_type]= value[value["date"]<=current_date]#close
  *             self.before_trade(self.context,m_data)             # <<<<<<<<<<<<<<
@@ -10971,7 +10971,7 @@ static PyObject *__pyx_pf_5utils_8BackTest_8BackTest_26loop_process(CYTHON_UNUSE
     }
     __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
 
-    /* "utils/BackTest.pyx":318
+    /* "utils/BackTestEngineC.pyx":318
  *                 m_data[future_type]= value[value["date"]<=current_date]#close
  *             self.before_trade(self.context,m_data)
  *             self.open_handle(self.context,m_data)             # <<<<<<<<<<<<<<
@@ -11007,7 +11007,7 @@ static PyObject *__pyx_pf_5utils_8BackTest_8BackTest_26loop_process(CYTHON_UNUSE
     }
     __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
 
-    /* "utils/BackTest.pyx":319
+    /* "utils/BackTestEngineC.pyx":319
  *             self.before_trade(self.context,m_data)
  *             self.open_handle(self.context,m_data)
  *             self.calculate_profit(m_data)#             # <<<<<<<<<<<<<<
@@ -11040,7 +11040,7 @@ static PyObject *__pyx_pf_5utils_8BackTest_8BackTest_26loop_process(CYTHON_UNUSE
     }
     __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
 
-    /* "utils/BackTest.pyx":320
+    /* "utils/BackTestEngineC.pyx":320
  *             self.open_handle(self.context,m_data)
  *             self.calculate_profit(m_data)#
  *             self.process(m_data)#             # <<<<<<<<<<<<<<
@@ -11074,7 +11074,7 @@ static PyObject *__pyx_pf_5utils_8BackTest_8BackTest_26loop_process(CYTHON_UNUSE
     __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
   }
 
-  /* "utils/BackTest.pyx":322
+  /* "utils/BackTestEngineC.pyx":322
  *             self.process(m_data)#
  *             #self.write_log(current_date)
  *         self.log(self.trade_record)             # <<<<<<<<<<<<<<
@@ -11110,7 +11110,7 @@ static PyObject *__pyx_pf_5utils_8BackTest_8BackTest_26loop_process(CYTHON_UNUSE
   }
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
 
-  /* "utils/BackTest.pyx":323
+  /* "utils/BackTestEngineC.pyx":323
  *             #self.write_log(current_date)
  *         self.log(self.trade_record)
  *         real_time_series:pd.DataFrame=real_time_series.to_frame()             # <<<<<<<<<<<<<<
@@ -11144,7 +11144,7 @@ static PyObject *__pyx_pf_5utils_8BackTest_8BackTest_26loop_process(CYTHON_UNUSE
   __Pyx_DECREF_SET(__pyx_v_real_time_series, __pyx_t_4);
   __pyx_t_4 = 0;
 
-  /* "utils/BackTest.pyx":324
+  /* "utils/BackTestEngineC.pyx":324
  *         self.log(self.trade_record)
  *         real_time_series:pd.DataFrame=real_time_series.to_frame()
  *         real_time_series[self.context.name]=np.array(self.position.asset)             # <<<<<<<<<<<<<<
@@ -11193,7 +11193,7 @@ static PyObject *__pyx_pf_5utils_8BackTest_8BackTest_26loop_process(CYTHON_UNUSE
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
 
-  /* "utils/BackTest.pyx":325
+  /* "utils/BackTestEngineC.pyx":325
  *         real_time_series:pd.DataFrame=real_time_series.to_frame()
  *         real_time_series[self.context.name]=np.array(self.position.asset)
  *         real_time_series[self.context.name]=real_time_series[self.context.name].apply(lambda x:x/10000)             # <<<<<<<<<<<<<<
@@ -11211,7 +11211,7 @@ static PyObject *__pyx_pf_5utils_8BackTest_8BackTest_26loop_process(CYTHON_UNUSE
   __pyx_t_1 = __Pyx_PyObject_GetAttrStr(__pyx_t_3, __pyx_n_s_apply); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 325, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-  __pyx_t_3 = __Pyx_CyFunction_New(&__pyx_mdef_5utils_8BackTest_8BackTest_12loop_process_lambda, 0, __pyx_n_s_BackTest_loop_process_locals_lam, NULL, __pyx_n_s_utils_BackTest, __pyx_d, NULL); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 325, __pyx_L1_error)
+  __pyx_t_3 = __Pyx_CyFunction_New(&__pyx_mdef_5utils_15BackTestEngineC_8BackTest_12loop_process_lambda, 0, __pyx_n_s_BackTest_loop_process_locals_lam, NULL, __pyx_n_s_utils_BackTestEngineC, __pyx_d, NULL); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 325, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
   __pyx_t_2 = NULL;
   __pyx_t_5 = 0;
@@ -11245,7 +11245,7 @@ static PyObject *__pyx_pf_5utils_8BackTest_8BackTest_26loop_process(CYTHON_UNUSE
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
 
-  /* "utils/BackTest.pyx":326
+  /* "utils/BackTestEngineC.pyx":326
  *         real_time_series[self.context.name]=np.array(self.position.asset)
  *         real_time_series[self.context.name]=real_time_series[self.context.name].apply(lambda x:x/10000)
  *         if not os.path.exists(saving_dir):             # <<<<<<<<<<<<<<
@@ -11287,7 +11287,7 @@ static PyObject *__pyx_pf_5utils_8BackTest_8BackTest_26loop_process(CYTHON_UNUSE
   __pyx_t_14 = (!__pyx_t_13);
   if (__pyx_t_14) {
 
-    /* "utils/BackTest.pyx":327
+    /* "utils/BackTestEngineC.pyx":327
  *         real_time_series[self.context.name]=real_time_series[self.context.name].apply(lambda x:x/10000)
  *         if not os.path.exists(saving_dir):
  *             os.makedirs(saving_dir)             # <<<<<<<<<<<<<<
@@ -11323,7 +11323,7 @@ static PyObject *__pyx_pf_5utils_8BackTest_8BackTest_26loop_process(CYTHON_UNUSE
     }
     __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
 
-    /* "utils/BackTest.pyx":326
+    /* "utils/BackTestEngineC.pyx":326
  *         real_time_series[self.context.name]=np.array(self.position.asset)
  *         real_time_series[self.context.name]=real_time_series[self.context.name].apply(lambda x:x/10000)
  *         if not os.path.exists(saving_dir):             # <<<<<<<<<<<<<<
@@ -11332,7 +11332,7 @@ static PyObject *__pyx_pf_5utils_8BackTest_8BackTest_26loop_process(CYTHON_UNUSE
  */
   }
 
-  /* "utils/BackTest.pyx":328
+  /* "utils/BackTestEngineC.pyx":328
  *         if not os.path.exists(saving_dir):
  *             os.makedirs(saving_dir)
  *         real_time_series.to_excel(saving_dir+"Back_"+self.context.name+".xlsx")             # <<<<<<<<<<<<<<
@@ -11380,7 +11380,7 @@ static PyObject *__pyx_pf_5utils_8BackTest_8BackTest_26loop_process(CYTHON_UNUSE
   }
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
 
-  /* "utils/BackTest.pyx":329
+  /* "utils/BackTestEngineC.pyx":329
  *             os.makedirs(saving_dir)
  *         real_time_series.to_excel(saving_dir+"Back_"+self.context.name+".xlsx")
  *         print(f"Save completed! {saving_dir}Back_{self.context.name}.xlsx")             # <<<<<<<<<<<<<<
@@ -11431,7 +11431,7 @@ static PyObject *__pyx_pf_5utils_8BackTest_8BackTest_26loop_process(CYTHON_UNUSE
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
 
-  /* "utils/BackTest.pyx":334
+  /* "utils/BackTestEngineC.pyx":334
  *         #self.beautiful_plot()
  *         #self.statistics(real_time_series)
  *         self.trade_record.to_excel("back/trade/Trade"+self.context.name+".xlsx")             # <<<<<<<<<<<<<<
@@ -11479,7 +11479,7 @@ static PyObject *__pyx_pf_5utils_8BackTest_8BackTest_26loop_process(CYTHON_UNUSE
   }
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
 
-  /* "utils/BackTest.pyx":296
+  /* "utils/BackTestEngineC.pyx":296
  *     #
  *     # @timer
  *     def loop_process(self,start,end,saving_dir="back/"):             # <<<<<<<<<<<<<<
@@ -11496,7 +11496,7 @@ static PyObject *__pyx_pf_5utils_8BackTest_8BackTest_26loop_process(CYTHON_UNUSE
   __Pyx_XDECREF(__pyx_t_3);
   __Pyx_XDECREF(__pyx_t_4);
   __Pyx_XDECREF(__pyx_t_15);
-  __Pyx_AddTraceback("utils.BackTest.BackTest.loop_process", __pyx_clineno, __pyx_lineno, __pyx_filename);
+  __Pyx_AddTraceback("utils.BackTestEngineC.BackTest.loop_process", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __pyx_r = NULL;
   __pyx_L0:;
   __Pyx_XDECREF(__pyx_v_time_series);
@@ -11511,7 +11511,7 @@ static PyObject *__pyx_pf_5utils_8BackTest_8BackTest_26loop_process(CYTHON_UNUSE
   return __pyx_r;
 }
 
-/* "utils/BackTest.pyx":336
+/* "utils/BackTestEngineC.pyx":336
  *         self.trade_record.to_excel("back/trade/Trade"+self.context.name+".xlsx")
  * 
  *     def draw(self,context,df:pd.DataFrame):             # <<<<<<<<<<<<<<
@@ -11520,15 +11520,15 @@ static PyObject *__pyx_pf_5utils_8BackTest_8BackTest_26loop_process(CYTHON_UNUSE
  */
 
 /* Python wrapper */
-static PyObject *__pyx_pw_5utils_8BackTest_8BackTest_29draw(PyObject *__pyx_self, 
+static PyObject *__pyx_pw_5utils_15BackTestEngineC_8BackTest_29draw(PyObject *__pyx_self, 
 #if CYTHON_METH_FASTCALL
 PyObject *const *__pyx_args, Py_ssize_t __pyx_nargs, PyObject *__pyx_kwds
 #else
 PyObject *__pyx_args, PyObject *__pyx_kwds
 #endif
 ); /*proto*/
-static PyMethodDef __pyx_mdef_5utils_8BackTest_8BackTest_29draw = {"draw", (PyCFunction)(void*)(__Pyx_PyCFunction_FastCallWithKeywords)__pyx_pw_5utils_8BackTest_8BackTest_29draw, __Pyx_METH_FASTCALL|METH_KEYWORDS, 0};
-static PyObject *__pyx_pw_5utils_8BackTest_8BackTest_29draw(PyObject *__pyx_self, 
+static PyMethodDef __pyx_mdef_5utils_15BackTestEngineC_8BackTest_29draw = {"draw", (PyCFunction)(void*)(__Pyx_PyCFunction_FastCallWithKeywords)__pyx_pw_5utils_15BackTestEngineC_8BackTest_29draw, __Pyx_METH_FASTCALL|METH_KEYWORDS, 0};
+static PyObject *__pyx_pw_5utils_15BackTestEngineC_8BackTest_29draw(PyObject *__pyx_self, 
 #if CYTHON_METH_FASTCALL
 PyObject *const *__pyx_args, Py_ssize_t __pyx_nargs, PyObject *__pyx_kwds
 #else
@@ -11628,11 +11628,11 @@ PyObject *__pyx_args, PyObject *__pyx_kwds
       __Pyx_Arg_XDECREF_FASTCALL(values[__pyx_temp]);
     }
   }
-  __Pyx_AddTraceback("utils.BackTest.BackTest.draw", __pyx_clineno, __pyx_lineno, __pyx_filename);
+  __Pyx_AddTraceback("utils.BackTestEngineC.BackTest.draw", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __Pyx_RefNannyFinishContext();
   return NULL;
   __pyx_L4_argument_unpacking_done:;
-  __pyx_r = __pyx_pf_5utils_8BackTest_8BackTest_28draw(__pyx_self, __pyx_v_self, __pyx_v_context, __pyx_v_df);
+  __pyx_r = __pyx_pf_5utils_15BackTestEngineC_8BackTest_28draw(__pyx_self, __pyx_v_self, __pyx_v_context, __pyx_v_df);
 
   /* function exit code */
   {
@@ -11645,7 +11645,7 @@ PyObject *__pyx_args, PyObject *__pyx_kwds
   return __pyx_r;
 }
 
-static PyObject *__pyx_pf_5utils_8BackTest_8BackTest_28draw(CYTHON_UNUSED PyObject *__pyx_self, PyObject *__pyx_v_self, CYTHON_UNUSED PyObject *__pyx_v_context, PyObject *__pyx_v_df) {
+static PyObject *__pyx_pf_5utils_15BackTestEngineC_8BackTest_28draw(CYTHON_UNUSED PyObject *__pyx_self, PyObject *__pyx_v_self, CYTHON_UNUSED PyObject *__pyx_v_context, PyObject *__pyx_v_df) {
   PyObject *__pyx_r = NULL;
   __Pyx_RefNannyDeclarations
   PyObject *__pyx_t_1 = NULL;
@@ -11658,7 +11658,7 @@ static PyObject *__pyx_pf_5utils_8BackTest_8BackTest_28draw(CYTHON_UNUSED PyObje
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("draw", 1);
 
-  /* "utils/BackTest.pyx":337
+  /* "utils/BackTestEngineC.pyx":337
  * 
  *     def draw(self,context,df:pd.DataFrame):
  *         df.plot("date",self.context.name)             # <<<<<<<<<<<<<<
@@ -11697,7 +11697,7 @@ static PyObject *__pyx_pf_5utils_8BackTest_8BackTest_28draw(CYTHON_UNUSED PyObje
   }
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
 
-  /* "utils/BackTest.pyx":338
+  /* "utils/BackTestEngineC.pyx":338
  *     def draw(self,context,df:pd.DataFrame):
  *         df.plot("date",self.context.name)
  *         plt.show()             # <<<<<<<<<<<<<<
@@ -11733,7 +11733,7 @@ static PyObject *__pyx_pf_5utils_8BackTest_8BackTest_28draw(CYTHON_UNUSED PyObje
   }
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
 
-  /* "utils/BackTest.pyx":336
+  /* "utils/BackTestEngineC.pyx":336
  *         self.trade_record.to_excel("back/trade/Trade"+self.context.name+".xlsx")
  * 
  *     def draw(self,context,df:pd.DataFrame):             # <<<<<<<<<<<<<<
@@ -11749,7 +11749,7 @@ static PyObject *__pyx_pf_5utils_8BackTest_8BackTest_28draw(CYTHON_UNUSED PyObje
   __Pyx_XDECREF(__pyx_t_2);
   __Pyx_XDECREF(__pyx_t_3);
   __Pyx_XDECREF(__pyx_t_4);
-  __Pyx_AddTraceback("utils.BackTest.BackTest.draw", __pyx_clineno, __pyx_lineno, __pyx_filename);
+  __Pyx_AddTraceback("utils.BackTestEngineC.BackTest.draw", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __pyx_r = NULL;
   __pyx_L0:;
   __Pyx_XGIVEREF(__pyx_r);
@@ -11757,7 +11757,7 @@ static PyObject *__pyx_pf_5utils_8BackTest_8BackTest_28draw(CYTHON_UNUSED PyObje
   return __pyx_r;
 }
 
-/* "utils/BackTest.pyx":351
+/* "utils/BackTestEngineC.pyx":351
  *     #         self.hold.loc[len(self.hold)]=[date,info[0],value[0],info[1],value[1]/10000]
  * 
  *     def calculate_profit(self,m_data:dict):             # <<<<<<<<<<<<<<
@@ -11766,15 +11766,15 @@ static PyObject *__pyx_pf_5utils_8BackTest_8BackTest_28draw(CYTHON_UNUSED PyObje
  */
 
 /* Python wrapper */
-static PyObject *__pyx_pw_5utils_8BackTest_8BackTest_31calculate_profit(PyObject *__pyx_self, 
+static PyObject *__pyx_pw_5utils_15BackTestEngineC_8BackTest_31calculate_profit(PyObject *__pyx_self, 
 #if CYTHON_METH_FASTCALL
 PyObject *const *__pyx_args, Py_ssize_t __pyx_nargs, PyObject *__pyx_kwds
 #else
 PyObject *__pyx_args, PyObject *__pyx_kwds
 #endif
 ); /*proto*/
-static PyMethodDef __pyx_mdef_5utils_8BackTest_8BackTest_31calculate_profit = {"calculate_profit", (PyCFunction)(void*)(__Pyx_PyCFunction_FastCallWithKeywords)__pyx_pw_5utils_8BackTest_8BackTest_31calculate_profit, __Pyx_METH_FASTCALL|METH_KEYWORDS, 0};
-static PyObject *__pyx_pw_5utils_8BackTest_8BackTest_31calculate_profit(PyObject *__pyx_self, 
+static PyMethodDef __pyx_mdef_5utils_15BackTestEngineC_8BackTest_31calculate_profit = {"calculate_profit", (PyCFunction)(void*)(__Pyx_PyCFunction_FastCallWithKeywords)__pyx_pw_5utils_15BackTestEngineC_8BackTest_31calculate_profit, __Pyx_METH_FASTCALL|METH_KEYWORDS, 0};
+static PyObject *__pyx_pw_5utils_15BackTestEngineC_8BackTest_31calculate_profit(PyObject *__pyx_self, 
 #if CYTHON_METH_FASTCALL
 PyObject *const *__pyx_args, Py_ssize_t __pyx_nargs, PyObject *__pyx_kwds
 #else
@@ -11859,12 +11859,12 @@ PyObject *__pyx_args, PyObject *__pyx_kwds
       __Pyx_Arg_XDECREF_FASTCALL(values[__pyx_temp]);
     }
   }
-  __Pyx_AddTraceback("utils.BackTest.BackTest.calculate_profit", __pyx_clineno, __pyx_lineno, __pyx_filename);
+  __Pyx_AddTraceback("utils.BackTestEngineC.BackTest.calculate_profit", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __Pyx_RefNannyFinishContext();
   return NULL;
   __pyx_L4_argument_unpacking_done:;
   if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v_m_data), (&PyDict_Type), 0, "m_data", 1))) __PYX_ERR(0, 351, __pyx_L1_error)
-  __pyx_r = __pyx_pf_5utils_8BackTest_8BackTest_30calculate_profit(__pyx_self, __pyx_v_self, __pyx_v_m_data);
+  __pyx_r = __pyx_pf_5utils_15BackTestEngineC_8BackTest_30calculate_profit(__pyx_self, __pyx_v_self, __pyx_v_m_data);
 
   /* function exit code */
   goto __pyx_L0;
@@ -11881,7 +11881,7 @@ PyObject *__pyx_args, PyObject *__pyx_kwds
   return __pyx_r;
 }
 
-static PyObject *__pyx_pf_5utils_8BackTest_8BackTest_30calculate_profit(CYTHON_UNUSED PyObject *__pyx_self, PyObject *__pyx_v_self, PyObject *__pyx_v_m_data) {
+static PyObject *__pyx_pf_5utils_15BackTestEngineC_8BackTest_30calculate_profit(CYTHON_UNUSED PyObject *__pyx_self, PyObject *__pyx_v_self, PyObject *__pyx_v_m_data) {
   PyObject *__pyx_v_total_profit = NULL;
   PyObject *__pyx_v_future_type = NULL;
   PyObject *__pyx_v_value = NULL;
@@ -11912,7 +11912,7 @@ static PyObject *__pyx_pf_5utils_8BackTest_8BackTest_30calculate_profit(CYTHON_U
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("calculate_profit", 1);
 
-  /* "utils/BackTest.pyx":352
+  /* "utils/BackTestEngineC.pyx":352
  * 
  *     def calculate_profit(self,m_data:dict):
  *         total_profit=0             # <<<<<<<<<<<<<<
@@ -11922,7 +11922,7 @@ static PyObject *__pyx_pf_5utils_8BackTest_8BackTest_30calculate_profit(CYTHON_U
   __Pyx_INCREF(__pyx_int_0);
   __pyx_v_total_profit = __pyx_int_0;
 
-  /* "utils/BackTest.pyx":353
+  /* "utils/BackTestEngineC.pyx":353
  *     def calculate_profit(self,m_data:dict):
  *         total_profit=0
  *         for future_type, value in m_data.items():             # <<<<<<<<<<<<<<
@@ -11946,7 +11946,7 @@ static PyObject *__pyx_pf_5utils_8BackTest_8BackTest_30calculate_profit(CYTHON_U
     __Pyx_XDECREF_SET(__pyx_v_value, __pyx_t_6);
     __pyx_t_6 = 0;
 
-    /* "utils/BackTest.pyx":354
+    /* "utils/BackTestEngineC.pyx":354
  *         total_profit=0
  *         for future_type, value in m_data.items():
  *             try:             # <<<<<<<<<<<<<<
@@ -11962,7 +11962,7 @@ static PyObject *__pyx_pf_5utils_8BackTest_8BackTest_30calculate_profit(CYTHON_U
       __Pyx_XGOTREF(__pyx_t_10);
       /*try:*/ {
 
-        /* "utils/BackTest.pyx":355
+        /* "utils/BackTestEngineC.pyx":355
  *         for future_type, value in m_data.items():
  *             try:
  *                 current_close = value["close"].iloc[-1]             # <<<<<<<<<<<<<<
@@ -11980,7 +11980,7 @@ static PyObject *__pyx_pf_5utils_8BackTest_8BackTest_30calculate_profit(CYTHON_U
         __Pyx_XDECREF_SET(__pyx_v_current_close, __pyx_t_6);
         __pyx_t_6 = 0;
 
-        /* "utils/BackTest.pyx":354
+        /* "utils/BackTestEngineC.pyx":354
  *         total_profit=0
  *         for future_type, value in m_data.items():
  *             try:             # <<<<<<<<<<<<<<
@@ -11996,7 +11996,7 @@ static PyObject *__pyx_pf_5utils_8BackTest_8BackTest_30calculate_profit(CYTHON_U
       __Pyx_XDECREF(__pyx_t_5); __pyx_t_5 = 0;
       __Pyx_XDECREF(__pyx_t_6); __pyx_t_6 = 0;
 
-      /* "utils/BackTest.pyx":356
+      /* "utils/BackTestEngineC.pyx":356
  *             try:
  *                 current_close = value["close"].iloc[-1]
  *             except:             # <<<<<<<<<<<<<<
@@ -12004,13 +12004,13 @@ static PyObject *__pyx_pf_5utils_8BackTest_8BackTest_30calculate_profit(CYTHON_U
  *             preclose = value["prev_close"].iloc[-1]
  */
       /*except:*/ {
-        __Pyx_AddTraceback("utils.BackTest.BackTest.calculate_profit", __pyx_clineno, __pyx_lineno, __pyx_filename);
+        __Pyx_AddTraceback("utils.BackTestEngineC.BackTest.calculate_profit", __pyx_clineno, __pyx_lineno, __pyx_filename);
         if (__Pyx_GetException(&__pyx_t_6, &__pyx_t_5, &__pyx_t_11) < 0) __PYX_ERR(0, 356, __pyx_L7_except_error)
         __Pyx_XGOTREF(__pyx_t_6);
         __Pyx_XGOTREF(__pyx_t_5);
         __Pyx_XGOTREF(__pyx_t_11);
 
-        /* "utils/BackTest.pyx":357
+        /* "utils/BackTestEngineC.pyx":357
  *                 current_close = value["close"].iloc[-1]
  *             except:
  *                 continue             # <<<<<<<<<<<<<<
@@ -12025,7 +12025,7 @@ static PyObject *__pyx_pf_5utils_8BackTest_8BackTest_30calculate_profit(CYTHON_U
         goto __pyx_L11_try_continue;
       }
 
-      /* "utils/BackTest.pyx":354
+      /* "utils/BackTestEngineC.pyx":354
  *         total_profit=0
  *         for future_type, value in m_data.items():
  *             try:             # <<<<<<<<<<<<<<
@@ -12047,7 +12047,7 @@ static PyObject *__pyx_pf_5utils_8BackTest_8BackTest_30calculate_profit(CYTHON_U
       __pyx_L12_try_end:;
     }
 
-    /* "utils/BackTest.pyx":358
+    /* "utils/BackTestEngineC.pyx":358
  *             except:
  *                 continue
  *             preclose = value["prev_close"].iloc[-1]             # <<<<<<<<<<<<<<
@@ -12065,7 +12065,7 @@ static PyObject *__pyx_pf_5utils_8BackTest_8BackTest_30calculate_profit(CYTHON_U
     __Pyx_XDECREF_SET(__pyx_v_preclose, __pyx_t_11);
     __pyx_t_11 = 0;
 
-    /* "utils/BackTest.pyx":360
+    /* "utils/BackTestEngineC.pyx":360
  *             preclose = value["prev_close"].iloc[-1]
  * 
  *             if (future_type+"_long") in self.position.hold.keys():             # <<<<<<<<<<<<<<
@@ -12109,7 +12109,7 @@ static PyObject *__pyx_pf_5utils_8BackTest_8BackTest_30calculate_profit(CYTHON_U
     __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
     if (__pyx_t_14) {
 
-      /* "utils/BackTest.pyx":361
+      /* "utils/BackTestEngineC.pyx":361
  * 
  *             if (future_type+"_long") in self.position.hold.keys():
  *                 self.position.hold[future_type+"_long"][2]+=(int(current_close*10000)-int(preclose*10000))*self.position.hold[future_type+"_long"][0]             # <<<<<<<<<<<<<<
@@ -12170,7 +12170,7 @@ static PyObject *__pyx_pf_5utils_8BackTest_8BackTest_30calculate_profit(CYTHON_U
       __Pyx_DECREF(__pyx_t_16); __pyx_t_16 = 0;
       __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
 
-      /* "utils/BackTest.pyx":362
+      /* "utils/BackTestEngineC.pyx":362
  *             if (future_type+"_long") in self.position.hold.keys():
  *                 self.position.hold[future_type+"_long"][2]+=(int(current_close*10000)-int(preclose*10000))*self.position.hold[future_type+"_long"][0]
  *                 total_profit+=self.position.hold[future_type+"_long"][2]             # <<<<<<<<<<<<<<
@@ -12197,7 +12197,7 @@ static PyObject *__pyx_pf_5utils_8BackTest_8BackTest_30calculate_profit(CYTHON_U
       __Pyx_DECREF_SET(__pyx_v_total_profit, __pyx_t_17);
       __pyx_t_17 = 0;
 
-      /* "utils/BackTest.pyx":360
+      /* "utils/BackTestEngineC.pyx":360
  *             preclose = value["prev_close"].iloc[-1]
  * 
  *             if (future_type+"_long") in self.position.hold.keys():             # <<<<<<<<<<<<<<
@@ -12206,7 +12206,7 @@ static PyObject *__pyx_pf_5utils_8BackTest_8BackTest_30calculate_profit(CYTHON_U
  */
     }
 
-    /* "utils/BackTest.pyx":364
+    /* "utils/BackTestEngineC.pyx":364
  *                 total_profit+=self.position.hold[future_type+"_long"][2]
  * 
  *             if (future_type+"_short") in self.position.hold.keys():             # <<<<<<<<<<<<<<
@@ -12250,7 +12250,7 @@ static PyObject *__pyx_pf_5utils_8BackTest_8BackTest_30calculate_profit(CYTHON_U
     __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
     if (__pyx_t_14) {
 
-      /* "utils/BackTest.pyx":365
+      /* "utils/BackTestEngineC.pyx":365
  * 
  *             if (future_type+"_short") in self.position.hold.keys():
  *                 self.position.hold[future_type+"_short"][2]-=(int(current_close*10000)-int(preclose*10000))*self.position.hold[future_type+"_short"][0]             # <<<<<<<<<<<<<<
@@ -12311,7 +12311,7 @@ static PyObject *__pyx_pf_5utils_8BackTest_8BackTest_30calculate_profit(CYTHON_U
       __Pyx_DECREF(__pyx_t_11); __pyx_t_11 = 0;
       __Pyx_DECREF(__pyx_t_16); __pyx_t_16 = 0;
 
-      /* "utils/BackTest.pyx":366
+      /* "utils/BackTestEngineC.pyx":366
  *             if (future_type+"_short") in self.position.hold.keys():
  *                 self.position.hold[future_type+"_short"][2]-=(int(current_close*10000)-int(preclose*10000))*self.position.hold[future_type+"_short"][0]
  *                 total_profit+=self.position.hold[future_type+"_short"][2]             # <<<<<<<<<<<<<<
@@ -12338,7 +12338,7 @@ static PyObject *__pyx_pf_5utils_8BackTest_8BackTest_30calculate_profit(CYTHON_U
       __Pyx_DECREF_SET(__pyx_v_total_profit, __pyx_t_12);
       __pyx_t_12 = 0;
 
-      /* "utils/BackTest.pyx":364
+      /* "utils/BackTestEngineC.pyx":364
  *                 total_profit+=self.position.hold[future_type+"_long"][2]
  * 
  *             if (future_type+"_short") in self.position.hold.keys():             # <<<<<<<<<<<<<<
@@ -12350,7 +12350,7 @@ static PyObject *__pyx_pf_5utils_8BackTest_8BackTest_30calculate_profit(CYTHON_U
   }
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
 
-  /* "utils/BackTest.pyx":370
+  /* "utils/BackTestEngineC.pyx":370
  * 
  *         #holdcash
  *         self.position.asset.append(self.position.cash+total_profit)             # <<<<<<<<<<<<<<
@@ -12374,7 +12374,7 @@ static PyObject *__pyx_pf_5utils_8BackTest_8BackTest_30calculate_profit(CYTHON_U
   __Pyx_DECREF(__pyx_t_12); __pyx_t_12 = 0;
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
 
-  /* "utils/BackTest.pyx":351
+  /* "utils/BackTestEngineC.pyx":351
  *     #         self.hold.loc[len(self.hold)]=[date,info[0],value[0],info[1],value[1]/10000]
  * 
  *     def calculate_profit(self,m_data:dict):             # <<<<<<<<<<<<<<
@@ -12393,7 +12393,7 @@ static PyObject *__pyx_pf_5utils_8BackTest_8BackTest_30calculate_profit(CYTHON_U
   __Pyx_XDECREF(__pyx_t_12);
   __Pyx_XDECREF(__pyx_t_16);
   __Pyx_XDECREF(__pyx_t_17);
-  __Pyx_AddTraceback("utils.BackTest.BackTest.calculate_profit", __pyx_clineno, __pyx_lineno, __pyx_filename);
+  __Pyx_AddTraceback("utils.BackTestEngineC.BackTest.calculate_profit", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __pyx_r = NULL;
   __pyx_L0:;
   __Pyx_XDECREF(__pyx_v_total_profit);
@@ -12406,7 +12406,7 @@ static PyObject *__pyx_pf_5utils_8BackTest_8BackTest_30calculate_profit(CYTHON_U
   return __pyx_r;
 }
 
-/* "utils/BackTest.pyx":372
+/* "utils/BackTestEngineC.pyx":372
  *         self.position.asset.append(self.position.cash+total_profit)
  * 
  *     def statistics(self,profits:pd.DataFrame):             # <<<<<<<<<<<<<<
@@ -12415,16 +12415,16 @@ static PyObject *__pyx_pf_5utils_8BackTest_8BackTest_30calculate_profit(CYTHON_U
  */
 
 /* Python wrapper */
-static PyObject *__pyx_pw_5utils_8BackTest_8BackTest_33statistics(PyObject *__pyx_self, 
+static PyObject *__pyx_pw_5utils_15BackTestEngineC_8BackTest_33statistics(PyObject *__pyx_self, 
 #if CYTHON_METH_FASTCALL
 PyObject *const *__pyx_args, Py_ssize_t __pyx_nargs, PyObject *__pyx_kwds
 #else
 PyObject *__pyx_args, PyObject *__pyx_kwds
 #endif
 ); /*proto*/
-PyDoc_STRVAR(__pyx_doc_5utils_8BackTest_8BackTest_32statistics, "_summary_\n        [Obsolete]\344\270\215\345\206\215\350\277\231\351\207\214\350\277\233\350\241\214\347\273\237\350\256\241\344\272\206\357\274\214\345\267\262\345\272\237\345\274\203\n        Args:\n            profits (pd.DataFrame): _description_\n        ");
-static PyMethodDef __pyx_mdef_5utils_8BackTest_8BackTest_33statistics = {"statistics", (PyCFunction)(void*)(__Pyx_PyCFunction_FastCallWithKeywords)__pyx_pw_5utils_8BackTest_8BackTest_33statistics, __Pyx_METH_FASTCALL|METH_KEYWORDS, __pyx_doc_5utils_8BackTest_8BackTest_32statistics};
-static PyObject *__pyx_pw_5utils_8BackTest_8BackTest_33statistics(PyObject *__pyx_self, 
+PyDoc_STRVAR(__pyx_doc_5utils_15BackTestEngineC_8BackTest_32statistics, "_summary_\n        [Obsolete]\344\270\215\345\206\215\350\277\231\351\207\214\350\277\233\350\241\214\347\273\237\350\256\241\344\272\206\357\274\214\345\267\262\345\272\237\345\274\203\n        Args:\n            profits (pd.DataFrame): _description_\n        ");
+static PyMethodDef __pyx_mdef_5utils_15BackTestEngineC_8BackTest_33statistics = {"statistics", (PyCFunction)(void*)(__Pyx_PyCFunction_FastCallWithKeywords)__pyx_pw_5utils_15BackTestEngineC_8BackTest_33statistics, __Pyx_METH_FASTCALL|METH_KEYWORDS, __pyx_doc_5utils_15BackTestEngineC_8BackTest_32statistics};
+static PyObject *__pyx_pw_5utils_15BackTestEngineC_8BackTest_33statistics(PyObject *__pyx_self, 
 #if CYTHON_METH_FASTCALL
 PyObject *const *__pyx_args, Py_ssize_t __pyx_nargs, PyObject *__pyx_kwds
 #else
@@ -12509,11 +12509,11 @@ PyObject *__pyx_args, PyObject *__pyx_kwds
       __Pyx_Arg_XDECREF_FASTCALL(values[__pyx_temp]);
     }
   }
-  __Pyx_AddTraceback("utils.BackTest.BackTest.statistics", __pyx_clineno, __pyx_lineno, __pyx_filename);
+  __Pyx_AddTraceback("utils.BackTestEngineC.BackTest.statistics", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __Pyx_RefNannyFinishContext();
   return NULL;
   __pyx_L4_argument_unpacking_done:;
-  __pyx_r = __pyx_pf_5utils_8BackTest_8BackTest_32statistics(__pyx_self, __pyx_v_self, __pyx_v_profits);
+  __pyx_r = __pyx_pf_5utils_15BackTestEngineC_8BackTest_32statistics(__pyx_self, __pyx_v_self, __pyx_v_profits);
 
   /* function exit code */
   {
@@ -12526,7 +12526,7 @@ PyObject *__pyx_args, PyObject *__pyx_kwds
   return __pyx_r;
 }
 
-static PyObject *__pyx_pf_5utils_8BackTest_8BackTest_32statistics(CYTHON_UNUSED PyObject *__pyx_self, PyObject *__pyx_v_self, PyObject *__pyx_v_profits) {
+static PyObject *__pyx_pf_5utils_15BackTestEngineC_8BackTest_32statistics(CYTHON_UNUSED PyObject *__pyx_self, PyObject *__pyx_v_self, PyObject *__pyx_v_profits) {
   PyObject *__pyx_v_std_error = NULL;
   PyObject *__pyx_v_a = NULL;
   PyObject *__pyx_v_time = NULL;
@@ -12551,7 +12551,7 @@ static PyObject *__pyx_pf_5utils_8BackTest_8BackTest_32statistics(CYTHON_UNUSED 
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("statistics", 1);
 
-  /* "utils/BackTest.pyx":378
+  /* "utils/BackTestEngineC.pyx":378
  *             profits (pd.DataFrame): _description_
  *         """
  *         profits["delta"]=(profits.shift(-1)[self.context.name]- profits[self.context.name])/profits[self.context.name]             # <<<<<<<<<<<<<<
@@ -12618,7 +12618,7 @@ static PyObject *__pyx_pf_5utils_8BackTest_8BackTest_32statistics(CYTHON_UNUSED 
   if (unlikely((PyObject_SetItem(__pyx_v_profits, __pyx_n_s_delta, __pyx_t_2) < 0))) __PYX_ERR(0, 378, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
 
-  /* "utils/BackTest.pyx":379
+  /* "utils/BackTestEngineC.pyx":379
  *         """
  *         profits["delta"]=(profits.shift(-1)[self.context.name]- profits[self.context.name])/profits[self.context.name]
  *         std_error=np.sqrt(250)*profits["delta"].std()             # <<<<<<<<<<<<<<
@@ -12686,7 +12686,7 @@ static PyObject *__pyx_pf_5utils_8BackTest_8BackTest_32statistics(CYTHON_UNUSED 
   __pyx_v_std_error = __pyx_t_5;
   __pyx_t_5 = 0;
 
-  /* "utils/BackTest.pyx":380
+  /* "utils/BackTestEngineC.pyx":380
  *         profits["delta"]=(profits.shift(-1)[self.context.name]- profits[self.context.name])/profits[self.context.name]
  *         std_error=np.sqrt(250)*profits["delta"].std()
  *         self.log(std_error)             # <<<<<<<<<<<<<<
@@ -12719,7 +12719,7 @@ static PyObject *__pyx_pf_5utils_8BackTest_8BackTest_32statistics(CYTHON_UNUSED 
   }
   __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
 
-  /* "utils/BackTest.pyx":381
+  /* "utils/BackTestEngineC.pyx":381
  *         std_error=np.sqrt(250)*profits["delta"].std()
  *         self.log(std_error)
  *         a:pd.Series= profits[self.context.name]             # <<<<<<<<<<<<<<
@@ -12737,7 +12737,7 @@ static PyObject *__pyx_pf_5utils_8BackTest_8BackTest_32statistics(CYTHON_UNUSED 
   __pyx_v_a = __pyx_t_5;
   __pyx_t_5 = 0;
 
-  /* "utils/BackTest.pyx":382
+  /* "utils/BackTestEngineC.pyx":382
  *         self.log(std_error)
  *         a:pd.Series= profits[self.context.name]
  *         time=profits["date"]             # <<<<<<<<<<<<<<
@@ -12749,7 +12749,7 @@ static PyObject *__pyx_pf_5utils_8BackTest_8BackTest_32statistics(CYTHON_UNUSED 
   __pyx_v_time = __pyx_t_5;
   __pyx_t_5 = 0;
 
-  /* "utils/BackTest.pyx":383
+  /* "utils/BackTestEngineC.pyx":383
  *         a:pd.Series= profits[self.context.name]
  *         time=profits["date"]
  *         v_start=a.iloc[0]             # <<<<<<<<<<<<<<
@@ -12764,7 +12764,7 @@ static PyObject *__pyx_pf_5utils_8BackTest_8BackTest_32statistics(CYTHON_UNUSED 
   __pyx_v_v_start = __pyx_t_1;
   __pyx_t_1 = 0;
 
-  /* "utils/BackTest.pyx":384
+  /* "utils/BackTestEngineC.pyx":384
  *         time=profits["date"]
  *         v_start=a.iloc[0]
  *         v_end =a.iloc[-1]             # <<<<<<<<<<<<<<
@@ -12779,7 +12779,7 @@ static PyObject *__pyx_pf_5utils_8BackTest_8BackTest_32statistics(CYTHON_UNUSED 
   __pyx_v_v_end = __pyx_t_5;
   __pyx_t_5 = 0;
 
-  /* "utils/BackTest.pyx":385
+  /* "utils/BackTestEngineC.pyx":385
  *         v_start=a.iloc[0]
  *         v_end =a.iloc[-1]
  *         t_start=time.iloc[0]             # <<<<<<<<<<<<<<
@@ -12794,7 +12794,7 @@ static PyObject *__pyx_pf_5utils_8BackTest_8BackTest_32statistics(CYTHON_UNUSED 
   __pyx_v_t_start = __pyx_t_1;
   __pyx_t_1 = 0;
 
-  /* "utils/BackTest.pyx":386
+  /* "utils/BackTestEngineC.pyx":386
  *         v_end =a.iloc[-1]
  *         t_start=time.iloc[0]
  *         t_end=time.iloc[-1]             # <<<<<<<<<<<<<<
@@ -12809,7 +12809,7 @@ static PyObject *__pyx_pf_5utils_8BackTest_8BackTest_32statistics(CYTHON_UNUSED 
   __pyx_v_t_end = __pyx_t_5;
   __pyx_t_5 = 0;
 
-  /* "utils/BackTest.pyx":387
+  /* "utils/BackTestEngineC.pyx":387
  *         t_start=time.iloc[0]
  *         t_end=time.iloc[-1]
  *         T=(t_end-t_start).days/365.25             # <<<<<<<<<<<<<<
@@ -12827,7 +12827,7 @@ static PyObject *__pyx_pf_5utils_8BackTest_8BackTest_32statistics(CYTHON_UNUSED 
   __pyx_v_T = __pyx_t_5;
   __pyx_t_5 = 0;
 
-  /* "utils/BackTest.pyx":388
+  /* "utils/BackTestEngineC.pyx":388
  *         t_end=time.iloc[-1]
  *         T=(t_end-t_start).days/365.25
  *         profit=np.log(v_end/v_start)/T             # <<<<<<<<<<<<<<
@@ -12870,7 +12870,7 @@ static PyObject *__pyx_pf_5utils_8BackTest_8BackTest_32statistics(CYTHON_UNUSED 
   __pyx_v_profit = __pyx_t_2;
   __pyx_t_2 = 0;
 
-  /* "utils/BackTest.pyx":389
+  /* "utils/BackTestEngineC.pyx":389
  *         T=(t_end-t_start).days/365.25
  *         profit=np.log(v_end/v_start)/T
  *         self.log(f"{profit*100}%,:{profit/std_error}")             # <<<<<<<<<<<<<<
@@ -12941,7 +12941,7 @@ static PyObject *__pyx_pf_5utils_8BackTest_8BackTest_32statistics(CYTHON_UNUSED 
   }
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
 
-  /* "utils/BackTest.pyx":372
+  /* "utils/BackTestEngineC.pyx":372
  *         self.position.asset.append(self.position.cash+total_profit)
  * 
  *     def statistics(self,profits:pd.DataFrame):             # <<<<<<<<<<<<<<
@@ -12958,7 +12958,7 @@ static PyObject *__pyx_pf_5utils_8BackTest_8BackTest_32statistics(CYTHON_UNUSED 
   __Pyx_XDECREF(__pyx_t_3);
   __Pyx_XDECREF(__pyx_t_5);
   __Pyx_XDECREF(__pyx_t_8);
-  __Pyx_AddTraceback("utils.BackTest.BackTest.statistics", __pyx_clineno, __pyx_lineno, __pyx_filename);
+  __Pyx_AddTraceback("utils.BackTestEngineC.BackTest.statistics", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __pyx_r = NULL;
   __pyx_L0:;
   __Pyx_XDECREF(__pyx_v_std_error);
@@ -12975,7 +12975,7 @@ static PyObject *__pyx_pf_5utils_8BackTest_8BackTest_32statistics(CYTHON_UNUSED 
   return __pyx_r;
 }
 
-/* "utils/BackTest.pyx":394
+/* "utils/BackTestEngineC.pyx":394
  * 
  *     ############
  *     def beautiful_plot(self):             # <<<<<<<<<<<<<<
@@ -12984,15 +12984,15 @@ static PyObject *__pyx_pf_5utils_8BackTest_8BackTest_32statistics(CYTHON_UNUSED 
  */
 
 /* Python wrapper */
-static PyObject *__pyx_pw_5utils_8BackTest_8BackTest_35beautiful_plot(PyObject *__pyx_self, 
+static PyObject *__pyx_pw_5utils_15BackTestEngineC_8BackTest_35beautiful_plot(PyObject *__pyx_self, 
 #if CYTHON_METH_FASTCALL
 PyObject *const *__pyx_args, Py_ssize_t __pyx_nargs, PyObject *__pyx_kwds
 #else
 PyObject *__pyx_args, PyObject *__pyx_kwds
 #endif
 ); /*proto*/
-static PyMethodDef __pyx_mdef_5utils_8BackTest_8BackTest_35beautiful_plot = {"beautiful_plot", (PyCFunction)(void*)(__Pyx_PyCFunction_FastCallWithKeywords)__pyx_pw_5utils_8BackTest_8BackTest_35beautiful_plot, __Pyx_METH_FASTCALL|METH_KEYWORDS, 0};
-static PyObject *__pyx_pw_5utils_8BackTest_8BackTest_35beautiful_plot(PyObject *__pyx_self, 
+static PyMethodDef __pyx_mdef_5utils_15BackTestEngineC_8BackTest_35beautiful_plot = {"beautiful_plot", (PyCFunction)(void*)(__Pyx_PyCFunction_FastCallWithKeywords)__pyx_pw_5utils_15BackTestEngineC_8BackTest_35beautiful_plot, __Pyx_METH_FASTCALL|METH_KEYWORDS, 0};
+static PyObject *__pyx_pw_5utils_15BackTestEngineC_8BackTest_35beautiful_plot(PyObject *__pyx_self, 
 #if CYTHON_METH_FASTCALL
 PyObject *const *__pyx_args, Py_ssize_t __pyx_nargs, PyObject *__pyx_kwds
 #else
@@ -13062,11 +13062,11 @@ PyObject *__pyx_args, PyObject *__pyx_kwds
       __Pyx_Arg_XDECREF_FASTCALL(values[__pyx_temp]);
     }
   }
-  __Pyx_AddTraceback("utils.BackTest.BackTest.beautiful_plot", __pyx_clineno, __pyx_lineno, __pyx_filename);
+  __Pyx_AddTraceback("utils.BackTestEngineC.BackTest.beautiful_plot", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __Pyx_RefNannyFinishContext();
   return NULL;
   __pyx_L4_argument_unpacking_done:;
-  __pyx_r = __pyx_pf_5utils_8BackTest_8BackTest_34beautiful_plot(__pyx_self, __pyx_v_self);
+  __pyx_r = __pyx_pf_5utils_15BackTestEngineC_8BackTest_34beautiful_plot(__pyx_self, __pyx_v_self);
 
   /* function exit code */
   {
@@ -13079,7 +13079,7 @@ PyObject *__pyx_args, PyObject *__pyx_kwds
   return __pyx_r;
 }
 
-static PyObject *__pyx_pf_5utils_8BackTest_8BackTest_34beautiful_plot(CYTHON_UNUSED PyObject *__pyx_self, CYTHON_UNUSED PyObject *__pyx_v_self) {
+static PyObject *__pyx_pf_5utils_15BackTestEngineC_8BackTest_34beautiful_plot(CYTHON_UNUSED PyObject *__pyx_self, CYTHON_UNUSED PyObject *__pyx_v_self) {
   PyObject *__pyx_r = NULL;
   __Pyx_RefNannyDeclarations
   __Pyx_RefNannySetupContext("beautiful_plot", 1);
@@ -13091,7 +13091,7 @@ static PyObject *__pyx_pf_5utils_8BackTest_8BackTest_34beautiful_plot(CYTHON_UNU
   return __pyx_r;
 }
 
-/* "utils/BackTest.pyx":397
+/* "utils/BackTestEngineC.pyx":397
  *         pass
  * 
  *     def factor_builder(self,m_data:pd.DataFrame,context):             # <<<<<<<<<<<<<<
@@ -13100,15 +13100,15 @@ static PyObject *__pyx_pf_5utils_8BackTest_8BackTest_34beautiful_plot(CYTHON_UNU
  */
 
 /* Python wrapper */
-static PyObject *__pyx_pw_5utils_8BackTest_8BackTest_37factor_builder(PyObject *__pyx_self, 
+static PyObject *__pyx_pw_5utils_15BackTestEngineC_8BackTest_37factor_builder(PyObject *__pyx_self, 
 #if CYTHON_METH_FASTCALL
 PyObject *const *__pyx_args, Py_ssize_t __pyx_nargs, PyObject *__pyx_kwds
 #else
 PyObject *__pyx_args, PyObject *__pyx_kwds
 #endif
 ); /*proto*/
-static PyMethodDef __pyx_mdef_5utils_8BackTest_8BackTest_37factor_builder = {"factor_builder", (PyCFunction)(void*)(__Pyx_PyCFunction_FastCallWithKeywords)__pyx_pw_5utils_8BackTest_8BackTest_37factor_builder, __Pyx_METH_FASTCALL|METH_KEYWORDS, 0};
-static PyObject *__pyx_pw_5utils_8BackTest_8BackTest_37factor_builder(PyObject *__pyx_self, 
+static PyMethodDef __pyx_mdef_5utils_15BackTestEngineC_8BackTest_37factor_builder = {"factor_builder", (PyCFunction)(void*)(__Pyx_PyCFunction_FastCallWithKeywords)__pyx_pw_5utils_15BackTestEngineC_8BackTest_37factor_builder, __Pyx_METH_FASTCALL|METH_KEYWORDS, 0};
+static PyObject *__pyx_pw_5utils_15BackTestEngineC_8BackTest_37factor_builder(PyObject *__pyx_self, 
 #if CYTHON_METH_FASTCALL
 PyObject *const *__pyx_args, Py_ssize_t __pyx_nargs, PyObject *__pyx_kwds
 #else
@@ -13208,11 +13208,11 @@ PyObject *__pyx_args, PyObject *__pyx_kwds
       __Pyx_Arg_XDECREF_FASTCALL(values[__pyx_temp]);
     }
   }
-  __Pyx_AddTraceback("utils.BackTest.BackTest.factor_builder", __pyx_clineno, __pyx_lineno, __pyx_filename);
+  __Pyx_AddTraceback("utils.BackTestEngineC.BackTest.factor_builder", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __Pyx_RefNannyFinishContext();
   return NULL;
   __pyx_L4_argument_unpacking_done:;
-  __pyx_r = __pyx_pf_5utils_8BackTest_8BackTest_36factor_builder(__pyx_self, __pyx_v_self, __pyx_v_m_data, __pyx_v_context);
+  __pyx_r = __pyx_pf_5utils_15BackTestEngineC_8BackTest_36factor_builder(__pyx_self, __pyx_v_self, __pyx_v_m_data, __pyx_v_context);
 
   /* function exit code */
   {
@@ -13225,7 +13225,7 @@ PyObject *__pyx_args, PyObject *__pyx_kwds
   return __pyx_r;
 }
 
-static PyObject *__pyx_pf_5utils_8BackTest_8BackTest_36factor_builder(CYTHON_UNUSED PyObject *__pyx_self, CYTHON_UNUSED PyObject *__pyx_v_self, CYTHON_UNUSED PyObject *__pyx_v_m_data, CYTHON_UNUSED PyObject *__pyx_v_context) {
+static PyObject *__pyx_pf_5utils_15BackTestEngineC_8BackTest_36factor_builder(CYTHON_UNUSED PyObject *__pyx_self, CYTHON_UNUSED PyObject *__pyx_v_self, CYTHON_UNUSED PyObject *__pyx_v_m_data, CYTHON_UNUSED PyObject *__pyx_v_context) {
   PyObject *__pyx_r = NULL;
   __Pyx_RefNannyDeclarations
   __Pyx_RefNannySetupContext("factor_builder", 1);
@@ -13237,7 +13237,7 @@ static PyObject *__pyx_pf_5utils_8BackTest_8BackTest_36factor_builder(CYTHON_UNU
   return __pyx_r;
 }
 
-/* "utils/BackTest.pyx":399
+/* "utils/BackTestEngineC.pyx":399
  *     def factor_builder(self,m_data:pd.DataFrame,context):
  *         pass
  *     def factor_statistics(self,type):             # <<<<<<<<<<<<<<
@@ -13246,15 +13246,15 @@ static PyObject *__pyx_pf_5utils_8BackTest_8BackTest_36factor_builder(CYTHON_UNU
  */
 
 /* Python wrapper */
-static PyObject *__pyx_pw_5utils_8BackTest_8BackTest_39factor_statistics(PyObject *__pyx_self, 
+static PyObject *__pyx_pw_5utils_15BackTestEngineC_8BackTest_39factor_statistics(PyObject *__pyx_self, 
 #if CYTHON_METH_FASTCALL
 PyObject *const *__pyx_args, Py_ssize_t __pyx_nargs, PyObject *__pyx_kwds
 #else
 PyObject *__pyx_args, PyObject *__pyx_kwds
 #endif
 ); /*proto*/
-static PyMethodDef __pyx_mdef_5utils_8BackTest_8BackTest_39factor_statistics = {"factor_statistics", (PyCFunction)(void*)(__Pyx_PyCFunction_FastCallWithKeywords)__pyx_pw_5utils_8BackTest_8BackTest_39factor_statistics, __Pyx_METH_FASTCALL|METH_KEYWORDS, 0};
-static PyObject *__pyx_pw_5utils_8BackTest_8BackTest_39factor_statistics(PyObject *__pyx_self, 
+static PyMethodDef __pyx_mdef_5utils_15BackTestEngineC_8BackTest_39factor_statistics = {"factor_statistics", (PyCFunction)(void*)(__Pyx_PyCFunction_FastCallWithKeywords)__pyx_pw_5utils_15BackTestEngineC_8BackTest_39factor_statistics, __Pyx_METH_FASTCALL|METH_KEYWORDS, 0};
+static PyObject *__pyx_pw_5utils_15BackTestEngineC_8BackTest_39factor_statistics(PyObject *__pyx_self, 
 #if CYTHON_METH_FASTCALL
 PyObject *const *__pyx_args, Py_ssize_t __pyx_nargs, PyObject *__pyx_kwds
 #else
@@ -13339,11 +13339,11 @@ PyObject *__pyx_args, PyObject *__pyx_kwds
       __Pyx_Arg_XDECREF_FASTCALL(values[__pyx_temp]);
     }
   }
-  __Pyx_AddTraceback("utils.BackTest.BackTest.factor_statistics", __pyx_clineno, __pyx_lineno, __pyx_filename);
+  __Pyx_AddTraceback("utils.BackTestEngineC.BackTest.factor_statistics", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __Pyx_RefNannyFinishContext();
   return NULL;
   __pyx_L4_argument_unpacking_done:;
-  __pyx_r = __pyx_pf_5utils_8BackTest_8BackTest_38factor_statistics(__pyx_self, __pyx_v_self, __pyx_v_type);
+  __pyx_r = __pyx_pf_5utils_15BackTestEngineC_8BackTest_38factor_statistics(__pyx_self, __pyx_v_self, __pyx_v_type);
 
   /* function exit code */
   {
@@ -13356,7 +13356,7 @@ PyObject *__pyx_args, PyObject *__pyx_kwds
   return __pyx_r;
 }
 
-static PyObject *__pyx_pf_5utils_8BackTest_8BackTest_38factor_statistics(CYTHON_UNUSED PyObject *__pyx_self, PyObject *__pyx_v_self, PyObject *__pyx_v_type) {
+static PyObject *__pyx_pf_5utils_15BackTestEngineC_8BackTest_38factor_statistics(CYTHON_UNUSED PyObject *__pyx_self, PyObject *__pyx_v_self, PyObject *__pyx_v_type) {
   PyObject *__pyx_v_m_data = NULL;
   PyObject *__pyx_v_corre = NULL;
   PyObject *__pyx_r = NULL;
@@ -13371,7 +13371,7 @@ static PyObject *__pyx_pf_5utils_8BackTest_8BackTest_38factor_statistics(CYTHON_
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("factor_statistics", 1);
 
-  /* "utils/BackTest.pyx":400
+  /* "utils/BackTestEngineC.pyx":400
  *         pass
  *     def factor_statistics(self,type):
  *         m_data=self.data[type].copy()             # <<<<<<<<<<<<<<
@@ -13411,7 +13411,7 @@ static PyObject *__pyx_pf_5utils_8BackTest_8BackTest_38factor_statistics(CYTHON_
   __pyx_v_m_data = __pyx_t_1;
   __pyx_t_1 = 0;
 
-  /* "utils/BackTest.pyx":401
+  /* "utils/BackTestEngineC.pyx":401
  *     def factor_statistics(self,type):
  *         m_data=self.data[type].copy()
  *         m_data:pd.DataFrame=self.factor_builder(m_data,self.context)             # <<<<<<<<<<<<<<
@@ -13448,7 +13448,7 @@ static PyObject *__pyx_pf_5utils_8BackTest_8BackTest_38factor_statistics(CYTHON_
   __Pyx_DECREF_SET(__pyx_v_m_data, __pyx_t_1);
   __pyx_t_1 = 0;
 
-  /* "utils/BackTest.pyx":403
+  /* "utils/BackTestEngineC.pyx":403
  *         m_data:pd.DataFrame=self.factor_builder(m_data,self.context)
  *         ##
  *         corre = m_data.corr()             # <<<<<<<<<<<<<<
@@ -13482,7 +13482,7 @@ static PyObject *__pyx_pf_5utils_8BackTest_8BackTest_38factor_statistics(CYTHON_
   __pyx_v_corre = __pyx_t_1;
   __pyx_t_1 = 0;
 
-  /* "utils/BackTest.pyx":404
+  /* "utils/BackTestEngineC.pyx":404
  *         ##
  *         corre = m_data.corr()
  *         corre.to_excel("correlation.xlsx")             # <<<<<<<<<<<<<<
@@ -13515,7 +13515,7 @@ static PyObject *__pyx_pf_5utils_8BackTest_8BackTest_38factor_statistics(CYTHON_
   }
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
 
-  /* "utils/BackTest.pyx":399
+  /* "utils/BackTestEngineC.pyx":399
  *     def factor_builder(self,m_data:pd.DataFrame,context):
  *         pass
  *     def factor_statistics(self,type):             # <<<<<<<<<<<<<<
@@ -13531,7 +13531,7 @@ static PyObject *__pyx_pf_5utils_8BackTest_8BackTest_38factor_statistics(CYTHON_
   __Pyx_XDECREF(__pyx_t_2);
   __Pyx_XDECREF(__pyx_t_3);
   __Pyx_XDECREF(__pyx_t_5);
-  __Pyx_AddTraceback("utils.BackTest.BackTest.factor_statistics", __pyx_clineno, __pyx_lineno, __pyx_filename);
+  __Pyx_AddTraceback("utils.BackTestEngineC.BackTest.factor_statistics", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __pyx_r = NULL;
   __pyx_L0:;
   __Pyx_XDECREF(__pyx_v_m_data);
@@ -13542,20 +13542,20 @@ static PyObject *__pyx_pf_5utils_8BackTest_8BackTest_38factor_statistics(CYTHON_
 }
 
 #if CYTHON_USE_FREELISTS
-static struct __pyx_obj_5utils_8BackTest___pyx_scope_struct__timer *__pyx_freelist_5utils_8BackTest___pyx_scope_struct__timer[8];
-static int __pyx_freecount_5utils_8BackTest___pyx_scope_struct__timer = 0;
+static struct __pyx_obj_5utils_15BackTestEngineC___pyx_scope_struct__timer *__pyx_freelist_5utils_15BackTestEngineC___pyx_scope_struct__timer[8];
+static int __pyx_freecount_5utils_15BackTestEngineC___pyx_scope_struct__timer = 0;
 #endif
 
-static PyObject *__pyx_tp_new_5utils_8BackTest___pyx_scope_struct__timer(PyTypeObject *t, CYTHON_UNUSED PyObject *a, CYTHON_UNUSED PyObject *k) {
+static PyObject *__pyx_tp_new_5utils_15BackTestEngineC___pyx_scope_struct__timer(PyTypeObject *t, CYTHON_UNUSED PyObject *a, CYTHON_UNUSED PyObject *k) {
   PyObject *o;
   #if CYTHON_COMPILING_IN_LIMITED_API
   allocfunc alloc_func = (allocfunc)PyType_GetSlot(t, Py_tp_alloc);
   o = alloc_func(t, 0);
   #else
   #if CYTHON_USE_FREELISTS
-  if (likely((int)(__pyx_freecount_5utils_8BackTest___pyx_scope_struct__timer > 0) & (int)(t->tp_basicsize == sizeof(struct __pyx_obj_5utils_8BackTest___pyx_scope_struct__timer)))) {
-    o = (PyObject*)__pyx_freelist_5utils_8BackTest___pyx_scope_struct__timer[--__pyx_freecount_5utils_8BackTest___pyx_scope_struct__timer];
-    memset(o, 0, sizeof(struct __pyx_obj_5utils_8BackTest___pyx_scope_struct__timer));
+  if (likely((int)(__pyx_freecount_5utils_15BackTestEngineC___pyx_scope_struct__timer > 0) & (int)(t->tp_basicsize == sizeof(struct __pyx_obj_5utils_15BackTestEngineC___pyx_scope_struct__timer)))) {
+    o = (PyObject*)__pyx_freelist_5utils_15BackTestEngineC___pyx_scope_struct__timer[--__pyx_freecount_5utils_15BackTestEngineC___pyx_scope_struct__timer];
+    memset(o, 0, sizeof(struct __pyx_obj_5utils_15BackTestEngineC___pyx_scope_struct__timer));
     (void) PyObject_INIT(o, t);
     PyObject_GC_Track(o);
   } else
@@ -13568,11 +13568,11 @@ static PyObject *__pyx_tp_new_5utils_8BackTest___pyx_scope_struct__timer(PyTypeO
   return o;
 }
 
-static void __pyx_tp_dealloc_5utils_8BackTest___pyx_scope_struct__timer(PyObject *o) {
-  struct __pyx_obj_5utils_8BackTest___pyx_scope_struct__timer *p = (struct __pyx_obj_5utils_8BackTest___pyx_scope_struct__timer *)o;
+static void __pyx_tp_dealloc_5utils_15BackTestEngineC___pyx_scope_struct__timer(PyObject *o) {
+  struct __pyx_obj_5utils_15BackTestEngineC___pyx_scope_struct__timer *p = (struct __pyx_obj_5utils_15BackTestEngineC___pyx_scope_struct__timer *)o;
   #if CYTHON_USE_TP_FINALIZE
   if (unlikely((PY_VERSION_HEX >= 0x03080000 || __Pyx_PyType_HasFeature(Py_TYPE(o), Py_TPFLAGS_HAVE_FINALIZE)) && __Pyx_PyObject_GetSlot(o, tp_finalize, destructor)) && !__Pyx_PyObject_GC_IsFinalized(o)) {
-    if (__Pyx_PyObject_GetSlot(o, tp_dealloc, destructor) == __pyx_tp_dealloc_5utils_8BackTest___pyx_scope_struct__timer) {
+    if (__Pyx_PyObject_GetSlot(o, tp_dealloc, destructor) == __pyx_tp_dealloc_5utils_15BackTestEngineC___pyx_scope_struct__timer) {
       if (PyObject_CallFinalizerFromDealloc(o)) return;
     }
   }
@@ -13580,8 +13580,8 @@ static void __pyx_tp_dealloc_5utils_8BackTest___pyx_scope_struct__timer(PyObject
   PyObject_GC_UnTrack(o);
   Py_CLEAR(p->__pyx_v_func);
   #if CYTHON_USE_FREELISTS
-  if (((int)(__pyx_freecount_5utils_8BackTest___pyx_scope_struct__timer < 8) & (int)(Py_TYPE(o)->tp_basicsize == sizeof(struct __pyx_obj_5utils_8BackTest___pyx_scope_struct__timer)))) {
-    __pyx_freelist_5utils_8BackTest___pyx_scope_struct__timer[__pyx_freecount_5utils_8BackTest___pyx_scope_struct__timer++] = ((struct __pyx_obj_5utils_8BackTest___pyx_scope_struct__timer *)o);
+  if (((int)(__pyx_freecount_5utils_15BackTestEngineC___pyx_scope_struct__timer < 8) & (int)(Py_TYPE(o)->tp_basicsize == sizeof(struct __pyx_obj_5utils_15BackTestEngineC___pyx_scope_struct__timer)))) {
+    __pyx_freelist_5utils_15BackTestEngineC___pyx_scope_struct__timer[__pyx_freecount_5utils_15BackTestEngineC___pyx_scope_struct__timer++] = ((struct __pyx_obj_5utils_15BackTestEngineC___pyx_scope_struct__timer *)o);
   } else
   #endif
   {
@@ -13596,46 +13596,46 @@ static void __pyx_tp_dealloc_5utils_8BackTest___pyx_scope_struct__timer(PyObject
   }
 }
 
-static int __pyx_tp_traverse_5utils_8BackTest___pyx_scope_struct__timer(PyObject *o, visitproc v, void *a) {
+static int __pyx_tp_traverse_5utils_15BackTestEngineC___pyx_scope_struct__timer(PyObject *o, visitproc v, void *a) {
   int e;
-  struct __pyx_obj_5utils_8BackTest___pyx_scope_struct__timer *p = (struct __pyx_obj_5utils_8BackTest___pyx_scope_struct__timer *)o;
+  struct __pyx_obj_5utils_15BackTestEngineC___pyx_scope_struct__timer *p = (struct __pyx_obj_5utils_15BackTestEngineC___pyx_scope_struct__timer *)o;
   if (p->__pyx_v_func) {
     e = (*v)(p->__pyx_v_func, a); if (e) return e;
   }
   return 0;
 }
 
-static int __pyx_tp_clear_5utils_8BackTest___pyx_scope_struct__timer(PyObject *o) {
+static int __pyx_tp_clear_5utils_15BackTestEngineC___pyx_scope_struct__timer(PyObject *o) {
   PyObject* tmp;
-  struct __pyx_obj_5utils_8BackTest___pyx_scope_struct__timer *p = (struct __pyx_obj_5utils_8BackTest___pyx_scope_struct__timer *)o;
+  struct __pyx_obj_5utils_15BackTestEngineC___pyx_scope_struct__timer *p = (struct __pyx_obj_5utils_15BackTestEngineC___pyx_scope_struct__timer *)o;
   tmp = ((PyObject*)p->__pyx_v_func);
   p->__pyx_v_func = Py_None; Py_INCREF(Py_None);
   Py_XDECREF(tmp);
   return 0;
 }
 #if CYTHON_USE_TYPE_SPECS
-static PyType_Slot __pyx_type_5utils_8BackTest___pyx_scope_struct__timer_slots[] = {
-  {Py_tp_dealloc, (void *)__pyx_tp_dealloc_5utils_8BackTest___pyx_scope_struct__timer},
-  {Py_tp_traverse, (void *)__pyx_tp_traverse_5utils_8BackTest___pyx_scope_struct__timer},
-  {Py_tp_clear, (void *)__pyx_tp_clear_5utils_8BackTest___pyx_scope_struct__timer},
-  {Py_tp_new, (void *)__pyx_tp_new_5utils_8BackTest___pyx_scope_struct__timer},
+static PyType_Slot __pyx_type_5utils_15BackTestEngineC___pyx_scope_struct__timer_slots[] = {
+  {Py_tp_dealloc, (void *)__pyx_tp_dealloc_5utils_15BackTestEngineC___pyx_scope_struct__timer},
+  {Py_tp_traverse, (void *)__pyx_tp_traverse_5utils_15BackTestEngineC___pyx_scope_struct__timer},
+  {Py_tp_clear, (void *)__pyx_tp_clear_5utils_15BackTestEngineC___pyx_scope_struct__timer},
+  {Py_tp_new, (void *)__pyx_tp_new_5utils_15BackTestEngineC___pyx_scope_struct__timer},
   {0, 0},
 };
-static PyType_Spec __pyx_type_5utils_8BackTest___pyx_scope_struct__timer_spec = {
-  "utils.BackTest.__pyx_scope_struct__timer",
-  sizeof(struct __pyx_obj_5utils_8BackTest___pyx_scope_struct__timer),
+static PyType_Spec __pyx_type_5utils_15BackTestEngineC___pyx_scope_struct__timer_spec = {
+  "utils.BackTestEngineC.__pyx_scope_struct__timer",
+  sizeof(struct __pyx_obj_5utils_15BackTestEngineC___pyx_scope_struct__timer),
   0,
   Py_TPFLAGS_DEFAULT|Py_TPFLAGS_HAVE_VERSION_TAG|Py_TPFLAGS_CHECKTYPES|Py_TPFLAGS_HAVE_NEWBUFFER|Py_TPFLAGS_HAVE_GC|Py_TPFLAGS_HAVE_FINALIZE,
-  __pyx_type_5utils_8BackTest___pyx_scope_struct__timer_slots,
+  __pyx_type_5utils_15BackTestEngineC___pyx_scope_struct__timer_slots,
 };
 #else
 
-static PyTypeObject __pyx_type_5utils_8BackTest___pyx_scope_struct__timer = {
+static PyTypeObject __pyx_type_5utils_15BackTestEngineC___pyx_scope_struct__timer = {
   PyVarObject_HEAD_INIT(0, 0)
-  "utils.BackTest.""__pyx_scope_struct__timer", /*tp_name*/
-  sizeof(struct __pyx_obj_5utils_8BackTest___pyx_scope_struct__timer), /*tp_basicsize*/
+  "utils.BackTestEngineC.""__pyx_scope_struct__timer", /*tp_name*/
+  sizeof(struct __pyx_obj_5utils_15BackTestEngineC___pyx_scope_struct__timer), /*tp_basicsize*/
   0, /*tp_itemsize*/
-  __pyx_tp_dealloc_5utils_8BackTest___pyx_scope_struct__timer, /*tp_dealloc*/
+  __pyx_tp_dealloc_5utils_15BackTestEngineC___pyx_scope_struct__timer, /*tp_dealloc*/
   #if PY_VERSION_HEX < 0x030800b4
   0, /*tp_print*/
   #endif
@@ -13662,8 +13662,8 @@ static PyTypeObject __pyx_type_5utils_8BackTest___pyx_scope_struct__timer = {
   0, /*tp_as_buffer*/
   Py_TPFLAGS_DEFAULT|Py_TPFLAGS_HAVE_VERSION_TAG|Py_TPFLAGS_CHECKTYPES|Py_TPFLAGS_HAVE_NEWBUFFER|Py_TPFLAGS_HAVE_GC|Py_TPFLAGS_HAVE_FINALIZE, /*tp_flags*/
   0, /*tp_doc*/
-  __pyx_tp_traverse_5utils_8BackTest___pyx_scope_struct__timer, /*tp_traverse*/
-  __pyx_tp_clear_5utils_8BackTest___pyx_scope_struct__timer, /*tp_clear*/
+  __pyx_tp_traverse_5utils_15BackTestEngineC___pyx_scope_struct__timer, /*tp_traverse*/
+  __pyx_tp_clear_5utils_15BackTestEngineC___pyx_scope_struct__timer, /*tp_clear*/
   0, /*tp_richcompare*/
   0, /*tp_weaklistoffset*/
   0, /*tp_iter*/
@@ -13680,7 +13680,7 @@ static PyTypeObject __pyx_type_5utils_8BackTest___pyx_scope_struct__timer = {
   #endif
   0, /*tp_init*/
   0, /*tp_alloc*/
-  __pyx_tp_new_5utils_8BackTest___pyx_scope_struct__timer, /*tp_new*/
+  __pyx_tp_new_5utils_15BackTestEngineC___pyx_scope_struct__timer, /*tp_new*/
   0, /*tp_free*/
   0, /*tp_is_gc*/
   0, /*tp_bases*/
@@ -13740,6 +13740,7 @@ static int __Pyx_CreateStringTabAndInitStrings(void) {
     {&__pyx_n_s_Back, __pyx_k_Back, sizeof(__pyx_k_Back), 0, 0, 1, 1},
     {&__pyx_n_u_Back, __pyx_k_Back, sizeof(__pyx_k_Back), 0, 1, 0, 1},
     {&__pyx_n_s_BackTest, __pyx_k_BackTest, sizeof(__pyx_k_BackTest), 0, 0, 1, 1},
+    {&__pyx_kp_s_BackTestEngineC_pyx, __pyx_k_BackTestEngineC_pyx, sizeof(__pyx_k_BackTestEngineC_pyx), 0, 0, 1, 0},
     {&__pyx_n_s_BackTest___init, __pyx_k_BackTest___init, sizeof(__pyx_k_BackTest___init), 0, 0, 1, 1},
     {&__pyx_n_s_BackTest_after_trade, __pyx_k_BackTest_after_trade, sizeof(__pyx_k_BackTest_after_trade), 0, 0, 1, 1},
     {&__pyx_n_s_BackTest_beautiful_plot, __pyx_k_BackTest_beautiful_plot, sizeof(__pyx_k_BackTest_beautiful_plot), 0, 0, 1, 1},
@@ -13934,7 +13935,6 @@ static int __Pyx_CreateStringTabAndInitStrings(void) {
     {&__pyx_n_s_std, __pyx_k_std, sizeof(__pyx_k_std), 0, 0, 1, 1},
     {&__pyx_n_s_std_error, __pyx_k_std_error, sizeof(__pyx_k_std_error), 0, 0, 1, 1},
     {&__pyx_n_s_str, __pyx_k_str, sizeof(__pyx_k_str), 0, 0, 1, 1},
-    {&__pyx_kp_s_strategy_utils_BackTest_pyx, __pyx_k_strategy_utils_BackTest_pyx, sizeof(__pyx_k_strategy_utils_BackTest_pyx), 0, 0, 1, 0},
     {&__pyx_n_s_strptime, __pyx_k_strptime, sizeof(__pyx_k_strptime), 0, 0, 1, 1},
     {&__pyx_n_s_subscribe, __pyx_k_subscribe, sizeof(__pyx_k_subscribe), 0, 0, 1, 1},
     {&__pyx_n_s_super, __pyx_k_super, sizeof(__pyx_k_super), 0, 0, 1, 1},
@@ -13956,7 +13956,7 @@ static int __Pyx_CreateStringTabAndInitStrings(void) {
     {&__pyx_n_s_try_sell_value, __pyx_k_try_sell_value, sizeof(__pyx_k_try_sell_value), 0, 0, 1, 1},
     {&__pyx_n_s_try_set_value, __pyx_k_try_set_value, sizeof(__pyx_k_try_set_value), 0, 0, 1, 1},
     {&__pyx_n_s_type, __pyx_k_type, sizeof(__pyx_k_type), 0, 0, 1, 1},
-    {&__pyx_n_s_utils_BackTest, __pyx_k_utils_BackTest, sizeof(__pyx_k_utils_BackTest), 0, 0, 1, 1},
+    {&__pyx_n_s_utils_BackTestEngineC, __pyx_k_utils_BackTestEngineC, sizeof(__pyx_k_utils_BackTestEngineC), 0, 0, 1, 1},
     {&__pyx_n_s_v_end, __pyx_k_v_end, sizeof(__pyx_k_v_end), 0, 0, 1, 1},
     {&__pyx_n_s_v_start, __pyx_k_v_start, sizeof(__pyx_k_v_start), 0, 0, 1, 1},
     {&__pyx_n_s_value, __pyx_k_value, sizeof(__pyx_k_value), 0, 0, 1, 1},
@@ -13984,7 +13984,7 @@ static CYTHON_SMALL_CODE int __Pyx_InitCachedConstants(void) {
   __Pyx_RefNannyDeclarations
   __Pyx_RefNannySetupContext("__Pyx_InitCachedConstants", 0);
 
-  /* "utils/BackTest.pyx":71
+  /* "utils/BackTestEngineC.pyx":71
  *     pass
  * def timer(func):
  *     def func_wrapper(*args,**kwargs):             # <<<<<<<<<<<<<<
@@ -13994,9 +13994,9 @@ static CYTHON_SMALL_CODE int __Pyx_InitCachedConstants(void) {
   __pyx_tuple__3 = PyTuple_Pack(7, __pyx_n_s_args, __pyx_n_s_kwargs, __pyx_n_s_time, __pyx_n_s_time_start, __pyx_n_s_result, __pyx_n_s_time_end, __pyx_n_s_time_spend); if (unlikely(!__pyx_tuple__3)) __PYX_ERR(0, 71, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_tuple__3);
   __Pyx_GIVEREF(__pyx_tuple__3);
-  __pyx_codeobj__4 = (PyObject*)__Pyx_PyCode_New(0, 0, 0, 7, 0, CO_OPTIMIZED|CO_NEWLOCALS|CO_VARARGS|CO_VARKEYWORDS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__3, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_strategy_utils_BackTest_pyx, __pyx_n_s_func_wrapper, 71, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__4)) __PYX_ERR(0, 71, __pyx_L1_error)
+  __pyx_codeobj__4 = (PyObject*)__Pyx_PyCode_New(0, 0, 0, 7, 0, CO_OPTIMIZED|CO_NEWLOCALS|CO_VARARGS|CO_VARKEYWORDS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__3, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_BackTestEngineC_pyx, __pyx_n_s_func_wrapper, 71, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__4)) __PYX_ERR(0, 71, __pyx_L1_error)
 
-  /* "utils/BackTest.pyx":6
+  /* "utils/BackTestEngineC.pyx":6
  * import numpy as np
  * from datetime import datetime
  * import matplotlib.pyplot as plt             # <<<<<<<<<<<<<<
@@ -14007,7 +14007,7 @@ static CYTHON_SMALL_CODE int __Pyx_InitCachedConstants(void) {
   __Pyx_GOTREF(__pyx_tuple__11);
   __Pyx_GIVEREF(__pyx_tuple__11);
 
-  /* "utils/BackTest.pyx":9
+  /* "utils/BackTestEngineC.pyx":9
  * import warnings
  * import threading
  * def try_set_value(a:dict,key,value,is_close=True,close=0):             # <<<<<<<<<<<<<<
@@ -14017,12 +14017,12 @@ static CYTHON_SMALL_CODE int __Pyx_InitCachedConstants(void) {
   __pyx_tuple__12 = PyTuple_Pack(8, __pyx_n_s_a, __pyx_n_s_key, __pyx_n_s_value, __pyx_n_s_is_close, __pyx_n_s_close, __pyx_n_s_originial_hold, __pyx_n_s_info, __pyx_n_s_earn); if (unlikely(!__pyx_tuple__12)) __PYX_ERR(0, 9, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_tuple__12);
   __Pyx_GIVEREF(__pyx_tuple__12);
-  __pyx_codeobj__13 = (PyObject*)__Pyx_PyCode_New(5, 0, 0, 8, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__12, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_strategy_utils_BackTest_pyx, __pyx_n_s_try_set_value, 9, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__13)) __PYX_ERR(0, 9, __pyx_L1_error)
+  __pyx_codeobj__13 = (PyObject*)__Pyx_PyCode_New(5, 0, 0, 8, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__12, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_BackTestEngineC_pyx, __pyx_n_s_try_set_value, 9, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__13)) __PYX_ERR(0, 9, __pyx_L1_error)
   __pyx_tuple__14 = PyTuple_Pack(2, ((PyObject *)Py_True), ((PyObject *)__pyx_int_0)); if (unlikely(!__pyx_tuple__14)) __PYX_ERR(0, 9, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_tuple__14);
   __Pyx_GIVEREF(__pyx_tuple__14);
 
-  /* "utils/BackTest.pyx":30
+  /* "utils/BackTestEngineC.pyx":30
  *         earn = (close-value[1])*value[0] if info[1]=="long" else (value[1]-close)*value[0]
  *         a[key][2]+=earn
  * def try_sell_value(a:dict,key,value,direction,is_close=True,close=0):             # <<<<<<<<<<<<<<
@@ -14032,9 +14032,9 @@ static CYTHON_SMALL_CODE int __Pyx_InitCachedConstants(void) {
   __pyx_tuple__15 = PyTuple_Pack(9, __pyx_n_s_a, __pyx_n_s_key, __pyx_n_s_value, __pyx_n_s_direction, __pyx_n_s_is_close, __pyx_n_s_close, __pyx_n_s_real_key, __pyx_n_s_earn, __pyx_n_s_real_earn); if (unlikely(!__pyx_tuple__15)) __PYX_ERR(0, 30, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_tuple__15);
   __Pyx_GIVEREF(__pyx_tuple__15);
-  __pyx_codeobj__16 = (PyObject*)__Pyx_PyCode_New(6, 0, 0, 9, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__15, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_strategy_utils_BackTest_pyx, __pyx_n_s_try_sell_value, 30, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__16)) __PYX_ERR(0, 30, __pyx_L1_error)
+  __pyx_codeobj__16 = (PyObject*)__Pyx_PyCode_New(6, 0, 0, 9, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__15, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_BackTestEngineC_pyx, __pyx_n_s_try_sell_value, 30, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__16)) __PYX_ERR(0, 30, __pyx_L1_error)
 
-  /* "utils/BackTest.pyx":66
+  /* "utils/BackTestEngineC.pyx":66
  * 
  * class context():
  *     def __init__(self) -> None:             # <<<<<<<<<<<<<<
@@ -14044,9 +14044,9 @@ static CYTHON_SMALL_CODE int __Pyx_InitCachedConstants(void) {
   __pyx_tuple__17 = PyTuple_Pack(1, __pyx_n_s_self); if (unlikely(!__pyx_tuple__17)) __PYX_ERR(0, 66, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_tuple__17);
   __Pyx_GIVEREF(__pyx_tuple__17);
-  __pyx_codeobj__18 = (PyObject*)__Pyx_PyCode_New(1, 0, 0, 1, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__17, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_strategy_utils_BackTest_pyx, __pyx_n_s_init_2, 66, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__18)) __PYX_ERR(0, 66, __pyx_L1_error)
+  __pyx_codeobj__18 = (PyObject*)__Pyx_PyCode_New(1, 0, 0, 1, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__17, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_BackTestEngineC_pyx, __pyx_n_s_init_2, 66, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__18)) __PYX_ERR(0, 66, __pyx_L1_error)
 
-  /* "utils/BackTest.pyx":70
+  /* "utils/BackTestEngineC.pyx":70
  * class ReadingError(Exception):
  *     pass
  * def timer(func):             # <<<<<<<<<<<<<<
@@ -14056,9 +14056,9 @@ static CYTHON_SMALL_CODE int __Pyx_InitCachedConstants(void) {
   __pyx_tuple__19 = PyTuple_Pack(3, __pyx_n_s_func, __pyx_n_s_func_wrapper, __pyx_n_s_func_wrapper); if (unlikely(!__pyx_tuple__19)) __PYX_ERR(0, 70, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_tuple__19);
   __Pyx_GIVEREF(__pyx_tuple__19);
-  __pyx_codeobj__20 = (PyObject*)__Pyx_PyCode_New(1, 0, 0, 3, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__19, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_strategy_utils_BackTest_pyx, __pyx_n_s_timer, 70, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__20)) __PYX_ERR(0, 70, __pyx_L1_error)
+  __pyx_codeobj__20 = (PyObject*)__Pyx_PyCode_New(1, 0, 0, 3, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__19, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_BackTestEngineC_pyx, __pyx_n_s_timer, 70, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__20)) __PYX_ERR(0, 70, __pyx_L1_error)
 
-  /* "utils/BackTest.pyx":108
+  /* "utils/BackTestEngineC.pyx":108
  *                  value(dataframe)
  *     """
  *     def __init__(self,cash=100000000,margin_rate=0.2,margin_limit=0.8,debug=True):             # <<<<<<<<<<<<<<
@@ -14068,12 +14068,12 @@ static CYTHON_SMALL_CODE int __Pyx_InitCachedConstants(void) {
   __pyx_tuple__21 = PyTuple_Pack(5, __pyx_n_s_self, __pyx_n_s_cash, __pyx_n_s_margin_rate, __pyx_n_s_margin_limit, __pyx_n_s_debug); if (unlikely(!__pyx_tuple__21)) __PYX_ERR(0, 108, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_tuple__21);
   __Pyx_GIVEREF(__pyx_tuple__21);
-  __pyx_codeobj__22 = (PyObject*)__Pyx_PyCode_New(5, 0, 0, 5, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__21, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_strategy_utils_BackTest_pyx, __pyx_n_s_init_2, 108, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__22)) __PYX_ERR(0, 108, __pyx_L1_error)
+  __pyx_codeobj__22 = (PyObject*)__Pyx_PyCode_New(5, 0, 0, 5, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__21, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_BackTestEngineC_pyx, __pyx_n_s_init_2, 108, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__22)) __PYX_ERR(0, 108, __pyx_L1_error)
   __pyx_tuple__23 = PyTuple_Pack(4, ((PyObject *)__pyx_int_100000000), ((PyObject*)__pyx_float_0_2), ((PyObject*)__pyx_float_0_8), ((PyObject *)Py_True)); if (unlikely(!__pyx_tuple__23)) __PYX_ERR(0, 108, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_tuple__23);
   __Pyx_GIVEREF(__pyx_tuple__23);
 
-  /* "utils/BackTest.pyx":133
+  /* "utils/BackTestEngineC.pyx":133
  *         self.init(self.context)#
  *         pass
  *     def init(self,context):             # <<<<<<<<<<<<<<
@@ -14083,9 +14083,9 @@ static CYTHON_SMALL_CODE int __Pyx_InitCachedConstants(void) {
   __pyx_tuple__24 = PyTuple_Pack(2, __pyx_n_s_self, __pyx_n_s_context); if (unlikely(!__pyx_tuple__24)) __PYX_ERR(0, 133, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_tuple__24);
   __Pyx_GIVEREF(__pyx_tuple__24);
-  __pyx_codeobj__25 = (PyObject*)__Pyx_PyCode_New(2, 0, 0, 2, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__24, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_strategy_utils_BackTest_pyx, __pyx_n_s_init, 133, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__25)) __PYX_ERR(0, 133, __pyx_L1_error)
+  __pyx_codeobj__25 = (PyObject*)__Pyx_PyCode_New(2, 0, 0, 2, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__24, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_BackTestEngineC_pyx, __pyx_n_s_init, 133, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__25)) __PYX_ERR(0, 133, __pyx_L1_error)
 
-  /* "utils/BackTest.pyx":141
+  /* "utils/BackTestEngineC.pyx":141
  *         pass
  * 
  *     def subscribe(self,future_type:str):             # <<<<<<<<<<<<<<
@@ -14095,9 +14095,9 @@ static CYTHON_SMALL_CODE int __Pyx_InitCachedConstants(void) {
   __pyx_tuple__26 = PyTuple_Pack(3, __pyx_n_s_self, __pyx_n_s_future_type, __pyx_n_s_future_data); if (unlikely(!__pyx_tuple__26)) __PYX_ERR(0, 141, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_tuple__26);
   __Pyx_GIVEREF(__pyx_tuple__26);
-  __pyx_codeobj__27 = (PyObject*)__Pyx_PyCode_New(2, 0, 0, 3, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__26, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_strategy_utils_BackTest_pyx, __pyx_n_s_subscribe, 141, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__27)) __PYX_ERR(0, 141, __pyx_L1_error)
+  __pyx_codeobj__27 = (PyObject*)__Pyx_PyCode_New(2, 0, 0, 3, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__26, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_BackTestEngineC_pyx, __pyx_n_s_subscribe, 141, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__27)) __PYX_ERR(0, 141, __pyx_L1_error)
 
-  /* "utils/BackTest.pyx":156
+  /* "utils/BackTestEngineC.pyx":156
  *         self.data[future_type]=future_data
  * 
  *     def log(self,s:str):             # <<<<<<<<<<<<<<
@@ -14107,9 +14107,9 @@ static CYTHON_SMALL_CODE int __Pyx_InitCachedConstants(void) {
   __pyx_tuple__28 = PyTuple_Pack(2, __pyx_n_s_self, __pyx_n_s_s); if (unlikely(!__pyx_tuple__28)) __PYX_ERR(0, 156, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_tuple__28);
   __Pyx_GIVEREF(__pyx_tuple__28);
-  __pyx_codeobj__29 = (PyObject*)__Pyx_PyCode_New(2, 0, 0, 2, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__28, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_strategy_utils_BackTest_pyx, __pyx_n_s_log, 156, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__29)) __PYX_ERR(0, 156, __pyx_L1_error)
+  __pyx_codeobj__29 = (PyObject*)__Pyx_PyCode_New(2, 0, 0, 2, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__28, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_BackTestEngineC_pyx, __pyx_n_s_log, 156, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__29)) __PYX_ERR(0, 156, __pyx_L1_error)
 
-  /* "utils/BackTest.pyx":166
+  /* "utils/BackTestEngineC.pyx":166
  *             print(s)
  * 
  *     def before_trade(self, context, m_data:pd.DataFrame):             # <<<<<<<<<<<<<<
@@ -14119,27 +14119,27 @@ static CYTHON_SMALL_CODE int __Pyx_InitCachedConstants(void) {
   __pyx_tuple__30 = PyTuple_Pack(3, __pyx_n_s_self, __pyx_n_s_context, __pyx_n_s_m_data); if (unlikely(!__pyx_tuple__30)) __PYX_ERR(0, 166, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_tuple__30);
   __Pyx_GIVEREF(__pyx_tuple__30);
-  __pyx_codeobj__31 = (PyObject*)__Pyx_PyCode_New(3, 0, 0, 3, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__30, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_strategy_utils_BackTest_pyx, __pyx_n_s_before_trade, 166, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__31)) __PYX_ERR(0, 166, __pyx_L1_error)
+  __pyx_codeobj__31 = (PyObject*)__Pyx_PyCode_New(3, 0, 0, 3, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__30, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_BackTestEngineC_pyx, __pyx_n_s_before_trade, 166, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__31)) __PYX_ERR(0, 166, __pyx_L1_error)
 
-  /* "utils/BackTest.pyx":172
+  /* "utils/BackTestEngineC.pyx":172
  *         """
  *         pass
  *     def open_handle(self, context, m_data:pd.DataFrame):             # <<<<<<<<<<<<<<
  *         """_summary_
  * 
  */
-  __pyx_codeobj__32 = (PyObject*)__Pyx_PyCode_New(3, 0, 0, 3, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__30, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_strategy_utils_BackTest_pyx, __pyx_n_s_open_handle, 172, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__32)) __PYX_ERR(0, 172, __pyx_L1_error)
+  __pyx_codeobj__32 = (PyObject*)__Pyx_PyCode_New(3, 0, 0, 3, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__30, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_BackTestEngineC_pyx, __pyx_n_s_open_handle, 172, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__32)) __PYX_ERR(0, 172, __pyx_L1_error)
 
-  /* "utils/BackTest.pyx":178
+  /* "utils/BackTestEngineC.pyx":178
  *         """
  *         pass
  *     def after_trade(self,context,):             # <<<<<<<<<<<<<<
  *         """_summary_
  * 
  */
-  __pyx_codeobj__33 = (PyObject*)__Pyx_PyCode_New(2, 0, 0, 2, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__24, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_strategy_utils_BackTest_pyx, __pyx_n_s_after_trade, 178, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__33)) __PYX_ERR(0, 178, __pyx_L1_error)
+  __pyx_codeobj__33 = (PyObject*)__Pyx_PyCode_New(2, 0, 0, 2, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__24, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_BackTestEngineC_pyx, __pyx_n_s_after_trade, 178, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__33)) __PYX_ERR(0, 178, __pyx_L1_error)
 
-  /* "utils/BackTest.pyx":184
+  /* "utils/BackTestEngineC.pyx":184
  *         """
  *         pass
  *     def handle_bar(self,m_data:pd.DataFrame,context):             # <<<<<<<<<<<<<<
@@ -14149,9 +14149,9 @@ static CYTHON_SMALL_CODE int __Pyx_InitCachedConstants(void) {
   __pyx_tuple__34 = PyTuple_Pack(3, __pyx_n_s_self, __pyx_n_s_m_data, __pyx_n_s_context); if (unlikely(!__pyx_tuple__34)) __PYX_ERR(0, 184, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_tuple__34);
   __Pyx_GIVEREF(__pyx_tuple__34);
-  __pyx_codeobj__35 = (PyObject*)__Pyx_PyCode_New(3, 0, 0, 3, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__34, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_strategy_utils_BackTest_pyx, __pyx_n_s_handle_bar, 184, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__35)) __PYX_ERR(0, 184, __pyx_L1_error)
+  __pyx_codeobj__35 = (PyObject*)__Pyx_PyCode_New(3, 0, 0, 3, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__34, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_BackTestEngineC_pyx, __pyx_n_s_handle_bar, 184, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__35)) __PYX_ERR(0, 184, __pyx_L1_error)
 
-  /* "utils/BackTest.pyx":193
+  /* "utils/BackTestEngineC.pyx":193
  *         pass
  * 
  *     def process(self,m_data):             # <<<<<<<<<<<<<<
@@ -14161,9 +14161,9 @@ static CYTHON_SMALL_CODE int __Pyx_InitCachedConstants(void) {
   __pyx_tuple__36 = PyTuple_Pack(2, __pyx_n_s_self, __pyx_n_s_m_data); if (unlikely(!__pyx_tuple__36)) __PYX_ERR(0, 193, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_tuple__36);
   __Pyx_GIVEREF(__pyx_tuple__36);
-  __pyx_codeobj__37 = (PyObject*)__Pyx_PyCode_New(2, 0, 0, 2, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__36, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_strategy_utils_BackTest_pyx, __pyx_n_s_process, 193, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__37)) __PYX_ERR(0, 193, __pyx_L1_error)
+  __pyx_codeobj__37 = (PyObject*)__Pyx_PyCode_New(2, 0, 0, 2, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__36, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_BackTestEngineC_pyx, __pyx_n_s_process, 193, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__37)) __PYX_ERR(0, 193, __pyx_L1_error)
 
-  /* "utils/BackTest.pyx":204
+  /* "utils/BackTestEngineC.pyx":204
  *         self.handle_bar(m_data,self.context)
  *         self.after_trade(self.context)
  *     def check_hold(self,m_data):             # <<<<<<<<<<<<<<
@@ -14173,9 +14173,9 @@ static CYTHON_SMALL_CODE int __Pyx_InitCachedConstants(void) {
   __pyx_tuple__38 = PyTuple_Pack(8, __pyx_n_s_self, __pyx_n_s_m_data, __pyx_n_s_future_type, __pyx_n_s_value, __pyx_n_s_current_close, __pyx_n_s_rest, __pyx_n_s_limit, __pyx_n_s_adding); if (unlikely(!__pyx_tuple__38)) __PYX_ERR(0, 204, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_tuple__38);
   __Pyx_GIVEREF(__pyx_tuple__38);
-  __pyx_codeobj__39 = (PyObject*)__Pyx_PyCode_New(2, 0, 0, 8, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__38, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_strategy_utils_BackTest_pyx, __pyx_n_s_check_hold, 204, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__39)) __PYX_ERR(0, 204, __pyx_L1_error)
+  __pyx_codeobj__39 = (PyObject*)__Pyx_PyCode_New(2, 0, 0, 8, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__38, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_BackTestEngineC_pyx, __pyx_n_s_check_hold, 204, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__39)) __PYX_ERR(0, 204, __pyx_L1_error)
 
-  /* "utils/BackTest.pyx":236
+  /* "utils/BackTestEngineC.pyx":236
  *                     self.position.hold[future_type+"_short"][2]+=adding#
  * 
  *     def order_target_num(self,price,amount:int,multiplier:int,future_type:str,direction):             # <<<<<<<<<<<<<<
@@ -14185,9 +14185,9 @@ static CYTHON_SMALL_CODE int __Pyx_InitCachedConstants(void) {
   __pyx_tuple__40 = PyTuple_Pack(7, __pyx_n_s_self, __pyx_n_s_price, __pyx_n_s_amount, __pyx_n_s_multiplier, __pyx_n_s_future_type, __pyx_n_s_direction, __pyx_n_s_margin); if (unlikely(!__pyx_tuple__40)) __PYX_ERR(0, 236, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_tuple__40);
   __Pyx_GIVEREF(__pyx_tuple__40);
-  __pyx_codeobj__41 = (PyObject*)__Pyx_PyCode_New(6, 0, 0, 7, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__40, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_strategy_utils_BackTest_pyx, __pyx_n_s_order_target_num, 236, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__41)) __PYX_ERR(0, 236, __pyx_L1_error)
+  __pyx_codeobj__41 = (PyObject*)__Pyx_PyCode_New(6, 0, 0, 7, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__40, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_BackTestEngineC_pyx, __pyx_n_s_order_target_num, 236, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__41)) __PYX_ERR(0, 236, __pyx_L1_error)
 
-  /* "utils/BackTest.pyx":261
+  /* "utils/BackTestEngineC.pyx":261
  *         self.trade_record.loc[len(self.trade_record)]=[self.current,future_type,amount*multiplier,direction,"B",price]
  *         return
  *     def sell_target_num(self,price,amount:int,multiplier:int,future_type:str,direction,is_close=True,close=0):             # <<<<<<<<<<<<<<
@@ -14197,9 +14197,9 @@ static CYTHON_SMALL_CODE int __Pyx_InitCachedConstants(void) {
   __pyx_tuple__42 = PyTuple_Pack(9, __pyx_n_s_self, __pyx_n_s_price, __pyx_n_s_amount, __pyx_n_s_multiplier, __pyx_n_s_future_type, __pyx_n_s_direction, __pyx_n_s_is_close, __pyx_n_s_close, __pyx_n_s_earn); if (unlikely(!__pyx_tuple__42)) __PYX_ERR(0, 261, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_tuple__42);
   __Pyx_GIVEREF(__pyx_tuple__42);
-  __pyx_codeobj__43 = (PyObject*)__Pyx_PyCode_New(8, 0, 0, 9, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__42, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_strategy_utils_BackTest_pyx, __pyx_n_s_sell_target_num, 261, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__43)) __PYX_ERR(0, 261, __pyx_L1_error)
+  __pyx_codeobj__43 = (PyObject*)__Pyx_PyCode_New(8, 0, 0, 9, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__42, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_BackTestEngineC_pyx, __pyx_n_s_sell_target_num, 261, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__43)) __PYX_ERR(0, 261, __pyx_L1_error)
 
-  /* "utils/BackTest.pyx":285
+  /* "utils/BackTestEngineC.pyx":285
  *             self.trade_record.loc[len(self.trade_record)]=[self.current,future_type,amount*multiplier,direction,"S",price]
  *         return
  *     def sell_all_target(self, m_data):             # <<<<<<<<<<<<<<
@@ -14209,9 +14209,9 @@ static CYTHON_SMALL_CODE int __Pyx_InitCachedConstants(void) {
   __pyx_tuple__44 = PyTuple_Pack(8, __pyx_n_s_self, __pyx_n_s_m_data, __pyx_n_s_future_type_dir, __pyx_n_s_amount, __pyx_n_s_info, __pyx_n_s_future_type, __pyx_n_s_direction, __pyx_n_s_multi); if (unlikely(!__pyx_tuple__44)) __PYX_ERR(0, 285, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_tuple__44);
   __Pyx_GIVEREF(__pyx_tuple__44);
-  __pyx_codeobj__45 = (PyObject*)__Pyx_PyCode_New(2, 0, 0, 8, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__44, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_strategy_utils_BackTest_pyx, __pyx_n_s_sell_all_target, 285, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__45)) __PYX_ERR(0, 285, __pyx_L1_error)
+  __pyx_codeobj__45 = (PyObject*)__Pyx_PyCode_New(2, 0, 0, 8, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__44, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_BackTestEngineC_pyx, __pyx_n_s_sell_all_target, 285, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__45)) __PYX_ERR(0, 285, __pyx_L1_error)
 
-  /* "utils/BackTest.pyx":296
+  /* "utils/BackTestEngineC.pyx":296
  *     #
  *     # @timer
  *     def loop_process(self,start,end,saving_dir="back/"):             # <<<<<<<<<<<<<<
@@ -14221,12 +14221,12 @@ static CYTHON_SMALL_CODE int __Pyx_InitCachedConstants(void) {
   __pyx_tuple__46 = PyTuple_Pack(12, __pyx_n_s_self, __pyx_n_s_start, __pyx_n_s_end, __pyx_n_s_saving_dir, __pyx_n_s_time_series, __pyx_n_s_start_date, __pyx_n_s_real_time_series, __pyx_n_s_current_date, __pyx_n_s_m_data, __pyx_n_s_future_type, __pyx_n_s_value, __pyx_n_s_i); if (unlikely(!__pyx_tuple__46)) __PYX_ERR(0, 296, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_tuple__46);
   __Pyx_GIVEREF(__pyx_tuple__46);
-  __pyx_codeobj__47 = (PyObject*)__Pyx_PyCode_New(4, 0, 0, 12, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__46, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_strategy_utils_BackTest_pyx, __pyx_n_s_loop_process, 296, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__47)) __PYX_ERR(0, 296, __pyx_L1_error)
+  __pyx_codeobj__47 = (PyObject*)__Pyx_PyCode_New(4, 0, 0, 12, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__46, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_BackTestEngineC_pyx, __pyx_n_s_loop_process, 296, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__47)) __PYX_ERR(0, 296, __pyx_L1_error)
   __pyx_tuple__48 = PyTuple_Pack(1, ((PyObject*)__pyx_kp_s_back)); if (unlikely(!__pyx_tuple__48)) __PYX_ERR(0, 296, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_tuple__48);
   __Pyx_GIVEREF(__pyx_tuple__48);
 
-  /* "utils/BackTest.pyx":336
+  /* "utils/BackTestEngineC.pyx":336
  *         self.trade_record.to_excel("back/trade/Trade"+self.context.name+".xlsx")
  * 
  *     def draw(self,context,df:pd.DataFrame):             # <<<<<<<<<<<<<<
@@ -14236,9 +14236,9 @@ static CYTHON_SMALL_CODE int __Pyx_InitCachedConstants(void) {
   __pyx_tuple__49 = PyTuple_Pack(3, __pyx_n_s_self, __pyx_n_s_context, __pyx_n_s_df); if (unlikely(!__pyx_tuple__49)) __PYX_ERR(0, 336, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_tuple__49);
   __Pyx_GIVEREF(__pyx_tuple__49);
-  __pyx_codeobj__50 = (PyObject*)__Pyx_PyCode_New(3, 0, 0, 3, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__49, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_strategy_utils_BackTest_pyx, __pyx_n_s_draw, 336, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__50)) __PYX_ERR(0, 336, __pyx_L1_error)
+  __pyx_codeobj__50 = (PyObject*)__Pyx_PyCode_New(3, 0, 0, 3, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__49, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_BackTestEngineC_pyx, __pyx_n_s_draw, 336, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__50)) __PYX_ERR(0, 336, __pyx_L1_error)
 
-  /* "utils/BackTest.pyx":351
+  /* "utils/BackTestEngineC.pyx":351
  *     #         self.hold.loc[len(self.hold)]=[date,info[0],value[0],info[1],value[1]/10000]
  * 
  *     def calculate_profit(self,m_data:dict):             # <<<<<<<<<<<<<<
@@ -14248,9 +14248,9 @@ static CYTHON_SMALL_CODE int __Pyx_InitCachedConstants(void) {
   __pyx_tuple__51 = PyTuple_Pack(7, __pyx_n_s_self, __pyx_n_s_m_data, __pyx_n_s_total_profit, __pyx_n_s_future_type, __pyx_n_s_value, __pyx_n_s_current_close, __pyx_n_s_preclose); if (unlikely(!__pyx_tuple__51)) __PYX_ERR(0, 351, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_tuple__51);
   __Pyx_GIVEREF(__pyx_tuple__51);
-  __pyx_codeobj__52 = (PyObject*)__Pyx_PyCode_New(2, 0, 0, 7, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__51, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_strategy_utils_BackTest_pyx, __pyx_n_s_calculate_profit, 351, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__52)) __PYX_ERR(0, 351, __pyx_L1_error)
+  __pyx_codeobj__52 = (PyObject*)__Pyx_PyCode_New(2, 0, 0, 7, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__51, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_BackTestEngineC_pyx, __pyx_n_s_calculate_profit, 351, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__52)) __PYX_ERR(0, 351, __pyx_L1_error)
 
-  /* "utils/BackTest.pyx":372
+  /* "utils/BackTestEngineC.pyx":372
  *         self.position.asset.append(self.position.cash+total_profit)
  * 
  *     def statistics(self,profits:pd.DataFrame):             # <<<<<<<<<<<<<<
@@ -14260,27 +14260,27 @@ static CYTHON_SMALL_CODE int __Pyx_InitCachedConstants(void) {
   __pyx_tuple__53 = PyTuple_Pack(11, __pyx_n_s_self, __pyx_n_s_profits, __pyx_n_s_std_error, __pyx_n_s_a, __pyx_n_s_time, __pyx_n_s_v_start, __pyx_n_s_v_end, __pyx_n_s_t_start, __pyx_n_s_t_end, __pyx_n_s_T, __pyx_n_s_profit); if (unlikely(!__pyx_tuple__53)) __PYX_ERR(0, 372, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_tuple__53);
   __Pyx_GIVEREF(__pyx_tuple__53);
-  __pyx_codeobj__54 = (PyObject*)__Pyx_PyCode_New(2, 0, 0, 11, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__53, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_strategy_utils_BackTest_pyx, __pyx_n_s_statistics, 372, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__54)) __PYX_ERR(0, 372, __pyx_L1_error)
+  __pyx_codeobj__54 = (PyObject*)__Pyx_PyCode_New(2, 0, 0, 11, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__53, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_BackTestEngineC_pyx, __pyx_n_s_statistics, 372, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__54)) __PYX_ERR(0, 372, __pyx_L1_error)
 
-  /* "utils/BackTest.pyx":394
+  /* "utils/BackTestEngineC.pyx":394
  * 
  *     ############
  *     def beautiful_plot(self):             # <<<<<<<<<<<<<<
  *         pass
  * 
  */
-  __pyx_codeobj__55 = (PyObject*)__Pyx_PyCode_New(1, 0, 0, 1, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__17, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_strategy_utils_BackTest_pyx, __pyx_n_s_beautiful_plot, 394, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__55)) __PYX_ERR(0, 394, __pyx_L1_error)
+  __pyx_codeobj__55 = (PyObject*)__Pyx_PyCode_New(1, 0, 0, 1, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__17, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_BackTestEngineC_pyx, __pyx_n_s_beautiful_plot, 394, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__55)) __PYX_ERR(0, 394, __pyx_L1_error)
 
-  /* "utils/BackTest.pyx":397
+  /* "utils/BackTestEngineC.pyx":397
  *         pass
  * 
  *     def factor_builder(self,m_data:pd.DataFrame,context):             # <<<<<<<<<<<<<<
  *         pass
  *     def factor_statistics(self,type):
  */
-  __pyx_codeobj__56 = (PyObject*)__Pyx_PyCode_New(3, 0, 0, 3, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__34, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_strategy_utils_BackTest_pyx, __pyx_n_s_factor_builder, 397, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__56)) __PYX_ERR(0, 397, __pyx_L1_error)
+  __pyx_codeobj__56 = (PyObject*)__Pyx_PyCode_New(3, 0, 0, 3, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__34, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_BackTestEngineC_pyx, __pyx_n_s_factor_builder, 397, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__56)) __PYX_ERR(0, 397, __pyx_L1_error)
 
-  /* "utils/BackTest.pyx":399
+  /* "utils/BackTestEngineC.pyx":399
  *     def factor_builder(self,m_data:pd.DataFrame,context):
  *         pass
  *     def factor_statistics(self,type):             # <<<<<<<<<<<<<<
@@ -14290,7 +14290,7 @@ static CYTHON_SMALL_CODE int __Pyx_InitCachedConstants(void) {
   __pyx_tuple__57 = PyTuple_Pack(4, __pyx_n_s_self, __pyx_n_s_type, __pyx_n_s_m_data, __pyx_n_s_corre); if (unlikely(!__pyx_tuple__57)) __PYX_ERR(0, 399, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_tuple__57);
   __Pyx_GIVEREF(__pyx_tuple__57);
-  __pyx_codeobj__58 = (PyObject*)__Pyx_PyCode_New(2, 0, 0, 4, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__57, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_strategy_utils_BackTest_pyx, __pyx_n_s_factor_statistics, 399, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__58)) __PYX_ERR(0, 399, __pyx_L1_error)
+  __pyx_codeobj__58 = (PyObject*)__Pyx_PyCode_New(2, 0, 0, 4, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__57, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_BackTestEngineC_pyx, __pyx_n_s_factor_statistics, 399, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__58)) __PYX_ERR(0, 399, __pyx_L1_error)
   __Pyx_RefNannyFinishContext();
   return 0;
   __pyx_L1_error:;
@@ -14370,22 +14370,22 @@ static int __Pyx_modinit_type_init_code(void) {
   __Pyx_RefNannySetupContext("__Pyx_modinit_type_init_code", 0);
   /*--- Type init code ---*/
   #if CYTHON_USE_TYPE_SPECS
-  __pyx_ptype_5utils_8BackTest___pyx_scope_struct__timer = (PyTypeObject *) __Pyx_PyType_FromModuleAndSpec(__pyx_m, &__pyx_type_5utils_8BackTest___pyx_scope_struct__timer_spec, NULL); if (unlikely(!__pyx_ptype_5utils_8BackTest___pyx_scope_struct__timer)) __PYX_ERR(0, 70, __pyx_L1_error)
-  if (__Pyx_fix_up_extension_type_from_spec(&__pyx_type_5utils_8BackTest___pyx_scope_struct__timer_spec, __pyx_ptype_5utils_8BackTest___pyx_scope_struct__timer) < 0) __PYX_ERR(0, 70, __pyx_L1_error)
+  __pyx_ptype_5utils_15BackTestEngineC___pyx_scope_struct__timer = (PyTypeObject *) __Pyx_PyType_FromModuleAndSpec(__pyx_m, &__pyx_type_5utils_15BackTestEngineC___pyx_scope_struct__timer_spec, NULL); if (unlikely(!__pyx_ptype_5utils_15BackTestEngineC___pyx_scope_struct__timer)) __PYX_ERR(0, 70, __pyx_L1_error)
+  if (__Pyx_fix_up_extension_type_from_spec(&__pyx_type_5utils_15BackTestEngineC___pyx_scope_struct__timer_spec, __pyx_ptype_5utils_15BackTestEngineC___pyx_scope_struct__timer) < 0) __PYX_ERR(0, 70, __pyx_L1_error)
   #else
-  __pyx_ptype_5utils_8BackTest___pyx_scope_struct__timer = &__pyx_type_5utils_8BackTest___pyx_scope_struct__timer;
+  __pyx_ptype_5utils_15BackTestEngineC___pyx_scope_struct__timer = &__pyx_type_5utils_15BackTestEngineC___pyx_scope_struct__timer;
   #endif
   #if !CYTHON_COMPILING_IN_LIMITED_API
   #endif
   #if !CYTHON_USE_TYPE_SPECS
-  if (__Pyx_PyType_Ready(__pyx_ptype_5utils_8BackTest___pyx_scope_struct__timer) < 0) __PYX_ERR(0, 70, __pyx_L1_error)
+  if (__Pyx_PyType_Ready(__pyx_ptype_5utils_15BackTestEngineC___pyx_scope_struct__timer) < 0) __PYX_ERR(0, 70, __pyx_L1_error)
   #endif
   #if PY_MAJOR_VERSION < 3
-  __pyx_ptype_5utils_8BackTest___pyx_scope_struct__timer->tp_print = 0;
+  __pyx_ptype_5utils_15BackTestEngineC___pyx_scope_struct__timer->tp_print = 0;
   #endif
   #if !CYTHON_COMPILING_IN_LIMITED_API
-  if ((CYTHON_USE_TYPE_SLOTS && CYTHON_USE_PYTYPE_LOOKUP) && likely(!__pyx_ptype_5utils_8BackTest___pyx_scope_struct__timer->tp_dictoffset && __pyx_ptype_5utils_8BackTest___pyx_scope_struct__timer->tp_getattro == PyObject_GenericGetAttr)) {
-    __pyx_ptype_5utils_8BackTest___pyx_scope_struct__timer->tp_getattro = __Pyx_PyObject_GenericGetAttrNoDict;
+  if ((CYTHON_USE_TYPE_SLOTS && CYTHON_USE_PYTYPE_LOOKUP) && likely(!__pyx_ptype_5utils_15BackTestEngineC___pyx_scope_struct__timer->tp_dictoffset && __pyx_ptype_5utils_15BackTestEngineC___pyx_scope_struct__timer->tp_getattro == PyObject_GenericGetAttr)) {
+    __pyx_ptype_5utils_15BackTestEngineC___pyx_scope_struct__timer->tp_getattro = __Pyx_PyObject_GenericGetAttrNoDict;
   }
   #endif
   __Pyx_RefNannyFinishContext();
@@ -14423,10 +14423,10 @@ static int __Pyx_modinit_function_import_code(void) {
 #if PY_MAJOR_VERSION >= 3
 #if CYTHON_PEP489_MULTI_PHASE_INIT
 static PyObject* __pyx_pymod_create(PyObject *spec, PyModuleDef *def); /*proto*/
-static int __pyx_pymod_exec_BackTest(PyObject* module); /*proto*/
+static int __pyx_pymod_exec_BackTestEngineC(PyObject* module); /*proto*/
 static PyModuleDef_Slot __pyx_moduledef_slots[] = {
   {Py_mod_create, (void*)__pyx_pymod_create},
-  {Py_mod_exec, (void*)__pyx_pymod_exec_BackTest},
+  {Py_mod_exec, (void*)__pyx_pymod_exec_BackTestEngineC},
   {0, NULL}
 };
 #endif
@@ -14439,7 +14439,7 @@ namespace {
   #endif
   {
       PyModuleDef_HEAD_INIT,
-      "BackTest",
+      "BackTestEngineC",
       0, /* m_doc */
     #if CYTHON_PEP489_MULTI_PHASE_INIT
       0, /* m_size */
@@ -14487,11 +14487,11 @@ namespace {
 
 
 #if PY_MAJOR_VERSION < 3
-__Pyx_PyMODINIT_FUNC initBackTest(void) CYTHON_SMALL_CODE; /*proto*/
-__Pyx_PyMODINIT_FUNC initBackTest(void)
+__Pyx_PyMODINIT_FUNC initBackTestEngineC(void) CYTHON_SMALL_CODE; /*proto*/
+__Pyx_PyMODINIT_FUNC initBackTestEngineC(void)
 #else
-__Pyx_PyMODINIT_FUNC PyInit_BackTest(void) CYTHON_SMALL_CODE; /*proto*/
-__Pyx_PyMODINIT_FUNC PyInit_BackTest(void)
+__Pyx_PyMODINIT_FUNC PyInit_BackTestEngineC(void) CYTHON_SMALL_CODE; /*proto*/
+__Pyx_PyMODINIT_FUNC PyInit_BackTestEngineC(void)
 #if CYTHON_PEP489_MULTI_PHASE_INIT
 {
   return PyModuleDef_Init(&__pyx_moduledef);
@@ -14572,7 +14572,7 @@ bad:
 }
 
 
-static CYTHON_SMALL_CODE int __pyx_pymod_exec_BackTest(PyObject *__pyx_pyinit_module)
+static CYTHON_SMALL_CODE int __pyx_pymod_exec_BackTestEngineC(PyObject *__pyx_pyinit_module)
 #endif
 #endif
 {
@@ -14592,7 +14592,7 @@ static CYTHON_SMALL_CODE int __pyx_pymod_exec_BackTest(PyObject *__pyx_pyinit_mo
   #if CYTHON_PEP489_MULTI_PHASE_INIT
   if (__pyx_m) {
     if (__pyx_m == __pyx_pyinit_module) return 0;
-    PyErr_SetString(PyExc_RuntimeError, "Module 'BackTest' has already been imported. Re-initialisation is not supported.");
+    PyErr_SetString(PyExc_RuntimeError, "Module 'BackTestEngineC' has already been imported. Re-initialisation is not supported.");
     return -1;
   }
   #elif PY_MAJOR_VERSION >= 3
@@ -14604,13 +14604,13 @@ static CYTHON_SMALL_CODE int __pyx_pymod_exec_BackTest(PyObject *__pyx_pyinit_mo
   Py_INCREF(__pyx_m);
   #else
   #if PY_MAJOR_VERSION < 3
-  __pyx_m = Py_InitModule4("BackTest", __pyx_methods, 0, 0, PYTHON_API_VERSION); Py_XINCREF(__pyx_m);
+  __pyx_m = Py_InitModule4("BackTestEngineC", __pyx_methods, 0, 0, PYTHON_API_VERSION); Py_XINCREF(__pyx_m);
   if (unlikely(!__pyx_m)) __PYX_ERR(0, 2, __pyx_L1_error)
   #elif CYTHON_USE_MODULE_STATE
   __pyx_t_1 = PyModule_Create(&__pyx_moduledef); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 2, __pyx_L1_error)
   {
     int add_module_result = PyState_AddModule(__pyx_t_1, &__pyx_moduledef);
-    __pyx_t_1 = 0; /* transfer ownership from __pyx_t_1 to "BackTest" pseudovariable */
+    __pyx_t_1 = 0; /* transfer ownership from __pyx_t_1 to "BackTestEngineC" pseudovariable */
     if (unlikely((add_module_result < 0))) __PYX_ERR(0, 2, __pyx_L1_error)
     pystate_addmodule_run = 1;
   }
@@ -14634,7 +14634,7 @@ if (!__Pyx_RefNanny) {
       Py_FatalError("failed to import 'refnanny' module");
 }
 #endif
-  __Pyx_RefNannySetupContext("__Pyx_PyMODINIT_FUNC PyInit_BackTest(void)", 0);
+  __Pyx_RefNannySetupContext("__Pyx_PyMODINIT_FUNC PyInit_BackTestEngineC(void)", 0);
   if (__Pyx_check_binary_version(__PYX_LIMITED_VERSION_HEX, __Pyx_get_runtime_version(), CYTHON_COMPILING_IN_LIMITED_API) < 0) __PYX_ERR(0, 2, __pyx_L1_error)
   #ifdef __Pxy_PyFrame_Initialize_Offsets
   __Pxy_PyFrame_Initialize_Offsets();
@@ -14672,14 +14672,14 @@ if (!__Pyx_RefNanny) {
   #if PY_MAJOR_VERSION < 3 && (__PYX_DEFAULT_STRING_ENCODING_IS_ASCII || __PYX_DEFAULT_STRING_ENCODING_IS_DEFAULT)
   if (__Pyx_init_sys_getdefaultencoding_params() < 0) __PYX_ERR(0, 2, __pyx_L1_error)
   #endif
-  if (__pyx_module_is_main_utils__BackTest) {
+  if (__pyx_module_is_main_utils__BackTestEngineC) {
     if (PyObject_SetAttr(__pyx_m, __pyx_n_s_name, __pyx_n_s_main) < 0) __PYX_ERR(0, 2, __pyx_L1_error)
   }
   #if PY_MAJOR_VERSION >= 3
   {
     PyObject *modules = PyImport_GetModuleDict(); if (unlikely(!modules)) __PYX_ERR(0, 2, __pyx_L1_error)
-    if (!PyDict_GetItemString(modules, "utils.BackTest")) {
-      if (unlikely((PyDict_SetItemString(modules, "utils.BackTest", __pyx_m) < 0))) __PYX_ERR(0, 2, __pyx_L1_error)
+    if (!PyDict_GetItemString(modules, "utils.BackTestEngineC")) {
+      if (unlikely((PyDict_SetItemString(modules, "utils.BackTestEngineC", __pyx_m) < 0))) __PYX_ERR(0, 2, __pyx_L1_error)
     }
   }
   #endif
@@ -14700,7 +14700,7 @@ if (!__Pyx_RefNanny) {
   if (__Pyx_patch_abc() < 0) __PYX_ERR(0, 2, __pyx_L1_error)
   #endif
 
-  /* "utils/BackTest.pyx":2
+  /* "utils/BackTestEngineC.pyx":2
  * 
  * import os             # <<<<<<<<<<<<<<
  * import pandas as pd
@@ -14711,7 +14711,7 @@ if (!__Pyx_RefNanny) {
   if (PyDict_SetItem(__pyx_d, __pyx_n_s_os, __pyx_t_2) < 0) __PYX_ERR(0, 2, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
 
-  /* "utils/BackTest.pyx":3
+  /* "utils/BackTestEngineC.pyx":3
  * 
  * import os
  * import pandas as pd             # <<<<<<<<<<<<<<
@@ -14723,7 +14723,7 @@ if (!__Pyx_RefNanny) {
   if (PyDict_SetItem(__pyx_d, __pyx_n_s_pd, __pyx_t_2) < 0) __PYX_ERR(0, 3, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
 
-  /* "utils/BackTest.pyx":4
+  /* "utils/BackTestEngineC.pyx":4
  * import os
  * import pandas as pd
  * import numpy as np             # <<<<<<<<<<<<<<
@@ -14735,7 +14735,7 @@ if (!__Pyx_RefNanny) {
   if (PyDict_SetItem(__pyx_d, __pyx_n_s_np, __pyx_t_2) < 0) __PYX_ERR(0, 4, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
 
-  /* "utils/BackTest.pyx":5
+  /* "utils/BackTestEngineC.pyx":5
  * import pandas as pd
  * import numpy as np
  * from datetime import datetime             # <<<<<<<<<<<<<<
@@ -14756,7 +14756,7 @@ if (!__Pyx_RefNanny) {
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
 
-  /* "utils/BackTest.pyx":6
+  /* "utils/BackTestEngineC.pyx":6
  * import numpy as np
  * from datetime import datetime
  * import matplotlib.pyplot as plt             # <<<<<<<<<<<<<<
@@ -14768,7 +14768,7 @@ if (!__Pyx_RefNanny) {
   if (PyDict_SetItem(__pyx_d, __pyx_n_s_plt, __pyx_t_3) < 0) __PYX_ERR(0, 6, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
 
-  /* "utils/BackTest.pyx":7
+  /* "utils/BackTestEngineC.pyx":7
  * from datetime import datetime
  * import matplotlib.pyplot as plt
  * import warnings             # <<<<<<<<<<<<<<
@@ -14780,7 +14780,7 @@ if (!__Pyx_RefNanny) {
   if (PyDict_SetItem(__pyx_d, __pyx_n_s_warnings, __pyx_t_3) < 0) __PYX_ERR(0, 7, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
 
-  /* "utils/BackTest.pyx":8
+  /* "utils/BackTestEngineC.pyx":8
  * import matplotlib.pyplot as plt
  * import warnings
  * import threading             # <<<<<<<<<<<<<<
@@ -14792,7 +14792,7 @@ if (!__Pyx_RefNanny) {
   if (PyDict_SetItem(__pyx_d, __pyx_n_s_threading, __pyx_t_3) < 0) __PYX_ERR(0, 8, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
 
-  /* "utils/BackTest.pyx":9
+  /* "utils/BackTestEngineC.pyx":9
  * import warnings
  * import threading
  * def try_set_value(a:dict,key,value,is_close=True,close=0):             # <<<<<<<<<<<<<<
@@ -14802,7 +14802,7 @@ if (!__Pyx_RefNanny) {
   __pyx_t_3 = __Pyx_PyDict_NewPresized(1); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 9, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
   if (PyDict_SetItem(__pyx_t_3, __pyx_n_s_a, __pyx_n_s_dict) < 0) __PYX_ERR(0, 9, __pyx_L1_error)
-  __pyx_t_2 = __Pyx_CyFunction_New(&__pyx_mdef_5utils_8BackTest_1try_set_value, 0, __pyx_n_s_try_set_value, NULL, __pyx_n_s_utils_BackTest, __pyx_d, ((PyObject *)__pyx_codeobj__13)); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 9, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_CyFunction_New(&__pyx_mdef_5utils_15BackTestEngineC_1try_set_value, 0, __pyx_n_s_try_set_value, NULL, __pyx_n_s_utils_BackTestEngineC, __pyx_d, ((PyObject *)__pyx_codeobj__13)); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 9, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
   __Pyx_CyFunction_SetDefaultsTuple(__pyx_t_2, __pyx_tuple__14);
   __Pyx_CyFunction_SetAnnotationsDict(__pyx_t_2, __pyx_t_3);
@@ -14810,7 +14810,7 @@ if (!__Pyx_RefNanny) {
   if (PyDict_SetItem(__pyx_d, __pyx_n_s_try_set_value, __pyx_t_2) < 0) __PYX_ERR(0, 9, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
 
-  /* "utils/BackTest.pyx":30
+  /* "utils/BackTestEngineC.pyx":30
  *         earn = (close-value[1])*value[0] if info[1]=="long" else (value[1]-close)*value[0]
  *         a[key][2]+=earn
  * def try_sell_value(a:dict,key,value,direction,is_close=True,close=0):             # <<<<<<<<<<<<<<
@@ -14820,7 +14820,7 @@ if (!__Pyx_RefNanny) {
   __pyx_t_2 = __Pyx_PyDict_NewPresized(1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 30, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
   if (PyDict_SetItem(__pyx_t_2, __pyx_n_s_a, __pyx_n_s_dict) < 0) __PYX_ERR(0, 30, __pyx_L1_error)
-  __pyx_t_3 = __Pyx_CyFunction_New(&__pyx_mdef_5utils_8BackTest_3try_sell_value, 0, __pyx_n_s_try_sell_value, NULL, __pyx_n_s_utils_BackTest, __pyx_d, ((PyObject *)__pyx_codeobj__16)); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 30, __pyx_L1_error)
+  __pyx_t_3 = __Pyx_CyFunction_New(&__pyx_mdef_5utils_15BackTestEngineC_3try_sell_value, 0, __pyx_n_s_try_sell_value, NULL, __pyx_n_s_utils_BackTestEngineC, __pyx_d, ((PyObject *)__pyx_codeobj__16)); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 30, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
   __Pyx_CyFunction_SetDefaultsTuple(__pyx_t_3, __pyx_tuple__14);
   __Pyx_CyFunction_SetAnnotationsDict(__pyx_t_3, __pyx_t_2);
@@ -14828,17 +14828,17 @@ if (!__Pyx_RefNanny) {
   if (PyDict_SetItem(__pyx_d, __pyx_n_s_try_sell_value, __pyx_t_3) < 0) __PYX_ERR(0, 30, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
 
-  /* "utils/BackTest.pyx":65
+  /* "utils/BackTestEngineC.pyx":65
  * 
  * 
  * class context():             # <<<<<<<<<<<<<<
  *     def __init__(self) -> None:
  *         pass
  */
-  __pyx_t_3 = __Pyx_Py3MetaclassPrepare((PyObject *) NULL, __pyx_empty_tuple, __pyx_n_s_context, __pyx_n_s_context, (PyObject *) NULL, __pyx_n_s_utils_BackTest, (PyObject *) NULL); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 65, __pyx_L1_error)
+  __pyx_t_3 = __Pyx_Py3MetaclassPrepare((PyObject *) NULL, __pyx_empty_tuple, __pyx_n_s_context, __pyx_n_s_context, (PyObject *) NULL, __pyx_n_s_utils_BackTestEngineC, (PyObject *) NULL); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 65, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
 
-  /* "utils/BackTest.pyx":66
+  /* "utils/BackTestEngineC.pyx":66
  * 
  * class context():
  *     def __init__(self) -> None:             # <<<<<<<<<<<<<<
@@ -14848,14 +14848,14 @@ if (!__Pyx_RefNanny) {
   __pyx_t_2 = __Pyx_PyDict_NewPresized(1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 66, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
   if (PyDict_SetItem(__pyx_t_2, __pyx_n_s_return, __pyx_n_s_None) < 0) __PYX_ERR(0, 66, __pyx_L1_error)
-  __pyx_t_4 = __Pyx_CyFunction_New(&__pyx_mdef_5utils_8BackTest_7context_1__init__, 0, __pyx_n_s_context___init, NULL, __pyx_n_s_utils_BackTest, __pyx_d, ((PyObject *)__pyx_codeobj__18)); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 66, __pyx_L1_error)
+  __pyx_t_4 = __Pyx_CyFunction_New(&__pyx_mdef_5utils_15BackTestEngineC_7context_1__init__, 0, __pyx_n_s_context___init, NULL, __pyx_n_s_utils_BackTestEngineC, __pyx_d, ((PyObject *)__pyx_codeobj__18)); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 66, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
   __Pyx_CyFunction_SetAnnotationsDict(__pyx_t_4, __pyx_t_2);
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
   if (__Pyx_SetNameInClass(__pyx_t_3, __pyx_n_s_init_2, __pyx_t_4) < 0) __PYX_ERR(0, 66, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
 
-  /* "utils/BackTest.pyx":65
+  /* "utils/BackTestEngineC.pyx":65
  * 
  * 
  * class context():             # <<<<<<<<<<<<<<
@@ -14868,7 +14868,7 @@ if (!__Pyx_RefNanny) {
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
 
-  /* "utils/BackTest.pyx":68
+  /* "utils/BackTestEngineC.pyx":68
  *     def __init__(self) -> None:
  *         pass
  * class ReadingError(Exception):             # <<<<<<<<<<<<<<
@@ -14884,7 +14884,7 @@ if (!__Pyx_RefNanny) {
   __Pyx_GOTREF(__pyx_t_4);
   __pyx_t_2 = __Pyx_CalculateMetaclass(NULL, __pyx_t_4); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 68, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_5 = __Pyx_Py3MetaclassPrepare(__pyx_t_2, __pyx_t_4, __pyx_n_s_ReadingError, __pyx_n_s_ReadingError, (PyObject *) NULL, __pyx_n_s_utils_BackTest, (PyObject *) NULL); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 68, __pyx_L1_error)
+  __pyx_t_5 = __Pyx_Py3MetaclassPrepare(__pyx_t_2, __pyx_t_4, __pyx_n_s_ReadingError, __pyx_n_s_ReadingError, (PyObject *) NULL, __pyx_n_s_utils_BackTestEngineC, (PyObject *) NULL); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 68, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_5);
   if (__pyx_t_4 != __pyx_t_3) {
     if (unlikely((PyDict_SetItemString(__pyx_t_5, "__orig_bases__", __pyx_t_3) < 0))) __PYX_ERR(0, 68, __pyx_L1_error)
@@ -14898,54 +14898,54 @@ if (!__Pyx_RefNanny) {
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
 
-  /* "utils/BackTest.pyx":70
+  /* "utils/BackTestEngineC.pyx":70
  * class ReadingError(Exception):
  *     pass
  * def timer(func):             # <<<<<<<<<<<<<<
  *     def func_wrapper(*args,**kwargs):
  *         from time import time
  */
-  __pyx_t_4 = __Pyx_CyFunction_New(&__pyx_mdef_5utils_8BackTest_5timer, 0, __pyx_n_s_timer, NULL, __pyx_n_s_utils_BackTest, __pyx_d, ((PyObject *)__pyx_codeobj__20)); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 70, __pyx_L1_error)
+  __pyx_t_4 = __Pyx_CyFunction_New(&__pyx_mdef_5utils_15BackTestEngineC_5timer, 0, __pyx_n_s_timer, NULL, __pyx_n_s_utils_BackTestEngineC, __pyx_d, ((PyObject *)__pyx_codeobj__20)); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 70, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
   if (PyDict_SetItem(__pyx_d, __pyx_n_s_timer, __pyx_t_4) < 0) __PYX_ERR(0, 70, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
 
-  /* "utils/BackTest.pyx":83
+  /* "utils/BackTestEngineC.pyx":83
  * 
  * 
  * class BackTest():             # <<<<<<<<<<<<<<
  *     """
  *     context:
  */
-  __pyx_t_4 = __Pyx_Py3MetaclassPrepare((PyObject *) NULL, __pyx_empty_tuple, __pyx_n_s_BackTest, __pyx_n_s_BackTest, (PyObject *) NULL, __pyx_n_s_utils_BackTest, __pyx_kp_s_context_Position_cash_int_0_01); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 83, __pyx_L1_error)
+  __pyx_t_4 = __Pyx_Py3MetaclassPrepare((PyObject *) NULL, __pyx_empty_tuple, __pyx_n_s_BackTest, __pyx_n_s_BackTest, (PyObject *) NULL, __pyx_n_s_utils_BackTestEngineC, __pyx_kp_s_context_Position_cash_int_0_01); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 83, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
 
-  /* "utils/BackTest.pyx":108
+  /* "utils/BackTestEngineC.pyx":108
  *                  value(dataframe)
  *     """
  *     def __init__(self,cash=100000000,margin_rate=0.2,margin_limit=0.8,debug=True):             # <<<<<<<<<<<<<<
  *         """_summary_
  * 
  */
-  __pyx_t_2 = __Pyx_CyFunction_New(&__pyx_mdef_5utils_8BackTest_8BackTest_1__init__, 0, __pyx_n_s_BackTest___init, NULL, __pyx_n_s_utils_BackTest, __pyx_d, ((PyObject *)__pyx_codeobj__22)); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 108, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_CyFunction_New(&__pyx_mdef_5utils_15BackTestEngineC_8BackTest_1__init__, 0, __pyx_n_s_BackTest___init, NULL, __pyx_n_s_utils_BackTestEngineC, __pyx_d, ((PyObject *)__pyx_codeobj__22)); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 108, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
   __Pyx_CyFunction_SetDefaultsTuple(__pyx_t_2, __pyx_tuple__23);
   if (__Pyx_SetNameInClass(__pyx_t_4, __pyx_n_s_init_2, __pyx_t_2) < 0) __PYX_ERR(0, 108, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
 
-  /* "utils/BackTest.pyx":133
+  /* "utils/BackTestEngineC.pyx":133
  *         self.init(self.context)#
  *         pass
  *     def init(self,context):             # <<<<<<<<<<<<<<
  *         """_summary_
  * 
  */
-  __pyx_t_2 = __Pyx_CyFunction_New(&__pyx_mdef_5utils_8BackTest_8BackTest_3init, 0, __pyx_n_s_BackTest_init, NULL, __pyx_n_s_utils_BackTest, __pyx_d, ((PyObject *)__pyx_codeobj__25)); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 133, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_CyFunction_New(&__pyx_mdef_5utils_15BackTestEngineC_8BackTest_3init, 0, __pyx_n_s_BackTest_init, NULL, __pyx_n_s_utils_BackTestEngineC, __pyx_d, ((PyObject *)__pyx_codeobj__25)); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 133, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
   if (__Pyx_SetNameInClass(__pyx_t_4, __pyx_n_s_init, __pyx_t_2) < 0) __PYX_ERR(0, 133, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
 
-  /* "utils/BackTest.pyx":141
+  /* "utils/BackTestEngineC.pyx":141
  *         pass
  * 
  *     def subscribe(self,future_type:str):             # <<<<<<<<<<<<<<
@@ -14955,14 +14955,14 @@ if (!__Pyx_RefNanny) {
   __pyx_t_2 = __Pyx_PyDict_NewPresized(1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 141, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
   if (PyDict_SetItem(__pyx_t_2, __pyx_n_s_future_type, __pyx_n_s_str) < 0) __PYX_ERR(0, 141, __pyx_L1_error)
-  __pyx_t_5 = __Pyx_CyFunction_New(&__pyx_mdef_5utils_8BackTest_8BackTest_5subscribe, 0, __pyx_n_s_BackTest_subscribe, NULL, __pyx_n_s_utils_BackTest, __pyx_d, ((PyObject *)__pyx_codeobj__27)); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 141, __pyx_L1_error)
+  __pyx_t_5 = __Pyx_CyFunction_New(&__pyx_mdef_5utils_15BackTestEngineC_8BackTest_5subscribe, 0, __pyx_n_s_BackTest_subscribe, NULL, __pyx_n_s_utils_BackTestEngineC, __pyx_d, ((PyObject *)__pyx_codeobj__27)); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 141, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_5);
   __Pyx_CyFunction_SetAnnotationsDict(__pyx_t_5, __pyx_t_2);
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
   if (__Pyx_SetNameInClass(__pyx_t_4, __pyx_n_s_subscribe, __pyx_t_5) < 0) __PYX_ERR(0, 141, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
 
-  /* "utils/BackTest.pyx":156
+  /* "utils/BackTestEngineC.pyx":156
  *         self.data[future_type]=future_data
  * 
  *     def log(self,s:str):             # <<<<<<<<<<<<<<
@@ -14972,14 +14972,14 @@ if (!__Pyx_RefNanny) {
   __pyx_t_5 = __Pyx_PyDict_NewPresized(1); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 156, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_5);
   if (PyDict_SetItem(__pyx_t_5, __pyx_n_s_s, __pyx_n_s_str) < 0) __PYX_ERR(0, 156, __pyx_L1_error)
-  __pyx_t_2 = __Pyx_CyFunction_New(&__pyx_mdef_5utils_8BackTest_8BackTest_7log, 0, __pyx_n_s_BackTest_log, NULL, __pyx_n_s_utils_BackTest, __pyx_d, ((PyObject *)__pyx_codeobj__29)); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 156, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_CyFunction_New(&__pyx_mdef_5utils_15BackTestEngineC_8BackTest_7log, 0, __pyx_n_s_BackTest_log, NULL, __pyx_n_s_utils_BackTestEngineC, __pyx_d, ((PyObject *)__pyx_codeobj__29)); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 156, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
   __Pyx_CyFunction_SetAnnotationsDict(__pyx_t_2, __pyx_t_5);
   __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
   if (__Pyx_SetNameInClass(__pyx_t_4, __pyx_n_s_log, __pyx_t_2) < 0) __PYX_ERR(0, 156, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
 
-  /* "utils/BackTest.pyx":166
+  /* "utils/BackTestEngineC.pyx":166
  *             print(s)
  * 
  *     def before_trade(self, context, m_data:pd.DataFrame):             # <<<<<<<<<<<<<<
@@ -14989,14 +14989,14 @@ if (!__Pyx_RefNanny) {
   __pyx_t_2 = __Pyx_PyDict_NewPresized(1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 166, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
   if (PyDict_SetItem(__pyx_t_2, __pyx_n_s_m_data, __pyx_kp_s_pd_DataFrame) < 0) __PYX_ERR(0, 166, __pyx_L1_error)
-  __pyx_t_5 = __Pyx_CyFunction_New(&__pyx_mdef_5utils_8BackTest_8BackTest_9before_trade, 0, __pyx_n_s_BackTest_before_trade, NULL, __pyx_n_s_utils_BackTest, __pyx_d, ((PyObject *)__pyx_codeobj__31)); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 166, __pyx_L1_error)
+  __pyx_t_5 = __Pyx_CyFunction_New(&__pyx_mdef_5utils_15BackTestEngineC_8BackTest_9before_trade, 0, __pyx_n_s_BackTest_before_trade, NULL, __pyx_n_s_utils_BackTestEngineC, __pyx_d, ((PyObject *)__pyx_codeobj__31)); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 166, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_5);
   __Pyx_CyFunction_SetAnnotationsDict(__pyx_t_5, __pyx_t_2);
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
   if (__Pyx_SetNameInClass(__pyx_t_4, __pyx_n_s_before_trade, __pyx_t_5) < 0) __PYX_ERR(0, 166, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
 
-  /* "utils/BackTest.pyx":172
+  /* "utils/BackTestEngineC.pyx":172
  *         """
  *         pass
  *     def open_handle(self, context, m_data:pd.DataFrame):             # <<<<<<<<<<<<<<
@@ -15006,26 +15006,26 @@ if (!__Pyx_RefNanny) {
   __pyx_t_5 = __Pyx_PyDict_NewPresized(1); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 172, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_5);
   if (PyDict_SetItem(__pyx_t_5, __pyx_n_s_m_data, __pyx_kp_s_pd_DataFrame) < 0) __PYX_ERR(0, 172, __pyx_L1_error)
-  __pyx_t_2 = __Pyx_CyFunction_New(&__pyx_mdef_5utils_8BackTest_8BackTest_11open_handle, 0, __pyx_n_s_BackTest_open_handle, NULL, __pyx_n_s_utils_BackTest, __pyx_d, ((PyObject *)__pyx_codeobj__32)); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 172, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_CyFunction_New(&__pyx_mdef_5utils_15BackTestEngineC_8BackTest_11open_handle, 0, __pyx_n_s_BackTest_open_handle, NULL, __pyx_n_s_utils_BackTestEngineC, __pyx_d, ((PyObject *)__pyx_codeobj__32)); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 172, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
   __Pyx_CyFunction_SetAnnotationsDict(__pyx_t_2, __pyx_t_5);
   __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
   if (__Pyx_SetNameInClass(__pyx_t_4, __pyx_n_s_open_handle, __pyx_t_2) < 0) __PYX_ERR(0, 172, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
 
-  /* "utils/BackTest.pyx":178
+  /* "utils/BackTestEngineC.pyx":178
  *         """
  *         pass
  *     def after_trade(self,context,):             # <<<<<<<<<<<<<<
  *         """_summary_
  * 
  */
-  __pyx_t_2 = __Pyx_CyFunction_New(&__pyx_mdef_5utils_8BackTest_8BackTest_13after_trade, 0, __pyx_n_s_BackTest_after_trade, NULL, __pyx_n_s_utils_BackTest, __pyx_d, ((PyObject *)__pyx_codeobj__33)); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 178, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_CyFunction_New(&__pyx_mdef_5utils_15BackTestEngineC_8BackTest_13after_trade, 0, __pyx_n_s_BackTest_after_trade, NULL, __pyx_n_s_utils_BackTestEngineC, __pyx_d, ((PyObject *)__pyx_codeobj__33)); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 178, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
   if (__Pyx_SetNameInClass(__pyx_t_4, __pyx_n_s_after_trade, __pyx_t_2) < 0) __PYX_ERR(0, 178, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
 
-  /* "utils/BackTest.pyx":184
+  /* "utils/BackTestEngineC.pyx":184
  *         """
  *         pass
  *     def handle_bar(self,m_data:pd.DataFrame,context):             # <<<<<<<<<<<<<<
@@ -15035,38 +15035,38 @@ if (!__Pyx_RefNanny) {
   __pyx_t_2 = __Pyx_PyDict_NewPresized(1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 184, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
   if (PyDict_SetItem(__pyx_t_2, __pyx_n_s_m_data, __pyx_kp_s_pd_DataFrame) < 0) __PYX_ERR(0, 184, __pyx_L1_error)
-  __pyx_t_5 = __Pyx_CyFunction_New(&__pyx_mdef_5utils_8BackTest_8BackTest_15handle_bar, 0, __pyx_n_s_BackTest_handle_bar, NULL, __pyx_n_s_utils_BackTest, __pyx_d, ((PyObject *)__pyx_codeobj__35)); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 184, __pyx_L1_error)
+  __pyx_t_5 = __Pyx_CyFunction_New(&__pyx_mdef_5utils_15BackTestEngineC_8BackTest_15handle_bar, 0, __pyx_n_s_BackTest_handle_bar, NULL, __pyx_n_s_utils_BackTestEngineC, __pyx_d, ((PyObject *)__pyx_codeobj__35)); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 184, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_5);
   __Pyx_CyFunction_SetAnnotationsDict(__pyx_t_5, __pyx_t_2);
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
   if (__Pyx_SetNameInClass(__pyx_t_4, __pyx_n_s_handle_bar, __pyx_t_5) < 0) __PYX_ERR(0, 184, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
 
-  /* "utils/BackTest.pyx":193
+  /* "utils/BackTestEngineC.pyx":193
  *         pass
  * 
  *     def process(self,m_data):             # <<<<<<<<<<<<<<
  *         """_summary_
  *          ->->->
  */
-  __pyx_t_5 = __Pyx_CyFunction_New(&__pyx_mdef_5utils_8BackTest_8BackTest_17process, 0, __pyx_n_s_BackTest_process, NULL, __pyx_n_s_utils_BackTest, __pyx_d, ((PyObject *)__pyx_codeobj__37)); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 193, __pyx_L1_error)
+  __pyx_t_5 = __Pyx_CyFunction_New(&__pyx_mdef_5utils_15BackTestEngineC_8BackTest_17process, 0, __pyx_n_s_BackTest_process, NULL, __pyx_n_s_utils_BackTestEngineC, __pyx_d, ((PyObject *)__pyx_codeobj__37)); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 193, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_5);
   if (__Pyx_SetNameInClass(__pyx_t_4, __pyx_n_s_process, __pyx_t_5) < 0) __PYX_ERR(0, 193, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
 
-  /* "utils/BackTest.pyx":204
+  /* "utils/BackTestEngineC.pyx":204
  *         self.handle_bar(m_data,self.context)
  *         self.after_trade(self.context)
  *     def check_hold(self,m_data):             # <<<<<<<<<<<<<<
  *         """_summary_
  *         margin_rate=1,margin_limit=0
  */
-  __pyx_t_5 = __Pyx_CyFunction_New(&__pyx_mdef_5utils_8BackTest_8BackTest_19check_hold, 0, __pyx_n_s_BackTest_check_hold, NULL, __pyx_n_s_utils_BackTest, __pyx_d, ((PyObject *)__pyx_codeobj__39)); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 204, __pyx_L1_error)
+  __pyx_t_5 = __Pyx_CyFunction_New(&__pyx_mdef_5utils_15BackTestEngineC_8BackTest_19check_hold, 0, __pyx_n_s_BackTest_check_hold, NULL, __pyx_n_s_utils_BackTestEngineC, __pyx_d, ((PyObject *)__pyx_codeobj__39)); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 204, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_5);
   if (__Pyx_SetNameInClass(__pyx_t_4, __pyx_n_s_check_hold, __pyx_t_5) < 0) __PYX_ERR(0, 204, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
 
-  /* "utils/BackTest.pyx":236
+  /* "utils/BackTestEngineC.pyx":236
  *                     self.position.hold[future_type+"_short"][2]+=adding#
  * 
  *     def order_target_num(self,price,amount:int,multiplier:int,future_type:str,direction):             # <<<<<<<<<<<<<<
@@ -15078,14 +15078,14 @@ if (!__Pyx_RefNanny) {
   if (PyDict_SetItem(__pyx_t_5, __pyx_n_s_amount, __pyx_n_s_int) < 0) __PYX_ERR(0, 236, __pyx_L1_error)
   if (PyDict_SetItem(__pyx_t_5, __pyx_n_s_multiplier, __pyx_n_s_int) < 0) __PYX_ERR(0, 236, __pyx_L1_error)
   if (PyDict_SetItem(__pyx_t_5, __pyx_n_s_future_type, __pyx_n_s_str) < 0) __PYX_ERR(0, 236, __pyx_L1_error)
-  __pyx_t_2 = __Pyx_CyFunction_New(&__pyx_mdef_5utils_8BackTest_8BackTest_21order_target_num, 0, __pyx_n_s_BackTest_order_target_num, NULL, __pyx_n_s_utils_BackTest, __pyx_d, ((PyObject *)__pyx_codeobj__41)); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 236, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_CyFunction_New(&__pyx_mdef_5utils_15BackTestEngineC_8BackTest_21order_target_num, 0, __pyx_n_s_BackTest_order_target_num, NULL, __pyx_n_s_utils_BackTestEngineC, __pyx_d, ((PyObject *)__pyx_codeobj__41)); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 236, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
   __Pyx_CyFunction_SetAnnotationsDict(__pyx_t_2, __pyx_t_5);
   __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
   if (__Pyx_SetNameInClass(__pyx_t_4, __pyx_n_s_order_target_num, __pyx_t_2) < 0) __PYX_ERR(0, 236, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
 
-  /* "utils/BackTest.pyx":261
+  /* "utils/BackTestEngineC.pyx":261
  *         self.trade_record.loc[len(self.trade_record)]=[self.current,future_type,amount*multiplier,direction,"B",price]
  *         return
  *     def sell_target_num(self,price,amount:int,multiplier:int,future_type:str,direction,is_close=True,close=0):             # <<<<<<<<<<<<<<
@@ -15097,7 +15097,7 @@ if (!__Pyx_RefNanny) {
   if (PyDict_SetItem(__pyx_t_2, __pyx_n_s_amount, __pyx_n_s_int) < 0) __PYX_ERR(0, 261, __pyx_L1_error)
   if (PyDict_SetItem(__pyx_t_2, __pyx_n_s_multiplier, __pyx_n_s_int) < 0) __PYX_ERR(0, 261, __pyx_L1_error)
   if (PyDict_SetItem(__pyx_t_2, __pyx_n_s_future_type, __pyx_n_s_str) < 0) __PYX_ERR(0, 261, __pyx_L1_error)
-  __pyx_t_5 = __Pyx_CyFunction_New(&__pyx_mdef_5utils_8BackTest_8BackTest_23sell_target_num, 0, __pyx_n_s_BackTest_sell_target_num, NULL, __pyx_n_s_utils_BackTest, __pyx_d, ((PyObject *)__pyx_codeobj__43)); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 261, __pyx_L1_error)
+  __pyx_t_5 = __Pyx_CyFunction_New(&__pyx_mdef_5utils_15BackTestEngineC_8BackTest_23sell_target_num, 0, __pyx_n_s_BackTest_sell_target_num, NULL, __pyx_n_s_utils_BackTestEngineC, __pyx_d, ((PyObject *)__pyx_codeobj__43)); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 261, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_5);
   __Pyx_CyFunction_SetDefaultsTuple(__pyx_t_5, __pyx_tuple__14);
   __Pyx_CyFunction_SetAnnotationsDict(__pyx_t_5, __pyx_t_2);
@@ -15105,32 +15105,32 @@ if (!__Pyx_RefNanny) {
   if (__Pyx_SetNameInClass(__pyx_t_4, __pyx_n_s_sell_target_num, __pyx_t_5) < 0) __PYX_ERR(0, 261, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
 
-  /* "utils/BackTest.pyx":285
+  /* "utils/BackTestEngineC.pyx":285
  *             self.trade_record.loc[len(self.trade_record)]=[self.current,future_type,amount*multiplier,direction,"S",price]
  *         return
  *     def sell_all_target(self, m_data):             # <<<<<<<<<<<<<<
  *         for future_type_dir, amount in self.position.hold.items():
  *                 info = future_type_dir.split("_")
  */
-  __pyx_t_5 = __Pyx_CyFunction_New(&__pyx_mdef_5utils_8BackTest_8BackTest_25sell_all_target, 0, __pyx_n_s_BackTest_sell_all_target, NULL, __pyx_n_s_utils_BackTest, __pyx_d, ((PyObject *)__pyx_codeobj__45)); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 285, __pyx_L1_error)
+  __pyx_t_5 = __Pyx_CyFunction_New(&__pyx_mdef_5utils_15BackTestEngineC_8BackTest_25sell_all_target, 0, __pyx_n_s_BackTest_sell_all_target, NULL, __pyx_n_s_utils_BackTestEngineC, __pyx_d, ((PyObject *)__pyx_codeobj__45)); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 285, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_5);
   if (__Pyx_SetNameInClass(__pyx_t_4, __pyx_n_s_sell_all_target, __pyx_t_5) < 0) __PYX_ERR(0, 285, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
 
-  /* "utils/BackTest.pyx":296
+  /* "utils/BackTestEngineC.pyx":296
  *     #
  *     # @timer
  *     def loop_process(self,start,end,saving_dir="back/"):             # <<<<<<<<<<<<<<
  *         """_summary_
  * 
  */
-  __pyx_t_5 = __Pyx_CyFunction_New(&__pyx_mdef_5utils_8BackTest_8BackTest_27loop_process, 0, __pyx_n_s_BackTest_loop_process, NULL, __pyx_n_s_utils_BackTest, __pyx_d, ((PyObject *)__pyx_codeobj__47)); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 296, __pyx_L1_error)
+  __pyx_t_5 = __Pyx_CyFunction_New(&__pyx_mdef_5utils_15BackTestEngineC_8BackTest_27loop_process, 0, __pyx_n_s_BackTest_loop_process, NULL, __pyx_n_s_utils_BackTestEngineC, __pyx_d, ((PyObject *)__pyx_codeobj__47)); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 296, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_5);
   __Pyx_CyFunction_SetDefaultsTuple(__pyx_t_5, __pyx_tuple__48);
   if (__Pyx_SetNameInClass(__pyx_t_4, __pyx_n_s_loop_process, __pyx_t_5) < 0) __PYX_ERR(0, 296, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
 
-  /* "utils/BackTest.pyx":336
+  /* "utils/BackTestEngineC.pyx":336
  *         self.trade_record.to_excel("back/trade/Trade"+self.context.name+".xlsx")
  * 
  *     def draw(self,context,df:pd.DataFrame):             # <<<<<<<<<<<<<<
@@ -15140,14 +15140,14 @@ if (!__Pyx_RefNanny) {
   __pyx_t_5 = __Pyx_PyDict_NewPresized(1); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 336, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_5);
   if (PyDict_SetItem(__pyx_t_5, __pyx_n_s_df, __pyx_kp_s_pd_DataFrame) < 0) __PYX_ERR(0, 336, __pyx_L1_error)
-  __pyx_t_2 = __Pyx_CyFunction_New(&__pyx_mdef_5utils_8BackTest_8BackTest_29draw, 0, __pyx_n_s_BackTest_draw, NULL, __pyx_n_s_utils_BackTest, __pyx_d, ((PyObject *)__pyx_codeobj__50)); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 336, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_CyFunction_New(&__pyx_mdef_5utils_15BackTestEngineC_8BackTest_29draw, 0, __pyx_n_s_BackTest_draw, NULL, __pyx_n_s_utils_BackTestEngineC, __pyx_d, ((PyObject *)__pyx_codeobj__50)); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 336, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
   __Pyx_CyFunction_SetAnnotationsDict(__pyx_t_2, __pyx_t_5);
   __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
   if (__Pyx_SetNameInClass(__pyx_t_4, __pyx_n_s_draw, __pyx_t_2) < 0) __PYX_ERR(0, 336, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
 
-  /* "utils/BackTest.pyx":351
+  /* "utils/BackTestEngineC.pyx":351
  *     #         self.hold.loc[len(self.hold)]=[date,info[0],value[0],info[1],value[1]/10000]
  * 
  *     def calculate_profit(self,m_data:dict):             # <<<<<<<<<<<<<<
@@ -15157,14 +15157,14 @@ if (!__Pyx_RefNanny) {
   __pyx_t_2 = __Pyx_PyDict_NewPresized(1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 351, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
   if (PyDict_SetItem(__pyx_t_2, __pyx_n_s_m_data, __pyx_n_s_dict) < 0) __PYX_ERR(0, 351, __pyx_L1_error)
-  __pyx_t_5 = __Pyx_CyFunction_New(&__pyx_mdef_5utils_8BackTest_8BackTest_31calculate_profit, 0, __pyx_n_s_BackTest_calculate_profit, NULL, __pyx_n_s_utils_BackTest, __pyx_d, ((PyObject *)__pyx_codeobj__52)); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 351, __pyx_L1_error)
+  __pyx_t_5 = __Pyx_CyFunction_New(&__pyx_mdef_5utils_15BackTestEngineC_8BackTest_31calculate_profit, 0, __pyx_n_s_BackTest_calculate_profit, NULL, __pyx_n_s_utils_BackTestEngineC, __pyx_d, ((PyObject *)__pyx_codeobj__52)); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 351, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_5);
   __Pyx_CyFunction_SetAnnotationsDict(__pyx_t_5, __pyx_t_2);
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
   if (__Pyx_SetNameInClass(__pyx_t_4, __pyx_n_s_calculate_profit, __pyx_t_5) < 0) __PYX_ERR(0, 351, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
 
-  /* "utils/BackTest.pyx":372
+  /* "utils/BackTestEngineC.pyx":372
  *         self.position.asset.append(self.position.cash+total_profit)
  * 
  *     def statistics(self,profits:pd.DataFrame):             # <<<<<<<<<<<<<<
@@ -15174,26 +15174,26 @@ if (!__Pyx_RefNanny) {
   __pyx_t_5 = __Pyx_PyDict_NewPresized(1); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 372, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_5);
   if (PyDict_SetItem(__pyx_t_5, __pyx_n_s_profits, __pyx_kp_s_pd_DataFrame) < 0) __PYX_ERR(0, 372, __pyx_L1_error)
-  __pyx_t_2 = __Pyx_CyFunction_New(&__pyx_mdef_5utils_8BackTest_8BackTest_33statistics, 0, __pyx_n_s_BackTest_statistics, NULL, __pyx_n_s_utils_BackTest, __pyx_d, ((PyObject *)__pyx_codeobj__54)); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 372, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_CyFunction_New(&__pyx_mdef_5utils_15BackTestEngineC_8BackTest_33statistics, 0, __pyx_n_s_BackTest_statistics, NULL, __pyx_n_s_utils_BackTestEngineC, __pyx_d, ((PyObject *)__pyx_codeobj__54)); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 372, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
   __Pyx_CyFunction_SetAnnotationsDict(__pyx_t_2, __pyx_t_5);
   __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
   if (__Pyx_SetNameInClass(__pyx_t_4, __pyx_n_s_statistics, __pyx_t_2) < 0) __PYX_ERR(0, 372, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
 
-  /* "utils/BackTest.pyx":394
+  /* "utils/BackTestEngineC.pyx":394
  * 
  *     ############
  *     def beautiful_plot(self):             # <<<<<<<<<<<<<<
  *         pass
  * 
  */
-  __pyx_t_2 = __Pyx_CyFunction_New(&__pyx_mdef_5utils_8BackTest_8BackTest_35beautiful_plot, 0, __pyx_n_s_BackTest_beautiful_plot, NULL, __pyx_n_s_utils_BackTest, __pyx_d, ((PyObject *)__pyx_codeobj__55)); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 394, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_CyFunction_New(&__pyx_mdef_5utils_15BackTestEngineC_8BackTest_35beautiful_plot, 0, __pyx_n_s_BackTest_beautiful_plot, NULL, __pyx_n_s_utils_BackTestEngineC, __pyx_d, ((PyObject *)__pyx_codeobj__55)); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 394, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
   if (__Pyx_SetNameInClass(__pyx_t_4, __pyx_n_s_beautiful_plot, __pyx_t_2) < 0) __PYX_ERR(0, 394, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
 
-  /* "utils/BackTest.pyx":397
+  /* "utils/BackTestEngineC.pyx":397
  *         pass
  * 
  *     def factor_builder(self,m_data:pd.DataFrame,context):             # <<<<<<<<<<<<<<
@@ -15203,26 +15203,26 @@ if (!__Pyx_RefNanny) {
   __pyx_t_2 = __Pyx_PyDict_NewPresized(1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 397, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
   if (PyDict_SetItem(__pyx_t_2, __pyx_n_s_m_data, __pyx_kp_s_pd_DataFrame) < 0) __PYX_ERR(0, 397, __pyx_L1_error)
-  __pyx_t_5 = __Pyx_CyFunction_New(&__pyx_mdef_5utils_8BackTest_8BackTest_37factor_builder, 0, __pyx_n_s_BackTest_factor_builder, NULL, __pyx_n_s_utils_BackTest, __pyx_d, ((PyObject *)__pyx_codeobj__56)); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 397, __pyx_L1_error)
+  __pyx_t_5 = __Pyx_CyFunction_New(&__pyx_mdef_5utils_15BackTestEngineC_8BackTest_37factor_builder, 0, __pyx_n_s_BackTest_factor_builder, NULL, __pyx_n_s_utils_BackTestEngineC, __pyx_d, ((PyObject *)__pyx_codeobj__56)); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 397, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_5);
   __Pyx_CyFunction_SetAnnotationsDict(__pyx_t_5, __pyx_t_2);
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
   if (__Pyx_SetNameInClass(__pyx_t_4, __pyx_n_s_factor_builder, __pyx_t_5) < 0) __PYX_ERR(0, 397, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
 
-  /* "utils/BackTest.pyx":399
+  /* "utils/BackTestEngineC.pyx":399
  *     def factor_builder(self,m_data:pd.DataFrame,context):
  *         pass
  *     def factor_statistics(self,type):             # <<<<<<<<<<<<<<
  *         m_data=self.data[type].copy()
  *         m_data:pd.DataFrame=self.factor_builder(m_data,self.context)
  */
-  __pyx_t_5 = __Pyx_CyFunction_New(&__pyx_mdef_5utils_8BackTest_8BackTest_39factor_statistics, 0, __pyx_n_s_BackTest_factor_statistics, NULL, __pyx_n_s_utils_BackTest, __pyx_d, ((PyObject *)__pyx_codeobj__58)); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 399, __pyx_L1_error)
+  __pyx_t_5 = __Pyx_CyFunction_New(&__pyx_mdef_5utils_15BackTestEngineC_8BackTest_39factor_statistics, 0, __pyx_n_s_BackTest_factor_statistics, NULL, __pyx_n_s_utils_BackTestEngineC, __pyx_d, ((PyObject *)__pyx_codeobj__58)); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 399, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_5);
   if (__Pyx_SetNameInClass(__pyx_t_4, __pyx_n_s_factor_statistics, __pyx_t_5) < 0) __PYX_ERR(0, 399, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
 
-  /* "utils/BackTest.pyx":83
+  /* "utils/BackTestEngineC.pyx":83
  * 
  * 
  * class BackTest():             # <<<<<<<<<<<<<<
@@ -15235,7 +15235,7 @@ if (!__Pyx_RefNanny) {
   __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
 
-  /* "utils/BackTest.pyx":2
+  /* "utils/BackTestEngineC.pyx":2
  * 
  * import os             # <<<<<<<<<<<<<<
  * import pandas as pd
@@ -15256,7 +15256,7 @@ if (!__Pyx_RefNanny) {
   __Pyx_XDECREF(__pyx_t_5);
   if (__pyx_m) {
     if (__pyx_d && stringtab_initialized) {
-      __Pyx_AddTraceback("init utils.BackTest", __pyx_clineno, __pyx_lineno, __pyx_filename);
+      __Pyx_AddTraceback("init utils.BackTestEngineC", __pyx_clineno, __pyx_lineno, __pyx_filename);
     }
     #if !CYTHON_USE_MODULE_STATE
     Py_CLEAR(__pyx_m);
@@ -15270,7 +15270,7 @@ if (!__Pyx_RefNanny) {
     }
     #endif
   } else if (!PyErr_Occurred()) {
-    PyErr_SetString(PyExc_ImportError, "init utils.BackTest");
+    PyErr_SetString(PyExc_ImportError, "init utils.BackTestEngineC");
   }
   __pyx_L0:;
   __Pyx_RefNannyFinishContext();

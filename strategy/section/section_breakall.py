@@ -6,6 +6,9 @@ sys.path.append("strategy/")
 import os
 import multiprocessing
 from utils.BackTestEngine import *
+
+
+
 #order_target_num 用来下空单或多单
 #sell_target_num 用来平仓
 class Section_Momentum_BackTest(BackTest):
@@ -25,7 +28,7 @@ class Section_Momentum_BackTest(BackTest):
     def before_trade(self, context,m_data):
         if context.fired:
             context.count+=1
-    
+    @timer
     def handle_bar(self, m_data, context):
         if context.fired:
             if context.count<context.H:
@@ -73,7 +76,6 @@ class Section_Momentum_BackTest(BackTest):
                 context.fired=True
 
     def after_trade(self, context):
-        print(self.current)
         pass
         
         
