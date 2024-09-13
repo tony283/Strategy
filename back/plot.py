@@ -10,8 +10,8 @@ file_name = "vol/lowvol/"
 real_name = "lowvol"
 tail =""
 #新建df
-indexes :dict={"Profit": [f"{i:.3f}" for i in [0.01]]}
-columns ={"R": [i for i in range(16,19)]}
+indexes :dict={"Profit": [f"{i:.3f}" for i in [0.01,0.012]]}
+columns ={"R": [i for i in range(2,4)]}
 
 ################################################################################# 
 

@@ -6,7 +6,7 @@ from datetime import datetime
 import matplotlib.pyplot as plt
 import warnings
 import threading
-def try_set_value(a:dict,key,value):
+def try_set_value(a:dict,key,value,is_close=True,close=0):
     """_summary_
 
     Args:
@@ -23,7 +23,11 @@ def try_set_value(a:dict,key,value):
         a[key][2]+=value[2]
     else:
         a[key]=np.array(value)
-def try_sell_value(a:dict,key,value,direction):
+    if not is_close:
+        info = key.split("_")
+        earn = (close-value[1])*value[0] if info[1]=="long" else (value[1]-close)*value[0]
+        a[key][2]+=earn
+def try_sell_value(a:dict,key,value,direction,is_close=True,close=0):
     """_summary_
 
     Args:
@@ -38,11 +42,23 @@ def try_sell_value(a:dict,key,value,direction):
     assert value[0]<=a[real_key][0]
     earn=0
     
-    if real_key in a.keys():
+    if real_key not in a.keys():
+        return 0
+    if is_close:
         earn=  int(a[real_key][2])*int(value[0])//int(a[real_key][0])
         a[real_key][2] -=earn#amount*close_price
         a[real_key][0] -=value[0]
+    else:
+        earn=  int(a[real_key][2])*int(value[0])//int(a[real_key][0])
+        a[real_key][2] -=earn#amount*close_price
+        a[real_key][0] -=value[0]
+        real_earn = (value[1]-close)*value[0] if direction=="long" else -(value[1]-close)*value[0]
+        earn +=real_earn
     return earn
+    
+    
+    
+    
 
 
 
@@ -108,7 +124,8 @@ class BackTest():
         self.position.original_cash = cash*10000#参考基准，不会变
         self.position.hold = {}#hold item格式：[amount,price*10000,guarantee]，具体见最上面注释
         self.position.asset=[]#每日的投资组合公允价值（含现金）最终都会被追加到此
-        self.hold =pd.DataFrame(columns=["date","type","hold","direction","profit"])#历史持仓，太耗时，已取消
+        
+        #self.hold =pd.DataFrame(columns=["date","type","hold","direction","average_cost"])#历史持仓，太耗时，已取消
         self.trade_record = pd.DataFrame(columns=["date","type","amount","direction","B/S","price"])#成交记录，最终会生成对账单
         self.instrument = {"margin_rate":margin_rate,"margin_limit":margin_limit}#设置保证金比例和下限
         self.init(self.context)#自定义初始化
@@ -146,13 +163,19 @@ class BackTest():
         else:
             print(s)
         
-    def before_trade(self, context):
+    def before_trade(self, context, m_data:pd.DataFrame):
         """_summary_
 
         需要重载
         """
         pass
-    def after_trade(self,context):
+    def open_handle(self, context, m_data:pd.DataFrame):
+        """_summary_
+
+        需要重载，适用于在开盘买入
+        """
+        pass
+    def after_trade(self,context,):
         """_summary_
 
         需要重载
@@ -235,7 +258,7 @@ class BackTest():
         self.position.cash-=margin
         self.trade_record.loc[len(self.trade_record)]=[self.current,future_type,amount*multiplier,direction,"B",price]
         return
-    def sell_target_num(self,price,amount:int,multiplier:int,future_type:str,direction):
+    def sell_target_num(self,price,amount:int,multiplier:int,future_type:str,direction,is_close=True,close=0):
         """_summary_
         用于平仓
 
@@ -254,7 +277,7 @@ class BackTest():
             self.log(f"ofr-close:{price},amount:{amount*multiplier}")
             earn=try_sell_value(self.position.hold,future_type,
                            np.array([amount*multiplier,int(price*10000)]),
-                           direction
+                           direction,is_close,int(close*10000)
                           )
             self.position.cash+=earn
             self.trade_record.loc[len(self.trade_record)]=[self.current,future_type,amount*multiplier,direction,"S",price]
@@ -292,9 +315,10 @@ class BackTest():
             for future_type, value in self.data.items():
                 m_data[future_type]= value[value["date"]<=current_date]#每天先把当天数据导入，将close作为可以买卖的价格
             self.before_trade(self.context,m_data)
+            self.open_handle(self.context,m_data)
             self.calculate_profit(m_data)#计算当日收益（分别计算每个品种看涨看跌的收益，将当日价格减去昨日价格）
             self.process(m_data)#进行买卖操作
-            self.write_log(current_date,m_data)
+            #self.write_log(current_date)
         self.log(self.trade_record)
         real_time_series:pd.DataFrame=real_time_series.to_frame()
         real_time_series[self.context.name]=np.array(self.position.asset)
@@ -302,34 +326,27 @@ class BackTest():
         if not os.path.exists(saving_dir):
             os.makedirs(saving_dir)
         real_time_series.to_excel(saving_dir+"Back_"+self.context.name+".xlsx")
+        print(f"Save completed! {saving_dir}Back_{self.context.name}.xlsx")
         #self.draw(self.context,real_time_series)
         #self.draw(self.context,real_time_series)
         #self.beautiful_plot()
         #self.statistics(real_time_series)
         self.trade_record.to_excel("back/trade/Trade"+self.context.name+".xlsx")
-        self.hold.to_excel("holds.xlsx")
     
     def draw(self,context,df:pd.DataFrame):
         df.plot("date",self.context.name)
         plt.show()
     
     # @timer    
-    def write_log(self,date,m_data):
-        """"date","type","hold","direction","profit"
+    # def write_log(self,date):
+    #     """"date","type","hold","direction","average_cost"
 
-        Args:
-            date (_type_): _description_
-        """
-        for future_type, value in self.position.hold.items():
-            info = future_type.split("_")
-            if value[0]==0:
-                continue
-            current_close = m_data[info[0]]["close"].iloc[-1]
-            prev_close = m_data[info[0]]["prev_close"].iloc[-1]
-            profit = (current_close-prev_close)
-            profit = profit if info[1]=="long" else -profit
-            profit = profit/(prev_close)
-            self.hold.loc[len(self.hold)]=[date,info[0],value[0],info[1],profit]
+    #     Args:
+    #         date (_type_): _description_
+    #     """
+    #     for future_type, value in self.position.hold.items():
+    #         info = future_type.split("_")
+    #         self.hold.loc[len(self.hold)]=[date,info[0],value[0],info[1],value[1]/10000]
     
     def calculate_profit(self,m_data:dict):
         total_profit=0
@@ -339,12 +356,15 @@ class BackTest():
             except:
                 continue
             preclose = value["prev_close"].iloc[-1]
+            
             if (future_type+"_long") in self.position.hold.keys():
                 self.position.hold[future_type+"_long"][2]+=(int(current_close*10000)-int(preclose*10000))*self.position.hold[future_type+"_long"][0]
                 total_profit+=self.position.hold[future_type+"_long"][2]
+
             if (future_type+"_short") in self.position.hold.keys():
                 self.position.hold[future_type+"_short"][2]-=(int(current_close*10000)-int(preclose*10000))*self.position.hold[future_type+"_short"][0]
                 total_profit+=self.position.hold[future_type+"_short"][2]
+
         
         #通过hold和cash计算收益
         self.position.asset.append(self.position.cash+total_profit)
