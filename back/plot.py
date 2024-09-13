@@ -11,7 +11,7 @@ real_name = "lowvol"
 tail =""
 #新建df
 indexes :dict={"Profit": [f"{i:.3f}" for i in [0.01]]}
-columns ={"R": [i for i in range(15,19)]}
+columns ={"R": [i for i in range(16,19)]}
 
 ################################################################################# 
 

@@ -53,8 +53,8 @@ class Section_Momentum_BackTest(BackTest):
                 except:
                     continue
             ranking = pd.DataFrame(temp_dict,columns=["future_type","direction"])
-            print(self.current)
-            print(ranking)
+            if len(ranking)==0:
+                return
             cash_max = (self.position.cash//(len(ranking)))//10000
             for index, row in ranking.iterrows():
                 future_type=row["future_type"]
@@ -74,8 +74,8 @@ class Section_Momentum_BackTest(BackTest):
         
 if(__name__=="__main__"):
     p=multiprocessing.Pool(40)
-    for n in [i for i in range(16,19)]:
-        for h in [0.010]:#[0.008,0.010,0.012,0.014,0.016,0.018,0.02]:
+    for n in [i for i in range(2,19)]:
+        for h in [0.008,0.010,0.012,0.014,0.016]:
             engine = Section_Momentum_BackTest(cash=1000000000,margin_rate=1,margin_limit=0,debug=False)
             engine.context.R=n
             engine.context.profit=h
