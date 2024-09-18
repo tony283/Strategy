@@ -20,10 +20,9 @@ def try_set_value(a:dict,key,value,is_close=True,close=0):
         a[key][0]+=value[0]
         
         a[key][1]=(value[0]*value[1]+originial_hold*a[key][1])//a[key][0]
-        try:
-            a[key][2]+=value[2]
-        except:
-            print([a[key][2],value[2]])
+    
+        a[key][2]+=value[2]
+
     else:
         a[key]=np.array(value)
     if not is_close:
@@ -255,7 +254,7 @@ class BackTest():
         self.log(f"Bid-close:{price},order:{amount*multiplier}")
         try_set_value(self.position.hold,future_type+"_"+direction,np.array([amount*multiplier,
                                                                                  int(price*10000),
-                                                                                 margin]
+                                                                                 margin],dtype=np.int64
                                                                                 )
                           )#如果下单失败直接会报错，但是对于无杠杆策略，已经在前面检测过不会失败
         self.position.cash-=margin
@@ -279,7 +278,7 @@ class BackTest():
         if(True):
             self.log(f"ofr-close:{price},amount:{amount*multiplier}")
             earn=try_sell_value(self.position.hold,future_type,
-                           np.array([amount*multiplier,int(price*10000)]),
+                           np.array([amount*multiplier,int(price*10000)],dtype=np.int64),
                            direction,is_close,int(close*10000)
                           )
             self.position.cash+=earn

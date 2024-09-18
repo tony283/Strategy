@@ -95,8 +95,8 @@ if(__name__=="__main__"):
             engine.context.H=n
             engine.context.L=h
             engine.context.name = f"newsecbld_Liquidity{h}_H{n}"
-            # p.apply_async(engine.loop_process,args=("20120101","20240501","back/section/newsecbreakall/"))
-            engine.loop_process(start="20150101",end="20231231",saving_dir="back/section/newsecbld/")
+            p.apply_async(engine.loop_process,args=("20120101","20240501","back/section/newsecbld/"))
+            # engine.loop_process(start="20150101",end="20231231",saving_dir="back/section/newsecbld/")
     print("-----start-----")
     p.close()
     p.join()
