@@ -1,12 +1,12 @@
 import pandas as pd
 
 
-file_name = "vol/lowvol/"
-real_name = "lowvol"
+file_name = "section/newsecbreak/"
+real_name = "newsecbreak"
 tail =""
 #新建df
-indexes :dict={"Profit": [f"{i:.3f}" for i in [0.01]]}
-columns ={"R": [17]}
+indexes :dict={"Range": ["0.15"]}
+columns ={"N": [19]}
 orginal_value =1e9
 
 
@@ -29,10 +29,14 @@ for r in indexes[index_title]:
             if loop==0:
                 continue
             count=0
+            sum_profit=0
             for i in range(loop):
                 close = sell_plot["price"].iloc[i]
                 prev_close = buy_plot["price"].iloc[i]
                 direction = sell_plot["direction"].iloc[i]
+                amount = sell_plot["amount"].iloc[i]
+                sum_profit+= (close-prev_close)*amount if direction=="long" else -(close-prev_close)*amount
+                
                 d = 1 if direction=="long" else -1
                 if d*(close-prev_close)>0:
                     count+=1
@@ -40,6 +44,7 @@ for r in indexes[index_title]:
             win_rate = count/loop
             df.loc[future_type,"Win_Rate"]=win_rate
             df.loc[future_type,"total"]=loop
+            df.loc[future_type,"mean_profit"]=sum_profit/loop
         df=df.sort_values(by="Win_Rate")
-        df.to_excel("back/win_rate_result.xlsx")
+        df.to_excel(f"back/profitanalyzer/{real_name}win_rate_result.xlsx")
                 

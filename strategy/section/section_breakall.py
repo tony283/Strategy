@@ -2,11 +2,12 @@ import pandas as pd
 import matplotlib.pyplot as plt
 from datetime import datetime
 import sys
+import time
 sys.path.append("strategy/")
 import os
 import multiprocessing
-from utils.BackTestEngine import *
-
+# from utils.BackTestEngine import *
+from BackTestEngineC import *
 
 
 #order_target_num 用来下空单或多单
@@ -30,6 +31,7 @@ class Section_Momentum_BackTest(BackTest):
             context.count+=1
     @timer
     def handle_bar(self, m_data, context):
+        timer1 = time.time()
         if context.fired:
             if context.count<context.H:
                 return
@@ -41,9 +43,13 @@ class Section_Momentum_BackTest(BackTest):
                     multi = m_data[future_type]["multiplier"].iloc[-1]
                     if(amount[0]//multi<=0):
                         continue
-                    self.sell_target_num(m_data[future_type]["close"].iloc[-1],amount[0]//multi,multi,future_type,direction)
+                    self.sell_target_num(int(m_data[future_type]["close"].iloc[-1]),int(amount[0]//multi),int(multi),future_type,direction)
                     context.count=0
                     context.fired=False
+                    
+        timer2=time.time()
+        print(timer2-timer1)
+        
         if not context.fired:
             ##开始计算每个品种的收益率
             temp_dict =[]#用于储存收益率信息
@@ -57,9 +63,7 @@ class Section_Momentum_BackTest(BackTest):
             ranking = pd.DataFrame(temp_dict,columns=["future_type","profit","sigma"])
             ranking = ranking[ranking["sigma"]!=0]
             ranking["break"] = ranking["profit"].apply(lambda x:abs(x))/(ranking['sigma']*context.R)
-            range=len(ranking)
-            ranking = ranking.sort_values(by="profit",ascending=True)#排名
-            cash_max = (self.position.cash//(2))/10000
+            cash_max = (self.position.cash)//10000
             sum_break = ranking["break"].sum()
             for index, row in ranking.iterrows():#多空
                 future_type=row["future_type"]
@@ -72,8 +76,10 @@ class Section_Momentum_BackTest(BackTest):
                     continue
                 if buy_amount<=0:
                     continue
-                self.order_target_num(close,buy_amount,multi,future_type,"long" if row["profit"]>0 else "short")
+                self.order_target_num(close,int(buy_amount),int(multi),future_type,"long" if row["profit"]>0 else "short")
                 context.fired=True
+        timer3=time.time()
+        print(timer3-timer2)
 
     def after_trade(self, context):
         pass
