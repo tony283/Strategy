@@ -20,7 +20,10 @@ def try_set_value(a:dict,key,value,is_close=True,close=0):
         a[key][0]+=value[0]
         
         a[key][1]=(value[0]*value[1]+originial_hold*a[key][1])//a[key][0]
-        a[key][2]+=value[2]
+        try:
+            a[key][2]+=value[2]
+        except:
+            print([a[key][2],value[2]])
     else:
         a[key]=np.array(value)
     if not is_close:

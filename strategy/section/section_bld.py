@@ -29,7 +29,6 @@ class Section_Momentum_BackTest(BackTest):
     def before_trade(self, context,m_data):
         if context.fired:
             context.count+=1
-    @timer
     def handle_bar(self, m_data, context):
         timer1 = time.time()
         if context.fired:
@@ -46,10 +45,7 @@ class Section_Momentum_BackTest(BackTest):
                     self.sell_target_num(int(m_data[future_type]["close"].iloc[-1]),int(amount[0]//multi),int(multi),future_type,direction)
                     context.count=0
                     context.fired=False
-                    
-        timer2=time.time()
-        print(timer2-timer1)
-        
+
         if not context.fired:
             ##开始计算每个品种的收益率
             temp_dict =[]#用于储存收益率信息
@@ -57,17 +53,22 @@ class Section_Momentum_BackTest(BackTest):
                 try:
                     profit = (m_data[future_type]["close"].iloc[-1]-m_data[future_type]["close"].iloc[-1-context.R])/m_data[future_type]["close"].iloc[-1-context.R]
                     sigma = m_data[future_type]["profit"].iloc[-context.N:].std()
-                    temp_dict.append([future_type,profit,sigma])
+                    liquidity = m_data[future_type].iloc[-context.L:].copy()
+                    liquidity["liquidity"] = np.log(liquidity["profit"].apply(lambda x:abs(x))/(liquidity["close"]*liquidity["volume"]/1e11)+1)
+                    liquidity = liquidity["liquidity"].mean()
+                    temp_dict.append([future_type,profit,sigma,liquidity])
                 except:
                     continue
-            ranking = pd.DataFrame(temp_dict,columns=["future_type","profit","sigma"])
+            ranking = pd.DataFrame(temp_dict,columns=["future_type","profit","sigma","liquidity"])
             ranking = ranking[ranking["sigma"]!=0]
             ranking["break"] = ranking["profit"].apply(lambda x:abs(x))/(ranking['sigma']*np.sqrt(context.R))
+            ranking["BLD"]=ranking['break']*ranking['liquidity']
+            ranking = ranking.replace([np.inf, -np.inf], np.nan).dropna()
             cash_max = (self.position.cash)//10000
-            sum_break = ranking["break"].sum()
+            sum_break = ranking["BLD"].sum()
             for index, row in ranking.iterrows():#多空
                 future_type=row["future_type"]
-                proportion = row["break"]/sum_break
+                proportion = row["BLD"]/sum_break
                 close = m_data[future_type]["close"].iloc[-1]
                 multi = m_data[future_type]["multiplier"].iloc[-1]
                 
@@ -78,8 +79,7 @@ class Section_Momentum_BackTest(BackTest):
                     continue
                 self.order_target_num(close,int(buy_amount),int(multi),future_type,"long" if row["profit"]>0 else "short")
                 context.fired=True
-        timer3=time.time()
-        print(timer3-timer2)
+
 
     def after_trade(self, context):
         pass
@@ -88,14 +88,15 @@ class Section_Momentum_BackTest(BackTest):
 if(__name__=="__main__"):
     p=multiprocessing.Pool(40)
     for n in [1,2,3,4,5]:
-        for h in range(2,21):
+        for h in range(1,18):
             engine = Section_Momentum_BackTest(cash=1000000000,margin_rate=1,margin_limit=0,debug=False)
-            engine.context.R=h
+            engine.context.R=19
             engine.context.N=20
             engine.context.H=n
-            engine.context.name = f"newsecbreakall_R{h}_H{n}"
+            engine.context.L=h
+            engine.context.name = f"newsecbld_Liquidity{h}_H{n}"
             # p.apply_async(engine.loop_process,args=("20120101","20240501","back/section/newsecbreakall/"))
-            engine.loop_process(start="20150101",end="20231231",saving_dir="back/section/newsecbreakall/")
+            engine.loop_process(start="20150101",end="20231231",saving_dir="back/section/newsecbld/")
     print("-----start-----")
     p.close()
     p.join()
