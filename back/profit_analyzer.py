@@ -1,11 +1,11 @@
 import pandas as pd
 
 
-file_name = "section/newsecbreakall/"
-real_name = "newsecbreakall"
+file_name = "section/newsecbld/"
+real_name = "newsecbld"
 tail =""
 #新建df
-indexes :dict={"R": ["19"]}
+indexes :dict={"Liquidity": [8]}
 columns ={"H": [2]}
 orginal_value =1e9
 
