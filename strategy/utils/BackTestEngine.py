@@ -1,11 +1,14 @@
 
+from concurrent.futures import ProcessPoolExecutor
 import os
 import pandas as pd
 import numpy as np
 from datetime import datetime
 import matplotlib.pyplot as plt
 import warnings
-import threading
+import time
+import multiprocessing
+# @profile
 def try_set_value(a:dict,key,value,is_close=True,close=0):
     """_summary_
 
@@ -16,15 +19,16 @@ def try_set_value(a:dict,key,value,is_close=True,close=0):
     """
     assert value[0]>=0
     if (key in a.keys()):
-        originial_hold =a[key][0]
-        a[key][0]+=value[0]
-        
-        a[key][1]=(value[0]*value[1]+originial_hold*a[key][1])//a[key][0]
-    
-        a[key][2]+=value[2]
+        a[key][1]*=a[key][0]
+        value[1]*=value[0]
+        a[key]+=value
+
+        a[key][1]/=a[key][0]
+        a[key] = a[key].astype(np.int64)
+        t4=time.time()
 
     else:
-        a[key]=np.array(value)
+        a[key]=np.array(value,dtype=np.int64)
     if not is_close:
         info = key.split("_")
         earn = (close-value[1])*value[0] if info[1]=="long" else (value[1]-close)*value[0]
@@ -50,6 +54,7 @@ def try_sell_value(a:dict,key,value,direction,is_close=True,close=0):
         earn=  int(a[real_key][2])*int(value[0])//int(a[real_key][0])
         a[real_key][2] -=earn#amount*close_price
         a[real_key][0] -=value[0]
+
     else:
         earn=  int(a[real_key][2])*int(value[0])//int(a[real_key][0])
         a[real_key][2] -=earn#amount*close_price
@@ -129,8 +134,11 @@ class BackTest():
         
         #self.hold =pd.DataFrame(columns=["date","type","hold","direction","average_cost"])#历史持仓，太耗时，已取消
         self.trade_record = pd.DataFrame(columns=["date","type","amount","direction","B/S","price"])#成交记录，最终会生成对账单
+        self.temp_trade=[]
         self.instrument = {"margin_rate":margin_rate,"margin_limit":margin_limit}#设置保证金比例和下限
         self.init(self.context)#自定义初始化
+
+        
         pass
     def init(self,context):
         """_summary_
@@ -139,7 +147,6 @@ class BackTest():
             context (_type_): 自定义初始化的信息都放在这里，注意context.name必须设置，它会作为最终回测曲线xlsx的文件名
         """
         pass
-        
     def subscribe(self,future_type:str):
         """_summary_
 
@@ -153,7 +160,36 @@ class BackTest():
 
         except:
             raise ReadingError("Cannot load data/"+future_type+"_daily.xlsx")
+        
         self.data[future_type]=future_data
+    def _subscribe(self,future_type:str):
+        """_summary_
+
+        Args:
+            future_type (str): 订阅 品种加载到self.data
+
+        
+        """
+        try:
+            future_data = pd.read_excel("data/"+future_type+"_daily.xlsx")
+
+        except:
+            raise ReadingError("Cannot load data/"+future_type+"_daily.xlsx")
+        
+        return future_data
+    def subscribe_parallel(self,typelist:list):
+
+        typelist=typelist
+
+        with ProcessPoolExecutor(20) as executor: # 创建 ThreadPoolExecutor 
+            future_list = executor.map(self._subscribe, [file for file in typelist]) # 提交任务
+
+        
+        for future in future_list:
+            self.data[future[0]]=future[1]
+
+        print(self.data["CU"])
+
         
     def log(self,s:str):
         """_summary_
@@ -258,7 +294,7 @@ class BackTest():
                                                                                 )
                           )#如果下单失败直接会报错，但是对于无杠杆策略，已经在前面检测过不会失败
         self.position.cash-=margin
-        self.trade_record.loc[len(self.trade_record)]=[self.current,future_type,amount*multiplier,direction,"B",price]
+        self.temp_trade.append([self.current,future_type,amount*multiplier,direction,"B",price])
         return
     def sell_target_num(self,price,amount:int,multiplier:int,future_type:str,direction,is_close=True,close=0):
         """_summary_
@@ -282,7 +318,9 @@ class BackTest():
                            direction,is_close,int(close*10000)
                           )
             self.position.cash+=earn
-            self.trade_record.loc[len(self.trade_record)]=[self.current,future_type,amount*multiplier,direction,"S",price]
+            self.temp_trade.append([self.current,future_type,amount*multiplier,direction,"S",price])
+            # self.trade_record=pd.concat([self.trade_record,pd.DataFrame([[self.current,future_type,amount*multiplier,direction,"S",price]],
+                                                                        # columns=self.trade_record.columns)],axis=0)
         return
     def sell_all_target(self, m_data):
         for future_type_dir, amount in self.position.hold.items():
@@ -333,6 +371,7 @@ class BackTest():
         #self.draw(self.context,real_time_series)
         #self.beautiful_plot()
         #self.statistics(real_time_series)
+        self.trade_record =self.trade_record = pd.DataFrame(self.temp_trade,columns=["date","type","amount","direction","B/S","price"])
         self.trade_record.to_excel("back/trade/Trade"+self.context.name+".xlsx")
     
     def draw(self,context,df:pd.DataFrame):

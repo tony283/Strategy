@@ -13,6 +13,9 @@ from utils.BackTestEngine import *
 #order_target_num 用来下空单或多单
 #sell_target_num 用来平仓
 class Section_Momentum_BackTest(BackTest):
+
+    
+    # @profile
     def init(self, context):
         context.R=20
         context.H=20
@@ -26,10 +29,12 @@ class Section_Momentum_BackTest(BackTest):
         for item in context.typelist:
             self.subscribe(item)#注册品种
         #print(self.data)
+        # if __name__=="__main__":
+        #     self.subscribe_parallel(context.typelist)
+        print("end")
     def before_trade(self, context,m_data):
         if context.fired:
             context.count+=1
-    @timer
     def handle_bar(self, m_data, context):
         timer1 = time.time()
         if context.fired:
@@ -41,14 +46,12 @@ class Section_Momentum_BackTest(BackTest):
                     future_type = info[0]
                     direction = info[1]
                     multi = m_data[future_type]["multiplier"].iloc[-1]
-                    if(amount[0]//multi<=0):
+                    if(amount[0]<multi):
                         continue
                     self.sell_target_num(int(m_data[future_type]["close"].iloc[-1]),int(amount[0]//multi),int(multi),future_type,direction)
                     context.count=0
                     context.fired=False
                     
-        timer2=time.time()
-        print(timer2-timer1)
         
         if not context.fired:
             ##开始计算每个品种的收益率
@@ -78,28 +81,26 @@ class Section_Momentum_BackTest(BackTest):
                     continue
                 self.order_target_num(close,int(buy_amount),int(multi),future_type,"long" if row["profit"]>0 else "short")
                 context.fired=True
-        timer3=time.time()
-        print(timer3-timer2)
 
     def after_trade(self, context):
         pass
         
         
 if(__name__=="__main__"):
-    p=multiprocessing.Pool(40)
-    for n in [1,2,3,4,5]:
-        for h in range(2,21):
+    # p=multiprocessing.Pool(40)
+    for n in [1]:
+        for h in range(2,3):
             engine = Section_Momentum_BackTest(cash=1000000000,margin_rate=1,margin_limit=0,debug=False)
             engine.context.R=h
             engine.context.N=20
             engine.context.H=n
-            engine.context.name = f"newsecbreakall_R{h}_H{n}"
+            engine.context.name = f"newsecbreakall_R{h}_H{n}_test"
             # p.apply_async(engine.loop_process,args=("20120101","20240501","back/section/newsecbreakall/"))
-            engine.loop_process(start="20150101",end="20231231",saving_dir="back/section/newsecbreakall/")
-    print("-----start-----")
-    p.close()
-    p.join()
-    print("------end------")
+            engine.loop_process(start="20120101",end="20240501",saving_dir="back/section/newsecbreakall/")
+    # print("-----start-----")
+    # p.close()
+    # p.join()
+    # print("------end------")
 # engine = Section_Momentum_BackTest(cash=1000000000,margin_rate=1,margin_limit=0,debug=False)
 # engine.context.R=20
 
