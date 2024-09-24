@@ -11,7 +11,6 @@ class Smooth(BackTest):
         #context可以自定义变量并用在其他函数
         context.name="Smooth"
         context.N=20
-        context.M=0
         context.fired=False
         context.typelist=['AU', 'AG', 'HC', 'I', 'J', 'JM', 'RB', 'SF', 'SM', 'SS', 'BU', 'EG', 'FG', 'FU', 'L', 'MA',
           'PP', 'RU', 'SC', 'SP', 'TA', 'V', 'EB', 'LU', 'NR', 'PF', 'PG', 'SA', 'A', 'C', 'CF', 'M', 'OI',
@@ -20,21 +19,21 @@ class Smooth(BackTest):
         for item in context.typelist:
             self.subscribe(item)#注册品种
         context.count =0 #用于计数
-        context.day =20#调仓周期
+        context.H =2#调仓周期
         context.range=0.2
         
             
         
         
         
-    def before_trade(self, context):
+    def before_trade(self, context,m_data):
         if context.fired:
             context.count += 1
         #开盘前做一些事
         pass
     def handle_bar(self, m_data, context):
         if context.fired:
-            if context.count<context.day:
+            if context.count<context.H:
                 return
             else:
                 #平仓
@@ -54,12 +53,9 @@ class Smooth(BackTest):
         if not context.fired:
             daily_temp_dict =[]
             for future_type in context.typelist:
-                
                 try:
-                    if len(m_data[future_type])<=2+context.N+context.M:
-                        continue
-                    profit_total = m_data[future_type]["profit"].iloc[-2-context.N-context.M:-1-context.M].apply(lambda  x :abs(x)).sum()
-                    profit = (m_data[future_type]["close"].iloc[-2-context.M]-m_data[future_type]["close"].iloc[-2-context.N-context.M])/m_data[future_type]["close"].iloc[-2-context.N-context.M]
+                    profit_total = m_data[future_type]["profit"].iloc[-context.N:].apply(lambda  x :abs(x)).sum()
+                    profit = m_data[future_type]["profit"].iloc[-context.N:].sum()
                     if(profit_total==0):
                         continue
                     
@@ -77,22 +73,31 @@ class Smooth(BackTest):
                 close = m_data[future_type]["close"].iloc[-1]
                 multi = m_data[future_type]["multiplier"].iloc[-1]
                 self.order_target_num(close,int(cash_max/(close*multi)),multi,future_type,"short")
+                context.fired=True
+
             for future_type in daily_ranking["future_type"].iloc[-m_range:]:#smooth动量最高的
                 close = m_data[future_type]["close"].iloc[-1]
                 multi = m_data[future_type]["multiplier"].iloc[-1]
                 self.order_target_num(close,int(cash_max/(close*multi)),multi,future_type,"long")
-            context.fired=True
+                context.fired=True
 
         pass
     def after_trade(self, context):
         #收盘后做一些事情
         pass
         
+
 if(__name__=="__main__"):
-    for n in [20,60,120,180,240]:
-        for m in [0,1,5]:
-            engine = Smooth(cash=100000000,margin_rate=1,margin_limit=0,debug=False)
+    p=multiprocessing.Pool(40)
+    for n in [15,16,17,18,19,20]:
+        for m in [1,2,3,4,5]:
+            engine = Smooth(cash=1000000000,margin_rate=1,margin_limit=0,debug=False)
             engine.context.N=n
-            engine.context.M = m
-            engine.context.name=f"smooth_N{n}_M{m}"
-            engine.loop_process("20120101","20240801")
+            engine.context.H=m
+            engine.context.name = f"newsecsmooth_R{n}_H{m}"
+            p.apply_async(engine.loop_process,args=("20120101","20240501","back/section/newsecsmooth/"))
+            # engine.loop_process(start="20120101",end="20240501",saving_dir="back/section/newsecsmooth/")
+    # print("-----start-----")
+    p.close()
+    p.join()
+    # print("------end------")

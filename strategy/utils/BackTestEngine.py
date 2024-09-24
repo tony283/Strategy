@@ -86,6 +86,27 @@ def timer(func):
     return func_wrapper
    
 
+def print_progress_bar(iteration, total, prefix='', suffix='', decimals=1, length=100, fill='█', printEnd="\r"):  
+    """  
+    Call in a loop to create terminal progress bar  
+    @params:  
+        iteration   - Required  : current iteration (Int)  
+        total       - Required  : total iterations (Int)  
+        prefix      - Optional  : prefix string (Str)  
+        suffix      - Optional  : suffix string (Str)  
+        decimals    - Optional  : positive number of decimals in percent complete (Int)  
+        length      - Optional  : character length of bar (Int)  
+        fill        - Optional  : bar fill character (Str)  
+        printEnd    - Optional  : end character (e.g. "\r", "\r\n") (Str)  
+    """  
+    percent = ("{0:." + str(decimals) + "f}").format(100 * (iteration / float(total)))  
+    filledLength = int(length * iteration // total)  
+    bar = fill * filledLength + '-' * (length - filledLength)  
+    print(f'\r{prefix} |{bar}| {percent}% {suffix}', end=printEnd)  
+    # Print New Line on Complete  
+    if iteration == total:   
+        print()  
+
 
 class BackTest():
     """
@@ -190,7 +211,23 @@ class BackTest():
 
         print(self.data["CU"])
 
+    
+    def Rating(self,m_data,*args)->pd.DataFrame:
+        rate=pd.DataFrame({"type":self.context.typelist,"rate":[0]*len(self.context.typelist)})
         
+        for func in args:
+            ranking = func(m_data)
+            rate=pd.merge(rate,ranking,on="type",how="inner")
+        for i in rate.columns:
+            if i=="type" or i=="rate":
+                rate["rate"]=rate["rate"]+rate[i]
+        return rate
+            
+            
+    
+    
+    
+    
     def log(self,s:str):
         """_summary_
 
@@ -345,6 +382,7 @@ class BackTest():
         time_series=time_series[time_series<=datetime.strptime(end,"%Y%m%d")]
         start_date = datetime.strptime(start,"%Y%m%d")
         real_time_series =time_series[time_series>=start_date]
+        progress_total = len(real_time_series)
         current_date=time_series[time_series>=start_date].iloc[0]
         m_data={}#m_data拥有到今日的最新信息，位置在-1，但是今天用的历史数据不能有未来函数，策略用到的数据必须从-2往回
         for future_type, value in self.data.items():
@@ -358,6 +396,8 @@ class BackTest():
             self.open_handle(self.context,m_data)
             self.calculate_profit(m_data)#计算当日收益（分别计算每个品种看涨看跌的收益，将当日价格减去昨日价格）
             self.process(m_data)#进行买卖操作
+            if(i%200==0):
+                print_progress_bar(i + 1, progress_total, prefix=f'{self.context.name}:', suffix='Complete', length=20)
             #self.write_log(current_date)
         self.log(self.trade_record)
         real_time_series:pd.DataFrame=real_time_series.to_frame()
