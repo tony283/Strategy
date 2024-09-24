@@ -27,17 +27,18 @@ class LSTMModel(nn.Module):
         # 初始化了隐藏状态h0和细胞状态c0，并将其设为零向量。
         h0 = torch.zeros(self.num_layers, x.size(0), self.hidden_size).to(x.device)
         c0 = torch.zeros(self.num_layers, x.size(0), self.hidden_size).to(x.device)
+        print(x.size)
  
         # LSTM层前向传播
         # 将输入数据x以及初始化的隐藏状态和细胞状态传入LSTM层
         # 得到输出out和更新后的状态。
         # out的形状为(batch_size, sequence_length, hidden_size)。
         out, _ = self.lstm(x, (h0, c0))
+        print(out.shape)
  
         # 全连接层前向传播
         # 使用LSTM层的最后一个时间步的输出out[:, -1, :]（形状为(batch_size, hidden_size)）作为全连接层的输入，得到最终的输出。
         out = self.fc(out[:, -1, :])
+        # print(out)
  
         return out
-    
-    

@@ -36,4 +36,4 @@ def generate_data(future):
     data.to_excel(f"strategy/lstm/train_data/{future}.xlsx")
     
 a= pd.read_excel("strategy/lstm/train_data/CU.xlsx")
-print(a)
+print(a.dtypes)
