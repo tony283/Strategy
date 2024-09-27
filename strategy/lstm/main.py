@@ -34,10 +34,10 @@ class DNN(nn.Module):
     # during optimization. Returns tensor([[left0exp,right0exp]...]).
     def forward(self, x):
         
-        x = F.sigmoid(self.layer1(x))
-        x = F.sigmoid(self.layer2(x))
-        x = F.sigmoid(self.layer3(x))
-        x = F.sigmoid(self.layer4(x))
+        x = F.relu(self.layer1(x))
+        x = F.relu(self.layer2(x))
+        x = F.relu(self.layer3(x))
+        x = F.relu(self.layer4(x))
         
         
         return self.layer11(x)
@@ -125,40 +125,40 @@ def train(dataloader,model,loss_fn,optimizer):
     return my_loss/(num*128)
 
 
-
-EPOCH = 100
-if os.path.exists(PATH):
-    model.load_state_dict(torch.load(PATH))
-    model.eval()
-train_loss_list = []
-validate_loss_list = []
-loss_df = pd.DataFrame(columns=["loss"])
-for i in range(EPOCH):
-    m_loss = train(dataloader=traindata,model=model,loss_fn=loss_fn,optimizer=optimizer)
-    print(f'EPOCH{i}:loss is {m_loss}')
-    train_loss_list.append(m_loss)
-    torch.save(model.state_dict(),PATH)
-    #开始测试
-    with torch.no_grad():  # 确保不会进行反向传播计算梯度，节省内存和计算资源
+if __name__=="__main__":
+    EPOCH = 100
+    if os.path.exists(PATH):
+        model.load_state_dict(torch.load(PATH))
         model.eval()
-        validate_loss = 0
-        c=0
-        for X,y in validateloader:
-            X,y=X.to(device),y.to(device)
-            test_outputs = model(X)  # 前向传播获取测试集的预测结果
-            # print(f"Predict is {test_outputs},real value is {y}")
-            validate_loss += loss_fn(test_outputs, y).item()  # 计算测试集上的损失值
-            c+=1
-        print(f'Test Loss: {validate_loss/(c*128)}')  # 打印测试损失信息
-        validate_loss_list.append(validate_loss/(c*128))
-loss_df["train_loss"]=[t for t in  train_loss_list]
-loss_df["validate_loss"]=[t for t in  validate_loss_list]
-try:
-    loss_log = pd.read_excel("strategy/lstm/loss.xlsx",index=None)
-    loss_log = pd.concat([loss_log,loss_df])
-    loss_log.to_excel("strategy/lstm/loss.xlsx")
-except:
-    loss_df.to_excel("strategy/lstm/loss.xlsx")
-    
+    train_loss_list = []
+    validate_loss_list = []
+    loss_df = pd.DataFrame(columns=["loss"])
+    for i in range(EPOCH):
+        m_loss = train(dataloader=traindata,model=model,loss_fn=loss_fn,optimizer=optimizer)
+        print(f'EPOCH{i}:loss is {m_loss}')
+        train_loss_list.append(m_loss)
+        torch.save(model.state_dict(),PATH)
+        #开始测试
+        with torch.no_grad():  # 确保不会进行反向传播计算梯度，节省内存和计算资源
+            model.eval()
+            validate_loss = 0
+            c=0
+            for X,y in validateloader:
+                X,y=X.to(device),y.to(device)
+                test_outputs = model(X)  # 前向传播获取测试集的预测结果
+                # print(f"Predict is {test_outputs},real value is {y}")
+                validate_loss += loss_fn(test_outputs, y).item()  # 计算测试集上的损失值
+                c+=1
+            print(f'Test Loss: {validate_loss/(c*128)}')  # 打印测试损失信息
+            validate_loss_list.append(validate_loss/(c*128))
+    loss_df["train_loss"]=[t for t in  train_loss_list]
+    loss_df["validate_loss"]=[t for t in  validate_loss_list]
+    try:
+        loss_log = pd.read_excel("strategy/lstm/loss.xlsx",index=None)
+        loss_log = pd.concat([loss_log,loss_df])
+        loss_log.to_excel("strategy/lstm/loss.xlsx")
+    except:
+        loss_df.to_excel("strategy/lstm/loss.xlsx")
+        
 
     
