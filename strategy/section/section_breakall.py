@@ -28,10 +28,10 @@ class Section_Momentum_BackTest(BackTest):
         context.count=0#用于计时
         for item in context.typelist:
             self.subscribe(item)#注册品种
+        self.vol = pd.read_excel("data/future_std.xlsx",index_col=0)
         #print(self.data)
         # if __name__=="__main__":
         #     self.subscribe_parallel(context.typelist)
-        print("end")
     def before_trade(self, context,m_data):
         if context.fired:
             context.count+=1
@@ -66,7 +66,13 @@ class Section_Momentum_BackTest(BackTest):
             ranking = pd.DataFrame(temp_dict,columns=["future_type","profit","sigma"])
             ranking = ranking[ranking["sigma"]!=0]
             ranking["break"] = ranking["profit"].apply(lambda x:abs(x))/(ranking['sigma']*np.sqrt(context.R))
-            cash_max = (self.position.cash)//10000
+            usage=1
+            try:
+                usage=min(context.S/self.vol.loc[self.current,0],1)
+            except:
+                usage=1
+            usage=usage*usage
+            cash_max = (self.position.cash*usage)//10000
             sum_break = ranking["break"].sum()
             for index, row in ranking.iterrows():#多空
                 future_type=row["future_type"]
@@ -87,19 +93,20 @@ class Section_Momentum_BackTest(BackTest):
         
         
 if(__name__=="__main__"):
-    # p=multiprocessing.Pool(40)
-    for n in [1]:
-        for h in range(2,3):
+    p=multiprocessing.Pool(40)
+    for n in [0.002,0.003,0.004,0.005,0.006,0.007,0.008,0.009,0.01,0.011,0.012,0.013,0.014]:
+        for h in range(17,21):
             engine = Section_Momentum_BackTest(cash=1000000000,margin_rate=1,margin_limit=0,debug=False)
             engine.context.R=h
             engine.context.N=20
-            engine.context.H=n
-            engine.context.name = f"newsecbreakall_R{h}_H{n}_test"
-            # p.apply_async(engine.loop_process,args=("20120101","20240501","back/section/newsecbreakall/"))
-            engine.loop_process(start="20120101",end="20240501",saving_dir="back/section/newsecbreakall/")
+            engine.context.H=2
+            engine.context.S=n
+            engine.context.name = f"newsecbreakalllowvol2_R{h}_S{n:.3f}"
+            p.apply_async(engine.loop_process,args=("20120101","20240501","back/section/newsecbreakalllowvol2/"))
+            # engine.loop_process(start="20120101",end="20240501",saving_dir="back/section/newsecbreakallvol/")
     # print("-----start-----")
-    # p.close()
-    # p.join()
+    p.close()
+    p.join()
     # print("------end------")
 # engine = Section_Momentum_BackTest(cash=1000000000,margin_rate=1,margin_limit=0,debug=False)
 # engine.context.R=20

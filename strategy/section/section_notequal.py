@@ -90,11 +90,11 @@ class Section_Momentum_BackTest(BackTest):
         
 if(__name__=="__main__"):
     p=multiprocessing.Pool(40)
-    for n in [2,4,5,10,20,60]:
+    for n in [0.002,0.003,0.004,0.005,0.006,0.007,0.008,0.009,0.01,0.011,0.012]:
         for h in [1,2,3,4,5]:
             engine = Section_Momentum_BackTest(cash=1000000000,margin_rate=1,margin_limit=0,debug=False)
             engine.context.R=14
-            engine.context.N=n
+            engine.context.N=20
             engine.context.H=h
             engine.context.name = f"newsecinvnq_H{h}_N{n}"
             p.apply_async(engine.loop_process,args=("20120101","20240501","back/section/newsecinvnq/"))

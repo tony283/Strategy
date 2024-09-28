@@ -35,5 +35,6 @@ def generate_data(future):
     print(data.columns)
     data.to_excel(f"strategy/lstm/train_data/{future}.xlsx")
     
-a= pd.read_excel("strategy/lstm/train_data/CU.xlsx")
-print(a.dtypes)
+a= pd.read_excel("data/future_std.xlsx",index_col=0)
+print(a)
+print(a.loc[datetime(2024,8,5),0])
