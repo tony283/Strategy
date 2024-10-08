@@ -3,6 +3,7 @@ import matplotlib.pyplot as plt
 import numpy as np
 import os
 import shutil
+import warnings
 # plot_name = ["section_R"+str(5*i)+"_H"+str(20) for i in range(1,9)]
 # plots={}
 # for i in plot_name:
@@ -16,12 +17,14 @@ import shutil
 # total.plot("date",plot_name,title="横截面动量策略不同参数(R, H)收益曲线",grid=True)
 # plt.show()
 
-file_name = "section/newsecbreakmvol2range/"
-real_name = "newsecbreakmvol2range"
+
+
+file_name = "section/newsecbreakmlvol2/"
+real_name = "newsecbreakmlvol2"
 tail =""
 #新建dfs
 indexes :dict={"S": [f"{i:.3f}" for i in [0.002,0.003,0.004,0.005,0.006,0.007,0.008,0.009,0.010]]}
-columns ={"Range": [f"{i:.2f}" for i in [0.1,0.15,0.2,0.25,0.3]]}
+columns ={"L": range(2,13)}
 
 
 #以上为需要填的参数
