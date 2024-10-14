@@ -31,6 +31,18 @@ class Section_Momentum_BackTest(BackTest):
     def handle_bar(self, m_data, context):
         if context.fired:
             if context.count<context.H:
+                for future_type_dir, amount in self.position.hold.items():
+                    info = future_type_dir.split("_")
+                    future_type = info[0]
+                    direction = info[1]
+                    multi = m_data[future_type]["multiplier"].iloc[-1]
+                    if(amount[0]//multi<=0):
+                        continue
+                    try:
+                        if m_data[future_type]["volume"].iloc[-1]>context.threshold*m_data[future_type]["volume"][-context.window_size-1:-1].mean():
+                            self.sell_target_num(m_data[future_type]["close"].iloc[-1],amount[0]//multi,multi,future_type,direction)
+                    except:
+                        continue
                 return
             else:
                 for future_type_dir, amount in self.position.hold.items():
@@ -42,7 +54,7 @@ class Section_Momentum_BackTest(BackTest):
                         continue
                     self.sell_target_num(m_data[future_type]["close"].iloc[-1],amount[0]//multi,multi,future_type,direction)
                     context.count=0
-                    context.fired=False
+                context.fired=False
         if not context.fired:
             ##开始计算每个品种的收益率
             temp_dict =[]#用于储存收益率信息
@@ -72,7 +84,7 @@ class Section_Momentum_BackTest(BackTest):
                 usage=row["usage"]
                 close = m_data[future_type]["close"].iloc[-1]
                 multi = m_data[future_type]["multiplier"].iloc[-1]
-                buy_amount = int(cash_max*proportion*usage/(close*multi))
+                buy_amount = int(cash_max*proportion/(close*multi))
                 if buy_amount<=0:
                     continue
                 self.order_target_num(close,buy_amount,multi,future_type,"long")
@@ -82,7 +94,7 @@ class Section_Momentum_BackTest(BackTest):
                 close = m_data[future_type]["close"].iloc[-1]
                 multi = m_data[future_type]["multiplier"].iloc[-1]
                 usage=row["usage"]
-                buy_amount = int(cash_max*proportion*usage/(close*multi))
+                buy_amount = int(cash_max*proportion/(close*multi))
                 if(buy_amount<=0):
                     continue
                 self.order_target_num(close,buy_amount,multi,future_type,"short")
@@ -94,17 +106,19 @@ class Section_Momentum_BackTest(BackTest):
         
 if(__name__=="__main__"):
     p=multiprocessing.Pool(40)
-    for n in [0.10,0.15,0.2,0.25,0.3]:
-        for h in [0.002,0.003,0.004,0.005,0.006,0.007,0.008,0.009,0.01,0.011,0.012,0.013,0.014,0.015,0.016,0.017,0.018,0.019,0.02]:
+    for n in [1,1.5,2,2.5,3]:
+        for h in [2,3,4,5,6,7,8,9,10,11,12,13]:
             engine = Section_Momentum_BackTest(cash=1000000000,margin_rate=1,margin_limit=0,debug=False)
             engine.context.R=14
             engine.context.N=20
             engine.context.H=2
             engine.context.M=3
-            engine.context.S=h
-            engine.context.range = n
-            engine.context.name = f"newsecbreakmvolusage_S{h:.3f}_Range{n:.2f}"
-            p.apply_async(engine.loop_process,args=("20120101","20240501","back/section/newsecbreakmvolusage/"))
+            engine.context.S=0.014
+            engine.context.range = 0.20
+            engine.context.threshold =n
+            engine.context.window_size = h
+            engine.context.name = f"newsecbreakmadvance_W{h}_T{n:.1f}"
+            p.apply_async(engine.loop_process,args=("20120101","20240501","back/section/newsecbreakadvance/"))
             # engine.loop_process(start="20150101",end="20231231",saving_dir="back/section/newsecbreak/")
     print("-----start-----")
     p.close()

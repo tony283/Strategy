@@ -39,7 +39,10 @@ typelist = ['AU', 'AG', 'HC', 'I', 'J', 'JM', 'RB', 'SF', 'SM', 'SS', 'BU', 'EG'
           'PP', 'RU', 'SC', 'SP', 'TA', 'V', 'EB', 'LU', 'NR', 'PF', 'PG', 'SA', 'A', 'C', 'CF', 'M', 'OI',
           'RM', 'SR', 'Y', 'JD', 'CS', 'B', 'P', 'LH', 'PK', 'AL', 'CU', 'NI', 'PB', 'SN', 'ZN', 'LC',
           'SI', 'SH', 'PX', 'BR', 'AO']
-a=pd.DataFrame()
-for i in typelist:
-    a= pd.concat([a,pd.read_excel(f"strategy/lstm/train_data/{i}.xlsx",index_col=0).set_index("date")])
-a.to_excel(f"strategy/lstm/train_data/data.xlsx")
+
+
+
+
+
+a=pd.read_excel("data/A_daily.xlsx")
+print(a["volume"][-5-1:-1].mean())

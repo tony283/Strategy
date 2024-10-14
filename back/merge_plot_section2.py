@@ -19,12 +19,12 @@ import warnings
 
 
 
-file_name = "section/newsecbreakmvolcutrange/"
-real_name = "newsecbreakmvolcutrange"
+file_name = "section/newsecbreakmvol2usage/"
+real_name = "newsecbreakmvol2usage"
 tail =""
 #新建dfs
-indexes :dict={"S": [f"{i:.3f}" for i in [0.003,0.004,0.005,0.006,0.007,0.008,0.009,0.01,0.011,0.012,0.013,0.014,0.015]]}
-columns ={"Range": [f"{i:.2f}" for i in[0.10,0.15,0.2,0.25]]}
+indexes :dict={"S": [f"{i:.3f}" for i in [0.002,0.003,0.004,0.005,0.006,0.007,0.008,0.009,0.01,0.011,0.012,0.013,0.014,0.015,0.016,0.017,0.018,0.019,0.02]]}
+columns ={"Range": [f"{i:.2f}" for i in[0.10,0.15,0.2,0.25,0.3]]}
 
 
 #以上为需要填的参数
@@ -52,9 +52,10 @@ for r in indexes[index_title]:
         pro_div_sigma = profit/sigma
         plots["drawdown"]=(plots[name].cummax()-plots[name])/plots[name].cummax()
         maxdrawdownrate= plots["drawdown"].max()
+        calmar =profit/maxdrawdownrate
         df_profit.loc[f"{index_title}{r}",f"{column_title}{s}"]=profit
         df_sigma.loc[f"{index_title}{r}",f"{column_title}{s}"]=sigma
-        df_maxdrawdownrate.loc[f"{index_title}{r}",f"{column_title}{s}"]=maxdrawdownrate
+        df_maxdrawdownrate.loc[f"{index_title}{r}",f"{column_title}{s}"]=calmar
         df_pro_div_sigma.loc[f"{index_title}{r}",f"{column_title}{s}"]=pro_div_sigma    
         
 if not os.path.exists("Report/"+file_name):
@@ -62,7 +63,7 @@ if not os.path.exists("Report/"+file_name):
     print("Folder created")
 df_profit.to_excel("Report/"+file_name+real_name+"_profit.xlsx")
 df_sigma.to_excel("Report/"+file_name+real_name+"_sigma.xlsx")
-df_maxdrawdownrate.to_excel("Report/"+file_name+real_name+"_drawdown.xlsx")
+df_maxdrawdownrate.to_excel("Report/"+file_name+real_name+"_calmar.xlsx")
 df_pro_div_sigma.to_excel("Report/"+file_name+real_name+"_pro_div_sigma.xlsx")
 
 
