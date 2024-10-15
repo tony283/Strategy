@@ -44,5 +44,18 @@ typelist = ['AU', 'AG', 'HC', 'I', 'J', 'JM', 'RB', 'SF', 'SM', 'SS', 'BU', 'EG'
 
 
 
-a=pd.read_excel("data/A_daily.xlsx")
-print(a["volume"][-5-1:-1].mean())
+a=pd.read_excel("data/backup/CU_daily.xlsx")
+# print(a["close"].to_numpy())
+# fft= np.fft.fft(a["close"].to_numpy(),252)
+# x=pd.DataFrame(np.abs(fft))
+# print(x)
+# x.loc[1:].plot()
+# plt.show()
+
+y = a[["close","volume"]]
+print(y)
+y["close"]=y['close']/30000
+y["volume"]=y["volume"]/y["volume"].mean()
+print(y)
+y.plot()
+plt.show()
