@@ -41,21 +41,32 @@ typelist = ['AU', 'AG', 'HC', 'I', 'J', 'JM', 'RB', 'SF', 'SM', 'SS', 'BU', 'EG'
           'SI', 'SH', 'PX', 'BR', 'AO']
 
 
-
-
-
-a=pd.read_excel("data/backup/CU_daily.xlsx")
-# print(a["close"].to_numpy())
-# fft= np.fft.fft(a["close"].to_numpy(),252)
-# x=pd.DataFrame(np.abs(fft))
-# print(x)
-# x.loc[1:].plot()
-# plt.show()
-
-y = a[["close","volume"]]
-print(y)
-y["close"]=y['close']/30000
-y["volume"]=y["volume"]/y["volume"].mean()
-print(y)
-y.plot()
+# threshold=0.015
+# vol_list=[]
+# for i in typelist:
+#     a=pd.read_excel(f"data/backup/{i}_daily.xlsx")
+#     a["profit"]=a['profit'].apply(abs)
+# # print(a["close"].to_numpy())
+# # fft= np.fft.fft(a["close"].to_numpy(),252)
+# # x=pd.DataFrame(np.abs(fft))
+# # print(x)
+# # x.loc[1:].plot()
+# # plt.show()
+#     a=a[["profit","sigma20"]].corr()
+#     if a.loc["profit","sigma20"]<threshold:
+#         continue
+#     vol_list.append(i)
+# print(vol_list)
+from statsmodels.tsa.seasonal import STL
+plt.rc("figure", figsize=(10, 6))
+ 
+df=pd.read_excel("data/A_daily.xlsx")[["date","close"]]
+df['date']=pd.to_datetime(df['date'])
+df.set_index('date',inplace=True)
+print(df)
+res = STL(df,period=252).fit()
+res.plot()
 plt.show()
+# df['trend']=res.trend
+# df['seasonal']=res.seasonal
+# df['resid']=res.resid

@@ -58,9 +58,12 @@ class Section_Momentum_BackTest(BackTest):
                     continue
             ranking = pd.DataFrame(temp_dict,columns=["future_type","profit","sigma","profitM"])
             ranking = ranking[ranking["sigma"]!=0]
+            
             ranking = ranking.dropna()
             ranking["break"] = ranking["profitM"].apply(lambda x:abs(x)/np.sqrt(context.M))/ranking['sigma']
+            ranking["usage"] = ranking["sigma"].apply(lambda x:min(context.S/x,1))
             ranking = ranking[ranking["break"]!=0]
+            ranking=ranking[ranking["usage"]!=0]
             range=int(self.context.range*len(ranking))
             ranking = ranking.sort_values(by="profit",ascending=True)#排名
             cash_max = (self.position.cash//(2))/10000
@@ -71,8 +74,9 @@ class Section_Momentum_BackTest(BackTest):
                 proportion = row["break"]/highest
                 close = m_data[future_type]["close"].iloc[-1]
                 multi = m_data[future_type]["multiplier"].iloc[-1]
+                usage=row["usage"]
                 
-                buy_amount = int(cash_max*proportion/(close*multi))
+                buy_amount = int(cash_max*proportion*usage/(close*multi))
                 if buy_amount<=0:
                     continue
                 self.order_target_num(close,buy_amount,multi,future_type,"long")
@@ -81,7 +85,8 @@ class Section_Momentum_BackTest(BackTest):
                 proportion = row["break"]/lowest
                 close = m_data[future_type]["close"].iloc[-1]
                 multi = m_data[future_type]["multiplier"].iloc[-1]
-                buy_amount = int(cash_max*proportion/(close*multi))
+                usage=row["usage"]
+                buy_amount = int(cash_max*proportion*usage/(close*multi))
                 if(buy_amount<=0):
                     continue
                 self.order_target_num(close,buy_amount,multi,future_type,"short")
@@ -93,16 +98,17 @@ class Section_Momentum_BackTest(BackTest):
         
 if(__name__=="__main__"):
     p=multiprocessing.Pool(40)
-    for n in [i for i in range(1,21)]:
+    for n in [0.002,0.003,0.004,0.005,0.006,0.007,0.008,0.009,0.01,0.011,0.012,0.013,0.014,0.015,0.016,0.017,0.018,0.019,0.02]:
         for h in [0.1,0.15,0.2,0.25,0.3]:
             engine = Section_Momentum_BackTest(cash=1000000000,margin_rate=1,margin_limit=0,debug=False)
-            engine.context.R=14
+            engine.context.R=12
             engine.context.N=20
-            engine.context.H=2
-            engine.context.M = n
+            engine.context.H=3
+            engine.context.M = 9
+            engine.context.S =n
             engine.context.range = h
-            engine.context.name = f"newsecbreakM_Range{h:.2f}_M{n}"
-            p.apply_async(engine.loop_process,args=("20120101","20240501","back/section/newsecbreakM/"))
+            engine.context.name = f"smallsecbreakvol2_S{n:.3f}_Range{h:.2f}"
+            p.apply_async(engine.loop_process,args=("20120101","20240501","back/section/smallsecbreakvol2/"))
             # engine.loop_process(start="20150101",end="20231231",saving_dir="back/section/newsecbreak/")
     print("-----start-----")
     p.close()
