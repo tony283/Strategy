@@ -31,19 +31,7 @@ class Section_Momentum_BackTest(BackTest):
     def handle_bar(self, m_data, context):
         if context.fired:
             if context.count<context.H:
-                for future_type_dir, amount in self.position.hold.items():
-                    info = future_type_dir.split("_")
-                    future_type = info[0]
-                    direction = info[1]
-                    multi = m_data[future_type]["multiplier"].iloc[-1]
-                    if(amount[0]//multi<=0):
-                        continue
-                    try:
-                        if m_data[future_type]["volume"].iloc[-1]>m_data[future_type]["volume"].iloc[-20:-1].mean()*context.V:
-                            self.sell_target_num(m_data[future_type]["close"].iloc[-1],amount[0]//multi,multi,future_type,direction)
-                    except:
-                        continue
-                pass
+                return
             else:
                 for future_type_dir, amount in self.position.hold.items():
                     info = future_type_dir.split("_")
@@ -53,75 +41,67 @@ class Section_Momentum_BackTest(BackTest):
                     if(amount[0]//multi<=0):
                         continue
                     self.sell_target_num(m_data[future_type]["close"].iloc[-1],amount[0]//multi,multi,future_type,direction)
-                context.count=0
-                context.fired=False
+                    context.count=0
+                    context.fired=False
         if not context.fired:
             ##开始计算每个品种的收益率
             temp_dict =[]#用于储存收益率信息
             for future_type in context.typelist:
                 try:
-                    profit = (m_data[future_type]["close"].iloc[-1]-m_data[future_type]["close"].iloc[-1-context.R])/m_data[future_type]["close"].iloc[-1-context.R]
-                    sigma = m_data[future_type]["profit"].iloc[-context.N:].std()
-                    profitM = (m_data[future_type]["close"].iloc[-1]-m_data[future_type]["close"].iloc[-1-context.M])/m_data[future_type]["close"].iloc[-1-context.M]
-                    temp_dict.append([future_type,profit,sigma,profitM])
+                    temp=m_data[future_type]["volume"].iloc[-context.R:]*(m_data[future_type]["open"].iloc[-context.R:]+m_data[future_type]["close"].iloc[-context.R:]+m_data[future_type]["high"].iloc[-context.R:]+m_data[future_type]["low"].iloc[-context.R:])/4
+                    if m_data[future_type]["volume"].iloc[-context.R:].sum()==0:
+                        continue
+                    VWAP=temp.sum()/m_data[future_type]["volume"].iloc[-context.R:].sum()
+                    
+                    P_VWAP=(m_data[future_type]["close"].iloc[-1]-VWAP)/VWAP
+                    temp_dict.append([future_type,P_VWAP])
                 except:
                     continue
-            ranking = pd.DataFrame(temp_dict,columns=["future_type","profit","sigma","M"])
-            ranking = ranking[ranking["sigma"]!=0]
-            ranking["break"] = ranking["M"].apply(lambda x:abs(x))/(ranking['sigma']*np.sqrt(context.M))
-            ranking["usage"] = ranking["sigma"].apply(lambda x:pow(min(context.S/x,1),2))
-            ranking=ranking[ranking["break"]!=0]
-            ranking=ranking[ranking["usage"]!=0]
+            ranking = pd.DataFrame(temp_dict,columns=["future_type","VWAP"])
+            ranking = ranking[ranking["VWAP"]!=0]
+            ranking = ranking.dropna()
+            # ranking["usage"] = ranking["sigma"].apply(lambda x:min(context.S/x,1))
+            # ranking=ranking[ranking["break"]!=0]
+            # ranking=ranking[ranking["usage"]!=0]
             range=int(self.context.range*len(ranking))
-            ranking = ranking.sort_values(by="profit",ascending=True)#排名
+            ranking = ranking.sort_values(by="VWAP",ascending=True)#排名
             
-            cash_max = (self.position.cash//(2))/10000
-            highest = ranking.iloc[-range:]["break"].sum()
-            lowest = ranking.iloc[:range]["break"].sum()
+            cash_max = (self.position.cash//(2*range))/10000
+            # highest = ranking.iloc[-range:]["break"].sum()
+            # lowest = ranking.iloc[:range]["break"].sum()
             for index, row in ranking.iloc[-range:].iterrows():#收益率最高的
                 future_type=row["future_type"]
-                proportion = row["break"]/highest
-                usage=row["usage"]
                 close = m_data[future_type]["close"].iloc[-1]
                 multi = m_data[future_type]["multiplier"].iloc[-1]
-                buy_amount = int(cash_max*proportion/(close*multi))
+                buy_amount = int(cash_max/(close*multi))
                 if buy_amount<=0:
                     continue
-                vol_judge =m_data[future_type]["volume"].iloc[-1]<m_data[future_type]["volume"].iloc[-20:-1].mean()*context.V
-                self.order_target_num(close,buy_amount,multi,future_type,"long" if vol_judge else "short")
-                context.fired=True
+                self.order_target_num(close,buy_amount,multi,future_type,"long")
             for index, row in ranking.iloc[:range].iterrows():#收益率最低的
                 future_type=row["future_type"]
-                proportion = row["break"]/lowest
                 close = m_data[future_type]["close"].iloc[-1]
                 multi = m_data[future_type]["multiplier"].iloc[-1]
-                usage=row["usage"]
-                buy_amount = int(cash_max*proportion/(close*multi))
+                buy_amount = int(cash_max/(close*multi))
                 if(buy_amount<=0):
                     continue
-                vol_judge =m_data[future_type]["volume"].iloc[-1]<m_data[future_type]["volume"].iloc[-20:-1].mean()*context.V
-                self.order_target_num(close,buy_amount,multi,future_type,"short" if vol_judge else "long")
-                context.fired=True
+                self.order_target_num(close,buy_amount,multi,future_type,"short")
+            context.fired=True
 
     def after_trade(self, context):
         pass
         
         
 if(__name__=="__main__"):
-    p=multiprocessing.Pool(20)
-    for n in [1,1.5,2,2.5,3,3.5,4]:
+    p=multiprocessing.Pool(40)
+    for n in range(25,31):
         for h in [0.05,0.1,0.15,0.2,0.25,0.3]:
             engine = Section_Momentum_BackTest(cash=1000000000,margin_rate=1,margin_limit=0,debug=False)
-            engine.context.R=14
-            engine.context.N=20
+            engine.context.R=n
             engine.context.H=2
-            engine.context.M=3
-            engine.context.S=0.014
             engine.context.range = h
-            engine.context.V=n
-            engine.context.name = f"newsecbreakmvol2LongShortVRg_V{n:.1f}_Range{h:.2f}"
-            p.apply_async(engine.loop_process,args=("20120101","20240501","back/section/newsecbreakmvol2LongShortVRg/"))
-            # engine.loop_process(start="20120101",end="20231231",saving_dir="back/section/newsecbreak/")
+            engine.context.name = f"newsecVWAPRRg_R{n}_H{h:.2f}"
+            p.apply_async(engine.loop_process,args=("20120101","20240501","back/section/newsecVWAPRRg/"))
+            # engine.loop_process(start="20150101",end="20231231",saving_dir="back/section/newsecVWAP/")
     print("-----start-----")
     p.close()
     p.join()

@@ -19,12 +19,12 @@ import warnings
 
 
 
-file_name = "section/newsecbreakmvol2usageLongShortVH/"
-real_name = "newsecbreakmvol2usageLongShortVH"
+file_name = "section/newsecVWAPRRg/"
+real_name = "newsecVWAPRRg"
 tail =""
 #新建dfs
-indexes :dict={"V": [f"{i:.1f}" for i in [1.5,2,2.5,3,3.5,4]]}
-columns ={"H": [f"{i}" for i in [1,2,3,4,5]]}
+indexes :dict={"R": [f"{i}" for i in range(25,31)]}
+columns ={"H": [f"{i:.2f}" for i in [0.05,0.1,0.15,0.2,0.25,0.3]]}
 
 
 #以上为需要填的参数
@@ -60,7 +60,7 @@ for r in indexes[index_title]:
         
 if not os.path.exists("Report/"+file_name):
     os.makedirs("Report/"+file_name)
-    print("Folder created")
+    print(f"Folder created: Report/{file_name}")
 df_profit.to_excel("Report/"+file_name+real_name+"_profit.xlsx")
 df_sigma.to_excel("Report/"+file_name+real_name+"_sigma.xlsx")
 df_maxdrawdownrate.to_excel("Report/"+file_name+real_name+"_calmar.xlsx")

@@ -57,16 +57,34 @@ typelist = ['AU', 'AG', 'HC', 'I', 'J', 'JM', 'RB', 'SF', 'SM', 'SS', 'BU', 'EG'
 #         continue
 #     vol_list.append(i)
 # print(vol_list)
-from statsmodels.tsa.seasonal import STL
-plt.rc("figure", figsize=(10, 6))
+# from statsmodels.tsa.seasonal import STL
+# plt.rc("figure", figsize=(10, 6))
  
-df=pd.read_excel("data/A_daily.xlsx")[["date","close"]]
-df['date']=pd.to_datetime(df['date'])
-df.set_index('date',inplace=True)
-print(df)
-res = STL(df,period=252).fit()
-res.plot()
-plt.show()
+# df=pd.read_excel("data/A_daily.xlsx")[["date","close"]]
+# df['date']=pd.to_datetime(df['date'])
+# df.set_index('date',inplace=True)
+# print(df)
+# res = STL(df,period=252).fit()
+# res.plot()
+# plt.show()
 # df['trend']=res.trend
 # df['seasonal']=res.seasonal
 # df['resid']=res.resid
+import pandas as pd
+from arch import arch_model
+a={}
+tl=["A","Ag","CU","AU","JD"]
+la=[]
+for i in tl:
+    df=pd.read_excel(f"data/{i}_daily.xlsx")
+    VWAP= df["close"].iloc[-1]*df["volume"].iloc[-30:].sum()/(df['close'].iloc[-30:]*df['volume'].iloc[-30:]).sum()-1
+    P=(df["close"].iloc[-1]-df["close"].iloc[-15])/df["close"].iloc[-15]
+    la.append([VWAP,P])
+X=np.array(la).T
+corr=X@X.T
+print(corr)
+eigenvalue, featurevector = np.linalg.eig(corr)
+
+print("特征值：", eigenvalue)
+print("特征向量：", featurevector[np.argmax(eigenvalue)])
+
