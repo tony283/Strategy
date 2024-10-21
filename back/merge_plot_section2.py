@@ -19,12 +19,12 @@ import warnings
 
 
 
-file_name = "section/newsecVWAPRRg/"
-real_name = "newsecVWAPRRg"
+file_name = "section/newsecPCAbreakusage/"
+real_name = "newsecPCAbreakusage"
 tail =""
 #新建dfs
-indexes :dict={"R": [f"{i}" for i in range(25,31)]}
-columns ={"H": [f"{i:.2f}" for i in [0.05,0.1,0.15,0.2,0.25,0.3]]}
+indexes :dict={"S": [f"{i:.3f}" for i in [0.002,0.004,0.006,0.008,0.01,0.012,0.014,0.016,0.018,0.02]]}
+columns ={"H": [f"{i}" for i in range(1,10)]}
 
 
 #以上为需要填的参数

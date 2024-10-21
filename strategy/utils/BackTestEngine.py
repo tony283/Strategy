@@ -8,6 +8,7 @@ import matplotlib.pyplot as plt
 import warnings
 import time
 import multiprocessing
+from numba import jit
 # @profile
 def try_set_value(a:dict,key,value,is_close=True,close=0):
     """_summary_
@@ -428,7 +429,6 @@ class BackTest():
     #     for future_type, value in self.position.hold.items():
     #         info = future_type.split("_")
     #         self.hold.loc[len(self.hold)]=[date,info[0],value[0],info[1],value[1]/10000]
-    
     def calculate_profit(self,m_data:dict):
         total_profit=0
         for future_type, value in m_data.items():
