@@ -19,11 +19,11 @@ import warnings
 
 
 
-file_name = "section/newsecPCAbreakusage/"
-real_name = "newsecPCAbreakusage"
+file_name = "section/newsecPCAbreaksigma/"
+real_name = "newsecPCAbreaksigma"
 tail =""
 #新建dfs
-indexes :dict={"S": [f"{i:.3f}" for i in [0.002,0.004,0.006,0.008,0.01,0.012,0.014,0.016,0.018,0.02]]}
+indexes :dict={"Rg": [f"{i:.3f}" for i in [0.025,0.05,0.075,0.1,0.125,0.15,0.175,0.2]]}
 columns ={"H": [f"{i}" for i in range(1,10)]}
 
 

@@ -71,47 +71,47 @@ typelist = ['AU', 'AG', 'HC', 'I', 'J', 'JM', 'RB', 'SF', 'SM', 'SS', 'BU', 'EG'
 # df['seasonal']=res.seasonal
 # df['resid']=res.resid
 # 替换为你的邮箱和密码
-import imaplib
-import email
-from email.header import decode_header
-EMAIL = '370318641@qq.com'
-PASSWORD = 'fgkzhjgvtakubiha'
-IMAP_SERVER = 'imap.qq.com'
+# import imaplib
+# import email
+# from email.header import decode_header
+# EMAIL = '370318641@qq.com'
+# PASSWORD = 'fgkzhjgvtakubiha'
+# IMAP_SERVER = 'imap.qq.com'
 
-# 连接到邮箱
-mail = imaplib.IMAP4_SSL(IMAP_SERVER)
-mail.login(EMAIL, PASSWORD)
+# # 连接到邮箱
+# mail = imaplib.IMAP4_SSL(IMAP_SERVER)
+# mail.login(EMAIL, PASSWORD)
 
-# 选择收件箱
-mail.select('inbox')
-pattern="商品收益互换成交信息20241016"
-# 搜索邮件（可以根据需要修改搜索条件）
-status, messages = mail.search(None, f'SUBJECT "{pattern}"'.encode('utf-8'))
-mail_ids = messages[0].split()
+# # 选择收件箱
+# mail.select('inbox')
+# pattern="商品收益互换成交信息20241016"
+# # 搜索邮件（可以根据需要修改搜索条件）
+# status, messages = mail.search(None, f'SUBJECT "{pattern}"'.encode('utf-8'))
+# mail_ids = messages[0].split()
 
-# 取最新一封邮件
-latest_email_id = mail_ids[-1]
+# # 取最新一封邮件
+# latest_email_id = mail_ids[-1]
 
-# 获取邮件
-status, msg_data = mail.fetch(latest_email_id, '(RFC822)')
-msg = email.message_from_bytes(msg_data[0][1])
+# # 获取邮件
+# status, msg_data = mail.fetch(latest_email_id, '(RFC822)')
+# msg = email.message_from_bytes(msg_data[0][1])
 
-# 获取邮件主题
-subject, encoding = decode_header(msg['Subject'])[0]
-if isinstance(subject, bytes):
-    subject = subject.decode(encoding if encoding else 'utf-8')
+# # 获取邮件主题
+# subject, encoding = decode_header(msg['Subject'])[0]
+# if isinstance(subject, bytes):
+#     subject = subject.decode(encoding if encoding else 'utf-8')
 
-print(f'Subject: {subject}')
+# print(f'Subject: {subject}')
 
-# 获取邮件正文
-if msg.is_multipart():
-    for part in msg.walk():
-        if part.get_content_type() == 'text/html':
-            html_content = part.get_payload(decode=True).decode()
-            break
-else:
-    html_content = msg.get_payload(decode=True).decode()
-print(html_content)
+# # 获取邮件正文
+# if msg.is_multipart():
+#     for part in msg.walk():
+#         if part.get_content_type() == 'text/html':
+#             html_content = part.get_payload(decode=True).decode()
+#             break
+# else:
+#     html_content = msg.get_payload(decode=True).decode()
+# print(html_content)
 
 #     s = df["sigma20"].iloc[-1]
 #     breaklist=[(df["close"].iloc[-1]-df["close"].iloc[-R-1])/(s*df["close"].iloc[-R-1]*np.sqrt(R)) for R in [3,14,20,63,126]]
@@ -125,3 +125,9 @@ print(html_content)
 # print("特征向量：", featurevector)
 # a=featurevector[np.argmax(eigenvalue)]
 # print(np.sign(a.sum()))
+a=np.array([1,1])
+b=np.array([[1,1]])
+print(a)
+print(b)
+print(a@a.T)
+print(b@b.T)

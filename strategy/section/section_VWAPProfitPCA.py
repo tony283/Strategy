@@ -58,6 +58,7 @@ class Section_Momentum_BackTest(BackTest):
                     continue
             X=np.array(temp_list).T
             corr=X@X.T
+            
             eigenvalue, featurevector = np.linalg.eig(corr)
             main_feature=featurevector[np.argmax(eigenvalue)]
             main_feature=np.sign(main_feature.sum())*main_feature
@@ -74,20 +75,21 @@ class Section_Momentum_BackTest(BackTest):
             ranking = pd.DataFrame(temp_dict,columns=["future_type","VWAP","sigma"])
             ranking = ranking[ranking["VWAP"]!=0]
             ranking = ranking.dropna()
-            ranking["usage"] = ranking["sigma"].apply(lambda x:pow(min(context.S/x,1),2))
+            ranking['rs']=1/ranking["sigma"]
+            # ranking["usage"] = ranking["sigma"].apply(lambda x:pow(min(context.S/x,1),2))
             # ranking=ranking[ranking["break"]!=0]
             # ranking=ranking[ranking["usage"]!=0]
             range=int(self.context.range*len(ranking))
             ranking = ranking.sort_values(by="VWAP",ascending=True)#排名
             
-            cash_max = (self.position.cash//(2*range))/10000
-            # highest = ranking.iloc[-range:]["break"].sum()
-            # lowest = ranking.iloc[:range]["break"].sum()
+            cash_max = (self.position.cash//(2))/10000
+            highest = ranking.iloc[-range:]["rs"].sum()
+            lowest = ranking.iloc[:range]["rs"].sum()
             for index, row in ranking.iloc[-range:].iterrows():#收益率最高的
                 future_type=row["future_type"]
                 close = m_data[future_type]["close"].iloc[-1]
                 multi = m_data[future_type]["multiplier"].iloc[-1]
-                usage=row["usage"]
+                usage=row["rs"]/highest
                 buy_amount = int(cash_max*usage/(close*multi))
                 if buy_amount<=0:
                     continue
@@ -96,7 +98,7 @@ class Section_Momentum_BackTest(BackTest):
                 future_type=row["future_type"]
                 close = m_data[future_type]["close"].iloc[-1]
                 multi = m_data[future_type]["multiplier"].iloc[-1]
-                usage=row["usage"]
+                usage=row["rs"]/lowest
                 buy_amount = int(cash_max*usage/(close*multi))
                 if(buy_amount<=0):
                     continue
@@ -109,14 +111,13 @@ class Section_Momentum_BackTest(BackTest):
         
 if(__name__=="__main__"):
     p=multiprocessing.Pool(40)
-    for n in [0.002,0.004,0.006,0.008,0.01,0.012,0.014,0.016,0.018,0.02]:
+    for n in [0.025,0.05,0.075,0.1,0.125,0.15,0.175,0.2]:
         for h in range(1,10):
             engine = Section_Momentum_BackTest(cash=1000000000,margin_rate=1,margin_limit=0,debug=False)
             engine.context.H=h
-            engine.context.range = 0.05
-            engine.context.S=n
-            engine.context.name = f"newsecPCAbreakusage_S{n:.3f}_H{h}"
-            p.apply_async(engine.loop_process,args=("20120101","20240501","back/section/newsecPCAbreakusage/"))
+            engine.context.range = n
+            engine.context.name = f"newsecPCAbreaksigma_Rg{n:.3f}_H{h}"
+            p.apply_async(engine.loop_process,args=("20120101","20240501","back/section/newsecPCAbreaksigma/"))
             # engine.loop_process(start="20120101",end="20240501",saving_dir="back/section/newsecPCAbreak/")
     print("-----start-----")
     p.close()
