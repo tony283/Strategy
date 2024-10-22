@@ -6,11 +6,11 @@ import os
 plt.rcParams["font.sans-serif"]=["SimHei"] #设置字体
 plt.rcParams["axes.unicode_minus"]=False #该语句解决图像中的“-”负号的乱码问题  
 
-file_name = "section/newsecPCAbreaksigma/"
-real_name = "newsecPCAbreaksigma"
+file_name = "section/newsecPCAbreakusagemarket/"
+real_name = "newsecPCAbreakusagemarket"
 tail =""
 #新建dfs
-indexes :dict={"Rg": [f"{i:.3f}" for i in [0.05,0.075,0.1,0.125]]}
+indexes :dict={"Rg": [f"{i:.3f}" for i in [0.025]]}
 columns ={"H": [f"{i}" for i in range(4,5)]}
 
 ################################################################################# 

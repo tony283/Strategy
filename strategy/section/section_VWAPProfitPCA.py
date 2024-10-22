@@ -76,12 +76,13 @@ class Section_Momentum_BackTest(BackTest):
             ranking = ranking[ranking["VWAP"]!=0]
             ranking = ranking.dropna()
             ranking['rs']=1/ranking["sigma"]
-            # ranking["usage"] = ranking["sigma"].apply(lambda x:pow(min(context.S/x,1),2))
+            ranking["usage"] = ranking["sigma"].apply(lambda x:pow(min(0.016/x,1),2))
             # ranking=ranking[ranking["break"]!=0]
-            # ranking=ranking[ranking["usage"]!=0]
+            usage=pow(min(0.005/self.vol.loc[self.current,0],1),2)
+            ranking=ranking[ranking["usage"]!=0]
             range=int(self.context.range*len(ranking))
+            range=1
             ranking = ranking.sort_values(by="VWAP",ascending=True)#排名
-            
             cash_max = (self.position.cash//(2))/10000
             highest = ranking.iloc[-range:]["rs"].sum()
             lowest = ranking.iloc[:range]["rs"].sum()
@@ -89,7 +90,7 @@ class Section_Momentum_BackTest(BackTest):
                 future_type=row["future_type"]
                 close = m_data[future_type]["close"].iloc[-1]
                 multi = m_data[future_type]["multiplier"].iloc[-1]
-                usage=row["rs"]/highest
+                # usage=row["usage"]
                 buy_amount = int(cash_max*usage/(close*multi))
                 if buy_amount<=0:
                     continue
@@ -98,7 +99,7 @@ class Section_Momentum_BackTest(BackTest):
                 future_type=row["future_type"]
                 close = m_data[future_type]["close"].iloc[-1]
                 multi = m_data[future_type]["multiplier"].iloc[-1]
-                usage=row["rs"]/lowest
+                # usage=row["usage"]
                 buy_amount = int(cash_max*usage/(close*multi))
                 if(buy_amount<=0):
                     continue
@@ -111,14 +112,14 @@ class Section_Momentum_BackTest(BackTest):
         
 if(__name__=="__main__"):
     p=multiprocessing.Pool(40)
-    for n in [0.025,0.05,0.075,0.1,0.125,0.15,0.175,0.2]:
-        for h in range(1,10):
+    for n in [0.025]:
+        for h in range(4,5):
             engine = Section_Momentum_BackTest(cash=1000000000,margin_rate=1,margin_limit=0,debug=False)
             engine.context.H=h
             engine.context.range = n
-            engine.context.name = f"newsecPCAbreaksigma_Rg{n:.3f}_H{h}"
-            p.apply_async(engine.loop_process,args=("20120101","20240501","back/section/newsecPCAbreaksigma/"))
-            # engine.loop_process(start="20120101",end="20240501",saving_dir="back/section/newsecPCAbreak/")
+            engine.context.name = f"newsecPCAbreakusagemarket_Rg{n:.3f}_H{h}"
+            # p.apply_async(engine.loop_process,args=("20120101","20240501","back/section/newsecPCAbreakusage/"))
+            engine.loop_process(start="20120101",end="20240501",saving_dir="back/section/newsecPCAbreakusagemarket/")
     print("-----start-----")
     p.close()
     p.join()
