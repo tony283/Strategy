@@ -125,9 +125,10 @@ typelist = ['AU', 'AG', 'HC', 'I', 'J', 'JM', 'RB', 'SF', 'SM', 'SS', 'BU', 'EG'
 # print("特征向量：", featurevector)
 # a=featurevector[np.argmax(eigenvalue)]
 # print(np.sign(a.sum()))
-a=np.array([1,1])
-b=np.array([[1,1]])
+a=pd.DataFrame({"1":[1,2,3],"2":[2,3,4]})
 print(a)
-print(b)
-print(a@a.T)
-print(b@b.T)
+print(a["1"])
+b=a["1"]
+c=b[b<0].mean()
+d=b[b>0].mean()
+print(c==c)
