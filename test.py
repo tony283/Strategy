@@ -14,7 +14,7 @@ import time
 
 def generate_data(future):
     data =pd.read_excel(f"data/{future}_daily.xlsx",index_col=0)
-    # 
+    #
     data["sigma"]=data["profit"].rolling(window=63).std()
     data["profit20"]=data["profit"].rolling(window=20).sum()/(np.sqrt(20)*data["sigma"])
     data["profit63"]=data["profit"].rolling(window=63).sum()/(np.sqrt(63)*data["sigma"])
@@ -132,3 +132,6 @@ b=a["1"]
 c=b[b<0].mean()
 d=b[b>0].mean()
 print(c==c)
+a=1
+
+
