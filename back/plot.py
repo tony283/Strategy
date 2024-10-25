@@ -10,8 +10,8 @@ file_name = "section/newsecRSI/"
 real_name = "newsecRSI"
 tail =""
 #新建dfs
-indexes :dict={"R": [f"{i}" for i in range(6,11)]}
-columns ={"H": [f"{i}" for i in range(5,6)]}
+indexes :dict={"R": [f"{i}" for i in range(2,20)]}
+columns ={"H": [f"{i}" for i in range(1,6)]}
 
 ################################################################################# 
 
