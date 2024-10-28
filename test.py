@@ -113,25 +113,35 @@ typelist = ['AU', 'AG', 'HC', 'I', 'J', 'JM', 'RB', 'SF', 'SM', 'SS', 'BU', 'EG'
 #     html_content = msg.get_payload(decode=True).decode()
 # print(html_content)
 
+# for i in typelist:
+#     df =pd.read_excel(f"data/{i}_daily.xlsx",index_col=0)
 #     s = df["sigma20"].iloc[-1]
 #     breaklist=[(df["close"].iloc[-1]-df["close"].iloc[-R-1])/(s*df["close"].iloc[-R-1]*np.sqrt(R)) for R in [3,14,20,63,126]]
+#     print(breaklist)
 #     la.append(breaklist)
 # X=np.array(la).T
-# corr=X@X.T
+# corr=X@X.T/len(la)
 # print(corr)
 # eigenvalue, featurevector = np.linalg.eig(corr)
 
 # print("特征值：", eigenvalue)
 # print("特征向量：", featurevector)
 # a=featurevector[np.argmax(eigenvalue)]
-# print(np.sign(a.sum()))
-a=pd.DataFrame({"1":[1,2,3],"2":[2,3,4]})
-print(a)
-print(a["1"])
-b=a["1"]
-c=b[b<0].mean()
-d=b[b>0].mean()
-print(c==c)
-a=1
 
-
+p=[]
+for f in typelist:
+    df =pd.read_excel(f"data/{f}_daily.xlsx",index_col=0)
+    la=[]
+    for i in range(1,253):
+        
+        df1=df["profit"].iloc[i:]
+        df2=df["profit"].iloc[:-i]
+        df1=(df1-df1.mean())/df1.std()
+        df2=(df2-df2.mean())/df2.std()
+        v =df1.values.T@df2.values/len(df1)
+        la.append([i,v])
+    X=pd.DataFrame(la,columns=['day','corr'])
+    p.append(X['corr'].argmax())
+p=np.array(p)
+plt.hist(p,bins=[i for i in range(1,253)])
+plt.show()

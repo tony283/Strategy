@@ -19,8 +19,8 @@ import warnings
 
 
 
-file_name = "section/newsecRSI/"
-real_name = "newsecRSI"
+file_name = "section/newsecOpenInterest/"
+real_name = "newsecOpenInterest"
 tail =""
 #新建dfs
 indexes :dict={"R": [f"{i}" for i in range(2,20)]}
