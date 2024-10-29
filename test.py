@@ -128,20 +128,21 @@ typelist = ['AU', 'AG', 'HC', 'I', 'J', 'JM', 'RB', 'SF', 'SM', 'SS', 'BU', 'EG'
 # print("特征向量：", featurevector)
 # a=featurevector[np.argmax(eigenvalue)]
 
-p=[]
-for f in typelist:
-    df =pd.read_excel(f"data/{f}_daily.xlsx",index_col=0)
-    la=[]
-    for i in range(1,253):
-        
-        df1=df["profit"].iloc[i:]
-        df2=df["profit"].iloc[:-i]
-        df1=(df1-df1.mean())/df1.std()
-        df2=(df2-df2.mean())/df2.std()
-        v =df1.values.T@df2.values/len(df1)
-        la.append([i,v])
-    X=pd.DataFrame(la,columns=['day','corr'])
-    p.append(X['corr'].argmax())
-p=np.array(p)
-plt.hist(p,bins=[i for i in range(1,253)])
-plt.show()
+# p=[]
+df= pd.DataFrame(columns=[f'break{i}' for i in [3,14,20,63,126]]+[f'expect{i}' for i in [1,2,3,4,5]])
+for future_type in typelist:
+    m_data=pd.read_excel(f"data/{future_type}_daily.xlsx")[["close","sigma20"]]
+    df1= pd.DataFrame(columns=[f'break{i}' for i in [3,14,20,63,126]]+[f'expect{i}' for i in [1,2,3,4,5]])
+    for i in [3,14,20,63,126]:
+        a=m_data.copy().shift(i)
+        b=m_data.copy()
+        c=(b["close"]-a['close'])/(b["sigma20"]*a['close']*np.sqrt(i))
+        df1[f"break{i}"]=c
+    for i in [1,2,3,4,5]:
+        d=m_data.copy().shift(-i)
+        df1[f'expect{i}']=(d['close']-m_data['close'])/m_data['close']
+    df=pd.concat([df,df1])
+
+df=df.replace([np.inf, -np.inf], np.nan).dropna()
+print(df)
+df.to_excel("data/RF_Data/rf.xlsx",index=False)

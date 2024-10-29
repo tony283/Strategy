@@ -440,11 +440,16 @@ class BackTest():
             
             if (future_type+"_long") in self.position.hold.keys():
                 self.position.hold[future_type+"_long"][2]+=(int(current_close*10000)-int(preclose*10000))*self.position.hold[future_type+"_long"][0]
-                total_profit+=self.position.hold[future_type+"_long"][2]
+                total_profit+=int(self.position.hold[future_type+"_long"][2])
 
             if (future_type+"_short") in self.position.hold.keys():
                 self.position.hold[future_type+"_short"][2]-=(int(current_close*10000)-int(preclose*10000))*self.position.hold[future_type+"_short"][0]
-                total_profit+=self.position.hold[future_type+"_short"][2]
+                try:
+                    total_profit+=int(self.position.hold[future_type+"_short"][2])
+                except:
+                    print("overflow")
+                    print(type(total_profit),type(self.position.hold[future_type+"_short"][2]))
+                    print(total_profit,self.position.hold[future_type+"_short"])
 
         
         #通过hold和cash计算收益

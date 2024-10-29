@@ -19,11 +19,11 @@ import warnings
 
 
 
-file_name = "section/newsecOpenInterest/"
-real_name = "newsecOpenInterest"
+file_name = "section/newsecRandomForest/"
+real_name = "newsecRandomForest"
 tail =""
 #新建dfs
-indexes :dict={"R": [f"{i}" for i in range(2,20)]}
+indexes :dict={"Rg": [f"{i:.2f}" for i in [0.1,0.15,0.2,0.25,0.3]]}
 columns ={"H": [f"{i}" for i in range(1,6)]}
 
 
