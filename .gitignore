@@ -2,3 +2,4 @@
 Report/smooth/smooth_profit.xlsx
 Report/smooth/smooth_sigma.xlsx
 data/RF_Data/random_forest_model5.pkl
+*.pkl
