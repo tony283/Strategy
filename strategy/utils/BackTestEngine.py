@@ -9,6 +9,7 @@ import warnings
 import time
 import multiprocessing
 from numba import jit
+from concurrent.futures import ThreadPoolExecutor
 # @profile
 def try_set_value(a:dict,key,value,is_close=True,close=0):
     """_summary_
@@ -182,6 +183,14 @@ class BackTest():
 
         except:
             raise ReadingError("Cannot load data/"+future_type+"_daily.xlsx")
+        
+        self.data[future_type]=future_data
+    def csv_subscribe(self,future_type:str):
+        try:
+            future_data = pd.read_csv("data/"+future_type+"_daily.csv")
+
+        except:
+            raise ReadingError("Cannot load data/"+future_type+"_daily.csv")
         
         self.data[future_type]=future_data
     def _subscribe(self,future_type:str):

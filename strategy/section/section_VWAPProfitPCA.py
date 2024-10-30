@@ -118,8 +118,8 @@ if(__name__=="__main__"):
             engine.context.H=h
             engine.context.range = n
             engine.context.name = f"newsecPCAbreakusagemarket_Rg{n:.3f}_H{h}"
-            # p.apply_async(engine.loop_process,args=("20120101","20240501","back/section/newsecPCAbreakusage/"))
-            engine.loop_process(start="20120101",end="20240501",saving_dir="back/section/newsecPCAbreakusagemarket/")
+            p.apply_async(engine.loop_process,args=("20120101","20240501","back/section/newsecPCAbreakusage/"))
+            # engine.loop_process(start="20120101",end="20240501",saving_dir="back/section/newsecPCAbreakusagemarket/")
     print("-----start-----")
     p.close()
     p.join()

@@ -37,7 +37,7 @@ def generate_data(future):
     
 typelist = ['AU', 'AG', 'HC', 'I', 'J', 'JM', 'RB', 'SF', 'SM', 'SS', 'BU', 'EG', 'FG', 'FU', 'L', 'MA',
           'PP', 'RU', 'SC', 'SP', 'TA', 'V', 'EB', 'LU', 'NR', 'PF', 'PG', 'SA', 'A', 'C', 'CF', 'M', 'OI',
-          'RM', 'SR', 'Y', 'JD', 'CS', 'B', 'P', 'LH', 'PK', 'AL', 'CU', 'NI', 'PB', 'SN', 'ZN', 'LC',
+          'RM', 'SR', 'Y', 'JD', 'CS', 'B', 'P', 'LH', 'PK', 'AL', 'NI', 'PB', 'SN', 'ZN', 'LC',
           'SI', 'SH', 'PX', 'BR', 'AO']
 
 
@@ -112,7 +112,7 @@ typelist = ['AU', 'AG', 'HC', 'I', 'J', 'JM', 'RB', 'SF', 'SM', 'SS', 'BU', 'EG'
 # else:
 #     html_content = msg.get_payload(decode=True).decode()
 # print(html_content)
-
+# la=[]
 # for i in typelist:
 #     df =pd.read_excel(f"data/{i}_daily.xlsx",index_col=0)
 #     s = df["sigma20"].iloc[-1]
@@ -129,20 +129,26 @@ typelist = ['AU', 'AG', 'HC', 'I', 'J', 'JM', 'RB', 'SF', 'SM', 'SS', 'BU', 'EG'
 # a=featurevector[np.argmax(eigenvalue)]
 
 # p=[]
-df= pd.DataFrame(columns=[f'break{i}' for i in [3,14,20,63,126]]+[f'expect{i}' for i in [1,2,3,4,5]])
-for future_type in typelist:
-    m_data=pd.read_excel(f"data/{future_type}_daily.xlsx")[["close","sigma20"]]
-    df1= pd.DataFrame(columns=[f'break{i}' for i in [3,14,20,63,126]]+[f'expect{i}' for i in [1,2,3,4,5]])
-    for i in [3,14,20,63,126]:
-        a=m_data.copy().shift(i)
-        b=m_data.copy()
-        c=(b["close"]-a['close'])/(b["sigma20"]*a['close']*np.sqrt(i))
-        df1[f"break{i}"]=c
-    for i in [1,2,3,4,5]:
-        d=m_data.copy().shift(-i)
-        df1[f'expect{i}']=(d['close']-m_data['close'])/m_data['close']
-    df=pd.concat([df,df1])
+# df= pd.DataFrame(columns=[f'break{i}' for i in [3,14,20,63,126]]+[f'expect{i}' for i in [1,2,3,4,5]])
+# for future_type in typelist:
+#     m_data=pd.read_excel(f"data/{future_type}_daily.xlsx")[["close","sigma20"]]
+#     df1= pd.DataFrame(columns=[f'break{i}' for i in [3,14,20,63,126]]+[f'expect{i}' for i in [1,2,3,4,5]])
+#     for i in [3,14,20,63,126]:
+#         a=m_data.copy().shift(i)
+#         b=m_data.copy()
+#         c=(b["close"]-a['close'])/(b["sigma20"]*a['close']*np.sqrt(i))
+#         df1[f"break{i}"]=c
+#     for i in [1,2,3,4,5]:
+#         d=m_data.copy().shift(-i)
+#         df1[f'expect{i}']=(d['close']-m_data['close'])/m_data['close']
+#     df=pd.concat([df,df1])
 
-df=df.replace([np.inf, -np.inf], np.nan).dropna()
-print(df)
-df.to_excel("data/RF_Data/rf.xlsx",index=False)
+# df=df.replace([np.inf, -np.inf], np.nan).dropna()
+# print(df)
+# df.to_excel("data/RF_Data/rf.xlsx",index=False)
+
+
+
+a=pd.read_csv("data/CU_daily.csv")
+print(a)
+print(a['profit'].rolling(window=5).std())

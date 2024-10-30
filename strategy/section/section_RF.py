@@ -22,7 +22,8 @@ class Section_Momentum_BackTest(BackTest):
         context.count=0#用于计时
         context.range=0.2#取前20%
         for item in context.typelist:
-            self.subscribe(item)#注册品种
+            self.csv_subscribe(item)#注册品种
+
         self.vol = pd.read_excel("data/future_std.xlsx",index_col=0)
         #print(self.data)
     def before_trade(self, context,m_data):
@@ -95,8 +96,8 @@ if(__name__=="__main__"):
             engine = Section_Momentum_BackTest(cash=1000000000,margin_rate=1,margin_limit=0,debug=False)
             engine.context.H=h
             engine.context.range = n
-            engine.context.name = f"newsecRandomForestv102_Rg{n:.2f}_H{h}"
-            engine.context.loaded_model = joblib.load(f'data/RF_Data/random_forest_model_v1_0_2_{h}.pkl')
+            engine.context.name = f"newsecRandomForestv104_Rg{n:.2f}_H{h}"
+            engine.context.loaded_model = joblib.load(f'data/RF_Data/random_forest_model_v1_0_4_{h}.pkl')
             p.apply_async(engine.loop_process,args=("20120101","20240501","back/section/newsecRandomForest/"))
             # engine.loop_process(start="20120101",end="20240501",saving_dir="back/section/newsecRandomForest/")
     # print("-----start-----")
