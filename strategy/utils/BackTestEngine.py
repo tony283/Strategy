@@ -187,7 +187,8 @@ class BackTest():
         self.data[future_type]=future_data
     def csv_subscribe(self,future_type:str):
         try:
-            future_data = pd.read_csv("data/"+future_type+"_daily.csv")
+            future_data = pd.read_csv("data/"+future_type+"_daily.csv",index_col=0)
+            future_data["date"]=future_data["date"].apply(lambda x:datetime.strptime(x,"%Y-%m-%d"))
 
         except:
             raise ReadingError("Cannot load data/"+future_type+"_daily.csv")
