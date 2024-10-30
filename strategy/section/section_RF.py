@@ -59,7 +59,7 @@ class Section_Momentum_BackTest(BackTest):
             ranking = ranking.dropna()
             range=int(self.context.range*len(ranking))
             ranking = ranking.sort_values(by="sigma",ascending=False)#排名
-            cash_max = (self.position.cash//(2*range))/10000
+            cash_max = (self.position.cash//(range))/10000
             
             for index, row in ranking.iloc[:range].iterrows():#收益率最低的
                 future_type=row["future_type"]
@@ -92,11 +92,11 @@ if(__name__=="__main__"):
     p=multiprocessing.Pool(40)
     for n in [0.1,0.15,0.2,0.25,0.3]:
         for h in range(1,6):
-            engine = Section_Momentum_BackTest(cash=100000000,margin_rate=1,margin_limit=0,debug=False)
+            engine = Section_Momentum_BackTest(cash=1000000000,margin_rate=1,margin_limit=0,debug=False)
             engine.context.H=h
             engine.context.range = n
-            engine.context.name = f"newsecRandomForest_Rg{n:.2f}_H{h}"
-            engine.context.loaded_model = joblib.load(f'data/RF_Data/random_forest_model{h}.pkl')
+            engine.context.name = f"newsecRandomForestv102_Rg{n:.2f}_H{h}"
+            engine.context.loaded_model = joblib.load(f'data/RF_Data/random_forest_model_v1_0_2_{h}.pkl')
             p.apply_async(engine.loop_process,args=("20120101","20240501","back/section/newsecRandomForest/"))
             # engine.loop_process(start="20120101",end="20240501",saving_dir="back/section/newsecRandomForest/")
     # print("-----start-----")
