@@ -7,7 +7,7 @@ plt.rcParams["font.sans-serif"]=["SimHei"] #设置字体
 plt.rcParams["axes.unicode_minus"]=False #该语句解决图像中的“-”负号的乱码问题  
 
 file_name = "section/newsecRF/"
-real_name = "newsecRFv101"
+real_name = "newsecRFv110"
 tail =""
 #新建dfs
 indexes :dict={"Freq": [f"{i}" for i in [20,40,63]]}

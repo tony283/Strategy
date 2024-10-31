@@ -42,16 +42,18 @@ class Section_Momentum_BackTest(BackTest):
             breaklist=["break1","break3",'break14','break20','break63','break126','d_vol','d_oi','mmt_open','high_close','low_close','expect1','expect2','expect3','expect4','expect5']
             df=pd.DataFrame(columns=breaklist)
             for i in m_data.values():
+                if len(i)<5:
+                    continue
                 if len(i)>504:
                     if len(df)==0:
-                        df =i[breaklist].iloc[-504:]
+                        df =i[breaklist].iloc[-504:-5]
                         continue
-                    df=pd.concat([df,i[breaklist].iloc[-504:]])
+                    df=pd.concat([df,i[breaklist].iloc[-504:-5]])
                 else:
                     if len(df)==0:
-                        df =i[breaklist]
+                        df =i[breaklist].iloc[:-5]
                         continue
-                    df=pd.concat([df,i[breaklist]])
+                    df=pd.concat([df,i[breaklist].iloc[:-5]])
             df.replace([np.inf, -np.inf], np.nan, inplace=True)
             df=df.dropna()
             self.model = self.UpdateModel(m_data,df,context.H)
@@ -91,8 +93,8 @@ class Section_Momentum_BackTest(BackTest):
                 future_type=row["future_type"]
                 try:
                     s = m_data[future_type]["sigma20"].iloc[-1]
-                    breaklist=[(m_data[future_type]["close"].iloc[-1]-m_data[future_type]["close"].iloc[-R-1])/(s*m_data[future_type]["close"].iloc[-R-1]*np.sqrt(R)) for R in [3,14,20,63,126]]
-                    y_pred=self.model.predict(pd.DataFrame([breaklist],columns=[f'break{i}' for i in [3,14,20,63,126]]))
+                    breaklist=m_data[future_type][["break1","break3",'break14','break20','break63','break126','d_vol','d_oi','mmt_open','high_close','low_close']].iloc[-1]
+                    y_pred=self.model.predict(pd.DataFrame([breaklist]))
                     if(s==0 or s!=s or m_data[future_type]["close"].iloc[-127]==0):
                         continue
                 except:
@@ -117,7 +119,7 @@ class Section_Momentum_BackTest(BackTest):
         y_train = df[f'expect{H}'].apply(lambda x: 1 if x>0 else 0)
         # 拆分数据集为训练集和测试集
         param_grid = {
-        'n_estimators': [200],
+        'n_estimators': [100],
         'max_depth': [10],
         'min_samples_split': [6],
         'min_samples_leaf': [4],
@@ -127,7 +129,6 @@ class Section_Momentum_BackTest(BackTest):
         rf_model = RandomForestClassifier(random_state=42)
         grid_search = GridSearchCV(estimator=rf_model, param_grid=param_grid, cv=5, n_jobs=1, verbose=0,scoring='f1')
         grid_search.fit(X_train, y_train)
-        print("最佳参数:", grid_search.best_params_)
         # 训练模型
         return grid_search.best_estimator_
         
@@ -135,7 +136,7 @@ class Section_Momentum_BackTest(BackTest):
         
 if(__name__=="__main__"):
     p=multiprocessing.Pool(40)
-    for n in [20,40,63]:
+    for n in [126]:
         for h in range(1,6):
             engine = Section_Momentum_BackTest(cash=1000000000,margin_rate=1,margin_limit=0,debug=False)
             engine.context.H=h
