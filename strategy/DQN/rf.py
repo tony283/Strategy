@@ -10,7 +10,7 @@ data = pd.read_excel('data/RF_Data/rf.xlsx')
 data=data.dropna()
 
 # 其中 'target' 是1表示涨，0表示跌3,14,20,63,126
-def GenerateRF(X,y):
+def GenerateRF(X,y,i):
     X = data[[f'break{i}' for i in [3,14,20,63,126]]]  # 替换为你的特征列
     y = data[f'expect{i}'].apply(lambda x: 1 if x>0 else 0)
 
@@ -62,8 +62,11 @@ def GenerateRF(X,y):
 # print(model.predict(pd.DataFrame([[0,5,0,1,1]],columns=[f'break{i}' for i in [3,14,20,63,126]])))
     
     
-
-
+X = data[[f'break{i}' for i in [3,14,20,63,126]]]  # 替换为你的特征列
+y = data[f'expect{1}'].apply(lambda x: 1 if x>0 else 0)
+X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
+print(X)
+print(X_train)
 
 
 

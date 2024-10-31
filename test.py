@@ -147,8 +147,5 @@ typelist = ['AU', 'AG', 'HC', 'I', 'J', 'JM', 'RB', 'SF', 'SM', 'SS', 'BU', 'EG'
 # print(df)
 # df.to_excel("data/RF_Data/rf.xlsx",index=False)
 
-
-
-a=pd.read_csv("data/CU_daily.csv")
-print(a)
-print(a['profit'].rolling(window=5).std())
+a={'a':1}
+print(list(a.values()))

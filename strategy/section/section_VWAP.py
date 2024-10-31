@@ -100,7 +100,7 @@ if(__name__=="__main__"):
             engine.context.H=2
             engine.context.range = h
             engine.context.name = f"newsecVWAPRRg_R{n}_H{h:.2f}"
-            p.apply_async(engine.loop_process,args=("20120101","20240501","back/section/newsecVWAPRRg/"))
+            p.apply_async(engine.loop_process,args=("20180101","20241030","back/section/newsecVWAPRRg/"))
             # engine.loop_process(start="20150101",end="20231231",saving_dir="back/section/newsecVWAP/")
     print("-----start-----")
     p.close()

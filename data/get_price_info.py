@@ -1,5 +1,6 @@
 import rqdatac
 import pandas as pd
+import numpy as np
 rqdatac.init()
 from datetime import datetime
 #price = rqdatac.futures.get_dominant_price("CU",start_date="20100104", end_date="20240809",frequency='1d',fields=None,adjust_type='post', adjust_method='prev_close_ratio')
@@ -22,8 +23,12 @@ def merge(name):
     a["profit"]=(a["close"]-a["prev_close"])/a["prev_close"]
     for i in [5,20,40,63,126,252]:
         a[f'sigma{i}']=a["profit"].rolling(window=i).std()
-        a.to_excel(f"data/{name}_daily.xlsx")
-        a.to_csv(f"data/{name}_daily.csv")
+    for i in [3,14,20,63,126,252]:
+        a[f'break{i}']=(a["close"]-a["close"].shift(i))/(a["close"].shift(i)*np.sqrt(i)*a["sigma20"])
+    for i in [1,2,3,4,5]:
+        a[f'expect{i}']=(a["close"].shift(-i)-a["close"])/(a["close"])
+    a.to_excel(f"data/{name}_daily.xlsx")
+    a.to_csv(f"data/{name}_daily.csv")
     
 def load(name):
     get_raw_data(name)
