@@ -7,7 +7,7 @@ import os
 import multiprocessing
 from utils.BackTestEngine import *
 import joblib
-from sklearn.model_selection import GridSearchCV
+from sklearn.model_selection import train_test_split,GridSearchCV
 from sklearn.ensemble import RandomForestClassifier
 from sklearn.metrics import classification_report, confusion_matrix
 #order_target_num 用来下空单或多单
@@ -39,20 +39,13 @@ class Section_Momentum_BackTest(BackTest):
     def handle_bar(self, m_data, context):
         if context.update_freq_count>context.update_freq:
             context.update_freq_count=0
-            breaklist=["break1","break3",'break14','break20','break63','break126','d_vol','d_oi','mmt_open','high_close','low_close','expect1','expect2','expect3','expect4','expect5']
+            breaklist=["break3",'break14','break20','break63','break126','expect1','expect2','expect3','expect4','expect5']
             df=pd.DataFrame(columns=breaklist)
             for i in m_data.values():
                 if len(i)>504:
-                    if len(df)==0:
-                        df =i[breaklist].iloc[-504:]
-                        continue
                     df=pd.concat([df,i[breaklist].iloc[-504:]])
                 else:
-                    if len(df)==0:
-                        df =i[breaklist]
-                        continue
                     df=pd.concat([df,i[breaklist]])
-            df.replace([np.inf, -np.inf], np.nan, inplace=True)
             df=df.dropna()
             self.model = self.UpdateModel(m_data,df,context.H)
             
@@ -113,9 +106,11 @@ class Section_Momentum_BackTest(BackTest):
     def after_trade(self, context):
         pass
     def UpdateModel(self,m_data,df,H):
-        X_train = df[["break1","break3",'break14','break20','break63','break126','d_vol','d_oi','mmt_open','high_close','low_close']]  # 替换为你的特征列
+        X_train = df[[f'break{i}' for i in [3,14,20,63,126]]]  # 替换为你的特征列
         y_train = df[f'expect{H}'].apply(lambda x: 1 if x>0 else 0)
+
         # 拆分数据集为训练集和测试集
+        
         param_grid = {
         'n_estimators': [200],
         'max_depth': [10],
@@ -135,13 +130,13 @@ class Section_Momentum_BackTest(BackTest):
         
 if(__name__=="__main__"):
     p=multiprocessing.Pool(40)
-    for n in [20,40,63]:
+    for n in [20,40,63,126]:
         for h in range(1,6):
             engine = Section_Momentum_BackTest(cash=1000000000,margin_rate=1,margin_limit=0,debug=False)
             engine.context.H=h
             engine.context.range = 0.1
             engine.context.update_freq=n
-            engine.context.name = f"newsecRFv110_Freq{n}_H{h}"
+            engine.context.name = f"newsecRFv103_Freq{n}_H{h}"
             p.apply_async(engine.loop_process,args=("20180101","20241030","back/section/newsecRF/"))
             # engine.loop_process(start="20180201",end="20241030",saving_dir="back/section/newsecRF/")
     # print("-----start-----")

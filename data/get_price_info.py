@@ -23,10 +23,15 @@ def merge(name):
     a["profit"]=(a["close"]-a["prev_close"])/a["prev_close"]
     for i in [5,20,40,63,126,252]:
         a[f'sigma{i}']=a["profit"].rolling(window=i).std()
-    for i in [3,14,20,63,126,252]:
+    for i in [1,3,14,20,63,126,252]:
         a[f'break{i}']=(a["close"]-a["close"].shift(i))/(a["close"].shift(i)*np.sqrt(i)*a["sigma20"])
     for i in [1,2,3,4,5]:
         a[f'expect{i}']=(a["close"].shift(-i)-a["close"])/(a["close"])
+    a['d_vol']=(a["volume"]-a["volume"].shift(i))/a["volume"].shift(1)
+    a['d_oi']=(a["open_interest"]-a["open_interest"].shift(i))/a["open_interest"].shift(1)
+    a['mmt_open']=(a["open"]-a["close"].shift(i))/a["close"].shift(1)#开盘动量
+    a['high_close']=(a['high']-a['close'])/a['close']
+    a['low_close']=(a['close']-a['low'])/a['close']
     a.to_excel(f"data/{name}_daily.xlsx")
     a.to_csv(f"data/{name}_daily.csv")
     
