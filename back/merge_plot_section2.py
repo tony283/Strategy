@@ -23,7 +23,7 @@ file_name = "section/newsecRF/"
 real_name = "newsecRFv110"
 tail =""
 #新建dfs
-indexes :dict={"Freq": [f"{i}" for i in [20,40,63]]}
+indexes :dict={"Freq": [f"{i}" for i in [20,40,63,126]]}
 columns ={"H": [f"{i}" for i in range(1,6)]}
 
 
