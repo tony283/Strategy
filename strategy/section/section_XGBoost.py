@@ -1,4 +1,5 @@
 import pandas as pd
+import xgboost as xgb
 import matplotlib.pyplot as plt
 from datetime import datetime
 import sys
@@ -42,10 +43,19 @@ class Section_Momentum_BackTest(BackTest):
             breaklist=["break3",'break14','break20','break63','break126','expect1','expect2','expect3','expect4','expect5']
             df=pd.DataFrame(columns=breaklist)
             for i in m_data.values():
+                if len(i)<5:
+                    continue
                 if len(i)>504:
-                    df=pd.concat([df,i[breaklist].iloc[-504:]])
+                    if len(df)==0:
+                        df =i[breaklist].iloc[-504:-5]
+                        continue
+                    df=pd.concat([df,i[breaklist].iloc[-504:-5]])
                 else:
-                    df=pd.concat([df,i[breaklist]])
+                    if len(df)==0:
+                        df =i[breaklist].iloc[:-5]
+                        continue
+                    df=pd.concat([df,i[breaklist].iloc[:-5]])
+            df.replace([np.inf, -np.inf], np.nan, inplace=True)
             df=df.dropna()
             self.model = self.UpdateModel(m_data,df,context.H)
             
@@ -84,8 +94,11 @@ class Section_Momentum_BackTest(BackTest):
                 future_type=row["future_type"]
                 try:
                     s = m_data[future_type]["sigma20"].iloc[-1]
-                    breaklist=[(m_data[future_type]["close"].iloc[-1]-m_data[future_type]["close"].iloc[-R-1])/(s*m_data[future_type]["close"].iloc[-R-1]*np.sqrt(R)) for R in [3,14,20,63,126]]
-                    y_pred=self.model.predict(pd.DataFrame([breaklist],columns=[f'break{i}' for i in [3,14,20,63,126]]))
+                    breaklist=m_data[future_type][["break3",'break14','break20','break63','break126']].iloc[-1].to_numpy()
+                    breaklist=pd.DataFrame([breaklist],columns=[f'break{i}' for i in [3, 14, 20, 63, 126]])
+
+                    y_pred=self.model.predict(breaklist)
+
                     if(s==0 or s!=s or m_data[future_type]["close"].iloc[-127]==0):
                         continue
                 except:
@@ -112,17 +125,17 @@ class Section_Momentum_BackTest(BackTest):
         # 拆分数据集为训练集和测试集
         
         param_grid = {
-        'n_estimators': [200],
+        'objective': ['binary:logistic'],  # For binary classification
+        'n_estimators': [150],
         'max_depth': [10],
-        'min_samples_split': [6],
-        'min_samples_leaf': [4],
-        'max_features': ['sqrt']
+        'learning_rate': [0.1],
+        'gamma': [0],
         }
         # 创建随机森林分类器
-        rf_model = RandomForestClassifier(random_state=42)
-        grid_search = GridSearchCV(estimator=rf_model, param_grid=param_grid, cv=5, n_jobs=1, verbose=0,scoring='f1')
+        model = xgb.XGBClassifier(eval_metric='mlogloss', device='cuda')
+        grid_search = GridSearchCV(estimator=model, param_grid=param_grid,
+                            scoring='f1', cv=5, verbose=0)
         grid_search.fit(X_train, y_train)
-        print("最佳参数:", grid_search.best_params_)
         # 训练模型
         return grid_search.best_estimator_
         
@@ -136,9 +149,9 @@ if(__name__=="__main__"):
             engine.context.H=h
             engine.context.range = 0.1
             engine.context.update_freq=n
-            engine.context.name = f"newsecRFv103_Freq{n}_H{h}"
-            p.apply_async(engine.loop_process,args=("20180101","20241030","back/section/newsecRF/"))
-            # engine.loop_process(start="20180201",end="20241030",saving_dir="back/section/newsecRF/")
+            engine.context.name = f"newsecXGBv101_Freq{n}_H{h}"
+            # p.apply_async(engine.loop_process,args=("20180101","20241030","back/section/newsecXGB/"))
+            engine.loop_process(start="20180201",end="20241030",saving_dir="back/section/newsecXGB/")
     # print("-----start-----")
     p.close()
     p.join()
