@@ -40,7 +40,7 @@ class Section_Momentum_BackTest(BackTest):
     def handle_bar(self, m_data, context):
         if context.update_freq_count>context.update_freq:
             context.update_freq_count=0
-            breaklist=["break3",'break14','break20','break63','break126','expect1','expect2','expect3','expect4','expect5']
+            breaklist=["break1","break3",'break14','break20','break63','break126','d_vol','d_oi','mmt_open','high_close','low_close','expect1','expect2','expect3','expect4','expect5']
             df=pd.DataFrame(columns=breaklist)
             for i in m_data.values():
                 if len(i)<5:
@@ -94,11 +94,10 @@ class Section_Momentum_BackTest(BackTest):
                 future_type=row["future_type"]
                 try:
                     s = m_data[future_type]["sigma20"].iloc[-1]
-                    breaklist=m_data[future_type][["break3",'break14','break20','break63','break126']].iloc[-1].to_numpy()
-                    breaklist=pd.DataFrame([breaklist],columns=[f'break{i}' for i in [3, 14, 20, 63, 126]])
+                    breaklist=m_data[future_type][["break1","break3",'break14','break20','break63','break126','d_vol','d_oi','mmt_open','high_close','low_close']].iloc[-1].to_numpy()
+                    breaklist=pd.DataFrame([breaklist],columns=["break1","break3",'break14','break20','break63','break126','d_vol','d_oi','mmt_open','high_close','low_close'])
 
                     y_pred=self.model.predict(breaklist)
-
                     if(s==0 or s!=s or m_data[future_type]["close"].iloc[-127]==0):
                         continue
                 except:
@@ -119,15 +118,15 @@ class Section_Momentum_BackTest(BackTest):
     def after_trade(self, context):
         pass
     def UpdateModel(self,m_data,df,H):
-        X_train = df[[f'break{i}' for i in [3,14,20,63,126]]]  # 替换为你的特征列
+        X_train = df[["break1","break3",'break14','break20','break63','break126','d_vol','d_oi','mmt_open','high_close','low_close']]  # 替换为你的特征列
         y_train = df[f'expect{H}'].apply(lambda x: 1 if x>0 else 0)
 
         # 拆分数据集为训练集和测试集
         
         param_grid = {
         'objective': ['binary:logistic'],  # For binary classification
-        'n_estimators': [150],
-        'max_depth': [10],
+        'n_estimators': [80],
+        'max_depth': [8],
         'learning_rate': [0.1],
         'gamma': [0],
         }
@@ -150,8 +149,8 @@ if(__name__=="__main__"):
             engine.context.range = 0.1
             engine.context.update_freq=n
             engine.context.name = f"newsecXGBv101_Freq{n}_H{h}"
-            # p.apply_async(engine.loop_process,args=("20180101","20241030","back/section/newsecXGB/"))
-            engine.loop_process(start="20180201",end="20241030",saving_dir="back/section/newsecXGB/")
+            p.apply_async(engine.loop_process,args=("20180101","20241030","back/section/newsecXGB/"))
+            # engine.loop_process(start="20180201",end="20241030",saving_dir="back/section/newsecXGB/")
     # print("-----start-----")
     p.close()
     p.join()

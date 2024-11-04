@@ -65,15 +65,13 @@ class Section_Momentum_BackTest(BackTest):
             for index, row in ranking.iloc[:range].iterrows():#收益率最低的
                 future_type=row["future_type"]
                 try:
-                    s = m_data[future_type]["sigma20"].iloc[-1]
-                    breaklist=[(m_data[future_type]["close"].iloc[-1]-m_data[future_type]["close"].iloc[-R-1])/(s*m_data[future_type]["close"].iloc[-R-1]*np.sqrt(R)) for R in [3,14,20,63,126]]
-                    y_pred=context.loaded_model.predict(pd.DataFrame([breaklist],columns=[f'break{i}' for i in [3,14,20,63,126]]))
-                    if(s==0 or s!=s or m_data[future_type]["close"].iloc[-127]==0):
+                    s = m_data[future_type][["break1","break3",'break14','break20','break63','break126','d_vol','d_oi','mmt_open','high_close','low_close']].iloc[-1].to_numpy()
+                    if (True in np.isnan(s)):
                         continue
+
+                    y_pred=context.loaded_model.predict(pd.DataFrame([s],columns=["break1","break3",'break14','break20','break63','break126','d_vol','d_oi','mmt_open','high_close','low_close']))
                 except:
                     continue
-                
-                
                 if not (y_pred[0]==0 or y_pred[0]==1):
                     continue
                 close = m_data[future_type]["close"].iloc[-1]
@@ -82,6 +80,7 @@ class Section_Momentum_BackTest(BackTest):
                 buy_amount = int(cash_max/(close*multi))
                 if(buy_amount<=0):
                     continue
+                
                 self.order_target_num(close,buy_amount,multi,future_type,"short" if y_pred[0]==0 else 'long')
                 context.fired=True
 
@@ -96,10 +95,10 @@ if(__name__=="__main__"):
             engine = Section_Momentum_BackTest(cash=1000000000,margin_rate=1,margin_limit=0,debug=False)
             engine.context.H=h
             engine.context.range = n
-            engine.context.name = f"newsecRandomForestv102_Rg{n:.2f}_H{h}"
-            engine.context.loaded_model = joblib.load(f'data/RF_Data/random_forest_model_v1_0_2_{h}.pkl')
-            p.apply_async(engine.loop_process,args=("20180101","20241030","back/section/newsecRandomForest/"))
-            # engine.loop_process(start="20120101",end="20240501",saving_dir="back/section/newsecRandomForest/")
+            engine.context.name = f"newsecXGBv131_Rg{n:.2f}_H{h}"
+            engine.context.loaded_model = joblib.load(f'data/RF_Data/XGBoost_v1_3_1_{h}.pkl')
+            p.apply_async(engine.loop_process,args=("20180101","20241030","back/section/newsecXGB/"))
+            # engine.loop_process(start="20180101",end="20240501",saving_dir="back/section/newsecXGB/")
     # print("-----start-----")
     p.close()
     p.join()
