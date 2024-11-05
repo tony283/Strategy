@@ -21,8 +21,10 @@ class Section_Momentum_BackTest(BackTest):
         context.count=0#用于计时
         context.range=0.2#取前20%
         for item in context.typelist:
-            self.subscribe(item)#注册品种
+            self.csv_subscribe(item)#注册品种
         self.vol = pd.read_excel("data/future_std.xlsx",index_col=0)
+        context.importance=[]
+        context.feature=[]
         #print(self.data)
     def before_trade(self, context,m_data):
         if context.fired:
@@ -60,8 +62,10 @@ class Section_Momentum_BackTest(BackTest):
             corr=X@X.T
             
             eigenvalue, featurevector = np.linalg.eig(corr)
+            context.importance.append(eigenvalue/eigenvalue.sum())
             main_feature=featurevector[np.argmax(eigenvalue)]
             main_feature=np.sign(main_feature.sum())*main_feature
+            context.feature.append(main_feature)
             for future_type in context.typelist:
                 try:
                     s = m_data[future_type]["sigma20"].iloc[-1]
@@ -78,20 +82,16 @@ class Section_Momentum_BackTest(BackTest):
             ranking['rs']=1/ranking["sigma"]
             ranking["usage"] = ranking["sigma"].apply(lambda x:pow(min(0.016/x,1),2))
             # ranking=ranking[ranking["break"]!=0]
-            usage=pow(min(0.005/self.vol.loc[self.current,0],1),2)
             ranking=ranking[ranking["usage"]!=0]
             range=int(self.context.range*len(ranking))
-            range=1
             ranking = ranking.sort_values(by="VWAP",ascending=True)#排名
-            cash_max = (self.position.cash//(2))/10000
-            highest = ranking.iloc[-range:]["rs"].sum()
-            lowest = ranking.iloc[:range]["rs"].sum()
+            cash_max = (self.position.cash//(2*range))/10000
             for index, row in ranking.iloc[-range:].iterrows():#收益率最高的
                 future_type=row["future_type"]
                 close = m_data[future_type]["close"].iloc[-1]
                 multi = m_data[future_type]["multiplier"].iloc[-1]
                 # usage=row["usage"]
-                buy_amount = int(cash_max*usage/(close*multi))
+                buy_amount = int(cash_max/(close*multi))
                 if buy_amount<=0:
                     continue
                 self.order_target_num(close,buy_amount,multi,future_type,"long")
@@ -100,26 +100,30 @@ class Section_Momentum_BackTest(BackTest):
                 close = m_data[future_type]["close"].iloc[-1]
                 multi = m_data[future_type]["multiplier"].iloc[-1]
                 # usage=row["usage"]
-                buy_amount = int(cash_max*usage/(close*multi))
+                buy_amount = int(cash_max/(close*multi))
                 if(buy_amount<=0):
                     continue
                 self.order_target_num(close,buy_amount,multi,future_type,"short")
             context.fired=True
 
-    def after_trade(self, context):
-        pass
+    def after_back(self, context):
+        df_importance=pd.DataFrame(context.importance)
+        df_feature=pd.DataFrame(context.feature)
+        df_importance.to_csv(f"back/section/newsecPCA/{context.name}_IMP.csv")
+        df_feature.to_csv(f"back/section/newsecPCA/{context.name}_FEATURE.csv")
         
         
 if(__name__=="__main__"):
     p=multiprocessing.Pool(40)
-    for n in [0.025]:
-        for h in range(4,5):
+    for n in [0.05,0.1,0.15,0.2]:
+        for h in range(1,6):
             engine = Section_Momentum_BackTest(cash=1000000000,margin_rate=1,margin_limit=0,debug=False)
             engine.context.H=h
             engine.context.range = n
-            engine.context.name = f"newsecPCAbreakusagemarket_Rg{n:.3f}_H{h}"
-            p.apply_async(engine.loop_process,args=("20120101","20240501","back/section/newsecPCAbreakusage/"))
-            # engine.loop_process(start="20120101",end="20240501",saving_dir="back/section/newsecPCAbreakusagemarket/")
+            engine.context.name = f"newsecPCA_Rg{n:.3f}_H{h}"
+            p.apply_async(engine.loop_process,args=("20180101","20241030","back/section/newsecPCA/"))
+            
+            # engine.loop_process(start="20180101",end="20241030",saving_dir="back/section/newsecPCA/")
     print("-----start-----")
     p.close()
     p.join()

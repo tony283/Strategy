@@ -424,6 +424,9 @@ class BackTest():
         #self.statistics(real_time_series)
         self.trade_record =self.trade_record = pd.DataFrame(self.temp_trade,columns=["date","type","amount","direction","B/S","price"])
         self.trade_record.to_excel("back/trade/Trade"+self.context.name+".xlsx")
+        self.after_back(self.context)
+    def after_back(self,context):
+        pass
     
     def draw(self,context,df:pd.DataFrame):
         df.plot("date",self.context.name)

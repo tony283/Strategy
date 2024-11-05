@@ -18,12 +18,11 @@ import warnings
 # plt.show()
 
 
-
 file_name = "section/newsecXGB/"
-real_name = "newsecXGBv101"
+real_name = "newsecXGBv132"
 tail =""
 #新建dfs
-indexes :dict={"Freq": [f"{i}" for i in [20,40,63,126]]}
+indexes :dict={"Rg": [f"{i:.2f}" for i in [0.05,0.1,0.15,0.2,0.25,0.3]]}
 columns ={"H": [f"{i}" for i in range(1,6)]}
 
 
@@ -61,6 +60,12 @@ for r in indexes[index_title]:
 if not os.path.exists("Report/"+file_name):
     os.makedirs("Report/"+file_name)
     print(f"Folder created: Report/{file_name}")
+print('profit')
+print(df_profit)
+print('calmar')
+print(df_maxdrawdownrate)
+print("sharpe")
+print(df_pro_div_sigma)
 df_profit.to_excel("Report/"+file_name+real_name+"_profit.xlsx")
 df_sigma.to_excel("Report/"+file_name+real_name+"_sigma.xlsx")
 df_maxdrawdownrate.to_excel("Report/"+file_name+real_name+"_calmar.xlsx")

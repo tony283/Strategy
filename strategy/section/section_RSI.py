@@ -21,7 +21,7 @@ class Section_Momentum_BackTest(BackTest):
         context.count=0#用于计时
         context.range=0.2#取前20%
         for item in context.typelist:
-            self.subscribe(item)#注册品种
+            self.csv_subscribe(item)#注册品种
         self.vol = pd.read_excel("data/future_std.xlsx",index_col=0)
         #print(self.data)
     def before_trade(self, context,m_data):
@@ -50,8 +50,8 @@ class Section_Momentum_BackTest(BackTest):
                 try:
                     temp_data=m_data[future_type]["profit"].iloc[-context.R:]
                     try:
-                        high=temp_data[temp_data>0].mean()
-                        low=-temp_data[temp_data<0].mean()
+                        high=temp_data[temp_data>0].sum()
+                        low=-temp_data[temp_data<0].sum()
                         if high!=high:
                             high=0.0005
                         if low!=low or low==0:
@@ -72,6 +72,7 @@ class Section_Momentum_BackTest(BackTest):
             # ranking["usage"] = ranking["sigma"].apply(lambda x:min(context.S/x,1))
             # ranking=ranking[ranking["break"]!=0]
             ranking=ranking[ranking["RSI"]!=50]
+            ranking=ranking[ranking["RSI"]!=0]
             range=int(self.context.range*len(ranking))
             ranking = ranking.sort_values(by="RSI",ascending=True)#排名
             cash_max = (self.position.cash//(2*range))/10000
@@ -101,14 +102,14 @@ class Section_Momentum_BackTest(BackTest):
         
 if(__name__=="__main__"):
     p=multiprocessing.Pool(40)
-    for n in range(2,20):
+    for n in range(7,15):
         for h in range(1,6):
             engine = Section_Momentum_BackTest(cash=1000000000,margin_rate=1,margin_limit=0,debug=False)
             engine.context.R=n
             engine.context.H=h
             engine.context.range = 0.2
             engine.context.name = f"newsecRSI_R{n}_H{h}"
-            p.apply_async(engine.loop_process,args=("20120101","20240501","back/section/newsecRSI/"))
+            p.apply_async(engine.loop_process,args=("20180101","20241030","back/section/newsecRSI/"))
             # engine.loop_process(start="20120101",end="20231231",saving_dir="back/section/newsecRSI/")
     # print("-----start-----")
     p.close()

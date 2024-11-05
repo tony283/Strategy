@@ -128,17 +128,26 @@ typelist = ['AU', 'AG', 'HC', 'I', 'J', 'JM', 'RB', 'SF', 'SM', 'SS', 'BU', 'EG'
 # print("特征向量：", featurevector)
 # a=featurevector[np.argmax(eigenvalue)]
 
-p=[]
-df= pd.DataFrame(columns=[f'break{i}' for i in [3,14,20,63,126]]+[f'expect{i}' for i in [1,2,3,4,5]])
-for future_type in typelist:
-    m_data=pd.read_excel(f"data/{future_type}_daily.xlsx")
-    m_data=m_data[m_data["date"]<datetime(2017,12,1)]
-    m_data=m_data[["break1","break3",'break14','break20','break63','break126','d_vol','d_oi','mmt_open','high_close','low_close','expect1','expect2','expect3','expect4','expect5']]
-    if len(df)==0:
-        df=m_data
-    else:
-        df=pd.concat([df,m_data])
+# p=[]
+# df= pd.DataFrame(columns=[f'break{i}' for i in [3,14,20,63,126]]+[f'expect{i}' for i in [1,2,3,4,5]])
+# for future_type in typelist:
+#     m_data=pd.read_excel(f"data/{future_type}_daily.xlsx")
+#     m_data=m_data[m_data["date"]<datetime(2017,12,1)]
+#     m_data=m_data[["break1","break3",'break14','break20','break63','break126','d_vol','d_oi','mmt_open','high_close','low_close','expect1','expect2','expect3','expect4','expect5']]
+#     if len(df)==0:
+#         df=m_data
+#     else:
+#         df=pd.concat([df,m_data])
 
-df=df.replace([np.inf, -np.inf], np.nan).dropna()
-print(df)
-df.to_excel("data/RF_Data/rf_old.xlsx",index=False)
+# df=df.replace([np.inf, -np.inf], np.nan).dropna()
+# print(df)
+# df.to_excel("data/RF_Data/rf_old.xlsx",index=False)
+
+
+import rqdatac
+import pandas as pd
+import numpy as np
+a=[np.array([1,2,3]),np.array([1,2,1]),np.array([2,1,1]),np.array([1,1,1]),np.array([1,4,2]),np.array([2,2,1]),np.array([5,3,1])]
+b=pd.DataFrame(a,columns=['a','b','c'])
+b['cor']=b['a'].rolling(window=2).corr(b['b'])
+print(b)
