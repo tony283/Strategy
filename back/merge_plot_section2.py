@@ -19,10 +19,10 @@ import warnings
 
 
 file_name = "section/newsecXGB/"
-real_name = "newsecXGBv132"
+real_name = "newsecXGBUpdatev100"
 tail =""
 #新建dfs
-indexes :dict={"Rg": [f"{i:.2f}" for i in [0.05,0.1,0.15,0.2,0.25,0.3]]}
+indexes :dict={"Freq": [f"{i}" for i in [63,126,252]]}
 columns ={"H": [f"{i}" for i in range(1,6)]}
 
 
@@ -79,3 +79,4 @@ df_pro_div_sigma.to_excel("Report/"+file_name+real_name+"_pro_div_sigma.xlsx")
 # # plt.legend(loc = (1.00,0))
 
 # # plt.show()       
+

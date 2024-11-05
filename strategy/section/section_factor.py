@@ -23,6 +23,7 @@ class Section_Momentum_BackTest(BackTest):
         for item in context.typelist:
             self.csv_subscribe(item)#注册品种
         self.vol = pd.read_excel("data/future_std.xlsx",index_col=0)
+        
         #print(self.data)
     def before_trade(self, context,m_data):
         if context.fired:
@@ -48,7 +49,7 @@ class Section_Momentum_BackTest(BackTest):
             temp_dict =[]#用于储存收益率信息
             for future_type in context.typelist:
                 try:
-                    mmt = m_data[future_type]["low_close"][-context.W:].mean()
+                    mmt = m_data[future_type]["price_skew20"][-context.W:].mean()
                     
                     temp_dict.append([future_type,mmt])
                 except:
@@ -83,14 +84,14 @@ class Section_Momentum_BackTest(BackTest):
         
 if(__name__=="__main__"):
     p=multiprocessing.Pool(40)
-    for n in [3,5,10,15,20]:
+    for n in [1,3,5,10,15,20]:
         for h in range(1,6):
             engine = Section_Momentum_BackTest(cash=1000000000,margin_rate=1,margin_limit=0,debug=False)
             engine.context.W=n
             engine.context.H=h
             engine.context.range = 0.2
-            engine.context.name = f"newseclowclose_W{n}_H{h}"
-            p.apply_async(engine.loop_process,args=("20180101","20241030","back/section/newseclowclose/"))
+            engine.context.name = f"newsecprice_skew20_W{n}_H{h}"
+            p.apply_async(engine.loop_process,args=("20180101","20241030","back/section/newsecprice_skew20/"))
             # engine.loop_process(start="20150101",end="20231231",saving_dir="back/section/newsecbreak/")
     print("-----start-----")
     p.close()

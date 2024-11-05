@@ -32,6 +32,20 @@ def merge(name):
     a['mmt_open']=(a["open"]-a["close"].shift(i))/a["close"].shift(1)#开盘动量
     a['high_close']=(a['high']-a['close'])/a['close']
     a['low_close']=(a['close']-a['low'])/a['close']
+    a['corr_price_vol']=a['close'].rolling(window=20).corr(a['volume'])
+    a['corr_price_oi']=a['close'].rolling(window=20).corr(a['open_interest'])
+    a['corr_ret_vol']=a['profit'].rolling(window=20).corr(a['volume'])
+    a['corr_ret_oi']=a['profit'].rolling(window=20).corr(a['open_interest'])
+    a['corr_ret_dvol']=a['profit'].rolling(window=20).corr(a['d_vol'])
+    a['corr_ret_doi']=a['profit'].rolling(window=20).corr(a['d_oi'])
+    a['turnover']=a['close']*a['volume']
+    a['sigma_turnover']=a['turnover'].rolling(window=20).std()
+    a['ave_turnover']=a['turnover'].rolling(window=20).mean()
+    a['norm_turn_std']=a['sigma_turnover']/a['ave_turnover']
+    for i in [5,14,20,63,126,252]:
+        a[f'vol_skew{i}']=a['volume'].rolling(window=i).skew()
+    for i in [5,14,20,63,126,252]:
+        a[f'price_skew{i}']=a['close'].rolling(window=i).skew()
     a.to_excel(f"data/{name}_daily.xlsx")
     a.to_csv(f"data/{name}_daily.csv")
     

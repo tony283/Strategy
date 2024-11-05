@@ -23,6 +23,7 @@ class Section_Momentum_BackTest(BackTest):
         context.range=0.2#取前20%
         for item in context.typelist:
             self.csv_subscribe(item)#注册品种
+            
 
         self.vol = pd.read_excel("data/future_std.xlsx",index_col=0)
         #print(self.data)
@@ -90,13 +91,13 @@ class Section_Momentum_BackTest(BackTest):
         
 if(__name__=="__main__"):
     p=multiprocessing.Pool(40)
-    for n in [0.03]:
+    for n in [0.05,0.1,0.15,0.2,0.25]:
         for h in range(1,6):
             engine = Section_Momentum_BackTest(cash=1000000000,margin_rate=1,margin_limit=0,debug=False)
             engine.context.H=h
             engine.context.range = n
-            engine.context.name = f"newsecXGBv132_Rg{n:.2f}_H{h}"
-            engine.context.loaded_model = joblib.load(f'data/RF_Data/XGBoost_v1_3_2_{h}.pkl')
+            engine.context.name = f"newsecXGBv133_Rg{n:.2f}_H{h}"
+            engine.context.loaded_model = joblib.load(f'data/RF_Data/XGBoost_v1_3_3_{h}.pkl')
             p.apply_async(engine.loop_process,args=("20180103","20241030","back/section/newsecXGB/"))
             # engine.loop_process(start="20180101",end="20240501",saving_dir="back/section/newsecXGB/")
     # print("-----start-----")

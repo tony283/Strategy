@@ -125,9 +125,9 @@ class Section_Momentum_BackTest(BackTest):
         
         param_grid = {
         'objective': ['binary:logistic'],  # For binary classification
-        'n_estimators': [80],
-        'max_depth': [8],
-        'learning_rate': [0.1],
+        'n_estimators': [300],
+        'max_depth': [10],
+        'learning_rate': [0.05],
         'gamma': [0],
         }
         # 创建随机森林分类器
@@ -142,13 +142,13 @@ class Section_Momentum_BackTest(BackTest):
         
 if(__name__=="__main__"):
     p=multiprocessing.Pool(40)
-    for n in [20,40,63,126]:
-        for h in range(1,6):
+    for n in [63,126,252]:
+        for h in range(5,6):
             engine = Section_Momentum_BackTest(cash=1000000000,margin_rate=1,margin_limit=0,debug=False)
             engine.context.H=h
             engine.context.range = 0.1
             engine.context.update_freq=n
-            engine.context.name = f"newsecXGBv101_Freq{n}_H{h}"
+            engine.context.name = f"newsecXGBUpdatev100_Freq{n}_H{h}"
             p.apply_async(engine.loop_process,args=("20180101","20241030","back/section/newsecXGB/"))
             # engine.loop_process(start="20180201",end="20241030",saving_dir="back/section/newsecXGB/")
     # print("-----start-----")

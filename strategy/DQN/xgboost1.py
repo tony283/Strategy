@@ -4,13 +4,14 @@ from sklearn.metrics import classification_report
 import pandas as pd
 import joblib
 import cupy as cp
+import matplotlib.pyplot as plt
 # Load dataset
 for it in range(1,6):
     data = pd.read_excel('data/RF_Data/rf_old.xlsx')
     data = data.dropna()
-    X = data[["break1","break3",'break14','break20','break63','break126','d_vol','d_oi','mmt_open','high_close','low_close']]  # Replace with your feature columns
+    X = data[["break1","break3",'break14','break20','break63','break126','d_vol','d_oi','mmt_open','high_close','low_close','corr_price_vol','corr_price_oi','corr_ret_vol','corr_ret_oi','corr_ret_dvol','corr_ret_doi','norm_turn_std','vol_skew5','vol_skew14','vol_skew20','vol_skew63','vol_skew126','vol_skew252','price_skew5','price_skew14','price_skew20','price_skew63','price_skew126','price_skew252']]  # Replace with your feature columns
     y = data[f'expect{it}'].apply(lambda x: 1 if x > 0 else 0)
-
+    print(f'factor num: {len(X.columns)}')
     # Split the dataset into training and testing sets
     X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
 
@@ -20,7 +21,7 @@ for it in range(1,6):
     # Set the parameter grid
     param_grid = {
         'objective': ['binary:logistic'],  # For binary classification
-        'n_estimators': [20,40,60,80,100,150,200,250,300],
+        'n_estimators': [20,40,60,80,100,150,200,250,300,400],
         'max_depth': [4,5,6,7,8,9,10],
         'gamma': [0,0.05,0.1,0.15]
     }
@@ -43,8 +44,7 @@ for it in range(1,6):
     print(classification_report(y_test, y_pred))
 
     # Save the model
-    joblib.dump(best_model, f'data/RF_Data/XGBoost_v1_3_3_{it}.pkl')
+    joblib.dump(best_model, f'data/RF_Data/XGBoost_v1_4_1_{it}.pkl')
 
-# best:xgb.XGBClassifier = joblib.load(f'data/RF_Data/XGBoost_v1_0_0_{3}.pkl')
-# print(best.predict(pd.DataFrame([[-1,1,1,1,1]],columns=[f'break{i}' for i in [3, 14, 20, 63, 126]])))
-# print(best.get_params())
+# best:xgb.XGBClassifier = joblib.load(f'data/RF_Data/XGBoost_v1_3_3_{5}.pkl')
+# print(best)
