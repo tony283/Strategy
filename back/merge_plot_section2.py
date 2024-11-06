@@ -19,10 +19,10 @@ import warnings
 
 
 file_name = "section/newsecXGB/"
-real_name = "newsecXGBUpdatev100"
+real_name = "newsecXGBv142"
 tail =""
 #新建dfs
-indexes :dict={"Freq": [f"{i}" for i in [63,126,252]]}
+indexes :dict={"Rg": [f"{i:.2f}" for i in [0.05,0.1,0.15,0.2,0.25]]}
 columns ={"H": [f"{i}" for i in range(1,6)]}
 
 

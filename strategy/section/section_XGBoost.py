@@ -26,6 +26,7 @@ class Section_Momentum_BackTest(BackTest):
         context.count=0#用于计时
         context.update_freq_count=9999
         context.range=0.2#取前20%
+        context.breaklist=["break1","break3",'break14','break20','break63','break126','d_vol','d_oi','mmt_open','high_close','low_close','corr_price_vol','corr_price_oi','corr_ret_vol','corr_ret_oi','corr_ret_dvol','corr_ret_doi','norm_turn_std','vol_skew5','vol_skew14','vol_skew20','vol_skew63','vol_skew126','vol_skew252','price_skew5','price_skew14','price_skew20','price_skew63','price_skew126','price_skew252','expect1','expect2']
         for item in context.typelist:
             self.csv_subscribe(item)#注册品种
 
@@ -40,21 +41,16 @@ class Section_Momentum_BackTest(BackTest):
     def handle_bar(self, m_data, context):
         if context.update_freq_count>context.update_freq:
             context.update_freq_count=0
-            breaklist=["break1","break3",'break14','break20','break63','break126','d_vol','d_oi','mmt_open','high_close','low_close','expect1','expect2','expect3','expect4','expect5']
-            df=pd.DataFrame(columns=breaklist)
+            
+            df=pd.DataFrame(columns=context.breaklist)
             for i in m_data.values():
-                if len(i)<5:
+                if len(i)<10:
                     continue
-                if len(i)>504:
-                    if len(df)==0:
-                        df =i[breaklist].iloc[-504:-5]
-                        continue
-                    df=pd.concat([df,i[breaklist].iloc[-504:-5]])
                 else:
                     if len(df)==0:
-                        df =i[breaklist].iloc[:-5]
+                        df =i[context.breaklist].iloc[:-5]
                         continue
-                    df=pd.concat([df,i[breaklist].iloc[:-5]])
+                    df=pd.concat([df,i[context.breaklist].iloc[:-5]])
             df.replace([np.inf, -np.inf], np.nan, inplace=True)
             df=df.dropna()
             self.model = self.UpdateModel(m_data,df,context.H)
@@ -94,8 +90,8 @@ class Section_Momentum_BackTest(BackTest):
                 future_type=row["future_type"]
                 try:
                     s = m_data[future_type]["sigma20"].iloc[-1]
-                    breaklist=m_data[future_type][["break1","break3",'break14','break20','break63','break126','d_vol','d_oi','mmt_open','high_close','low_close']].iloc[-1].to_numpy()
-                    breaklist=pd.DataFrame([breaklist],columns=["break1","break3",'break14','break20','break63','break126','d_vol','d_oi','mmt_open','high_close','low_close'])
+                    breaklist=m_data[future_type][["break1","break3",'break14','break20','break63','break126','d_vol','d_oi','mmt_open','high_close','low_close','corr_price_vol','corr_price_oi','corr_ret_vol','corr_ret_oi','corr_ret_dvol','corr_ret_doi','norm_turn_std','vol_skew5','vol_skew14','vol_skew20','vol_skew63','vol_skew126','vol_skew252','price_skew5','price_skew14','price_skew20','price_skew63','price_skew126','price_skew252']].iloc[-1].to_numpy()
+                    breaklist=pd.DataFrame([breaklist],columns=["break1","break3",'break14','break20','break63','break126','d_vol','d_oi','mmt_open','high_close','low_close','corr_price_vol','corr_price_oi','corr_ret_vol','corr_ret_oi','corr_ret_dvol','corr_ret_doi','norm_turn_std','vol_skew5','vol_skew14','vol_skew20','vol_skew63','vol_skew126','vol_skew252','price_skew5','price_skew14','price_skew20','price_skew63','price_skew126','price_skew252'])
 
                     y_pred=self.model.predict(breaklist)
                     if(s==0 or s!=s or m_data[future_type]["close"].iloc[-127]==0):
@@ -125,10 +121,10 @@ class Section_Momentum_BackTest(BackTest):
         
         param_grid = {
         'objective': ['binary:logistic'],  # For binary classification
-        'n_estimators': [300],
-        'max_depth': [10],
+        'n_estimators': [300,400,500],
+        'max_depth': [9],
         'learning_rate': [0.05],
-        'gamma': [0],
+        'gamma': [0,0.05,0.1],
         }
         # 创建随机森林分类器
         model = xgb.XGBClassifier(eval_metric='mlogloss', device='cuda')
@@ -142,13 +138,13 @@ class Section_Momentum_BackTest(BackTest):
         
 if(__name__=="__main__"):
     p=multiprocessing.Pool(40)
-    for n in [63,126,252]:
-        for h in range(5,6):
+    for n in [252]:
+        for h in range(1,3):
             engine = Section_Momentum_BackTest(cash=1000000000,margin_rate=1,margin_limit=0,debug=False)
             engine.context.H=h
             engine.context.range = 0.1
             engine.context.update_freq=n
-            engine.context.name = f"newsecXGBUpdatev100_Freq{n}_H{h}"
+            engine.context.name = f"newsecXGBUpdatev101_Freq{n}_H{h}"
             p.apply_async(engine.loop_process,args=("20180101","20241030","back/section/newsecXGB/"))
             # engine.loop_process(start="20180201",end="20241030",saving_dir="back/section/newsecXGB/")
     # print("-----start-----")

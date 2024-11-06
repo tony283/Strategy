@@ -8,12 +8,11 @@ plt.rcParams["axes.unicode_minus"]=False #该语句解决图像中的“-”负�
 
 
 file_name = "section/newsecXGB/"
-real_name = "newsecXGBv133"
+real_name = "newsecXGBv142"
 tail =""
 #新建dfs
-indexes :dict={"Rg": [f"{i:.2f}" for i in [0.05,0.1,0.15,0.2]]}
-columns ={"H": [f"{i}" for i in range(1,3)]}
-
+indexes :dict={"Rg": [f"{i:.2f}" for i in [0.05,0.1,0.15,0.2,0.25]]}
+columns ={"H": [f"{i}" for i in range(1,2)]}
 ################################################################################# 
 
 index_title = list(indexes.keys())[0]

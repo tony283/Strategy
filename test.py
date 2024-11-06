@@ -133,6 +133,7 @@ df= pd.DataFrame(columns=[f'break{i}' for i in [3,14,20,63,126]]+[f'expect{i}' f
 for future_type in typelist:
     m_data=pd.read_excel(f"data/{future_type}_daily.xlsx")
     m_data=m_data[m_data["date"]<datetime(2017,12,1)]
+    print(m_data)
     m_data=m_data[["break1","break3",'break14','break20','break63','break126','d_vol','d_oi','mmt_open','high_close','low_close','corr_price_vol','corr_price_oi','corr_ret_vol','corr_ret_oi','corr_ret_dvol','corr_ret_doi','norm_turn_std','vol_skew5','vol_skew14','vol_skew20','vol_skew63','vol_skew126','vol_skew252','price_skew5','price_skew14','price_skew20','price_skew63','price_skew126','price_skew252','expect1','expect2','expect3','expect4','expect5']]
     if len(df)==0:
         df=m_data

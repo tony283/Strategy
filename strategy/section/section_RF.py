@@ -1,3 +1,10 @@
+'''
+:@Author: LRF
+:@Date: 11/5/2024, 3:33:33 PM
+:@LastEditors: LRF
+:@LastEditTime: 11/5/2024, 3:33:33 PM
+:Description: 
+'''
 import pandas as pd
 import matplotlib.pyplot as plt
 from datetime import datetime
@@ -66,11 +73,11 @@ class Section_Momentum_BackTest(BackTest):
             for index, row in ranking.iloc[:range].iterrows():#收益率最低的
                 future_type=row["future_type"]
                 try:
-                    s = m_data[future_type][["break1","break3",'break14','break20','break63','break126','d_vol','d_oi','mmt_open','high_close','low_close']].iloc[-1].to_numpy()
+                    s = m_data[future_type][["break1","break3",'break14','break20','break63','break126','d_vol','d_oi','high_close','low_close','corr_price_vol','corr_price_oi','corr_ret_oi','corr_ret_dvol','corr_ret_doi','norm_turn_std','vol_skew5','vol_skew14','vol_skew252','price_skew5','price_skew14','price_skew20','price_skew126']].iloc[-1].to_numpy()
                     if (True in np.isnan(s)):
                         continue
 
-                    y_pred=context.loaded_model.predict(pd.DataFrame([s],columns=["break1","break3",'break14','break20','break63','break126','d_vol','d_oi','mmt_open','high_close','low_close']))
+                    y_pred=context.loaded_model.predict(pd.DataFrame([s],columns=["break1","break3",'break14','break20','break63','break126','d_vol','d_oi','high_close','low_close','corr_price_vol','corr_price_oi','corr_ret_oi','corr_ret_dvol','corr_ret_doi','norm_turn_std','vol_skew5','vol_skew14','vol_skew252','price_skew5','price_skew14','price_skew20','price_skew126']))
                 except:
                     continue
                 if not (y_pred[0]==0 or y_pred[0]==1):
@@ -96,9 +103,9 @@ if(__name__=="__main__"):
             engine = Section_Momentum_BackTest(cash=1000000000,margin_rate=1,margin_limit=0,debug=False)
             engine.context.H=h
             engine.context.range = n
-            engine.context.name = f"newsecXGBv133_Rg{n:.2f}_H{h}"
-            engine.context.loaded_model = joblib.load(f'data/RF_Data/XGBoost_v1_3_3_{h}.pkl')
-            p.apply_async(engine.loop_process,args=("20180103","20241030","back/section/newsecXGB/"))
+            engine.context.name = f"newsecXGBv142_Rg{n:.2f}_H{h}"
+            engine.context.loaded_model = joblib.load(f'data/RF_Data/XGBoost_v1_4_2_{h}.pkl')
+            p.apply_async(engine.loop_process,args=("20180103","20241103","back/section/newsecXGB/"))
             # engine.loop_process(start="20180101",end="20240501",saving_dir="back/section/newsecXGB/")
     # print("-----start-----")
     p.close()
