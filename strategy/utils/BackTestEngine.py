@@ -190,7 +190,8 @@ class BackTest():
             future_data = pd.read_csv("data/"+future_type+"_daily.csv",index_col=0)
             future_data["date"]=future_data["date"].apply(lambda x:datetime.strptime(x,"%Y-%m-%d"))
 
-        except:
+        except Exception as e:
+            print(e)
             raise ReadingError("Cannot load data/"+future_type+"_daily.csv")
         
         self.data[future_type]=future_data

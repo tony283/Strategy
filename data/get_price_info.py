@@ -52,6 +52,9 @@ def merge(name):
         a[f'vol_skew{i}']=a['volume'].rolling(window=i).skew()
     for i in [5,14,20,63,126,252]:
         a[f'price_skew{i}']=a['close'].rolling(window=i).skew()
+    for i in [5,14,20,63,126,252]:
+        a[f'sigma_skew{i}']=a['sigma5'].rolling(window=i).skew()
+    
     a['low_close_high']=(2*a['close']-a['high']-a['low'])/(a['high']-a['low'])
     a['d_low_close_high']=a['low_close_high']-a['low_close_high'].shift()
     a['mean6']=a['close']/a['close'].rolling(window=6).mean()-1
@@ -65,6 +68,35 @@ def merge(name):
     a['ddif_vol']=(a['close'].rolling(window=9).mean()-a['close'].rolling(window=26).mean())/a['close'].rolling(window=12).mean()
     a['norm_ATR']=a[['high-prevclose','prevclose-low','high-low']].max(axis=1)/a['close']
     a['sq5_low_close_open_high']=(a['close']-a['low'])*(a['open']/a['close']).apply(lambda x:x**5)/(a['close']-a['high'])
+    for i in [5,14,20,63,126,252]:
+        a[f'vol_kurt{i}']=a['volume'].rolling(window=i).kurt()
+    for i in [5,14,20,63,126,252]:
+        a[f'price_kurt{i}']=a['close'].rolling(window=i).kurt()
+    for i in [5,14,20,63,126,252]:
+        a[f'sigma_kurt{i}']=a['sigma5'].rolling(window=i).kurt()
+    for i in [5,20,63,126]:
+        a[f'winrate{i}']=a['profit'].rolling(window=i).apply(lambda x:np.sum(x>0))/i
+    for i in [5,20,63,126]:
+        a[f'draw{i}']=(a['close'].rolling(window=i).max()-a['close'].rolling(window=i).min())/a['close'].rolling(window=i).max()
+    for i in [5,20,63,126]:
+        a[f'position{i}']=(a['close']-a['close'].rolling(window=i).min())/(a['close'].rolling(window=i).max()-a['close'].rolling(window=i).min())
+    a['d_position5']=a['position5']-a['position20']
+    a['d_position20']=a['position20']-a['position63']
+    a['d_position63']=a['position63']-a['position126']
+    for i in [5,20]:
+        a[f'daily_position{i}']=((a['close']-a['low'])/(a['high']-a['low'])).ewm(span=i).mean()
+    a['d_daily_position']=a['daily_position20']-a['daily_position5']
+    ##非指标
+    a['amihud']=a['profit'].apply(abs)/(a['amount']*a['close'])
+    for i in [5,20,63,126]:
+        a[f'relative_amihud{i}']=a['amihud'].ewm(span=i).mean()/a['amihud'].rolling(window=20).mean()
+        a[f'highlow_avg{i}']=(a['high']/a['low']-1).rolling(window=i).mean()
+        a[f'highlow_std{i}']=(a['high']/a['low']).rolling(window=i).std()
+        a[f'upshadow_avg{i}']=(1-a[['open','close']].max(axis=1)/a['high']).rolling(window=i).mean()
+        a[f'upshadow_std{i}']=(1-a[['open','close']].max(axis=1)/a['high']).rolling(window=i).std()
+        a[f'downshadow_avg{i}']=(a[['open','close']].min(axis=1)/a['low']-1).rolling(window=i).mean()
+        a[f'upshadow_std{i}']=(a[['open','close']].min(axis=1)/a['low']-1).rolling(window=i).std()
+    
     print(a)
     a.to_excel(f"data/{name}_daily.xlsx")
     a.to_csv(f"data/{name}_daily.csv")

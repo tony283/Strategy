@@ -95,7 +95,6 @@ class Section_Momentum_BackTest(BackTest):
                     df_breaklist=pd.DataFrame([df_breaklist],columns=context.breaklist)
 
                     y_pred=self.model.predict(df_breaklist)
-                    print(y_pred)
                     if(s==0 or s!=s or m_data[future_type]["close"].iloc[-127]==0):
                         continue
                 except:
@@ -139,8 +138,8 @@ class Section_Momentum_BackTest(BackTest):
         
 if(__name__=="__main__"):
     p=multiprocessing.Pool(40)
-    for n in [252]:
-        for h in range(1,3):
+    for n in [63,126]:
+        for h in range(1,2):
             engine = Section_Momentum_BackTest(cash=1000000000,margin_rate=1,margin_limit=0,debug=False)
             engine.context.H=h
             engine.context.range = 0.1
