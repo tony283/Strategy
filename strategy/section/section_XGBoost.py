@@ -26,7 +26,8 @@ class Section_Momentum_BackTest(BackTest):
         context.count=0#用于计时
         context.update_freq_count=9999
         context.range=0.2#取前20%
-        context.breaklist=["break1","break3",'break14','break20','break63','break126','d_vol','d_oi','mmt_open','high_close','low_close','corr_price_vol','corr_price_oi','corr_ret_vol','corr_ret_oi','corr_ret_dvol','corr_ret_doi','norm_turn_std','vol_skew5','vol_skew14','vol_skew20','vol_skew63','vol_skew126','vol_skew252','price_skew5','price_skew14','price_skew20','price_skew63','price_skew126','price_skew252','expect1','expect2']
+        context.breaklist=["break1","break3",'break14','break20','break63','break126','d_vol','d_oi','mmt_open','high_close','low_close','corr_price_vol','corr_price_oi','corr_ret_vol','corr_ret_oi','corr_ret_dvol','corr_ret_doi','norm_turn_std','vol_skew5','vol_skew14','vol_skew20','vol_skew63','vol_skew126','vol_skew252','price_skew5','price_skew14','price_skew20','price_skew63','price_skew126','price_skew252','low_close_high','d_low_close_high','mean6','mean12','dif','dea','macd','sma_low_close_high9','sma_low_close_high6','std_vol6','ddif_vol','norm_ATR','sq5_low_close_open_high']
+        context.breaklistfull=context.breaklist+['expect1','expect2','expect3','expect4','expect5']
         for item in context.typelist:
             self.csv_subscribe(item)#注册品种
 
@@ -42,18 +43,18 @@ class Section_Momentum_BackTest(BackTest):
         if context.update_freq_count>context.update_freq:
             context.update_freq_count=0
             
-            df=pd.DataFrame(columns=context.breaklist)
+            df=pd.DataFrame(columns=context.breaklistfull)
             for i in m_data.values():
-                if len(i)<10:
+                if len(i)<11:
                     continue
                 else:
                     if len(df)==0:
-                        df =i[context.breaklist].iloc[:-5]
+                        df =i[context.breaklistfull].iloc[:-10]
                         continue
-                    df=pd.concat([df,i[context.breaklist].iloc[:-5]])
+                    df=pd.concat([df,i[context.breaklistfull].iloc[:-10]])
             df.replace([np.inf, -np.inf], np.nan, inplace=True)
             df=df.dropna()
-            self.model = self.UpdateModel(m_data,df,context.H)
+            self.model = self.UpdateModel(df,context.H)
             
         if context.fired:
             if context.count<context.H:
@@ -90,10 +91,11 @@ class Section_Momentum_BackTest(BackTest):
                 future_type=row["future_type"]
                 try:
                     s = m_data[future_type]["sigma20"].iloc[-1]
-                    breaklist=m_data[future_type][["break1","break3",'break14','break20','break63','break126','d_vol','d_oi','mmt_open','high_close','low_close','corr_price_vol','corr_price_oi','corr_ret_vol','corr_ret_oi','corr_ret_dvol','corr_ret_doi','norm_turn_std','vol_skew5','vol_skew14','vol_skew20','vol_skew63','vol_skew126','vol_skew252','price_skew5','price_skew14','price_skew20','price_skew63','price_skew126','price_skew252']].iloc[-1].to_numpy()
-                    breaklist=pd.DataFrame([breaklist],columns=["break1","break3",'break14','break20','break63','break126','d_vol','d_oi','mmt_open','high_close','low_close','corr_price_vol','corr_price_oi','corr_ret_vol','corr_ret_oi','corr_ret_dvol','corr_ret_doi','norm_turn_std','vol_skew5','vol_skew14','vol_skew20','vol_skew63','vol_skew126','vol_skew252','price_skew5','price_skew14','price_skew20','price_skew63','price_skew126','price_skew252'])
+                    df_breaklist=m_data[future_type][context.breaklist].iloc[-1].to_numpy()
+                    df_breaklist=pd.DataFrame([df_breaklist],columns=context.breaklist)
 
-                    y_pred=self.model.predict(breaklist)
+                    y_pred=self.model.predict(df_breaklist)
+                    print(y_pred)
                     if(s==0 or s!=s or m_data[future_type]["close"].iloc[-127]==0):
                         continue
                 except:
@@ -104,7 +106,6 @@ class Section_Momentum_BackTest(BackTest):
                     continue
                 close = m_data[future_type]["close"].iloc[-1]
                 multi = m_data[future_type]["multiplier"].iloc[-1]
-                # usage=row["usage"]
                 buy_amount = int(cash_max/(close*multi))
                 if(buy_amount<=0):
                     continue
@@ -113,8 +114,8 @@ class Section_Momentum_BackTest(BackTest):
 
     def after_trade(self, context):
         pass
-    def UpdateModel(self,m_data,df,H):
-        X_train = df[["break1","break3",'break14','break20','break63','break126','d_vol','d_oi','mmt_open','high_close','low_close']]  # 替换为你的特征列
+    def UpdateModel(self,df,H):
+        X_train = df[self.context.breaklist]  # 替换为你的特征列
         y_train = df[f'expect{H}'].apply(lambda x: 1 if x>0 else 0)
 
         # 拆分数据集为训练集和测试集
@@ -122,12 +123,12 @@ class Section_Momentum_BackTest(BackTest):
         param_grid = {
         'objective': ['binary:logistic'],  # For binary classification
         'n_estimators': [300,400,500],
-        'max_depth': [9],
+        'max_depth': [12],
         'learning_rate': [0.05],
-        'gamma': [0,0.05,0.1],
+        'gamma': [0.05,0.1,0.15],
         }
         # 创建随机森林分类器
-        model = xgb.XGBClassifier(eval_metric='mlogloss', device='cuda')
+        model = xgb.XGBClassifier(eval_metric='mlogloss')
         grid_search = GridSearchCV(estimator=model, param_grid=param_grid,
                             scoring='f1', cv=5, verbose=0)
         grid_search.fit(X_train, y_train)

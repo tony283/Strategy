@@ -49,15 +49,15 @@ class Section_Momentum_BackTest(BackTest):
             temp_dict =[]#用于储存收益率信息
             for future_type in context.typelist:
                 try:
-                    mmt = m_data[future_type]["price_skew20"][-context.W:].mean()
+                    factor = -m_data[future_type]["price_skew252"].iloc[-1]
                     
-                    temp_dict.append([future_type,mmt])
+                    temp_dict.append([future_type,factor])
                 except:
                     continue
-            ranking = pd.DataFrame(temp_dict,columns=["future_type","mmt"])
+            ranking = pd.DataFrame(temp_dict,columns=["future_type","factor"])
             ranking=ranking.dropna()
             range=int(self.context.range*len(ranking))
-            ranking = ranking.sort_values(by="mmt",ascending=True)#排名
+            ranking = ranking.sort_values(by="factor",ascending=True)#排名
             
             cash_max = (self.position.cash//(2*range))/10000
             for index, row in ranking.iloc[-range:].iterrows():#收益率最高的
@@ -84,14 +84,13 @@ class Section_Momentum_BackTest(BackTest):
         
 if(__name__=="__main__"):
     p=multiprocessing.Pool(40)
-    for n in [1,3,5,10,15,20]:
+    for n in [0.05,0.1,0.15]:
         for h in range(1,6):
             engine = Section_Momentum_BackTest(cash=1000000000,margin_rate=1,margin_limit=0,debug=False)
-            engine.context.W=n
             engine.context.H=h
-            engine.context.range = 0.2
-            engine.context.name = f"newsecprice_skew20_W{n}_H{h}"
-            p.apply_async(engine.loop_process,args=("20180101","20241030","back/section/newsecprice_skew20/"))
+            engine.context.range = n
+            engine.context.name = f"newsecprice_skew14_Rg{n:.2f}_H{h}"
+            p.apply_async(engine.loop_process,args=("20180101","20241030","back/section/newsecprice_skew14/"))
             # engine.loop_process(start="20150101",end="20231231",saving_dir="back/section/newsecbreak/")
     print("-----start-----")
     p.close()

@@ -1,3 +1,10 @@
+'''
+:@Author: LRF
+:@Date: 11/5/2024, 3:33:23 PM
+:@LastEditors: LRF
+:@LastEditTime: 11/5/2024, 3:33:23 PM
+:Description: 
+'''
 from concurrent.futures import ProcessPoolExecutor, ThreadPoolExecutor, as_completed
 import multiprocessing.pool
 import pandas as pd
@@ -128,33 +135,36 @@ typelist = ['AU', 'AG', 'HC', 'I', 'J', 'JM', 'RB', 'SF', 'SM', 'SS', 'BU', 'EG'
 # print("特征向量：", featurevector)
 # a=featurevector[np.argmax(eigenvalue)]
 
-p=[]
-df= pd.DataFrame(columns=[f'break{i}' for i in [3,14,20,63,126]]+[f'expect{i}' for i in [1,2,3,4,5]])
-for future_type in typelist:
-    m_data=pd.read_excel(f"data/{future_type}_daily.xlsx")
-    m_data=m_data[m_data["date"]<datetime(2017,12,1)]
-    print(m_data)
-    m_data=m_data[["break1","break3",'break14','break20','break63','break126','d_vol','d_oi','mmt_open','high_close','low_close','corr_price_vol','corr_price_oi','corr_ret_vol','corr_ret_oi','corr_ret_dvol','corr_ret_doi','norm_turn_std','vol_skew5','vol_skew14','vol_skew20','vol_skew63','vol_skew126','vol_skew252','price_skew5','price_skew14','price_skew20','price_skew63','price_skew126','price_skew252','expect1','expect2','expect3','expect4','expect5']]
-    if len(df)==0:
-        df=m_data
-    else:
-        df=pd.concat([df,m_data])
+# p=[]
+# df= pd.DataFrame(columns=[f'break{i}' for i in [3,14,20,63,126]]+[f'expect{i}' for i in [1,2,3,4,5]])
+# for future_type in typelist:
+#     m_data=pd.read_excel(f"data/{future_type}_daily.xlsx")
+#     m_data=m_data[m_data["date"]<datetime(2017,12,1)]
+#     print(m_data)
+#     m_data=m_data[["break1","break3",'break14','break20','break63','break126','d_vol','d_oi','mmt_open','high_close','low_close','corr_price_vol','corr_price_oi','corr_ret_vol','corr_ret_oi','corr_ret_dvol','corr_ret_doi','norm_turn_std','vol_skew5','vol_skew14','vol_skew20','vol_skew63','vol_skew126','vol_skew252','price_skew5','price_skew14','price_skew20','price_skew63','price_skew126','price_skew252','low_close_high','d_low_close_high','mean6','mean12','dif','dea','macd','sma_low_close_high9','sma_low_close_high6','std_vol6','ddif_vol','norm_ATR','sq5_low_close_open_high','expect1','expect2','expect3','expect4','expect5']]
+#     if len(df)==0:
+#         df=m_data
+#     else:
+#         df=pd.concat([df,m_data])
 
-df=df.replace([np.inf, -np.inf], np.nan).dropna()
-print(df)
-df.to_excel("data/RF_Data/rf_old.xlsx",index=False)
+# df=df.replace([np.inf, -np.inf], np.nan).dropna()
+# print(df)
+# df.to_excel("data/RF_Data/rf_old.xlsx",index=False)
 
 
-# import rqdatac
-# import pandas as pd
-# import numpy as np
+import rqdatac
+import pandas as pd
+import numpy as np
 # corr=pd.DataFrame()
 # for i in typelist:
-#     a=pd.read_excel('data/JM_daily.xlsx')[["break1","break3",'break14','break20','break63','break126','d_vol','d_oi','mmt_open','high_close','low_close','corr_price_vol','corr_price_oi','corr_ret_vol','corr_ret_oi','corr_ret_dvol','corr_ret_doi','norm_turn_std','vol_skew5','vol_skew14','vol_skew20','vol_skew63','vol_skew126','vol_skew252','price_skew5','price_skew14','price_skew20','price_skew63','price_skew126','price_skew252','expect1','expect2','expect3','expect4','expect5']]
+#     a=pd.read_excel(f'data/{i}_daily.xlsx')
+#     a=a[a["date"]>datetime(2018,1,1)][["break1","break3",'break14','break20','break63','break126','d_vol','d_oi','mmt_open','high_close','low_close','corr_price_vol','corr_price_oi','corr_ret_vol','corr_ret_oi','corr_ret_dvol','corr_ret_doi','norm_turn_std','vol_skew5','vol_skew14','vol_skew20','vol_skew63','vol_skew126','vol_skew252','price_skew5','price_skew14','price_skew20','price_skew63','price_skew126','price_skew252','low_close_high','d_low_close_high','mean6','mean12','dif','dea','macd','sma_low_close_high9','sma_low_close_high6','std_vol6','ddif_vol','norm_ATR','sq5_low_close_open_high','expect1','expect2','expect3','expect4','expect5']]
 #     if len(corr)==0:
 #         corr=a.corr()
 #     else:
 #         corr=corr+a.corr()
 # corr=corr/len(typelist)
-# print(corr)
+# corr=corr[['expect1','expect2','expect3','expect4','expect5']].iloc[:-5]
 # corr.to_excel('factor/factor_exposure.xlsx')
+future_data = pd.read_csv("data/"+'RU'+"_daily.csv",index_col=0)
+future_data["date"]=future_data["date"].apply(lambda x:datetime.strptime(x,"%Y-%m-%d"))
