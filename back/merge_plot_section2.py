@@ -23,7 +23,7 @@ real_name = "newsecXGBUpdatev101"
 tail =""
 #新建dfs
 indexes :dict={"Freq": [f"{i}" for i in [63,126,252]]}
-columns ={"H": [f"{i}" for i in range(1,4)]}
+columns ={"H": [f"{i}" for i in range(1,2)]}
 
 
 #以上为需要填的参数
