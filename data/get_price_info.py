@@ -112,3 +112,4 @@ tl=['AU', 'AG', 'HC', 'I', 'J', 'JM', 'RB', 'SF', 'SM', 'SS', 'BU', 'EG', 'FG', 
 for i in tl:
     print(i)
     load(i)
+

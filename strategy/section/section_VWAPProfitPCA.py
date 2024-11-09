@@ -64,6 +64,8 @@ class Section_Momentum_BackTest(BackTest):
             eigenvalue, featurevector = np.linalg.eig(corr)
             context.importance.append(eigenvalue/eigenvalue.sum())
             main_feature=featurevector[np.argmax(eigenvalue)]
+            if -np.cos(context.angle*np.pi/180)<main_feature.sum()/np.sqrt(5)<np.cos(context.angle*np.pi/180):
+                return
             main_feature=np.sign(main_feature.sum())*main_feature
             context.feature.append(main_feature)
             for future_type in context.typelist:
@@ -95,6 +97,7 @@ class Section_Momentum_BackTest(BackTest):
                 if buy_amount<=0:
                     continue
                 self.order_target_num(close,buy_amount,multi,future_type,"long")
+                context.fired=True
             for index, row in ranking.iloc[:range].iterrows():#收益率最低的
                 future_type=row["future_type"]
                 close = m_data[future_type]["close"].iloc[-1]
@@ -104,7 +107,7 @@ class Section_Momentum_BackTest(BackTest):
                 if(buy_amount<=0):
                     continue
                 self.order_target_num(close,buy_amount,multi,future_type,"short")
-            context.fired=True
+                context.fired=True
 
     def after_back(self, context):
         df_importance=pd.DataFrame(context.importance)
@@ -115,11 +118,12 @@ class Section_Momentum_BackTest(BackTest):
         
 if(__name__=="__main__"):
     p=multiprocessing.Pool(40)
-    for n in [0.05,0.1,0.15,0.2]:
-        for h in range(1,6):
+    for n in [30,45,60,75,90]:
+        for h in range(1,4):
             engine = Section_Momentum_BackTest(cash=1000000000,margin_rate=1,margin_limit=0,debug=False)
             engine.context.H=h
-            engine.context.range = n
+            engine.context.range = 0.05
+            engine.context.angle=n
             engine.context.name = f"newsecPCA_Rg{n:.3f}_H{h}"
             p.apply_async(engine.loop_process,args=("20180101","20241030","back/section/newsecPCA/"))
             
@@ -128,9 +132,4 @@ if(__name__=="__main__"):
     p.close()
     p.join()
     print("------end------")
-# engine = Section_Momentum_BackTest(cash=1000000000,margin_rate=1,margin_limit=0,debug=False)
-# engine.context.R=20
 
-# engine.context.H=20
-# engine.context.name = f"test"
-# engine.loop_process(start="20150101",end="20231231",saving_dir="back/")

@@ -168,4 +168,3 @@ import numpy as np
 # corr=corr[['expect1','expect2','expect3','expect4','expect5']].iloc[:-5]
 # corr.to_excel('factor/factor_exposure.xlsx')
 
-print(len(a))
