@@ -121,7 +121,6 @@ class Node():
             
     
     def __call__(self,df):
-        print(self.__str__())
         if self.node_type:
             df[self.__str__()]=df[self.name]
             return df[self.__str__()]
@@ -160,6 +159,7 @@ class XTree():
         while True:
             if not self.Add(Node(name=self.names[random.randint(0,5)],capacity=0)):
                 break
+        print(str(self.main_node))
     def Add(self,node):
         if self.main_node==None:
             self.main_node=node
@@ -182,9 +182,6 @@ class XTree():
 df=pd.read_csv("data/CU_daily.csv")
 
             
-a=XTree(maxsize=3)
+a=XTree(maxsize=10)
 a.split()
-print(str(a.main_node))
-
-print("here")
 print(a(df))    
