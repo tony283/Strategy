@@ -3,6 +3,8 @@ import pandas as pd
 import numpy as np
 rqdatac.init()
 from datetime import datetime
+
+
 #price = rqdatac.futures.get_dominant_price("CU",start_date="20100104", end_date="20240809",frequency='1d',fields=None,adjust_type='post', adjust_method='prev_close_ratio')
 #print(price)
 #price.to_excel("data/raw_price_CU_daily.xlsx")
@@ -96,7 +98,8 @@ def merge(name):
         a[f'upshadow_std{i}']=(1-a[['open','close']].max(axis=1)/a['high']).rolling(window=i).std()
         a[f'downshadow_avg{i}']=(a[['open','close']].min(axis=1)/a['low']-1).rolling(window=i).mean()
         a[f'upshadow_std{i}']=(a[['open','close']].min(axis=1)/a['low']-1).rolling(window=i).std()
-    
+    a['high_m_low']=a['high']*a['low']
+    a['MAX(close-SMA(close,5))']=pd.concat([a['close'].ewm(span=5,adjust=False).mean(),a['close']],axis=1).max(axis=1)
     print(a)
     a.to_excel(f"data/{name}_daily.xlsx")
     a.to_csv(f"data/{name}_daily.csv")

@@ -1,8 +1,12 @@
 
+import time
 import pandas as pd
 import random
 import torch
+import numpy as np
 from datetime import datetime
+import copy
+from multiprocessing import Pool
 class AutoFactorGenerator():
     def __init__(self,depth=10) -> None:
         typelist=['AU', 'AG', 'HC', 'I', 'J', 'JM', 'RB', 'SF', 'SM', 'SS', 'BU', 'EG', 'FG', 'FU', 'L', 'MA',
@@ -22,13 +26,11 @@ class AutoFactorGenerator():
 
 
 class FunctionPool:
-    def __init__(self,depth) -> None:
-        self.calculator=[self.DELAY,self.MA,self.STD,self.DIF,self.SMA,self.PCT,self.SKEW,self.KURT,self.ADD,self.MINUS,self.DIV,self.PROD,self.MIN,self.MAX,self.CORR]
-        self.mono=[self.DELAY,self.MA,self.STD,self.DIF,self.SMA,self.PCT,self.SKEW,self.KURT]
+    def __init__(self) -> None:
+        self.calculator=[self.DELAY,self.MA,self.STD,self.DIF,self.SMA,self.PCT,self.SKEW,self.KURT,self.RMIN,self.RMAX,self.ADD,self.MINUS,self.DIV,self.PROD,self.MIN,self.MAX,self.CORR]
+        self.mono=[self.DELAY,self.MA,self.STD,self.DIF,self.SMA,self.PCT,self.SKEW,self.KURT,self.RMIN,self.RMAX]
         self.bi=[self.ADD,self.MINUS,self.DIV,self.PROD,self.MIN,self.MAX,self.CORR]
-        self.value=[['close','high','low','open']]
-        self.depth=depth
-        pass
+
     def DELAY(self,df:pd.DataFrame, window):
         return df.shift(window)
     def MA(self,df:pd.DataFrame, window):
@@ -41,6 +43,10 @@ class FunctionPool:
         return df.ewm(span=window,adjust=False).mean()
     def PCT(self,df:pd.DataFrame, window):
         return (df-df.shift(window))/df.shift(window)
+    def RMIN(self,df:pd.DataFrame, window):
+        return df.rolling(window=window).min()
+    def RMAX(self,df:pd.DataFrame, window):
+        return df.rolling(window=window).max()
     def SKEW(self,df:pd.DataFrame, window):
         return df.rolling(window=window).skew()
     def KURT(self,df:pd.DataFrame, window):
@@ -116,13 +122,15 @@ class Node():
         s=[]
         for i in self.child_nodes:
             s.append(f"({str(i)})")
+        if self.func.__name__=="CORR":
+            return f'CORR{self.window}[{s[0]} | {s[1]}]'
         return f'{str(self.func.__name__)}[{s[0]} | {s[1]}]'
                 
             
-    
+    @profile
     def __call__(self,df):
         if self.node_type:
-            df[self.__str__()]=df[self.name]
+            # df[self.__str__()]=df[self.name]
             return df[self.__str__()]
         elif self.capacity==1:
             s=self.child_nodes[0](df)
@@ -134,30 +142,34 @@ class Node():
         else:
             a = self.func(self.child_nodes[0](df),self.child_nodes[1](df))
             return a
-def add(x,y):
-    return x+y
 
 
 class XTree():
     def __init__(self,maxsize=10) -> None:
         self.main_node:Node=None
-        self.functions=FunctionPool(10)
+        self.functions=FunctionPool()
         self.maxsize=maxsize
-        self.names=['close','high','low','open','volume','open_interest']
+        self.names=['close','high','low','open','volume','open_interest','profit']
+        self.name_l=len(self.names)-1
         self.window=[1,5,20,63,126]
         
     def split(self):
         for i in range(self.maxsize):
             if random.random()<i/self.maxsize:
-                signal=self.Add(Node(name=self.names[random.randint(0,5)],capacity=0,window=self.window[random.randint(0,4)]))
-            elif random.random()>0.5:
-                signal=self.Add(Node(func=self.functions.BiCombine(),node_type=False,capacity=2,window=self.window[random.randint(0,4)]))
+                signal=self.Add(Node(name=self.names[random.randint(0,self.name_l)],capacity=0,window=self.window[random.randint(0,4)]))
+            elif random.random()>0.4:
+                signal=self.Add(Node(func=self.functions.BiCombine(),node_type=False,capacity=2,window=self.window[random.randint(1,4)]))
             else:
-                signal=self.Add(Node(func=self.functions.MonoCombine(),node_type=False,capacity=1,window=self.window[random.randint(0,4)]))
+                function = self.functions.MonoCombine()
+                if function.__name__ in ['KURT','SKEW',"STD",'RMIN','RMAX','MA','SMA']:
+                    window_index=random.randint(1,4)
+                else:
+                    window_index=random.randint(0,4)
+                signal=self.Add(Node(func=function,node_type=False,capacity=1,window=self.window[window_index]))
             if not signal:
                 break
         while True:
-            if not self.Add(Node(name=self.names[random.randint(0,5)],capacity=0)):
+            if not self.Add(Node(name=self.names[random.randint(0,self.name_l)],capacity=0)):
                 break
         print(str(self.main_node))
     def Add(self,node):
@@ -166,22 +178,190 @@ class XTree():
             return True
         else:
             return self.main_node.Add(node)
+    def find_node(self, path):
+        """Finds the node at the given path in the tree."""
+        current_node = self.main_node
+        for index in path:
+            if index < len(current_node.child_nodes):
+                current_node = current_node.child_nodes[index]
+            else:
+                return None  # 路径错误，返回 None
+        return current_node
+
+    def replace_node(self, path, new_node):
+        """Replaces the node at the given path with new_node."""
+        if not path:
+            self.main_node = new_node  # 如果路径为空，则替换根节点
+        else:
+            parent_path, index = path[:-1], path[-1]
+            parent_node = self.find_node(parent_path)
+            if parent_node and index < len(parent_node.child_nodes):
+                parent_node.child_nodes[index] = new_node
     def __call__(self,df):
         return self.main_node(df)
+    def __str__(self) -> str:
+        return str(self.main_node)
 
 
-            
+
+
+class genetic_algorithm:
+    def __init__(self, pop_num,maxsize=5) -> None:
+        self.typelist= ['AU', 'AG', 'HC', 'I', 'J', 'JM', 'RB', 'SF', 'SM', 'SS', 'BU', 'EG', 'FG', 'FU', 'L', 'MA',
+          'PP', 'RU', 'SC', 'SP', 'TA', 'V', 'EB', 'LU', 'NR', 'PF', 'PG', 'SA', 'A', 'C', 'CF', 'M', 'OI',
+          'RM', 'SR', 'Y', 'JD', 'CS', 'B', 'P', 'LH', 'PK', 'AL', 'CU', 'NI', 'PB', 'SN', 'ZN', 'LC',
+          'SI', 'SH', 'PX', 'BR', 'AO']
+        self.data=[]
+        self.population=[]
+        self.maxsize=maxsize
+        self.names=['close','high','low','open','volume','open_interest','profit']
+        for i in range(pop_num):
+            a=XTree(maxsize=maxsize)
+            a.split()
+            self.population.append(a)
+        for i in self.typelist:
+            future_data=pd.read_csv(f'data/{i}_daily.csv')
+            future_data["date"]=future_data["date"].apply(lambda x:datetime.strptime(x,"%Y-%m-%d"))
+            self.data.append(future_data[future_data['date']>datetime(2018,1,1)])
+    def crossover(self,tree1:XTree,tree2:XTree):
+        path1 = [random.randint(0, len(tree1.main_node.child_nodes) - 1)]
+        path2 = [random.randint(0, len(tree2.main_node.child_nodes) - 1)]
+        node1 = tree1.find_node(path1)
+        while node1 and node1.capacity > 0 and random.random() > 0.6:
+            idx = random.randint(0, len(node1.child_nodes) - 1)
+            path1.append(idx)
+            node1 = node1.child_nodes[idx]
+
+        node2 = tree2.find_node(path2)
+        while node2 and node2.capacity > 0 and random.random() > 0.6:
+            idx = random.randint(0, len(node2.child_nodes) - 1)
+            path2.append(idx)
+            node2 = node2.child_nodes[idx]
+
+        c_node1 = copy.deepcopy(node1)
+        c_node2 = copy.deepcopy(node2)
+
+        tree1.replace_node(path1, c_node2)
+        tree2.replace_node(path2, c_node1)
+
+        print("After crossover:")
+        print("Tree1:", str(tree1.main_node))
+        print("Tree2:", str(tree2.main_node))
+
+        return tree1, tree2
+    @profile
+    def calculate_fitness(self):
         
-
+        fitness = []
+        for  i in range(len(self.population)):
+            corr=pd.DataFrame()
+            print(str(self.population[i]))
+            pop=self.population[i]
+            for df in self.data:
+                df['a']=pop(df)
+                df=df[['a','expect1']]
+                if len(corr)==0:
+                    corr=df.corr()
+                else:
+                    corr=corr+df.corr()
+            corr=corr/len(self.typelist)
+            adaption=np.abs(corr.loc['expect1','a'])
             
+            fitness.append(adaption)
+        return np.nan_to_num(np.array(fitness))
+    def mutate(self, tree: XTree):
+        """随机突变 tree 中的一个节点"""
+        path = [random.randint(0, len(tree.main_node.child_nodes) - 1)]
+        node = tree.find_node(path)
+        while node and node.capacity > 0 and random.random() > 0.25:
+            idx = random.randint(0, len(node.child_nodes) - 1)
+            path.append(idx)
+            node = node.child_nodes[idx]
         
+        # 进行突变：随机改变节点类型、窗口参数或替换为新函数
+        if node.node_type:
+            # 如果是值节点，可以改变它的字段名称
+            node.name = random.choice(self.names)
+        else:
+            # 如果是函数节点，随机改变窗口或替换函数
+            node.func = random.choice(tree.functions.mono if node.capacity == 1 else tree.functions.bi)
+            if node.func.__name__ in ['KURT','SKEW',"STD",'RMIN','RMAX','CORR','SMA']:
+                node.window=tree.window[random.randint(1,len(tree.window)-1)]
+            else:
+                node.window = random.choice(tree.window)
+        
+        print("After mutation:", str(tree))
+        return tree
+
+    def crossover_population_with_selection(self, population, fitness):
+        # 根据适应度分配选择概率
+        total_fitness = sum(fitness)
+        selection_probs = [f / total_fitness for f in fitness]
+
+        new_population = []
+        while len(new_population) < len(population):
+            # 根据选择概率随机选择两个个体作为父母
+            parent1 = np.random.choice(population, p=selection_probs)
+            parent2 = np.random.choice(population, p=selection_probs)
+
+            # 确保两个父母不相同
+            while parent1 == parent2:
+                parent2 = np.random.choice(population, p=selection_probs)
+
+            # 进行交叉生成子代
+            child1, child2 = self.crossover(parent1, parent2)
+            new_population.extend([child1, child2])
+
+        # 裁剪新种群以适应原种群大小
+        return new_population[:len(population)]
+
+
+    def calculate_single_fitness(self,pop):
+        
+        corr=pd.DataFrame()
+        print(str(pop))
+        for df in self.data.values():
+            df['a']=pop(df)
+            df=df[['a','expect1']]
+            if len(corr)==0:
+                corr=df.corr()
+            else:
+                corr=corr+df.corr()
+        corr=corr/len(self.typelist)
+        adaption=np.abs(corr.loc['expect1','a'])
+        if adaption!=adaption:
+            return 0
+        return adaption
+
+
+    
+    def loop(self):
+        fitness=self.calculate_fitness()
+        # fitness=self.parallel_fitness(self.population)
+        print(f'fitness is {fitness}')
+        #交叉
+        new_population = self.crossover_population_with_selection(self.population,fitness)
+        self.population=new_population
+        #开始变异
+        idx=list(range(len(self.population)))
+        indexes=random.sample(idx,int(0.1*len(self.population)))
+        for i in indexes:
+            self.population[i]=self.mutate(self.population[i])
+    def run(self,generation=10):
+        for i in range(generation):
+            self.loop()
+        fitness = self.calculate_fitness()
+        print("here")
+        df=[[x,_] for _, x in sorted(zip(fitness, self.population), reverse=True,key=lambda x: x[0])]
+        df=pd.DataFrame(df,columns=['factor','fitness'])
+        df=df.drop_duplicates(subset=['factor'])
+        df.to_excel(f'factor/auto/auto_factor_pop{len(self.population)}_depth{self.maxsize}.xlsx')
+if __name__=='__main__':
+    g=genetic_algorithm(4000,maxsize=8)
+    t=time.time()
+    g.run()
+    print(time.time()-t)
 
 
 
 
-df=pd.read_csv("data/CU_daily.csv")
-
-            
-a=XTree(maxsize=10)
-a.split()
-print(a(df))    

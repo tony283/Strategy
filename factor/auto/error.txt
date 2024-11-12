@@ -1,0 +1,4 @@
+DIF(KURT(RMAX(KURT(DELAY(volume,63),126),126),126),1)
+DIF(KURT(RMAX(KURT(DELAY(volume,63),126),126),126),1)
+STD(MINUS[(KURT(SKEW(CORR20[(CORR20[(low) | (open_interest)]) | (DIV[(volume) | (volume)])],5),126)) | (volume)],5)
+KURT(RMIN(KURT(CORR5[(open) | (open)],63),5),5)

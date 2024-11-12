@@ -156,15 +156,15 @@ factors.extend(['expect1','expect2','expect3','expect4','expect5'])
 import rqdatac
 import pandas as pd
 import numpy as np
-# corr=pd.DataFrame()
-# for i in typelist:
-#     a=pd.read_excel(f'data/{i}_daily.xlsx')
-#     a=a[a["date"]>datetime(2018,1,1)][factors]
-#     if len(corr)==0:
-#         corr=a.corr()
-#     else:
-#         corr=corr+a.corr()
-# corr=corr/len(typelist)
-# corr=corr[['expect1','expect2','expect3','expect4','expect5']].iloc[:-5]
+corr=pd.DataFrame()
+for i in typelist:
+    a=pd.read_excel(f'data/{i}_daily.xlsx')
+    a=a[a["date"]>datetime(2018,1,1)][factors]
+    if len(corr)==0:
+        corr=a.corr()
+    else:
+        corr=corr+a.corr()
+corr=corr/len(typelist)
+corr=corr[['expect1','expect2','expect3','expect4','expect5']].iloc[:-5]
 # corr.to_excel('factor/factor_exposure.xlsx')
 
