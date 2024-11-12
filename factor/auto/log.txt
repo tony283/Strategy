@@ -1,0 +1,432 @@
+2024-11-12 08:41:55,139 - __main__ - INFO - fitness is [0.04071786 0.0145695  0.00606961 0.00727989 0.02506533 0.00397552
+ 0.00416395 0.0145695  0.01828518 0.01670981 0.04367149 0.00216404
+ 0.0068205  0.00122936 0.00019686 0.00581406 0.03743189 0.00548461
+ 0.0033488  0.01000024]
+2024-11-12 08:41:55,139 - __main__ - INFO - Before crossover:
+2024-11-12 08:41:55,139 - __main__ - INFO - Tree1:MAX[(high) | (volume)]
+2024-11-12 08:41:55,139 - __main__ - INFO - Tree2:RMAX(RMIN(open,5),63)
+2024-11-12 08:41:55,139 - __main__ - INFO - After crossover:
+2024-11-12 08:41:55,139 - __main__ - INFO - Tree1:MAX[(high) | (RMIN(open,5))]
+2024-11-12 08:41:55,139 - __main__ - INFO - Tree2:RMAX(volume,63)
+2024-11-12 08:41:55,139 - __main__ - INFO - Before crossover:
+2024-11-12 08:41:55,139 - __main__ - INFO - Tree1:RMAX(MINUS[(CORR26[(low) | (open)]) | (low)],20)
+2024-11-12 08:41:55,139 - __main__ - INFO - Tree2:MAX[(high) | (RMIN(open,5))]
+2024-11-12 08:41:55,139 - __main__ - INFO - After crossover:
+2024-11-12 08:41:55,139 - __main__ - INFO - Tree1:RMAX(RMIN(open,5),20)
+2024-11-12 08:41:55,139 - __main__ - INFO - Tree2:MAX[(high) | (MINUS[(CORR26[(low) | (open)]) | (low)])]
+2024-11-12 08:41:55,139 - __main__ - INFO - Before crossover:
+2024-11-12 08:41:55,139 - __main__ - INFO - Tree1:ADD[(DIV[(CORR9[(high) | (close)]) | (open_interest)]) | (RMIN(volume,63))]
+2024-11-12 08:41:55,139 - __main__ - INFO - Tree2:RMAX(RMIN(open,5),20)
+2024-11-12 08:41:55,139 - __main__ - INFO - After crossover:
+2024-11-12 08:41:55,139 - __main__ - INFO - Tree1:ADD[(DIV[(CORR9[(high) | (close)]) | (open_interest)]) | (RMIN(RMIN(open,5),63))]
+2024-11-12 08:41:55,139 - __main__ - INFO - Tree2:RMAX(volume,20)
+2024-11-12 08:41:55,139 - __main__ - INFO - Before crossover:
+2024-11-12 08:41:55,139 - __main__ - INFO - Tree1:ADD[(high) | (open)]
+2024-11-12 08:41:55,139 - __main__ - INFO - Tree2:MAX[(high) | (MINUS[(CORR26[(low) | (open)]) | (low)])]
+2024-11-12 08:41:55,139 - __main__ - INFO - After crossover:
+2024-11-12 08:41:55,139 - __main__ - INFO - Tree1:ADD[(low) | (open)]
+2024-11-12 08:41:55,139 - __main__ - INFO - Tree2:MAX[(high) | (MINUS[(CORR26[(low) | (open)]) | (high)])]
+2024-11-12 08:41:55,139 - __main__ - INFO - Before crossover:
+2024-11-12 08:41:55,139 - __main__ - INFO - Tree1:PROD[(KURT(open,20)) | (volume)]
+2024-11-12 08:41:55,139 - __main__ - INFO - Tree2:CORR26[(MAX[(high) | (DIV[(close) | (volume)])]) | (MA(profit,20))]
+2024-11-12 08:41:55,139 - __main__ - INFO - After crossover:
+2024-11-12 08:41:55,139 - __main__ - INFO - Tree1:PROD[(MA(profit,20)) | (volume)]
+2024-11-12 08:41:55,139 - __main__ - INFO - Tree2:CORR26[(MAX[(high) | (DIV[(close) | (volume)])]) | (KURT(open,20))]
+2024-11-12 08:41:55,139 - __main__ - INFO - Before crossover:
+2024-11-12 08:41:55,139 - __main__ - INFO - Tree1:PROD[(MA(profit,20)) | (volume)]
+2024-11-12 08:41:55,139 - __main__ - INFO - Tree2:PROD[(DIV[(ADD[(volume) | (low)]) | (low)]) | (profit)]
+2024-11-12 08:41:55,139 - __main__ - INFO - After crossover:
+2024-11-12 08:41:55,139 - __main__ - INFO - Tree1:PROD[(MA(profit,20)) | (profit)]
+2024-11-12 08:41:55,139 - __main__ - INFO - Tree2:PROD[(DIV[(ADD[(volume) | (low)]) | (low)]) | (volume)]
+2024-11-12 08:41:55,139 - __main__ - INFO - Before crossover:
+2024-11-12 08:41:55,139 - __main__ - INFO - Tree1:MAX[(high) | (MINUS[(CORR26[(low) | (open)]) | (high)])]
+2024-11-12 08:41:55,139 - __main__ - INFO - Tree2:MAX[(DIV[(high) | (open_interest)]) | (profit)]
+2024-11-12 08:41:55,139 - __main__ - INFO - After crossover:
+2024-11-12 08:41:55,139 - __main__ - INFO - Tree1:MAX[(DIV[(high) | (open_interest)]) | (MINUS[(CORR26[(low) | (open)]) | (high)])]
+2024-11-12 08:41:55,139 - __main__ - INFO - Tree2:MAX[(high) | (profit)]
+2024-11-12 08:41:55,139 - __main__ - INFO - Before crossover:
+2024-11-12 08:41:55,139 - __main__ - INFO - Tree1:RMAX(volume,20)
+2024-11-12 08:41:55,139 - __main__ - INFO - Tree2:ADD[(DIV[(CORR9[(high) | (close)]) | (open_interest)]) | (RMIN(RMIN(open,5),63))]
+2024-11-12 08:41:55,139 - __main__ - INFO - After crossover:
+2024-11-12 08:41:55,139 - __main__ - INFO - Tree1:RMAX(RMIN(open,5),20)
+2024-11-12 08:41:55,139 - __main__ - INFO - Tree2:ADD[(DIV[(CORR9[(high) | (close)]) | (open_interest)]) | (RMIN(volume,63))]
+2024-11-12 08:41:55,139 - __main__ - INFO - Before crossover:
+2024-11-12 08:41:55,139 - __main__ - INFO - Tree1:ADD[(DIV[(CORR9[(high) | (close)]) | (open_interest)]) | (RMIN(volume,63))]
+2024-11-12 08:41:55,139 - __main__ - INFO - Tree2:RMAX(volume,63)
+2024-11-12 08:41:55,139 - __main__ - INFO - After crossover:
+2024-11-12 08:41:55,139 - __main__ - INFO - Tree1:ADD[(DIV[(CORR9[(high) | (close)]) | (open_interest)]) | (volume)]
+2024-11-12 08:41:55,139 - __main__ - INFO - Tree2:RMAX(RMIN(volume,63),63)
+2024-11-12 08:41:55,139 - __main__ - INFO - Before crossover:
+2024-11-12 08:41:55,139 - __main__ - INFO - Tree1:RMAX(RMIN(open,5),20)
+2024-11-12 08:41:55,139 - __main__ - INFO - Tree2:ADD[(DIV[(CORR9[(high) | (close)]) | (open_interest)]) | (volume)]
+2024-11-12 08:41:55,139 - __main__ - INFO - After crossover:
+2024-11-12 08:41:55,139 - __main__ - INFO - Tree1:RMAX(RMIN(volume,5),20)
+2024-11-12 08:41:55,139 - __main__ - INFO - Tree2:ADD[(DIV[(CORR9[(high) | (close)]) | (open_interest)]) | (open)]
+2024-11-12 08:41:55,139 - __main__ - INFO - before mutation:MAX[(DIV[(high) | (open_interest)]) | (MINUS[(CORR26[(low) | (open)]) | (high)])]
+2024-11-12 08:41:55,139 - __main__ - INFO - After mutation:MAX[(DIV[(high) | (open_interest)]) | (MINUS[(CORR26[(low) | (open)]) | (high)])]
+2024-11-12 08:41:55,139 - __main__ - INFO - before mutation:MAX[(DIV[(high) | (open_interest)]) | (MINUS[(CORR26[(low) | (open)]) | (high)])]
+2024-11-12 08:41:55,139 - __main__ - INFO - After mutation:MAX[(DIV[(high) | (open_interest)]) | (MINUS[(CORR26[(low) | (open)]) | (high)])]
+2024-11-12 08:41:55,139 - __main__ - INFO - before mutation:RMAX(RMIN(volume,63),63)
+2024-11-12 08:41:55,139 - __main__ - INFO - After mutation:RMAX(RMIN(close,63),63)
+2024-11-12 08:41:55,139 - __main__ - INFO - before mutation:ADD[(DIV[(CORR9[(high) | (close)]) | (open_interest)]) | (open)]
+2024-11-12 08:41:55,139 - __main__ - INFO - After mutation:ADD[(DIV[(CORR9[(high) | (close)]) | (open_interest)]) | (low)]
+2024-11-12 08:41:56,968 - __main__ - INFO - fitness is [0.01681861 0.0283025  0.00630163 0.01681861 0.0429558  0.00630163
+ 0.0433175  0.01681861 0.00233851 0.00584266 0.00233851 0.01675421
+ 0.01681861 0.04438103 0.00630163 0.0429558  0.0429558  0.0283025
+ 0.00630163 0.0429558 ]
+2024-11-12 08:41:56,968 - __main__ - INFO - Before crossover:
+2024-11-12 08:41:56,968 - __main__ - INFO - Tree1:PROD[(MA(profit,20)) | (profit)]
+2024-11-12 08:41:56,968 - __main__ - INFO - Tree2:ADD[(DIV[(CORR9[(high) | (close)]) | (open_interest)]) | (low)]
+2024-11-12 08:41:56,968 - __main__ - INFO - After crossover:
+2024-11-12 08:41:56,968 - __main__ - INFO - Tree1:PROD[(MA(profit,20)) | (low)]
+2024-11-12 08:41:56,968 - __main__ - INFO - Tree2:ADD[(DIV[(CORR9[(high) | (close)]) | (open_interest)]) | (profit)]
+2024-11-12 08:41:56,968 - __main__ - INFO - Before crossover:
+2024-11-12 08:41:56,968 - __main__ - INFO - Tree1:ADD[(DIV[(CORR9[(high) | (close)]) | (open_interest)]) | (profit)]
+2024-11-12 08:41:56,968 - __main__ - INFO - Tree2:MAX[(high) | (profit)]
+2024-11-12 08:41:56,968 - __main__ - INFO - After crossover:
+2024-11-12 08:41:56,968 - __main__ - INFO - Tree1:ADD[(DIV[(high) | (open_interest)]) | (profit)]
+2024-11-12 08:41:56,968 - __main__ - INFO - Tree2:MAX[(CORR9[(high) | (close)]) | (profit)]
+2024-11-12 08:41:56,968 - __main__ - INFO - Before crossover:
+2024-11-12 08:41:56,968 - __main__ - INFO - Tree1:RMAX(RMIN(close,63),63)
+2024-11-12 08:41:56,968 - __main__ - INFO - Tree2:ADD[(DIV[(high) | (open_interest)]) | (profit)]
+2024-11-12 08:41:56,968 - __main__ - INFO - After crossover:
+2024-11-12 08:41:56,968 - __main__ - INFO - Tree1:RMAX(open_interest,63)
+2024-11-12 08:41:56,968 - __main__ - INFO - Tree2:ADD[(DIV[(high) | (RMIN(close,63))]) | (profit)]
+2024-11-12 08:41:56,968 - __main__ - INFO - Before crossover:
+2024-11-12 08:41:56,968 - __main__ - INFO - Tree1:MAX[(CORR9[(high) | (close)]) | (profit)]
+2024-11-12 08:41:56,968 - __main__ - INFO - Tree2:ADD[(DIV[(high) | (RMIN(close,63))]) | (profit)]
+2024-11-12 08:41:56,968 - __main__ - INFO - After crossover:
+2024-11-12 08:41:56,968 - __main__ - INFO - Tree1:MAX[(CORR9[(high) | (close)]) | (profit)]
+2024-11-12 08:41:56,968 - __main__ - INFO - Tree2:ADD[(DIV[(high) | (RMIN(close,63))]) | (profit)]
+2024-11-12 08:41:56,968 - __main__ - INFO - Before crossover:
+2024-11-12 08:41:56,968 - __main__ - INFO - Tree1:ADD[(DIV[(high) | (RMIN(close,63))]) | (profit)]
+2024-11-12 08:41:56,968 - __main__ - INFO - Tree2:MAX[(DIV[(high) | (open_interest)]) | (MINUS[(CORR26[(low) | (open)]) | (high)])]
+2024-11-12 08:41:56,968 - __main__ - INFO - After crossover:
+2024-11-12 08:41:56,968 - __main__ - INFO - Tree1:ADD[(high) | (profit)]
+2024-11-12 08:41:56,968 - __main__ - INFO - Tree2:MAX[(DIV[(DIV[(high) | (RMIN(close,63))]) | (open_interest)]) | (MINUS[(CORR26[(low) | (open)]) | (high)])]
+2024-11-12 08:41:56,968 - __main__ - INFO - Before crossover:
+2024-11-12 08:41:56,968 - __main__ - INFO - Tree1:ADD[(high) | (profit)]
+2024-11-12 08:41:56,968 - __main__ - INFO - Tree2:MAX[(CORR9[(high) | (close)]) | (profit)]
+2024-11-12 08:41:56,968 - __main__ - INFO - After crossover:
+2024-11-12 08:41:56,968 - __main__ - INFO - Tree1:ADD[(high) | (profit)]
+2024-11-12 08:41:56,968 - __main__ - INFO - Tree2:MAX[(CORR9[(high) | (close)]) | (profit)]
+2024-11-12 08:41:56,968 - __main__ - INFO - Before crossover:
+2024-11-12 08:41:56,968 - __main__ - INFO - Tree1:ADD[(low) | (open)]
+2024-11-12 08:41:56,968 - __main__ - INFO - Tree2:MAX[(DIV[(DIV[(high) | (RMIN(close,63))]) | (open_interest)]) | (MINUS[(CORR26[(low) | (open)]) | (high)])]
+2024-11-12 08:41:56,968 - __main__ - INFO - After crossover:
+2024-11-12 08:41:56,968 - __main__ - INFO - Tree1:ADD[(CORR26[(low) | (open)]) | (open)]
+2024-11-12 08:41:56,968 - __main__ - INFO - Tree2:MAX[(DIV[(DIV[(high) | (RMIN(close,63))]) | (open_interest)]) | (MINUS[(low) | (high)])]
+2024-11-12 08:41:56,968 - __main__ - INFO - Before crossover:
+2024-11-12 08:41:56,968 - __main__ - INFO - Tree1:ADD[(CORR26[(low) | (open)]) | (open)]
+2024-11-12 08:41:56,968 - __main__ - INFO - Tree2:ADD[(high) | (profit)]
+2024-11-12 08:41:56,968 - __main__ - INFO - After crossover:
+2024-11-12 08:41:56,968 - __main__ - INFO - Tree1:ADD[(high) | (open)]
+2024-11-12 08:41:56,968 - __main__ - INFO - Tree2:ADD[(CORR26[(low) | (open)]) | (profit)]
+2024-11-12 08:41:56,968 - __main__ - INFO - Before crossover:
+2024-11-12 08:41:56,968 - __main__ - INFO - Tree1:MAX[(CORR9[(high) | (close)]) | (profit)]
+2024-11-12 08:41:56,968 - __main__ - INFO - Tree2:ADD[(CORR26[(low) | (open)]) | (profit)]
+2024-11-12 08:41:56,968 - __main__ - INFO - After crossover:
+2024-11-12 08:41:56,968 - __main__ - INFO - Tree1:MAX[(CORR9[(high) | (close)]) | (profit)]
+2024-11-12 08:41:56,968 - __main__ - INFO - Tree2:ADD[(CORR26[(low) | (open)]) | (profit)]
+2024-11-12 08:41:56,968 - __main__ - INFO - Before crossover:
+2024-11-12 08:41:56,968 - __main__ - INFO - Tree1:RMAX(RMIN(volume,5),20)
+2024-11-12 08:41:56,968 - __main__ - INFO - Tree2:MAX[(DIV[(DIV[(high) | (RMIN(close,63))]) | (open_interest)]) | (MINUS[(low) | (high)])]
+2024-11-12 08:41:56,968 - __main__ - INFO - After crossover:
+2024-11-12 08:41:56,968 - __main__ - INFO - Tree1:RMAX(RMIN(DIV[(DIV[(high) | (RMIN(close,63))]) | (open_interest)],5),20)
+2024-11-12 08:41:56,968 - __main__ - INFO - Tree2:MAX[(volume) | (MINUS[(low) | (high)])]
+2024-11-12 08:41:56,968 - __main__ - INFO - before mutation:MAX[(CORR9[(high) | (close)]) | (profit)]
+2024-11-12 08:41:56,968 - __main__ - INFO - After mutation:MAX[(ADD[(high) | (close)]) | (profit)]
+2024-11-12 08:41:56,968 - __main__ - INFO - before mutation:ADD[(CORR26[(low) | (open)]) | (profit)]
+2024-11-12 08:41:56,968 - __main__ - INFO - After mutation:ADD[(CORR26[(low) | (open)]) | (open)]
+2024-11-12 08:41:56,968 - __main__ - INFO - before mutation:ADD[(CORR26[(low) | (open)]) | (open)]
+2024-11-12 08:41:56,968 - __main__ - INFO - After mutation:ADD[(CORR26[(low) | (open)]) | (profit)]
+2024-11-12 08:41:56,968 - __main__ - INFO - before mutation:MAX[(volume) | (MINUS[(low) | (high)])]
+2024-11-12 08:41:56,968 - __main__ - INFO - After mutation:MAX[(high) | (MINUS[(low) | (high)])]
+2024-11-12 08:41:58,715 - __main__ - INFO - fitness is [0.00983502 0.01292126 0.01292126 0.04475236 0.009905   0.01292126
+ 0.04475236 0.01292126 0.01292126 0.04438103 0.01292126 0.04475236
+ 0.04367149 0.04438103 0.04367149 0.01292126 0.04475236 0.01292126
+ 0.00151499 0.04438103]
+2024-11-12 08:41:58,715 - __main__ - INFO - Before crossover:
+2024-11-12 08:41:58,715 - __main__ - INFO - Tree1:MAX[(ADD[(high) | (close)]) | (profit)]
+2024-11-12 08:41:58,715 - __main__ - INFO - Tree2:MAX[(high) | (MINUS[(low) | (high)])]
+2024-11-12 08:41:58,715 - __main__ - INFO - After crossover:
+2024-11-12 08:41:58,715 - __main__ - INFO - Tree1:MAX[(ADD[(high) | (close)]) | (high)]
+2024-11-12 08:41:58,715 - __main__ - INFO - Tree2:MAX[(profit) | (MINUS[(low) | (high)])]
+2024-11-12 08:41:58,715 - __main__ - INFO - Before crossover:
+2024-11-12 08:41:58,715 - __main__ - INFO - Tree1:ADD[(CORR26[(low) | (open)]) | (profit)]
+2024-11-12 08:41:58,715 - __main__ - INFO - Tree2:MAX[(profit) | (MINUS[(low) | (high)])]
+2024-11-12 08:41:58,715 - __main__ - INFO - After crossover:
+2024-11-12 08:41:58,715 - __main__ - INFO - Tree1:ADD[(CORR26[(low) | (open)]) | (MINUS[(low) | (high)])]
+2024-11-12 08:41:58,715 - __main__ - INFO - Tree2:MAX[(profit) | (profit)]
+2024-11-12 08:41:58,715 - __main__ - INFO - Before crossover:
+2024-11-12 08:41:58,715 - __main__ - INFO - Tree1:MAX[(ADD[(high) | (close)]) | (high)]
+2024-11-12 08:41:58,715 - __main__ - INFO - Tree2:ADD[(high) | (open)]
+2024-11-12 08:41:58,715 - __main__ - INFO - After crossover:
+2024-11-12 08:41:58,715 - __main__ - INFO - Tree1:MAX[(ADD[(high) | (close)]) | (high)]
+2024-11-12 08:41:58,715 - __main__ - INFO - Tree2:ADD[(high) | (open)]
+2024-11-12 08:41:58,715 - __main__ - INFO - Before crossover:
+2024-11-12 08:41:58,715 - __main__ - INFO - Tree1:ADD[(CORR26[(low) | (open)]) | (MINUS[(low) | (high)])]
+2024-11-12 08:41:58,715 - __main__ - INFO - Tree2:MAX[(profit) | (profit)]
+2024-11-12 08:41:58,715 - __main__ - INFO - After crossover:
+2024-11-12 08:41:58,715 - __main__ - INFO - Tree1:ADD[(CORR26[(low) | (profit)]) | (MINUS[(low) | (high)])]
+2024-11-12 08:41:58,715 - __main__ - INFO - Tree2:MAX[(open) | (profit)]
+2024-11-12 08:41:58,715 - __main__ - INFO - Before crossover:
+2024-11-12 08:41:58,715 - __main__ - INFO - Tree1:ADD[(high) | (open)]
+2024-11-12 08:41:58,715 - __main__ - INFO - Tree2:ADD[(CORR26[(low) | (profit)]) | (MINUS[(low) | (high)])]
+2024-11-12 08:41:58,715 - __main__ - INFO - After crossover:
+2024-11-12 08:41:58,715 - __main__ - INFO - Tree1:ADD[(profit) | (open)]
+2024-11-12 08:41:58,715 - __main__ - INFO - Tree2:ADD[(CORR26[(low) | (high)]) | (MINUS[(low) | (high)])]
+2024-11-12 08:41:58,715 - __main__ - INFO - Before crossover:
+2024-11-12 08:41:58,715 - __main__ - INFO - Tree1:ADD[(CORR26[(low) | (high)]) | (MINUS[(low) | (high)])]
+2024-11-12 08:41:58,715 - __main__ - INFO - Tree2:MAX[(open) | (profit)]
+2024-11-12 08:41:58,715 - __main__ - INFO - After crossover:
+2024-11-12 08:41:58,715 - __main__ - INFO - Tree1:ADD[(profit) | (MINUS[(low) | (high)])]
+2024-11-12 08:41:58,715 - __main__ - INFO - Tree2:MAX[(open) | (CORR26[(low) | (high)])]
+2024-11-12 08:41:58,715 - __main__ - INFO - Before crossover:
+2024-11-12 08:41:58,715 - __main__ - INFO - Tree1:MAX[(open) | (CORR26[(low) | (high)])]
+2024-11-12 08:41:58,715 - __main__ - INFO - Tree2:MAX[(ADD[(high) | (close)]) | (high)]
+2024-11-12 08:41:58,715 - __main__ - INFO - After crossover:
+2024-11-12 08:41:58,715 - __main__ - INFO - Tree1:MAX[(open) | (CORR26[(ADD[(high) | (close)]) | (high)])]
+2024-11-12 08:41:58,715 - __main__ - INFO - Tree2:MAX[(low) | (high)]
+2024-11-12 08:41:58,715 - __main__ - INFO - Before crossover:
+2024-11-12 08:41:58,715 - __main__ - INFO - Tree1:ADD[(profit) | (MINUS[(low) | (high)])]
+2024-11-12 08:41:58,715 - __main__ - INFO - Tree2:ADD[(profit) | (open)]
+2024-11-12 08:41:58,715 - __main__ - INFO - After crossover:
+2024-11-12 08:41:58,715 - __main__ - INFO - Tree1:ADD[(profit) | (open)]
+2024-11-12 08:41:58,715 - __main__ - INFO - Tree2:ADD[(profit) | (MINUS[(low) | (high)])]
+2024-11-12 08:41:58,715 - __main__ - INFO - Before crossover:
+2024-11-12 08:41:58,715 - __main__ - INFO - Tree1:MAX[(low) | (high)]
+2024-11-12 08:41:58,715 - __main__ - INFO - Tree2:MAX[(open) | (CORR26[(ADD[(high) | (close)]) | (high)])]
+2024-11-12 08:41:58,715 - __main__ - INFO - After crossover:
+2024-11-12 08:41:58,715 - __main__ - INFO - Tree1:MAX[(open) | (high)]
+2024-11-12 08:41:58,715 - __main__ - INFO - Tree2:MAX[(low) | (CORR26[(ADD[(high) | (close)]) | (high)])]
+2024-11-12 08:41:58,715 - __main__ - INFO - Before crossover:
+2024-11-12 08:41:58,715 - __main__ - INFO - Tree1:MAX[(open) | (high)]
+2024-11-12 08:41:58,715 - __main__ - INFO - Tree2:ADD[(profit) | (MINUS[(low) | (high)])]
+2024-11-12 08:41:58,715 - __main__ - INFO - After crossover:
+2024-11-12 08:41:58,715 - __main__ - INFO - Tree1:MAX[(high) | (high)]
+2024-11-12 08:41:58,715 - __main__ - INFO - Tree2:ADD[(profit) | (MINUS[(low) | (open)])]
+2024-11-12 08:41:58,715 - __main__ - INFO - before mutation:ADD[(profit) | (open)]
+2024-11-12 08:41:58,715 - __main__ - INFO - After mutation:ADD[(profit) | (volume)]
+2024-11-12 08:41:58,715 - __main__ - INFO - before mutation:MAX[(low) | (CORR26[(ADD[(high) | (close)]) | (high)])]
+2024-11-12 08:41:58,715 - __main__ - INFO - After mutation:MAX[(low) | (CORR26[(ADD[(high) | (close)]) | (volume)])]
+2024-11-12 08:41:58,715 - __main__ - INFO - before mutation:ADD[(profit) | (MINUS[(low) | (open)])]
+2024-11-12 08:41:58,715 - __main__ - INFO - After mutation:ADD[(profit) | (MINUS[(low) | (open)])]
+2024-11-12 08:41:58,715 - __main__ - INFO - before mutation:MAX[(low) | (CORR26[(ADD[(high) | (close)]) | (volume)])]
+2024-11-12 08:41:58,715 - __main__ - INFO - After mutation:MAX[(profit) | (CORR26[(ADD[(high) | (close)]) | (volume)])]
+2024-11-12 08:42:00,514 - __main__ - INFO - fitness is [0.04438103 0.00403404 0.01372703 0.00403404 0.04438103 0.00191525
+ 0.01372703 0.00403404 0.00191525 0.01372703 0.01372703 0.00403404
+ 0.00403404 0.04438103 0.01372703 0.00191525 0.04438103 0.00403404
+ 0.04438103 0.00191525]
+2024-11-12 08:42:00,514 - __main__ - INFO - Before crossover:
+2024-11-12 08:42:00,514 - __main__ - INFO - Tree1:MAX[(high) | (high)]
+2024-11-12 08:42:00,514 - __main__ - INFO - Tree2:ADD[(profit) | (volume)]
+2024-11-12 08:42:00,514 - __main__ - INFO - After crossover:
+2024-11-12 08:42:00,514 - __main__ - INFO - Tree1:MAX[(volume) | (high)]
+2024-11-12 08:42:00,514 - __main__ - INFO - Tree2:ADD[(profit) | (high)]
+2024-11-12 08:42:00,514 - __main__ - INFO - Before crossover:
+2024-11-12 08:42:00,514 - __main__ - INFO - Tree1:ADD[(profit) | (high)]
+2024-11-12 08:42:00,514 - __main__ - INFO - Tree2:ADD[(profit) | (MINUS[(low) | (open)])]
+2024-11-12 08:42:00,514 - __main__ - INFO - After crossover:
+2024-11-12 08:42:00,514 - __main__ - INFO - Tree1:ADD[(profit) | (high)]
+2024-11-12 08:42:00,514 - __main__ - INFO - Tree2:ADD[(profit) | (MINUS[(low) | (open)])]
+2024-11-12 08:42:00,514 - __main__ - INFO - Before crossover:
+2024-11-12 08:42:00,514 - __main__ - INFO - Tree1:MAX[(volume) | (high)]
+2024-11-12 08:42:00,514 - __main__ - INFO - Tree2:ADD[(profit) | (high)]
+2024-11-12 08:42:00,514 - __main__ - INFO - After crossover:
+2024-11-12 08:42:00,514 - __main__ - INFO - Tree1:MAX[(high) | (high)]
+2024-11-12 08:42:00,514 - __main__ - INFO - Tree2:ADD[(profit) | (volume)]
+2024-11-12 08:42:00,514 - __main__ - INFO - Before crossover:
+2024-11-12 08:42:00,514 - __main__ - INFO - Tree1:ADD[(profit) | (volume)]
+2024-11-12 08:42:00,514 - __main__ - INFO - Tree2:MAX[(high) | (high)]
+2024-11-12 08:42:00,514 - __main__ - INFO - After crossover:
+2024-11-12 08:42:00,514 - __main__ - INFO - Tree1:ADD[(profit) | (high)]
+2024-11-12 08:42:00,514 - __main__ - INFO - Tree2:MAX[(volume) | (high)]
+2024-11-12 08:42:00,514 - __main__ - INFO - Before crossover:
+2024-11-12 08:42:00,514 - __main__ - INFO - Tree1:MAX[(volume) | (high)]
+2024-11-12 08:42:00,514 - __main__ - INFO - Tree2:ADD[(profit) | (MINUS[(low) | (open)])]
+2024-11-12 08:42:00,514 - __main__ - INFO - After crossover:
+2024-11-12 08:42:00,514 - __main__ - INFO - Tree1:MAX[(profit) | (high)]
+2024-11-12 08:42:00,514 - __main__ - INFO - Tree2:ADD[(volume) | (MINUS[(low) | (open)])]
+2024-11-12 08:42:00,514 - __main__ - INFO - Before crossover:
+2024-11-12 08:42:00,514 - __main__ - INFO - Tree1:MAX[(profit) | (high)]
+2024-11-12 08:42:00,514 - __main__ - INFO - Tree2:MAX[(profit) | (CORR26[(ADD[(high) | (close)]) | (volume)])]
+2024-11-12 08:42:00,514 - __main__ - INFO - After crossover:
+2024-11-12 08:42:00,514 - __main__ - INFO - Tree1:MAX[(volume) | (high)]
+2024-11-12 08:42:00,514 - __main__ - INFO - Tree2:MAX[(profit) | (CORR26[(ADD[(high) | (close)]) | (profit)])]
+2024-11-12 08:42:00,514 - __main__ - INFO - Before crossover:
+2024-11-12 08:42:00,514 - __main__ - INFO - Tree1:ADD[(profit) | (high)]
+2024-11-12 08:42:00,514 - __main__ - INFO - Tree2:MAX[(volume) | (high)]
+2024-11-12 08:42:00,514 - __main__ - INFO - After crossover:
+2024-11-12 08:42:00,514 - __main__ - INFO - Tree1:ADD[(volume) | (high)]
+2024-11-12 08:42:00,514 - __main__ - INFO - Tree2:MAX[(profit) | (high)]
+2024-11-12 08:42:00,514 - __main__ - INFO - Before crossover:
+2024-11-12 08:42:00,514 - __main__ - INFO - Tree1:MAX[(profit) | (high)]
+2024-11-12 08:42:00,514 - __main__ - INFO - Tree2:MAX[(profit) | (CORR26[(ADD[(high) | (close)]) | (profit)])]
+2024-11-12 08:42:00,514 - __main__ - INFO - After crossover:
+2024-11-12 08:42:00,514 - __main__ - INFO - Tree1:MAX[(CORR26[(ADD[(high) | (close)]) | (profit)]) | (high)]
+2024-11-12 08:42:00,514 - __main__ - INFO - Tree2:MAX[(profit) | (profit)]
+2024-11-12 08:42:00,514 - __main__ - INFO - Before crossover:
+2024-11-12 08:42:00,514 - __main__ - INFO - Tree1:MAX[(CORR26[(ADD[(high) | (close)]) | (profit)]) | (high)]
+2024-11-12 08:42:00,514 - __main__ - INFO - Tree2:MAX[(profit) | (profit)]
+2024-11-12 08:42:00,514 - __main__ - INFO - After crossover:
+2024-11-12 08:42:00,514 - __main__ - INFO - Tree1:MAX[(profit) | (high)]
+2024-11-12 08:42:00,514 - __main__ - INFO - Tree2:MAX[(profit) | (CORR26[(ADD[(high) | (close)]) | (profit)])]
+2024-11-12 08:42:00,514 - __main__ - INFO - Before crossover:
+2024-11-12 08:42:00,514 - __main__ - INFO - Tree1:MAX[(profit) | (high)]
+2024-11-12 08:42:00,514 - __main__ - INFO - Tree2:ADD[(volume) | (high)]
+2024-11-12 08:42:00,514 - __main__ - INFO - After crossover:
+2024-11-12 08:42:00,514 - __main__ - INFO - Tree1:MAX[(high) | (high)]
+2024-11-12 08:42:00,514 - __main__ - INFO - Tree2:ADD[(volume) | (profit)]
+2024-11-12 08:42:00,514 - __main__ - INFO - before mutation:MAX[(high) | (high)]
+2024-11-12 08:42:00,514 - __main__ - INFO - After mutation:MAX[(open) | (high)]
+2024-11-12 08:42:00,514 - __main__ - INFO - before mutation:MAX[(open) | (high)]
+2024-11-12 08:42:00,514 - __main__ - INFO - After mutation:MAX[(open) | (open_interest)]
+2024-11-12 08:42:00,514 - __main__ - INFO - before mutation:MAX[(open) | (open_interest)]
+2024-11-12 08:42:00,514 - __main__ - INFO - After mutation:MAX[(volume) | (open_interest)]
+2024-11-12 08:42:00,514 - __main__ - INFO - before mutation:MAX[(volume) | (open_interest)]
+2024-11-12 08:42:00,514 - __main__ - INFO - After mutation:MAX[(open_interest) | (open_interest)]
+2024-11-12 08:42:02,203 - __main__ - INFO - fitness is [0.00075193 0.01372703 0.01372703 0.01374392 0.00075193 0.01372703
+ 0.01372703 0.00075193 0.00075193 0.01374392 0.00075193 0.00370584
+ 0.01372703 0.00075193 0.00075193 0.00370584 0.00075193 0.00370584
+ 0.00075193 0.01372703]
+2024-11-12 08:42:02,203 - __main__ - INFO - Before crossover:
+2024-11-12 08:42:02,203 - __main__ - INFO - Tree1:ADD[(volume) | (profit)]
+2024-11-12 08:42:02,203 - __main__ - INFO - Tree2:ADD[(volume) | (MINUS[(low) | (open)])]
+2024-11-12 08:42:02,203 - __main__ - INFO - After crossover:
+2024-11-12 08:42:02,203 - __main__ - INFO - Tree1:ADD[(MINUS[(low) | (open)]) | (profit)]
+2024-11-12 08:42:02,203 - __main__ - INFO - Tree2:ADD[(volume) | (volume)]
+2024-11-12 08:42:02,203 - __main__ - INFO - Before crossover:
+2024-11-12 08:42:02,203 - __main__ - INFO - Tree1:MAX[(open_interest) | (open_interest)]
+2024-11-12 08:42:02,203 - __main__ - INFO - Tree2:ADD[(MINUS[(low) | (open)]) | (profit)]
+2024-11-12 08:42:02,203 - __main__ - INFO - After crossover:
+2024-11-12 08:42:02,203 - __main__ - INFO - Tree1:MAX[(open_interest) | (open)]
+2024-11-12 08:42:02,203 - __main__ - INFO - Tree2:ADD[(MINUS[(low) | (open_interest)]) | (profit)]
+2024-11-12 08:42:02,203 - __main__ - INFO - Before crossover:
+2024-11-12 08:42:02,203 - __main__ - INFO - Tree1:ADD[(MINUS[(low) | (open_interest)]) | (profit)]
+2024-11-12 08:42:02,203 - __main__ - INFO - Tree2:ADD[(volume) | (volume)]
+2024-11-12 08:42:02,203 - __main__ - INFO - After crossover:
+2024-11-12 08:42:02,203 - __main__ - INFO - Tree1:ADD[(MINUS[(volume) | (open_interest)]) | (profit)]
+2024-11-12 08:42:02,203 - __main__ - INFO - Tree2:ADD[(volume) | (low)]
+2024-11-12 08:42:02,203 - __main__ - INFO - Before crossover:
+2024-11-12 08:42:02,203 - __main__ - INFO - Tree1:ADD[(volume) | (low)]
+2024-11-12 08:42:02,203 - __main__ - INFO - Tree2:ADD[(MINUS[(volume) | (open_interest)]) | (profit)]
+2024-11-12 08:42:02,203 - __main__ - INFO - After crossover:
+2024-11-12 08:42:02,203 - __main__ - INFO - Tree1:ADD[(MINUS[(volume) | (open_interest)]) | (low)]
+2024-11-12 08:42:02,203 - __main__ - INFO - Tree2:ADD[(volume) | (profit)]
+2024-11-12 08:42:02,203 - __main__ - INFO - Before crossover:
+2024-11-12 08:42:02,203 - __main__ - INFO - Tree1:ADD[(volume) | (profit)]
+2024-11-12 08:42:02,203 - __main__ - INFO - Tree2:ADD[(MINUS[(volume) | (open_interest)]) | (low)]
+2024-11-12 08:42:02,203 - __main__ - INFO - After crossover:
+2024-11-12 08:42:02,203 - __main__ - INFO - Tree1:ADD[(volume) | (open_interest)]
+2024-11-12 08:42:02,203 - __main__ - INFO - Tree2:ADD[(MINUS[(volume) | (profit)]) | (low)]
+2024-11-12 08:42:02,203 - __main__ - INFO - Before crossover:
+2024-11-12 08:42:02,203 - __main__ - INFO - Tree1:ADD[(volume) | (open_interest)]
+2024-11-12 08:42:02,203 - __main__ - INFO - Tree2:MAX[(profit) | (CORR26[(ADD[(high) | (close)]) | (profit)])]
+2024-11-12 08:42:02,203 - __main__ - INFO - After crossover:
+2024-11-12 08:42:02,203 - __main__ - INFO - Tree1:ADD[(profit) | (open_interest)]
+2024-11-12 08:42:02,203 - __main__ - INFO - Tree2:MAX[(volume) | (CORR26[(ADD[(high) | (close)]) | (profit)])]
+2024-11-12 08:42:02,203 - __main__ - INFO - Before crossover:
+2024-11-12 08:42:02,203 - __main__ - INFO - Tree1:ADD[(profit) | (open_interest)]
+2024-11-12 08:42:02,203 - __main__ - INFO - Tree2:MAX[(open_interest) | (open)]
+2024-11-12 08:42:02,203 - __main__ - INFO - After crossover:
+2024-11-12 08:42:02,203 - __main__ - INFO - Tree1:ADD[(profit) | (open_interest)]
+2024-11-12 08:42:02,203 - __main__ - INFO - Tree2:MAX[(open_interest) | (open)]
+2024-11-12 08:42:02,203 - __main__ - INFO - Before crossover:
+2024-11-12 08:42:02,203 - __main__ - INFO - Tree1:ADD[(profit) | (open_interest)]
+2024-11-12 08:42:02,203 - __main__ - INFO - Tree2:ADD[(MINUS[(volume) | (profit)]) | (low)]
+2024-11-12 08:42:02,203 - __main__ - INFO - After crossover:
+2024-11-12 08:42:02,203 - __main__ - INFO - Tree1:ADD[(profit) | (MINUS[(volume) | (profit)])]
+2024-11-12 08:42:02,203 - __main__ - INFO - Tree2:ADD[(open_interest) | (low)]
+2024-11-12 08:42:02,203 - __main__ - INFO - Before crossover:
+2024-11-12 08:42:02,203 - __main__ - INFO - Tree1:ADD[(profit) | (MINUS[(volume) | (profit)])]
+2024-11-12 08:42:02,203 - __main__ - INFO - Tree2:MAX[(volume) | (CORR26[(ADD[(high) | (close)]) | (profit)])]
+2024-11-12 08:42:02,203 - __main__ - INFO - After crossover:
+2024-11-12 08:42:02,203 - __main__ - INFO - Tree1:ADD[(profit) | (CORR26[(ADD[(high) | (close)]) | (profit)])]
+2024-11-12 08:42:02,203 - __main__ - INFO - Tree2:MAX[(volume) | (MINUS[(volume) | (profit)])]
+2024-11-12 08:42:02,203 - __main__ - INFO - Before crossover:
+2024-11-12 08:42:02,203 - __main__ - INFO - Tree1:ADD[(profit) | (CORR26[(ADD[(high) | (close)]) | (profit)])]
+2024-11-12 08:42:02,203 - __main__ - INFO - Tree2:MAX[(volume) | (MINUS[(volume) | (profit)])]
+2024-11-12 08:42:02,203 - __main__ - INFO - After crossover:
+2024-11-12 08:42:02,203 - __main__ - INFO - Tree1:ADD[(volume) | (CORR26[(ADD[(high) | (close)]) | (profit)])]
+2024-11-12 08:42:02,203 - __main__ - INFO - Tree2:MAX[(profit) | (MINUS[(volume) | (profit)])]
+2024-11-12 08:42:02,203 - __main__ - INFO - before mutation:ADD[(open_interest) | (low)]
+2024-11-12 08:42:02,203 - __main__ - INFO - After mutation:ADD[(profit) | (low)]
+2024-11-12 08:42:02,203 - __main__ - INFO - before mutation:ADD[(profit) | (low)]
+2024-11-12 08:42:02,203 - __main__ - INFO - After mutation:ADD[(low) | (low)]
+2024-11-12 08:42:02,203 - __main__ - INFO - before mutation:ADD[(volume) | (CORR26[(ADD[(high) | (close)]) | (profit)])]
+2024-11-12 08:42:02,203 - __main__ - INFO - After mutation:ADD[(volume) | (CORR26[(ADD[(high) | (close)]) | (open)])]
+2024-11-12 08:42:02,203 - __main__ - INFO - before mutation:MAX[(open_interest) | (open)]
+2024-11-12 08:42:02,203 - __main__ - INFO - After mutation:MAX[(open_interest) | (high)]
+2024-11-12 08:42:03,989 - __main__ - INFO - fitness is [0.01357884 0.04368929 0.00127169 0.01357884 0.01357884 0.04368929
+ 0.04368929 0.01357884 0.01357884 0.04368929 0.01357884 0.01372702
+ 0.01357884 0.00127169 0.01357884 0.04368929 0.01357884 0.01372702
+ 0.01357884 0.01372702]
+2024-11-12 08:42:03,989 - __main__ - INFO - Before crossover:
+2024-11-12 08:42:03,989 - __main__ - INFO - Tree1:ADD[(low) | (low)]
+2024-11-12 08:42:03,989 - __main__ - INFO - Tree2:ADD[(volume) | (CORR26[(ADD[(high) | (close)]) | (open)])]
+2024-11-12 08:42:03,989 - __main__ - INFO - After crossover:
+2024-11-12 08:42:03,989 - __main__ - INFO - Tree1:ADD[(low) | (volume)]
+2024-11-12 08:42:03,989 - __main__ - INFO - Tree2:ADD[(low) | (CORR26[(ADD[(high) | (close)]) | (open)])]
+2024-11-12 08:42:03,989 - __main__ - INFO - Before crossover:
+2024-11-12 08:42:03,989 - __main__ - INFO - Tree1:ADD[(low) | (CORR26[(ADD[(high) | (close)]) | (open)])]
+2024-11-12 08:42:03,989 - __main__ - INFO - Tree2:ADD[(low) | (volume)]
+2024-11-12 08:42:03,989 - __main__ - INFO - After crossover:
+2024-11-12 08:42:03,989 - __main__ - INFO - Tree1:ADD[(low) | (low)]
+2024-11-12 08:42:03,989 - __main__ - INFO - Tree2:ADD[(CORR26[(ADD[(high) | (close)]) | (open)]) | (volume)]
+2024-11-12 08:42:03,989 - __main__ - INFO - Before crossover:
+2024-11-12 08:42:03,989 - __main__ - INFO - Tree1:ADD[(CORR26[(ADD[(high) | (close)]) | (open)]) | (volume)]
+2024-11-12 08:42:03,989 - __main__ - INFO - Tree2:ADD[(low) | (low)]
+2024-11-12 08:42:03,989 - __main__ - INFO - After crossover:
+2024-11-12 08:42:03,989 - __main__ - INFO - Tree1:ADD[(low) | (volume)]
+2024-11-12 08:42:03,989 - __main__ - INFO - Tree2:ADD[(low) | (CORR26[(ADD[(high) | (close)]) | (open)])]
+2024-11-12 08:42:03,989 - __main__ - INFO - Before crossover:
+2024-11-12 08:42:03,989 - __main__ - INFO - Tree1:ADD[(low) | (volume)]
+2024-11-12 08:42:03,989 - __main__ - INFO - Tree2:ADD[(low) | (CORR26[(ADD[(high) | (close)]) | (open)])]
+2024-11-12 08:42:03,989 - __main__ - INFO - After crossover:
+2024-11-12 08:42:03,989 - __main__ - INFO - Tree1:ADD[(low) | (volume)]
+2024-11-12 08:42:03,989 - __main__ - INFO - Tree2:ADD[(low) | (CORR26[(ADD[(high) | (close)]) | (open)])]
+2024-11-12 08:42:03,989 - __main__ - INFO - Before crossover:
+2024-11-12 08:42:03,989 - __main__ - INFO - Tree1:ADD[(low) | (volume)]
+2024-11-12 08:42:03,989 - __main__ - INFO - Tree2:MAX[(profit) | (MINUS[(volume) | (profit)])]
+2024-11-12 08:42:03,989 - __main__ - INFO - After crossover:
+2024-11-12 08:42:03,989 - __main__ - INFO - Tree1:ADD[(profit) | (volume)]
+2024-11-12 08:42:03,989 - __main__ - INFO - Tree2:MAX[(low) | (MINUS[(volume) | (profit)])]
+2024-11-12 08:42:03,989 - __main__ - INFO - Before crossover:
+2024-11-12 08:42:03,989 - __main__ - INFO - Tree1:ADD[(low) | (CORR26[(ADD[(high) | (close)]) | (open)])]
+2024-11-12 08:42:03,989 - __main__ - INFO - Tree2:MAX[(low) | (MINUS[(volume) | (profit)])]
+2024-11-12 08:42:03,989 - __main__ - INFO - After crossover:
+2024-11-12 08:42:03,989 - __main__ - INFO - Tree1:ADD[(low) | (CORR26[(ADD[(high) | (close)]) | (open)])]
+2024-11-12 08:42:03,989 - __main__ - INFO - Tree2:MAX[(low) | (MINUS[(volume) | (profit)])]
+2024-11-12 08:42:03,989 - __main__ - INFO - Before crossover:
+2024-11-12 08:42:03,989 - __main__ - INFO - Tree1:ADD[(low) | (CORR26[(ADD[(high) | (close)]) | (open)])]
+2024-11-12 08:42:03,989 - __main__ - INFO - Tree2:ADD[(profit) | (volume)]
+2024-11-12 08:42:03,989 - __main__ - INFO - After crossover:
+2024-11-12 08:42:03,989 - __main__ - INFO - Tree1:ADD[(volume) | (CORR26[(ADD[(high) | (close)]) | (open)])]
+2024-11-12 08:42:03,989 - __main__ - INFO - Tree2:ADD[(profit) | (low)]
+2024-11-12 08:42:03,989 - __main__ - INFO - Before crossover:
+2024-11-12 08:42:03,989 - __main__ - INFO - Tree1:ADD[(profit) | (low)]
+2024-11-12 08:42:03,989 - __main__ - INFO - Tree2:ADD[(volume) | (CORR26[(ADD[(high) | (close)]) | (open)])]
+2024-11-12 08:42:03,989 - __main__ - INFO - After crossover:
+2024-11-12 08:42:03,989 - __main__ - INFO - Tree1:ADD[(profit) | (volume)]
+2024-11-12 08:42:03,989 - __main__ - INFO - Tree2:ADD[(low) | (CORR26[(ADD[(high) | (close)]) | (open)])]
+2024-11-12 08:42:03,989 - __main__ - INFO - Before crossover:
+2024-11-12 08:42:03,989 - __main__ - INFO - Tree1:ADD[(profit) | (volume)]
+2024-11-12 08:42:03,989 - __main__ - INFO - Tree2:ADD[(low) | (CORR26[(ADD[(high) | (close)]) | (open)])]
+2024-11-12 08:42:03,989 - __main__ - INFO - After crossover:
+2024-11-12 08:42:03,989 - __main__ - INFO - Tree1:ADD[(profit) | (low)]
+2024-11-12 08:42:03,989 - __main__ - INFO - Tree2:ADD[(volume) | (CORR26[(ADD[(high) | (close)]) | (open)])]
+2024-11-12 08:42:03,989 - __main__ - INFO - Before crossover:
+2024-11-12 08:42:03,989 - __main__ - INFO - Tree1:ADD[(volume) | (CORR26[(ADD[(high) | (close)]) | (open)])]
+2024-11-12 08:42:03,989 - __main__ - INFO - Tree2:MAX[(low) | (MINUS[(volume) | (profit)])]
+2024-11-12 08:42:03,989 - __main__ - INFO - After crossover:
+2024-11-12 08:42:03,989 - __main__ - INFO - Tree1:ADD[(volume) | (low)]
+2024-11-12 08:42:03,989 - __main__ - INFO - Tree2:MAX[(CORR26[(ADD[(high) | (close)]) | (open)]) | (MINUS[(volume) | (profit)])]
+2024-11-12 08:42:03,989 - __main__ - INFO - before mutation:ADD[(volume) | (low)]
+2024-11-12 08:42:03,989 - __main__ - INFO - After mutation:ADD[(volume) | (profit)]
+2024-11-12 08:42:03,989 - __main__ - INFO - before mutation:ADD[(profit) | (low)]
+2024-11-12 08:42:03,989 - __main__ - INFO - After mutation:ADD[(profit) | (open_interest)]
+2024-11-12 08:42:03,989 - __main__ - INFO - before mutation:ADD[(volume) | (profit)]
+2024-11-12 08:42:03,989 - __main__ - INFO - After mutation:ADD[(close) | (profit)]
+2024-11-12 08:42:03,989 - __main__ - INFO - before mutation:ADD[(close) | (profit)]
+2024-11-12 08:42:03,989 - __main__ - INFO - After mutation:ADD[(close) | (profit)]

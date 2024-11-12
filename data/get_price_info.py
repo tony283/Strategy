@@ -100,6 +100,15 @@ def merge(name):
         a[f'upshadow_std{i}']=(a[['open','close']].min(axis=1)/a['low']-1).rolling(window=i).std()
     a['high_m_low']=a['high']*a['low']
     a['MAX(close-SMA(close,5))']=pd.concat([a['close'].ewm(span=5,adjust=False).mean(),a['close']],axis=1).max(axis=1)
+    a['d_position']=a['position5']-a['position5'].shift()
+    for i in [5,20,63,126]:
+        a[f'skew_position{i}']=a[f'position{i}'].rolling(window=10).skew()
+    a['sigma_skew20_m_position63']=a['sigma_skew20']*a['position63']
+    a['sigma_skew20_m_d_position5']=-a['sigma_skew20']*a['d_position5']
+    a['ADD[d_position5 , PROD[vol_skew126 , skew_position63]]']=a['d_position5']+a['vol_skew126']*a['skew_position63']
+    a['DIF5(skew_position63)']=a['skew_position63']-a['skew_position63'].shift(5)
+    a['RANK9(skew_position63)']=a['skew_position63'].rolling(window=9).rank()
+    a['ADD[skew_position20 , position63]']=a['skew_position20']+a['position63']
     print(a)
     a.to_excel(f"data/{name}_daily.xlsx")
     a.to_csv(f"data/{name}_daily.csv")
@@ -115,4 +124,4 @@ tl=['AU', 'AG', 'HC', 'I', 'J', 'JM', 'RB', 'SF', 'SM', 'SS', 'BU', 'EG', 'FG', 
 for i in tl:
     print(i)
     load(i)
-
+rqdatac.info()
