@@ -14,11 +14,9 @@ daten=datetime.strftime(date,"%Y%m%d")
 
 def get_raw_data(name):
     price = rqdatac.futures.get_dominant_price(name,start_date="20100104",end_date=daten,frequency='1d',fields=None,adjust_type='post', adjust_method='prev_close_ratio')
-    print(price)
     price.to_excel(f"data/raw_price_{name}_daily.xlsx")
     multi =rqdatac.futures.get_contract_multiplier([name], start_date='20100104',end_date=daten,  market='cn')
     multi.to_excel(f"data/multi_{name}_daily.xlsx")
-    print(multi)
 def merge(name):
     a:pd.DataFrame = pd.read_excel(f"data/raw_price_{name}_daily.xlsx")
     b =pd.read_excel(f"data/multi_{name}_daily.xlsx")
@@ -109,7 +107,8 @@ def merge(name):
     a['DIF5(skew_position63)']=a['skew_position63']-a['skew_position63'].shift(5)
     a['RANK9(skew_position63)']=a['skew_position63'].rolling(window=9).rank()
     a['ADD[skew_position20 , position63]']=a['skew_position20']+a['position63']
-    print(a)
+    a['PROD[RANK26(vol_kurt126) , low_close]']=a['vol_skew126'].rolling(window=26).rank()*a['low_close']
+    a['MINUS[skew_position63 , relative_amihud5]']=a['skew_position63']-a['relative_amihud5']
     a.to_excel(f"data/{name}_daily.xlsx")
     a.to_csv(f"data/{name}_daily.csv")
     
@@ -124,4 +123,3 @@ tl=['AU', 'AG', 'HC', 'I', 'J', 'JM', 'RB', 'SF', 'SM', 'SS', 'BU', 'EG', 'FG', 
 for i in tl:
     print(i)
     load(i)
-rqdatac.info()

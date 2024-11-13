@@ -10,9 +10,9 @@ from utils.auto_utils import *
 
 
 if __name__=='__main__':
-    g=genetic_algorithm(4000,maxsize=8)
+    g=genetic_algorithm(200,maxsize=8)
     t=time.time()
-    g.run(generation=20)
+    g.run(generation=200)
     print(time.time()-t)
 
 

@@ -294,9 +294,9 @@ class genetic_algorithm:
         Returns:
             XTree, XTree: crossovered tree1 and tree2
         """
-        logger.info("Before crossover:")
-        logger.info("Tree1:"+str(tree1.main_node))
-        logger.info("Tree2:"+str(tree2.main_node))
+        logger.debug("Before crossover:")
+        logger.debug("Tree1:"+str(tree1.main_node))
+        logger.debug("Tree2:"+str(tree2.main_node))
         path1 = [random.randint(0, len(tree1.main_node.child_nodes) - 1)]
         path2 = [random.randint(0, len(tree2.main_node.child_nodes) - 1)]
         node1 = tree1.find_node(path1)
@@ -317,9 +317,9 @@ class genetic_algorithm:
         tree1.replace_node(path1, c_node2)
         tree2.replace_node(path2, c_node1)
 
-        logger.info("After crossover:")
-        logger.info("Tree1:"+str(tree1.main_node))
-        logger.info("Tree2:"+str(tree2.main_node))
+        logger.debug("After crossover:")
+        logger.debug("Tree1:"+str(tree1.main_node))
+        logger.debug("Tree2:"+str(tree2.main_node))
 
         return tree1, tree2
     def calculate_fitness(self):
@@ -333,6 +333,7 @@ class genetic_algorithm:
         l=len(self.population)
         #随机抽取训练集
         random_data=random.sample(self.data,int(0.1*len(self.data)))
+        random_l=len(random_data)
         for  i in range(l):
             corr=pd.DataFrame()
             logger.debug(str(self.population[i]))
@@ -351,7 +352,7 @@ class genetic_algorithm:
                 # if temp != temp:
                 #     continue
                 # corr+=temp
-            corr=np.abs(corr.loc['expect1','a']/len(self.data))
+            corr=np.abs(corr.loc['expect1','a']/random_l)
             # adaption=np.abs(corr.loc['expect1','a'])
             adaption=corr
             
@@ -404,7 +405,7 @@ class genetic_algorithm:
         """随机突变 tree 中的一个节点"""
         path = [random.randint(0, len(tree.main_node.child_nodes) - 1)]
         node = tree.find_node(path)
-        logger.info(f'before mutation:{tree}')
+        logger.debug(f'before mutation:{tree}')
         while node and node.capacity > 0:
             idx = random.randint(0, len(node.child_nodes) - 1)
             path.append(idx)
@@ -422,7 +423,7 @@ class genetic_algorithm:
             else:
                 node.window = random.choice(tree.window)
         
-        logger.info("After mutation:"+str(tree))
+        logger.debug("After mutation:"+str(tree))
         return tree
 
     def crossover_population_with_selection(self, population, fitness):
@@ -440,7 +441,7 @@ class genetic_algorithm:
         selection_probs = [f / total_fitness for f in fitness]
 
         new_population = []
-        new_population.append(self.population[np.argmax(total_fitness)])
+        new_population.append(copy.deepcopy(self.population[np.argmax(total_fitness)]))
         while len(new_population) < len(population):
             parent1 = np.random.choice(population, p=selection_probs)
             parent2 = np.random.choice(population, p=selection_probs)
@@ -460,16 +461,18 @@ class genetic_algorithm:
         one loop includes calculating fitness, crossover and mutation.
         """
         fitness=self.calculate_fitness()
-        logger.info(f'fitness is {fitness}')
+        best=np.max(fitness)
+        best_tree=self.population[np.argmax(fitness)]
+        logger.info(f'Best fitness is {best}')
         #交叉
         new_population = self.crossover_population_with_selection(self.population,fitness)
         self.population=new_population
         #开始变异
-        idx=list(range(len(self.population)))
+        idx=list(range(1,len(self.population)))
         indexes=random.sample(idx,int(0.1*len(self.population)))
         for i in indexes:
             self.population[i]=self.mutate(self.population[i])
-        return np.max(fitness)
+        return best, best_tree
     def run(self,generation=10):
         # warnings.simplefilter("ignore", category=RuntimeWarning)
         """
@@ -479,11 +482,14 @@ class genetic_algorithm:
             generation (int, optional): the num of loops. Defaults to 10.
         """
         for i in range(generation):
-            fit=self.loop()
-            print(f"Best fitness: {fit}")
-            if fit>0.05:
+            try:
+                m_fit,m_tree=self.loop()
+                if m_fit>0.1:
+                    break
+                print(f'{m_fit}: {m_tree}')
+                print(f' generation {i} of {generation} Completed')
+            except KeyboardInterrupt:
                 break
-            print(f' generation {i} of {generation} Completed')
         fitness = self.calculate_all_fitness()
         df=[[x,_] for _, x in sorted(zip(fitness, self.population), reverse=True,key=lambda x: x[0])]
         df=pd.DataFrame(df,columns=['factor','fitness'])
@@ -491,11 +497,11 @@ class genetic_algorithm:
         df.to_excel(f'factor/auto/auto_factor_pop{len(self.population)}_depth{self.maxsize}.xlsx')
         
         
-if __name__=='__main__':
-    g=genetic_algorithm(6000,maxsize=6)
-    t=time.time()
-    g.run(10)
-    print(time.time()-t)
+# if __name__=='__main__':
+#     g=genetic_algorithm(6000,maxsize=6)
+#     t=time.time()
+#     g.run(10)
+#     print(time.time()-t)
 
 
 # df=pd.DataFrame()

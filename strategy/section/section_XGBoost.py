@@ -76,8 +76,6 @@ class Section_Momentum_BackTest(BackTest):
 
             for future_type in context.typelist:
                 try:
-                    
- 
                     temp_dict.append([future_type,m_data[future_type]["sigma5"].iloc[-1]])
                 except:
                     continue
