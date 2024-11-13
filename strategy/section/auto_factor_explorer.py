@@ -12,7 +12,7 @@ from utils.auto_utils import *
 if __name__=='__main__':
     g=genetic_algorithm(4000,maxsize=8)
     t=time.time()
-    g.run()
+    g.run(generation=20)
     print(time.time()-t)
 
 
