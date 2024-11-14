@@ -32,9 +32,9 @@ def merge(name):
         a[f'break{i}']=(a["close"]-a["close"].shift(i))/(a["close"].shift(i)*np.sqrt(i)*a["sigma20"])
     for i in [1,2,3,4,5]:
         a[f'expect{i}']=(a["close"].shift(-i)-a["close"])/(a["close"])
-    a['d_vol']=(a["volume"]-a["volume"].shift(i))/a["volume"].shift(1)
-    a['d_oi']=(a["open_interest"]-a["open_interest"].shift(i))/a["open_interest"].shift(1)
-    a['mmt_open']=(a["open"]-a["close"].shift(i))/a["close"].shift(1)#开盘动量
+    a['d_vol']=(a["volume"]-a["volume"].shift(1))/a["volume"].shift(1)
+    a['d_oi']=(a["open_interest"]-a["open_interest"].shift(1))/a["open_interest"].shift(1)
+    a['mmt_open']=(a["open"]-a["close"].shift(1))/a["close"].shift(1)#开盘动量
     a['high_close']=(a['high']-a['close'])/a['close']
     a['low_close']=(a['close']-a['low'])/a['close']
     a['corr_price_vol']=a['close'].rolling(window=20).corr(a['volume'])
