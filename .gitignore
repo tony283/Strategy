@@ -4,9 +4,11 @@
 *.docx
 *.png
 *.txt
-Report/*
+Report/*/
 /test
 strategy/*/
 !strategy/utils/
-factor/*
+factor/*/
 !factor/auto
+data/DQN
+data/backup/
