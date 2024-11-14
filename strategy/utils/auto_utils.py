@@ -441,7 +441,7 @@ class genetic_algorithm:
         selection_probs = [f / total_fitness for f in fitness]
 
         new_population = []
-        new_population.append(copy.deepcopy(self.population[np.argmax(total_fitness)]))
+        new_population.append(copy.deepcopy(self.population[np.argmax(fitness)]))
         while len(new_population) < len(population):
             parent1 = np.random.choice(population, p=selection_probs)
             parent2 = np.random.choice(population, p=selection_probs)
@@ -451,7 +451,6 @@ class genetic_algorithm:
 
             child1, child2 = self.crossover(parent1, parent2)
             new_population.extend([child1, child2])
-
         return new_population[:len(population)]
 
 
@@ -463,7 +462,7 @@ class genetic_algorithm:
         fitness=self.calculate_fitness()
         best=np.max(fitness)
         best_tree=self.population[np.argmax(fitness)]
-        logger.info(f'Best fitness is {best}')
+        logger.info(f'Best fitness is {best}, best tree is {best_tree}')
         #交叉
         new_population = self.crossover_population_with_selection(self.population,fitness)
         self.population=new_population
@@ -497,11 +496,11 @@ class genetic_algorithm:
         df.to_excel(f'factor/auto/auto_factor_pop{len(self.population)}_depth{self.maxsize}.xlsx')
         
         
-# if __name__=='__main__':
-#     g=genetic_algorithm(6000,maxsize=6)
-#     t=time.time()
-#     g.run(10)
-#     print(time.time()-t)
+if __name__=='__main__':
+    g=genetic_algorithm(1000,maxsize=6)
+    t=time.time()
+    g.run(15)
+    print(time.time()-t)
 
 
 # df=pd.DataFrame()
