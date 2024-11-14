@@ -10,3 +10,4 @@ strategy/*/
 !strategy/utils/
 data/DQN
 data/backup/
+*.tmp
