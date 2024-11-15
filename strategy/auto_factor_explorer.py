@@ -8,8 +8,12 @@ import multiprocessing
 from utils.BackTestEngine import *
 from utils.auto_utils import *
 
+# genetic_alorithm sample script
 
 if __name__=='__main__':
+    # genetic_algotithm(pop_num,maxsize)
+    # pop_num is the popultaion of the 
+    # maxsize controls the initialized depth of each operator.
     g=genetic_algorithm(10000,maxsize=8)
     t=time.time()
     g.run(generation=50)
