@@ -12,11 +12,12 @@ from utils.auto_utils import *
 
 if __name__=='__main__':
     # genetic_algotithm(pop_num,maxsize)
-    # pop_num is the popultaion of the 
+    # pop_num is the number of operators during the iteration. 
     # maxsize controls the initialized depth of each operator.
     g=genetic_algorithm(10000,maxsize=8)
     t=time.time()
-    g.run(generation=50)
+    # generation is the number of iterations. 
+    g.run(generation=200)
     print(time.time()-t)
 
 

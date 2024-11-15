@@ -246,7 +246,7 @@ class XTree():
         while True:
             if not self.Add(Node(name=self.names[random.randint(0,self.name_l)],capacity=0)):
                 break
-        logger.info('Generation success: '+str(self.main_node))
+        logger.debug('Generation success: '+str(self.main_node))
     def Add(self,node):
         """_summary_
         It is only the encapsulation of Node.Add()
@@ -321,7 +321,7 @@ class genetic_algorithm:
             # 导入data/中的数据
             future_data=pd.read_csv(f'data/{i}_daily.csv')
             future_data["date"]=future_data["date"].apply(lambda x:datetime.strptime(x,"%Y-%m-%d"))
-            self.data.append(future_data[future_data['date']>datetime(2018,1,1)])
+            self.data.append(future_data[future_data['date']>datetime(2020,1,1)])
             
     def crossover(self,tree1:XTree,tree2:XTree):
         """
@@ -442,29 +442,36 @@ class genetic_algorithm:
     def mutate(self, tree: XTree):
         """随机突变 tree 中的一个节点"""
         path = [random.randint(0, len(tree.main_node.child_nodes) - 1)]
-        node = tree.find_node(path)
+        node = tree.main_node
         logger.debug(f'before mutation:{tree}')
         while node and node.capacity > 0:
             idx = random.randint(0, len(node.child_nodes) - 1)
             path.append(idx)
-            node = node.child_nodes[idx]
-        
-        # 进行突变：随机改变节点类型、窗口参数或替换为新函数
-        if node.node_type:
-            # 如果是值节点，可以改变它的字段名称
-            node.name = random.choice(self.names)
-        else:
-            # 如果是函数节点，随机改变窗口或替换函数
-            node.func = random.choice(tree.functions.mono if node.capacity == 1 else tree.functions.bi)
-            if node.func.__name__ in ['KURT','SKEW',"STD",'RMIN','RMAX','CORR','SMA']:
-                node.window=tree.window[random.randint(1,len(tree.window)-1)]
+            if random.random()>0.6 or node.child_nodes[idx].capacity==0:
+                new_mutation=XTree(max(self.maxsize-len(path),1))
+                new_mutation.split()
+                #直接生成一颗随机树突变
+                node.child_nodes[idx]=new_mutation.main_node
+                break
             else:
-                node.window = random.choice(tree.window)
+                node = node.child_nodes[idx]
+        
+        # # 进行突变：随机改变节点类型、窗口参数或替换为新函数
+        # if node.node_type:
+        #     # 如果是值节点，可以改变它的字段名称
+        #     node.name = random.choice(self.names)
+        # else:
+        #     # 如果是函数节点，随机改变窗口或替换函数
+        #     node.func = random.choice(tree.functions.mono if node.capacity == 1 else tree.functions.bi)
+        #     if node.func.__name__ in ['KURT','SKEW',"STD",'RMIN','RMAX','CORR','SMA']:
+        #         node.window=tree.window[random.randint(1,len(tree.window)-1)]
+        #     else:
+        #         node.window = random.choice(tree.window)
         
         logger.debug("After mutation:"+str(tree))
-        return tree
+        return copy.deepcopy(tree)
 
-    def crossover_population_with_selection(self, population, fitness):
+    def crossover_population_with_selection(self, population, fitness,temp):
         """
         give each population a prob according to the fitness and randomly generates children throuth the selection based on the prob.
 
@@ -475,9 +482,11 @@ class genetic_algorithm:
         Returns:
             list(XTree): new_population
         """
-        total_fitness = sum(fitness)
+        #退火算法
+        boltzmann_fitness=np.exp(fitness/temp)
+        total_fitness = sum(boltzmann_fitness)
         # 生成概率分布
-        selection_probs = [f / total_fitness for f in fitness]
+        selection_probs = [f / total_fitness for f in boltzmann_fitness]
 
         new_population = []
         new_population.append(copy.deepcopy(self.population[np.argmax(fitness)])) # 把这一轮适应度最高的直接晋级到下一轮
@@ -494,7 +503,7 @@ class genetic_algorithm:
 
 
     
-    def loop(self):
+    def loop(self,temp):
         """
         one loop includes calculating fitness, crossover and mutation.
         """
@@ -505,15 +514,17 @@ class genetic_algorithm:
         best_tree=self.population[np.argmax(fitness)]
         logger.info(f'Best fitness is {best}, best tree is {best_tree}')
         #交叉
-        new_population = self.crossover_population_with_selection(self.population,fitness)
+        new_population = self.crossover_population_with_selection(self.population,fitness,temp)
         self.population=new_population
         #开始变异
         idx=list(range(1,len(self.population)))
-        indexes=random.sample(idx,int(0.1*len(self.population)))
+        #自适应变异率
+        print(np.average(fitness))
+        indexes=random.sample(idx,int(0.1*0.01*len(self.population)/np.average(fitness)))
         for i in indexes:
             self.population[i]=self.mutate(self.population[i])
         return best, best_tree
-    def run(self,generation=10):
+    def run(self,generation=100,start_temp=1,end_temp=0.03):
         warnings.filterwarnings("ignore", category=RuntimeWarning)
         """
         loop circulation. The main interface of genetic_algorithm.
@@ -521,15 +532,20 @@ class genetic_algorithm:
         Args:
             generation (int, optional): the num of loops. Defaults to 10.
         """
+        dt=(end_temp-start_temp)/generation
+        temp=start_temp
         for i in range(generation):
+            print(f"current temperature: {temp}")
             try:
-                self.loop()
+                self.loop(temp)
+                
                 # if m_fit>0.15:
                 #     break
                 print(f' generation {i} of {generation} Completed')
             except KeyboardInterrupt:#如果按ctrl C，程序会提前退出迭代，直接计算目前状态并输出
                 print("Recieve keyboard interruption, the loop is stopped and begins to dump the current result to factor/auto/. Please wait a while for the program to be appropriately terminated.")
                 break
+            temp+=dt
         fitness = self.calculate_all_fitness()
         df=[[x,_] for _, x in sorted(zip(fitness, self.population), reverse=True,key=lambda x: x[0])]
         df=pd.DataFrame(df,columns=['factor','fitness'])
@@ -540,9 +556,9 @@ class genetic_algorithm:
         
         
 if __name__=='__main__':
-    g=genetic_algorithm(1000,maxsize=6)
+    g=genetic_algorithm(100,maxsize=6)
     t=time.time()
-    g.run(15)
+    g.run(10)
     print(time.time()-t)
 
 
