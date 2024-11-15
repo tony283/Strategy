@@ -11,3 +11,10 @@ strategy/*/
 data/DQN
 data/backup/
 *.tmp
+data/merge.py
+data/rescale.py
+data/tushare_get_price.py
+data/main.py
+data/get_index.py
+data/get_dominant.py
+data/contracts.py

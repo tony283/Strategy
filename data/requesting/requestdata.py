@@ -145,7 +145,7 @@ def request_all():
         df.columns = ["future_type","date","open","close","high","low","volume","total_turnover","vibration","profit","num_profit","turnover_rate"]
         df["date"]=df["date"].apply(lambda x : datetime.strptime(x,"%Y-%m-%d"))
         m_data[futures_name]=df
-        df.to_excel(f'C:/Users/ROG/Desktop/Strategy/data/requesting/{futures_name}_daily.xlsx', index=None)
+        df.to_excel(f'data/requesting/{futures_name}_daily.xlsx', index=None)
 
     return m_data
 def request_old_data():
@@ -154,5 +154,5 @@ def request_old_data():
           'PP', 'RU', 'SP', 'TA', 'V', 'EB', 'PF', 'PG', 'SA', 'A', 'C', 'CF', 'M', 'OI',
           'RM', 'SR', 'Y', 'JD', 'CS', 'B', 'P', 'LH', 'PK', 'AL', 'CU', 'NI', 'PB', 'SN', 'ZN', 
            'SH', 'PX', 'BR', 'AO']:
-        m_data[future_type]=pd.read_excel(f"C:/Users/ROG/Desktop/Strategy/data/requesting/{future_type}_daily.xlsx")
+        m_data[future_type]=pd.read_excel(f"data/requesting/{future_type}_daily.xlsx")
     return m_data
