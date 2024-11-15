@@ -2,8 +2,10 @@ import rqdatac
 import pandas as pd
 import numpy as np
 rqdatac.init()
+import sys
+sys.path.append("c:\\Users\\ROG\\Desktop\\Strategy\\strategy\\utils")
 from datetime import datetime
-
+import auto_utils
 
 #price = rqdatac.futures.get_dominant_price("CU",start_date="20100104", end_date="20240809",frequency='1d',fields=None,adjust_type='post', adjust_method='prev_close_ratio')
 #print(price)
@@ -18,6 +20,7 @@ def get_raw_data(name):
     multi =rqdatac.futures.get_contract_multiplier([name], start_date='20100104',end_date=daten,  market='cn')
     multi.to_excel(f"data/multi_{name}_daily.xlsx")
 def merge(name):
+    f=auto_utils.FunctionPool()
     a:pd.DataFrame = pd.read_excel(f"data/raw_price_{name}_daily.xlsx")
     b =pd.read_excel(f"data/multi_{name}_daily.xlsx")
     a["multiplier"]= b["contract_multiplier"]
@@ -103,6 +106,10 @@ def merge(name):
     a['ADD[skew_position20 , position63]']=a['skew_position20']+a['position63']
     a['PROD[RANK26(vol_kurt126) , low_close]']=a['vol_skew126'].rolling(window=26).rank()*a['low_close']
     a['MINUS[skew_position63 , relative_amihud5]']=a['skew_position63']-a['relative_amihud5']
+    a['DIF26(STD9(DIV[sigma_skew20 , PROD[d_position5 , vol_skew20]]))']=(a['sigma_skew20']/(a['d_position5']*a['vol_skew20'])).rolling(9).std()-(a['sigma_skew20']/(a['d_position5']*a['vol_skew20'])).rolling(9).std().shift(26)
+    a['MINUS[high_close , skew_position63]']=a['high_close']-a['skew_position63']
+    a['ADD[vol_skew126 , skew_position63]']=a['vol_skew126']+a['skew_position63']
+    a['RANK20(DIV[price_kurt14 , d_position5])']=f.RANK(a['price_kurt14']/a['d_position5'],20)
     a.to_excel(f"data/{name}_daily.xlsx")
     a.to_csv(f"data/{name}_daily.csv")
     
