@@ -18,3 +18,4 @@ data/main.py
 data/get_index.py
 data/get_dominant.py
 data/contracts.py
+strategy/utils/FSM.py
