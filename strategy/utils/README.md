@@ -2,5 +2,5 @@
 |  文件   |  说明  |
 |  ----  | ----  |
 | auto_utils.py  | 案例回测脚本 |
-| utils/  | 存放回测引擎以及遗传规划脚本 |
-
+| BackTestEngine.py  | 回测引擎 |
+| utils.py  | Deprecated |
