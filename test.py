@@ -152,19 +152,25 @@ typelist = ['AU', 'AG', 'HC', 'I', 'J', 'JM', 'RB', 'SF', 'SM', 'SS', 'BU', 'EG'
 # df.to_excel("data/RF_Data/rf_old.xlsx",index=False)
 
 factors=['sigma5', 'sigma20', 'sigma40', 'sigma63', 'sigma126', 'sigma252', 'break1', 'break3', 'break14', 'break20', 'break63', 'break126', 'break252','d_vol', 'd_oi', 'mmt_open', 'high_close', 'low_close', 'corr_price_vol', 'corr_price_oi', 'corr_ret_vol', 'corr_ret_oi', 'corr_ret_dvol', 'corr_ret_doi', 'turnover', 'sigma_turnover', 'ave_turnover', 'norm_turn_std', 'vol_skew5', 'vol_skew14', 'vol_skew20', 'vol_skew63', 'vol_skew126', 'vol_skew252', 'price_skew5', 'price_skew14', 'price_skew20', 'price_skew63', 'price_skew126', 'price_skew252', 'sigma_skew5', 'sigma_skew14', 'sigma_skew20', 'sigma_skew63', 'sigma_skew126', 'sigma_skew252', 'low_close_high', 'd_low_close_high', 'mean6', 'mean12', 'dif', 'dea', 'macd', 'sma_low_close_high9', 'sma_low_close_high6', 'std_vol6', 'ddif_vol', 'norm_ATR', 'sq5_low_close_open_high', 'vol_kurt5', 'vol_kurt14', 'vol_kurt20', 'vol_kurt63', 'vol_kurt126', 'vol_kurt252', 'price_kurt5', 'price_kurt14', 'price_kurt20', 'price_kurt63', 'price_kurt126', 'price_kurt252', 'sigma_kurt5', 'sigma_kurt14', 'sigma_kurt20', 'sigma_kurt63', 'sigma_kurt126', 'sigma_kurt252', 'winrate5', 'winrate20', 'winrate63', 'winrate126', 'draw5', 'draw20', 'draw63', 'draw126', 'position5', 'position20', 'position63', 'position126', 'd_position5', 'd_position20', 'd_position63', 'daily_position5', 'daily_position20', 'd_daily_position', 'relative_amihud5', 'highlow_avg5', 'highlow_std5', 'upshadow_avg5', 'upshadow_std5', 'downshadow_avg5', 'relative_amihud20', 'highlow_avg20', 'highlow_std20', 'upshadow_avg20', 'upshadow_std20', 'downshadow_avg20', 'relative_amihud63', 'highlow_avg63', 'highlow_std63', 'upshadow_avg63', 'upshadow_std63', 'downshadow_avg63', 'relative_amihud126', 'highlow_avg126', 'highlow_std126', 'upshadow_avg126', 'upshadow_std126', 'downshadow_avg126']
-factors.extend(['expect1','expect2','expect3','expect4','expect5'])
-import rqdatac
-import pandas as pd
-import numpy as np
-corr=pd.DataFrame()
-for i in typelist:
-    a=pd.read_excel(f'data/{i}_daily.xlsx')
-    a=a[a["date"]>datetime(2018,1,1)][factors]
-    if len(corr)==0:
-        corr=a.corr()
-    else:
-        corr=corr+a.corr()
-corr=corr/len(typelist)
-corr=corr[['expect1','expect2','expect3','expect4','expect5']].iloc[:-5]
+# factors.extend(['expect1','expect2','expect3','expect4','expect5'])
+# import rqdatac
+# import pandas as pd
+# import numpy as np
+# corr=pd.DataFrame()
+# for i in typelist:
+#     a=pd.read_excel(f'data/{i}_daily.xlsx')
+#     a=a[a["date"]>datetime(2018,1,1)][factors]
+#     if len(corr)==0:
+#         corr=a.corr()
+#     else:
+#         corr=corr+a.corr()
+# corr=corr/len(typelist)
+# corr=corr[['expect1','expect2','expect3','expect4','expect5']].iloc[:-5]
 # corr.to_excel('factor/factor_exposure.xlsx')
 
+a=pd.read_csv("data/CU_daily.csv")
+
+print((a['sigma_skew20']/(a['d_position5'])))
+print((a['sigma_skew20']/(a['d_position5'])).replace([np.inf, -np.inf], np.nan, inplace=False).isnull().sum())
+print(len(a['sigma_skew20']/(a['d_position5'])))
+print(a.drop_duplicates())

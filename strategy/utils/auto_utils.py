@@ -380,18 +380,22 @@ class genetic_algorithm:
             corr=pd.DataFrame()
             logger.debug(str(self.population[i]))
             pop=self.population[i]
+            has_error=False
             # 先将所有corr加起来平均
             for df in random_data:
                 df['a']=pop(df)
+                #判断一下是否异常
+                if len(df['a'])>1000 and df['a'].replace([np.inf, -np.inf], np.nan, inplace=False).isnull().sum()>0.8*len(df['a']):
+                    has_error=True
+                    break
                 df=df[['a','expect1']]
                 
                 if len(corr)==0:
                     corr=df.corr()
                 else:
                     corr=corr+df.corr()
-            corr=np.abs(corr.loc['expect1','a']/random_l) #取绝对值
+            adaption=np.abs(corr.loc['expect1','a']/random_l) if not has_error else -10  #取绝对值
             # adaption=np.abs(corr.loc['expect1','a'])
-            adaption=corr
             
             fitness.append(adaption)
             if (i%200==0):
@@ -503,13 +507,12 @@ class genetic_algorithm:
 
 
     
-    def loop(self,temp):
+    def loop(self,temp,generation,iter):
         """
         one loop includes calculating fitness, crossover and mutation.
         """
         # 计算适应度
         fitness=self.calculate_fitness()
-        print(fitness)
         best=np.max(fitness)
         best_tree=self.population[np.argmax(fitness)]
         logger.info(f'Best fitness is {best}, best tree is {best_tree}')
@@ -519,12 +522,13 @@ class genetic_algorithm:
         #开始变异
         idx=list(range(1,len(self.population)))
         #自适应变异率
-        print(np.average(fitness))
-        indexes=random.sample(idx,int(0.1*0.01*len(self.population)/np.average(fitness)))
+        indexes=random.sample(idx,int((0.9-0.8*iter/generation)*len(self.population)))
         for i in indexes:
             self.population[i]=self.mutate(self.population[i])
+        str_list=[str(i) for i in self.population]
+        print(f"重复率为{(1-len(set(str_list))/len(str_list))*100:.1f}%")
         return best, best_tree
-    def run(self,generation=100,start_temp=1,end_temp=0.03):
+    def run(self,generation=100,start_temp=2,end_temp=0.03):
         warnings.filterwarnings("ignore", category=RuntimeWarning)
         """
         loop circulation. The main interface of genetic_algorithm.
@@ -537,7 +541,7 @@ class genetic_algorithm:
         for i in range(generation):
             print(f"current temperature: {temp}")
             try:
-                self.loop(temp)
+                self.loop(temp,generation,i)
                 
                 # if m_fit>0.15:
                 #     break
@@ -556,9 +560,9 @@ class genetic_algorithm:
         
         
 if __name__=='__main__':
-    g=genetic_algorithm(100,maxsize=6)
+    g=genetic_algorithm(10000,maxsize=8)
     t=time.time()
-    g.run(10)
+    g.run(1000)
     print(time.time()-t)
 
 
