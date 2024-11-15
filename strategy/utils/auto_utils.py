@@ -332,7 +332,7 @@ class genetic_algorithm:
         fitness = []
         l=len(self.population)
         #随机抽取训练集
-        random_data=random.sample(self.data,int(0.1*len(self.data)))
+        random_data=random.sample(self.data,int(0.4*len(self.data)))
         random_l=len(random_data)
         for  i in range(l):
             corr=pd.DataFrame()
@@ -460,6 +460,7 @@ class genetic_algorithm:
         one loop includes calculating fitness, crossover and mutation.
         """
         fitness=self.calculate_fitness()
+        print(fitness)
         best=np.max(fitness)
         best_tree=self.population[np.argmax(fitness)]
         logger.info(f'Best fitness is {best}, best tree is {best_tree}')
@@ -473,7 +474,7 @@ class genetic_algorithm:
             self.population[i]=self.mutate(self.population[i])
         return best, best_tree
     def run(self,generation=10):
-        # warnings.simplefilter("ignore", category=RuntimeWarning)
+        warnings.filterwarnings("ignore", category=RuntimeWarning)
         """
         loop circulation. The main interface of genetic_algorithm.
 
@@ -482,10 +483,9 @@ class genetic_algorithm:
         """
         for i in range(generation):
             try:
-                m_fit,m_tree=self.loop()
-                if m_fit>0.1:
-                    break
-                print(f'{m_fit}: {m_tree}')
+                self.loop()
+                # if m_fit>0.15:
+                #     break
                 print(f' generation {i} of {generation} Completed')
             except KeyboardInterrupt:
                 break
@@ -508,3 +508,5 @@ if __name__=='__main__':
 # a=np.zeros(10)
 # b=np.nan_to_num(np.corrcoef(a,a))
 # print(b)
+
+a=pd.read_csv('data/CU_daily.csv')
