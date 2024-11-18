@@ -170,7 +170,6 @@ factors=['sigma5', 'sigma20', 'sigma40', 'sigma63', 'sigma126', 'sigma252', 'bre
 
 a=pd.read_csv("data/CU_daily.csv")
 
-print((a['sigma_skew20']/(a['d_position5'])))
-print((a['sigma_skew20']/(a['d_position5'])).replace([np.inf, -np.inf], np.nan, inplace=False).isnull().sum())
-print(len(a['sigma_skew20']/(a['d_position5'])))
-print(a.drop_duplicates())
+print(a['vol_skew20'].apply(lambda x: max(x,1)).rolling(12).std()-a['vol_skew20'].apply(lambda x: max(x,1)).rolling(12).std().shift())
+b=a['vol_skew20'].apply(lambda x: max(x,1)).rolling(12).std()-a['vol_skew20'].apply(lambda x: max(x,1)).rolling(12).std().shift()
+print(b.mean())

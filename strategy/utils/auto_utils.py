@@ -28,7 +28,7 @@ class FunctionPool:
     First is the mono, which uses one dataframe and several other params.
     Second is the bi, which uses two dataframe and several other params.
     The special operator CORR uses two dataframe and one window, thus it is specially processed.
-    To add a new operator, an operator should be defined first just like the other operators. After that, it should be added to the self.calculator.
+    To add a new operator, an operator should be defined just like the other operators. After that, it should be added to the self.calculator.
     Finally, if it operates on one dataframe, then it should be added to self.mono, otherwise it should be addedd to self.bi.
     One more thing to notice is that some mono operators do not support the param {window=1}, pd.rolling(window=1).std() for example. 
     Although it is okay to get an all-nan array with the bad-parameter operator, it saves time of searching wrong operator.
@@ -39,7 +39,7 @@ class FunctionPool:
     def __init__(self) -> None:
         self.calculator=[self.RANK,self.DELAY,self.MA,self.STD,self.DIF,self.SMA,self.PCT,self.SKEW,self.KURT,self.RMIN,self.RMAX,self.ADD,self.MINUS,self.DIV,self.PROD,self.MIN,self.MAX,self.CORR]
         self.mono=[self.RANK,self.DELAY,self.MA,self.STD,self.DIF,self.SMA,self.PCT,self.SKEW,self.KURT,self.RMIN,self.RMAX]
-        self.bi=[self.ADD,self.MINUS,self.DIV,self.PROD,self.MIN,self.MAX,self.CORR]
+        self.bi=[self.ADD,self.MINUS,self.PROD,self.MIN,self.MAX,self.CORR]
     #######The following are the operators#######
     def DELAY(self,df:pd.DataFrame, window):
         return df.shift(window)
@@ -107,14 +107,14 @@ class Node():
             window (int, optional): optional param for every operator that requires a window param as input. Defaults to None.
             capacity (int, optional): the max length of child_nodes. Defaults to 0.
         """
-        
+        #node_type 代表是否是值节点，和capacity==0具有相同效果
         self.node_type=node_type
-        self.child_nodes=[]
-        if self.node_type:
+        self.child_nodes=[] # 子节点列表
+        if self.node_type: #如果是值类型，需要传入name
             self.name=name
             self.func=lambda x:x
             self.capacity=0
-        else:
+        else: # 如果是算子类型，需要传入func和capacity，capacity是算子需要几个子节点进行计算，0代表是值节点，1代表是单df操作符，2代表双df操作符
             self.func=func
             self.capacity=capacity
         self.window=window
@@ -385,7 +385,7 @@ class genetic_algorithm:
             for df in random_data:
                 df['a']=pop(df)
                 #判断一下是否异常
-                if len(df['a'])>1000 and df['a'].replace([np.inf, -np.inf], np.nan, inplace=False).isnull().sum()>0.8*len(df['a']):
+                if len(df['a'])>1000 and df['a'].replace([np.inf, -np.inf], np.nan, inplace=False).isnull().sum()>0.6*len(df['a']):
                     has_error=True
                     break
                 df=df[['a','expect1']]
@@ -394,7 +394,7 @@ class genetic_algorithm:
                     corr=df.corr()
                 else:
                     corr=corr+df.corr()
-            adaption=np.abs(corr.loc['expect1','a']/random_l) if not has_error else -10  #取绝对值
+            adaption=np.abs(corr.loc['expect1','a']/random_l) if not has_error else 0  #取绝对值
             # adaption=np.abs(corr.loc['expect1','a'])
             
             fitness.append(adaption)
@@ -522,7 +522,7 @@ class genetic_algorithm:
         #开始变异
         idx=list(range(1,len(self.population)))
         #自适应变异率
-        indexes=random.sample(idx,int((0.9-0.8*iter/generation)*len(self.population)))
+        indexes=random.sample(idx,int((0.9-0.8*iter/generation)*len(self.population)))#变异率越来越低
         for i in indexes:
             self.population[i]=self.mutate(self.population[i])
         str_list=[str(i) for i in self.population]
@@ -536,8 +536,8 @@ class genetic_algorithm:
         Args:
             generation (int, optional): the num of loops. Defaults to 10.
         """
-        dt=(end_temp-start_temp)/generation
-        temp=start_temp
+        dt=(end_temp-start_temp)/generation #初始化dt
+        temp=start_temp #初始化温度
         for i in range(generation):
             print(f"current temperature: {temp}")
             try:
@@ -549,7 +549,7 @@ class genetic_algorithm:
             except KeyboardInterrupt:#如果按ctrl C，程序会提前退出迭代，直接计算目前状态并输出
                 print("Recieve keyboard interruption, the loop is stopped and begins to dump the current result to factor/auto/. Please wait a while for the program to be appropriately terminated.")
                 break
-            temp+=dt
+            temp+=dt # 温度降低
         fitness = self.calculate_all_fitness()
         df=[[x,_] for _, x in sorted(zip(fitness, self.population), reverse=True,key=lambda x: x[0])]
         df=pd.DataFrame(df,columns=['factor','fitness'])
@@ -557,7 +557,6 @@ class genetic_algorithm:
         df=df.sort_values(by="abs",ascending=False)
         df=df.drop_duplicates(subset=['factor'])
         df.to_excel(f'factor/auto/auto_factor_pop{len(self.population)}_depth{self.maxsize}_generation{generation}.xlsx')
-        
         
 if __name__=='__main__':
     g=genetic_algorithm(10000,maxsize=8)
