@@ -37,8 +37,8 @@ class FunctionPool:
     """
     
     def __init__(self) -> None:
-        self.calculator=[self.RANK,self.DELAY,self.MA,self.STD,self.DIF,self.SMA,self.PCT,self.SKEW,self.KURT,self.RMIN,self.RMAX,self.ADD,self.MINUS,self.DIV,self.PROD,self.MIN,self.MAX,self.CORR]
-        self.mono=[self.RANK,self.DELAY,self.MA,self.STD,self.DIF,self.SMA,self.PCT,self.SKEW,self.KURT,self.RMIN,self.RMAX]
+        self.calculator=[self.DELAY,self.MA,self.STD,self.DIF,self.SMA,self.PCT,self.SKEW,self.KURT,self.ADD,self.MINUS,self.DIV,self.PROD,self.MIN,self.MAX,self.CORR]
+        self.mono=[self.DELAY,self.MA,self.STD,self.DIF,self.SMA,self.PCT,self.SKEW,self.KURT]
         self.bi=[self.ADD,self.MINUS,self.PROD,self.MIN,self.MAX,self.CORR]
     #######The following are the operators#######
     def DELAY(self,df:pd.DataFrame, window):
@@ -452,7 +452,7 @@ class genetic_algorithm:
             idx = random.randint(0, len(node.child_nodes) - 1)
             path.append(idx)
             if random.random()>0.6 or node.child_nodes[idx].capacity==0:
-                new_mutation=XTree(max(self.maxsize-len(path),1))
+                new_mutation=XTree(max(self.maxsize-len(path)-1,1))
                 new_mutation.split()
                 #直接生成一颗随机树突变
                 node.child_nodes[idx]=new_mutation.main_node
@@ -559,9 +559,9 @@ class genetic_algorithm:
         df.to_excel(f'factor/auto/auto_factor_pop{len(self.population)}_depth{self.maxsize}_generation{generation}.xlsx')
         
 if __name__=='__main__':
-    g=genetic_algorithm(10000,maxsize=8)
+    g=genetic_algorithm(4000,maxsize=6)
     t=time.time()
-    g.run(1000)
+    g.run(100)
     print(time.time()-t)
 
 
