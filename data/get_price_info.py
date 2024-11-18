@@ -108,6 +108,9 @@ def merge(name):
     a['MINUS[skew_position63 , relative_amihud5]']=-a['skew_position63']+a['relative_amihud5']
     a['MINUS[high_close , skew_position63]']=a['high_close']-a['skew_position63']
     a['ADD[vol_skew126 , skew_position63]']=-a['vol_skew126']-a['skew_position63']
+    a['MINUS[PROD[MIN[skew_position20 , vol_skew20] , RMAX26(CORR12[MIN[STD9(PROD[vol_skew20 , high_close]) , SMA12(skew_position63)] , RMIN26(corr_ret_vol)])] , ADD[RANK12(DIV[relative_amihud5 , skew_position20]) , SKEW12(PCT9(high_close))]]']=f.MIN(a['skew_position20'],a['vol_skew20'])*f.RMAX(f.CORR(f.MIN(f.STD((a['vol_skew20']*a['high_close']),9),f.SMA(a['skew_position63'],63)),f.RMIN(a['corr_ret_vol'],26),12),26)-f.RANK(a['relative_amihud5']/a['skew_position20'],12)-f.SKEW(f.PCT(a['high_close'],9),12)
+    a['RMAX63(STD63(vol_skew126))']=f.RMAX(f.STD(a['vol_skew126'],63),63)
+    a['MA20(DELAY63(SKEW9(MA63(vol_skew126))))']=f.MA(f.DELAY(f.SKEW(f.MA(a['vol_skew126'],63),9),63),20)
     a.to_excel(f"data/{name}_daily.xlsx")
     a.to_csv(f"data/{name}_daily.csv")
     

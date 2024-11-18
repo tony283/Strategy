@@ -18,7 +18,9 @@ import random
 import multiprocessing
 import pandas as pd
 import time
-
+import sys
+sys.path.append("c:\\Users\\ROG\\Desktop\\Strategy\\strategy\\utils")
+import auto_utils
 def generate_data(future):
     data =pd.read_excel(f"data/{future}_daily.xlsx",index_col=0)
     #
@@ -167,9 +169,15 @@ factors=['sigma5', 'sigma20', 'sigma40', 'sigma63', 'sigma126', 'sigma252', 'bre
 # corr=corr/len(typelist)
 # corr=corr[['expect1','expect2','expect3','expect4','expect5']].iloc[:-5]
 # corr.to_excel('factor/factor_exposure.xlsx')
-
+f=auto_utils.FunctionPool()
 a=pd.read_csv("data/CU_daily.csv")
+# MINUS[d , ADD[e , SKEW12(PCT9(high_close))]]
 
-print(a['vol_skew20'].apply(lambda x: max(x,1)).rolling(12).std()-a['vol_skew20'].apply(lambda x: max(x,1)).rolling(12).std().shift())
-b=a['vol_skew20'].apply(lambda x: max(x,1)).rolling(12).std()-a['vol_skew20'].apply(lambda x: max(x,1)).rolling(12).std().shift()
-print(b.mean())
+d=f.MIN(a['skew_position20'],a['vol_skew20'])*f.RMAX(f.CORR(f.MIN(f.STD((a['vol_skew20']*a['high_close']),9),f.SMA(a['skew_position63'],63)),f.RMIN(a['corr_ret_vol'],26),12),26)
+
+e=f.RANK(a['relative_amihud5']/a['skew_position20'],12)
+f=f.SKEW(f.PCT(a['high_close'],9),12)
+print(d)
+print(e)
+print(f)
+print(d-e-f)
